@@ -10,7 +10,8 @@ from tkinter import Menu
 from tkinter import Spinbox
 from tkinter import messagebox as mBox
 import threading  
-import time  
+import time
+from selenium import webdriver
 
 
 class TestThread(threading.Thread):
@@ -26,9 +27,24 @@ class TestThread(threading.Thread):
         def target_func():
             #inp = raw_input("Thread %d: " % self.thread_num)
             #print('Thread %s input %s' % (self.thread_num, inp))
-            while self.stopped != True:  
+            while self.stopped != True:
+                PostUrl = "http://bw1.cpa700.com/"
+                driver=webdriver.Chrome()
+                driver.get(PostUrl)
                 self.target.insert(tk.INSERT,'第' + str(0) + '线程\n')  
-                time.sleep(1)  
+                #time.sleep(1000)
+                while self.stopped != True:
+                    try:
+                        frame  = driver.find_element_by_xpath("//*[@id='fset1']/frame[2]")
+                    except:
+                        print("error lineno:"+str(sys._getframe().f_lineno))
+                        time.sleep(1)
+                        continue
+                        pass
+                    
+                    print(name3.text)
+                    print(rate3.text)
+                    print(money3.text)
 
         subthread = threading.Thread(target=target_func, args=())
         subthread.setDaemon(True)

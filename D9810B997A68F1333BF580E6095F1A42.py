@@ -81,16 +81,12 @@ while True:#无限循环
         print ('Value = '+item.value)
     
     print('获取登录数据 <---  ' + html)
-
-
-    xxx = bytes(html, encoding = "utf8")
-    print(xxx)
     
     html = html.replace("\r\n", "")
     print('获取登录数据 <---  ' + html)
     urls = html.split("wocaonima")
     if len(urls) != 3:
-        break;    
+        continue;    
 
     print("分割数据1-->" + urls[0])
     print("分割数据2-->" + urls[1])
@@ -175,11 +171,12 @@ while True:#无限循环
         print ('Name = '+item.name)
         print ('Value = '+item.value)
 
+    ready = True
     #################################################
-    while True:#无限循环
+    while ready:#无限循环
         #time.sleep(1)
         url = "https://www.77msc.net:502/Reports/BetMonitor.aspx"
-        
+            
         try:
             print('正在抓取数据 <---  ' + url)
             request = urllib.request.Request(url, headers = headers)
@@ -191,9 +188,11 @@ while True:#无限循环
             sql = "delete from soft_77msc_user where agent = '" + agent + "'";
             cursor.execute(sql)
             print('BeautifulSoup解析')
+            dealcount = 0
             soup = BeautifulSoup(html, "lxml")
             for table in soup.find_all('table'):
                 if table.get("id") == "gridSummary":
+                    dealcount = dealcount + 1;
                     print("gridSummary")
                     row     = 0 
                     sql     = "INSERT INTO soft_77msc (`agent`, `tableNo`, `type`, `date`, `state`, `number`, `bootsnumber`, `downlinebets`, `downlinemonery`, `result1`, `result2`, `result3`, `lastresult`) VALUES "
@@ -234,6 +233,7 @@ while True:#无限循环
                         cursor.execute(sql)
                 if table.get("id") == "gridDetail":
                     print("gridDetail")
+                    dealcount = dealcount + 1;
                     row     = 0
                     sql     = "INSERT INTO soft_77msc_user (`agent`, `agentid`, `membername`, `bettingdate`, `tableno`, `type`, `member`, `bootsnumber`, `betting`, `bettingmonery`) VALUES "
                     for tr in table.find_all('tr'):
@@ -266,7 +266,10 @@ while True:#无限循环
                         sql = sql + ", soft_77msc_user.betting = values(soft_77msc_user.betting)"
                         sql = sql + ", soft_77msc_user.bettingmonery = values(soft_77msc_user.bettingmonery)"
                         cursor.execute(sql)                
+            if dealcount == 0:
+                ready = False
         except:
+            ready = False
             connect.rollback()  # 事务回滚
             print("error lineno:"+str(sys._getframe().f_lineno))
             pass
