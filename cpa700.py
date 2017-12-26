@@ -30,22 +30,71 @@ class TestThread(threading.Thread):
             while self.stopped != True:
                 PostUrl = "http://bw1.cpa700.com/"
                 driver=webdriver.Chrome()
+                #driver=webdriver.Firefox()
                 driver.get(PostUrl)
-                self.target.insert(tk.INSERT,'第' + str(0) + '线程\n')  
+                self.target.insert(tk.INSERT,'第' + str(0) + '线程\n')
+                driver.implicitly_wait(5)
                 #time.sleep(1000)
                 while self.stopped != True:
                     try:
-                        frame  = driver.find_element_by_xpath("//*[@id='fset1']/frame[2]")
+                        driver.switch_to.default_content()
+                        
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print("page_source:" + driver.page_source)
+                        
+                        print(driver.find_element_by_id("fset1").get_attribute("onunload"))
+
+
+                        
+                        frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
+                        driver.switch_to.frame(frame2)
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print("page_source:" + driver.page_source)
+                        print("1111111111111111111111111")
+
+
+                        #/html/frameset/frame[1]  /html/frameset/frame[1]
+                        #topFrame = driver.find_element_by_name("topFrame")
+                        topFrame = driver.find_element_by_xpath("/html/frameset/frame[1]") 
+                        driver.switch_to.frame(topFrame)
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print(driver.find_element_by_id("MC_301").text)
+                        driver.switch_to.parent_frame()
+                        print("222222222222222222222222")
+
+                        #/html/frameset/frameset/frame[1]
+                        leftFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[0]")
+                        driver.switch_to.frame(leftFrame)
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print(driver.find_element_by_id("td_credit_amount").text)
+                        driver.switch_to.parent_frame()
+                        print("33333333333333333333333333")
+
+                        mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")
+                        driver.switch_to.frame(mainFrame)
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print(driver.find_element_by_id("B-H12-3.money").text)
+                        driver.switch_to.parent_frame()
+                        print("4444444444444444444444444")
+
+                        DownFrame = driver.find_element_by_name("DownFrame")
+                        driver.switch_to.frame(DownFrame)
+                        print("current_url:" + driver.current_url)
+                        print("title:" + driver.title)
+                        print(driver.find_element_by_id("roll_ad_text").text)
+                        driver.switch_to.parent_frame()
+                        print("55555555555555555555555555")
+                        time.sleep(5)
                     except:
                         print("error lineno:"+str(sys._getframe().f_lineno))
-                        time.sleep(1)
+                        time.sleep(5)
                         continue
-                        pass
                     
-                    print(name3.text)
-                    print(rate3.text)
-                    print(money3.text)
-
         subthread = threading.Thread(target=target_func, args=())
         subthread.setDaemon(True)
         subthread.start()
