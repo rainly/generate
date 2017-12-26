@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 import re
 import urllib
 import urllib.request
+import urllib.response
+import urllib.error
 import sys
 import io
 import json
@@ -13,6 +15,7 @@ import http.cookiejar
 import json
 import pymysql.cursors
 import ssl
+
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -66,22 +69,19 @@ while True:#无限循环
     try:
         #response = urllib.request.urlopen(request)
         response = opener.open(request, timeout = 5)
-    except:
-        print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-
-    try:
         html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        print ( 'The server couldn\'t fulfill the request.')
+        print ('Error code: ' +str( e.code))
+        print ('Error reason: ' + e.reason)
+    except urllib.error.URLError as e:
+        print ('We failed to reach a server.')
+        print ('Reason: ' + e.reason)
     except:
         print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
+        continue;
 
-    for item in cookiejar:
-        print ('Name = '+item.name)
-        print ('Value = '+item.value)
-    
     print('获取登录数据 <---  ' + html)
-    
     html = html.replace("\r\n", "")
     print('获取登录数据 <---  ' + html)
     urls = html.split("wocaonima")
@@ -98,22 +98,21 @@ while True:#无限循环
     try:
         #response = urllib.request.urlopen(request)
         response = opener.open(request, timeout = 5)
-    except:
-        print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-
-    try:
         html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        print ( 'The server couldn\'t fulfill the request.')
+        print ('Error code: ' +str( e.code))
+        print ('Error reason: ' + e.reason)
+        print("error lineno:"+str(sys._getframe().f_lineno))
+    except urllib.error.URLError as e:
+        print ('We failed to reach a server.')
+        print ('Reason: ' + e.reason)
+        print("error lineno:"+str(sys._getframe().f_lineno))
     except:
         print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
+        print("error lineno:"+str(sys._getframe().f_lineno))
+        continue;
 
-    for item in cookiejar:
-        print ('Name = '+item.name)
-        print ('Value = '+item.value)
-    #######################################################
-
-    
     url = "https://www.77msc.net:502/Login.aspx"
     print('正在登录1 <---  ' + url);
     data = bytes(urls[0], encoding = "utf8")
@@ -121,17 +120,22 @@ while True:#无限循环
     try:
         #response = urllib.request.urlopen(request)
         response = opener.open(request, timeout = 5)
-    except:
-        print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    
-    try:
         html = response.read().decode()
-    except:
+    except urllib.error.HTTPError as e:
+        print ( 'The server couldn\'t fulfill the request.')
+        print ('Error code: ' +str( e.code))
+        print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    print(html)
-
+    except urllib.error.URLError as e:
+        print ('We failed to reach a server.')
+        print ('Reason: ' + e.reason)
+        print("error lineno:"+str(sys._getframe().f_lineno))
+    #except:
+    #    print("error lineno:"+str(sys._getframe().f_lineno))
+    #    continue;
+	
+    #print(html)
+    
     url = "https://www.77msc.net:502/Login.aspx"
     print('正在登录2 <---  ' + url);
     data = bytes(urls[1], encoding = "utf8")
@@ -139,16 +143,21 @@ while True:#无限循环
     try:
         #response = urllib.request.urlopen(request)
         response = opener.open(request, timeout = 5)
-    except:
-        print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    
-    try:
         html = response.read().decode()
-    except:
+    except urllib.error.HTTPError as e:
+        print ( 'The server couldn\'t fulfill the request.')
+        print ('Error code: ' +str( e.code))
+        print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    print(html)
+    except urllib.error.URLError as e:
+        print ('We failed to reach a server.')
+        print ('Reason: ' + e.reason)
+        print("error lineno:"+str(sys._getframe().f_lineno))
+    #except:
+    #    print("error lineno:"+str(sys._getframe().f_lineno))
+    #    continue;
+        
+    #print(html)
     
     url = "https://www.77msc.net:502/Login.aspx"
     print('正在登录3 <---  ' + url);
@@ -157,20 +166,21 @@ while True:#无限循环
     try:
         #response = urllib.request.urlopen(request)
         response = opener.open(request, timeout = 5)
-    except:
-        print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    
-    try:
         html = response.read().decode()
-    except:
+    except urllib.error.HTTPError as e:
+        print ( 'The server couldn\'t fulfill the request.')
+        print ('Error code: ' +str( e.code))
+        print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
-        pass
-    print(html)
-    for item in cookiejar:
-        print ('Name = '+item.name)
-        print ('Value = '+item.value)
+    except urllib.error.URLError as e:
+        print ('We failed to reach a server.')
+        print ('Reason: ' + e.reason)
+        print("error lineno:"+str(sys._getframe().f_lineno))
+    #except:
+    #    print("error lineno:"+str(sys._getframe().f_lineno))
+    #    continue;
 
+    #print(html)
     ready = True
     #################################################
     while ready:#无限循环
@@ -182,9 +192,11 @@ while True:#无限循环
             request = urllib.request.Request(url, headers = headers)
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
-            print('删除数据')
+            print('抓取数据 <---  ' + html)
+            print('删除数据 soft_77msc')
             sql = "delete from soft_77msc where agent = '" + agent + "'";
             cursor.execute(sql)
+            print('删除数据 soft_77msc_user')
             sql = "delete from soft_77msc_user where agent = '" + agent + "'";
             cursor.execute(sql)
             print('BeautifulSoup解析')
@@ -267,15 +279,29 @@ while True:#无限循环
                         sql = sql + ", soft_77msc_user.bettingmonery = values(soft_77msc_user.bettingmonery)"
                         cursor.execute(sql)                
             if dealcount == 0:
+                print("error dealcount:"+str(sys._getframe().f_lineno))
                 ready = False
-        except:
+        except urllib.error.HTTPError as e:
             ready = False
             connect.rollback()  # 事务回滚
+            print ('The server couldn\'t fulfill the request.')
+            print ('Error code: ' +str( e.code))
+            print ('Error reason: ' + e.reason)
             print("error lineno:"+str(sys._getframe().f_lineno))
-            pass
+        except urllib.error.URLError as e:
+            ready = False
+            connect.rollback()  # 事务回滚
+            print ('We failed to reach a server.')
+            print ('Reason: ', e.reason)
+            print("error lineno:"+str(sys._getframe().f_lineno))
+        #except:
+        #    ready = False
+        #    connect.rollback()  # 事务回滚
+        #    print("error lineno:"+str(sys._getframe().f_lineno))
+        #    print("error lineno:"+str(sys._getframe().f_lineno))
         else:
             connect.commit()
-            print('成功', cursor.rowcount, '条数据')   
+            print('提交事物成功', cursor.rowcount, '条数据')   
         
 # 关闭连接
 cursor.close()
