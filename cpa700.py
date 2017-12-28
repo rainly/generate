@@ -1,5 +1,6 @@
 ﻿## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
+#pyinstaller
 from tkinter import *
 import tkinter.messagebox as messagebox
 import tkinter as tk
@@ -32,66 +33,88 @@ class TestThread(threading.Thread):
                 driver=webdriver.Chrome()
                 #driver=webdriver.Firefox()
                 driver.get(PostUrl)
-                self.target.insert(tk.INSERT,'第' + str(0) + '线程\n')
+                self.target.log.insert(tk.INSERT,'开始执行\n')
+
+
                 driver.implicitly_wait(5)
+                while self.stopped != True:
+                    time.sleep(1)
+                    try:
+                        driver.find_element_by_id("menu_1")
+                        driver.find_element_by_id("menu_1")
+                        jump = False
+                        handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
+                        print (handles) # 输出句柄集合
+                        for handle in handles:# 切换窗口（切换到搜狗）
+                            if handle!=driver.current_window_handle:
+                                print ('switch to ',handle)
+                                driver.switch_to_window(handle)
+                                print (driver.current_window_handle)
+                                jump = True
+                                break
+                        if jump:
+                            break;
+                    except:
+                        self.target.log.insert(tk.INSERT,"error lineno:"+str(sys._getframe().f_lineno))
+                        continue
+
                 #time.sleep(1000)
                 while self.stopped != True:
+                    time.sleep(1)
                     try:
+                    
                         driver.switch_to.default_content()
                         
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print("page_source:" + driver.page_source)
-                        
-                        print(driver.find_element_by_id("fset1").get_attribute("onunload"))
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,"page_source:" + driver.page_source)
 
-
-                        
                         frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
                         driver.switch_to.frame(frame2)
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print("page_source:" + driver.page_source)
-                        print("1111111111111111111111111")
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,"page_source:" + driver.page_source)
+                        self.target.log.insert(tk.INSERT,"1111111111111111111111111")
+
 
 
                         #/html/frameset/frame[1]  /html/frameset/frame[1]
                         #topFrame = driver.find_element_by_name("topFrame")
                         topFrame = driver.find_element_by_xpath("/html/frameset/frame[1]") 
                         driver.switch_to.frame(topFrame)
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print(driver.find_element_by_id("MC_301").text)
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,driver.find_element_by_id("MC_301").text)
                         driver.switch_to.parent_frame()
-                        print("222222222222222222222222")
+                        self.target.log.insert(tk.INSERT,"222222222222222222222222")
 
                         #/html/frameset/frameset/frame[1]
                         leftFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[0]")
                         driver.switch_to.frame(leftFrame)
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print(driver.find_element_by_id("td_credit_amount").text)
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,driver.find_element_by_id("td_credit_amount").text)
                         driver.switch_to.parent_frame()
-                        print("33333333333333333333333333")
+                        self.target.log.insert(tk.INSERT,"33333333333333333333333333")
 
                         mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")
                         driver.switch_to.frame(mainFrame)
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print(driver.find_element_by_id("B-H12-3.money").text)
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,driver.find_element_by_id("B-H12-3.money").text)
                         driver.switch_to.parent_frame()
-                        print("4444444444444444444444444")
+                        self.target.log.insert(tk.INSERT,"4444444444444444444444444")
 
                         DownFrame = driver.find_element_by_name("DownFrame")
                         driver.switch_to.frame(DownFrame)
-                        print("current_url:" + driver.current_url)
-                        print("title:" + driver.title)
-                        print(driver.find_element_by_id("roll_ad_text").text)
+                        self.target.log.insert(tk.INSERT,"current_url:" + driver.current_url)
+                        self.target.log.insert(tk.INSERT,"title:" + driver.title)
+                        self.target.log.insert(tk.INSERT,driver.find_element_by_id("roll_ad_text").text)
                         driver.switch_to.parent_frame()
-                        print("55555555555555555555555555")
+                        self.target.log.insert(tk.INSERT,"55555555555555555555555555")
                         time.sleep(5)
                     except:
-                        print("error lineno:"+str(sys._getframe().f_lineno))
+                        self.target.log.insert(tk.INSERT,"error lineno:"+str(sys._getframe().f_lineno))
                         time.sleep(5)
                         continue
                     
@@ -102,7 +125,7 @@ class TestThread(threading.Thread):
         while not self.stopped:
             subthread.join(self.timeout)
 
-        print('Thread stopped')
+        self.target.log.insert(tk.INSERT,'Thread stopped')
 
     def stop(self):
         self.stopped = True
@@ -163,16 +186,16 @@ class Application(tk.Tk):
         self.tabControl = ttk.Notebook(self)          # Create Tab Control
         self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
         self.tabControl.add(self.tab1, text='第一页')      # Add the tab
-        self.tab2 = ttk.Frame(self.tabControl)            # Add a second tab
-        self.tabControl.add(self.tab2, text='第二页')      # Make second tab visible
-        self.tab3 = ttk.Frame(self.tabControl)            # Add a third tab
-        self.tabControl.add(self.tab3, text='第三页')      # Make second tab visible
+        #self.tab2 = ttk.Frame(self.tabControl)            # Add a second tab
+        #self.tabControl.add(self.tab2, text='第二页')      # Make second tab visible
+        #self.tab3 = ttk.Frame(self.tabControl)            # Add a third tab
+        #self.tabControl.add(self.tab3, text='第三页')      # Make second tab visible
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
         # ~ Tab Control introduced here -----------------------------------------
         self.createTab1()
-        self.createTab2()
-        self.createTab3()
-        self.createmenu()
+        #self.createTab2()
+        #self.createTab3()
+        #self.createmenu()
 
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
@@ -180,14 +203,16 @@ class Application(tk.Tk):
         def clickMe():
             text = self.btaction.config('text')
             if  text[4] == '关闭':
-                self.btaction.configure(text='开始' + self.name.get())
+                self.btaction.configure(text='开始')
                 self.thread.stop()
                 self.thread.join()
             else:
-                self.btaction.configure(text='关闭' + self.name.get())
+                self.btaction.configure(text='关闭')
                 #btaction.configure(state='disabled') # Disable the Button Widget
-                self.thread = TestThread(self.scr)
+                self.thread = TestThread(self)
                 self.thread.start()
+                
+                
 
         # Spinbox callback
         def _spin():
@@ -202,57 +227,56 @@ class Application(tk.Tk):
 
 
         # We are creating a container tab3 to hold all other widgets
-        self.monty = ttk.LabelFrame(self.tab1, text='控件示范区1')
+        self.monty = ttk.LabelFrame(self.tab1, text='操作区')
         self.monty.grid(column=0, row=0, padx=8, pady=4)
 
         # Changing our Label
-        ttk.Label(self.monty, text="输入文字:").grid(column=0, row=0, sticky='W')
+        #ttk.Label(self.monty, text="输入文字:").grid(column=0, row=0, sticky='W')
 
         # Adding a Textbox Entry widget
-        self.name = tk.StringVar()
-        self.nameEntered = ttk.Entry(self.monty, width=12, textvariable=self.name)
-        self.nameEntered.grid(column=0, row=1, sticky='W')
+        #self.name = tk.StringVar()
+        #self.nameEntered = ttk.Entry(self.monty, width=12, textvariable=self.name)
+        #self.nameEntered.grid(column=0, row=1, sticky='W')
 
-        # Adding a Button
-        self.btaction = ttk.Button(self.monty,text="开始",width=10,command=clickMe)   
-        self.btaction.grid(column=2,row=1,rowspan=2,ipady=7)
 
-        ttk.Label(self.monty, text="请选择一本书:").grid(column=1, row=0,sticky='W')
 
+        ttk.Label(self.monty, text="请选择:").grid(column=0, row=0,sticky='W')
         # Adding a Combobox
         self.book = tk.StringVar()
         self.bookChosen = ttk.Combobox(self.monty, width=12, textvariable=self.book)
-        self.bookChosen['values'] = ('平凡的世界', '亲爱的安德烈','看见','白夜行')
-        self.bookChosen.grid(column=1, row=1)
+        self.bookChosen['values'] = ('大', '小','单','双')
+        self.bookChosen.grid(column=1, row=0)
         self.bookChosen.current(0)  #设置初始显示值，值为元组['values']的下标
         self.bookChosen.config(state='readonly')  #设为只读模式
 
-        # Adding 2 Spinbox widget using a set of values
-        self.spin = Spinbox(self.monty, from_=10,to=25, width=5, bd=8, command=_spin) 
-        self.spin.grid(column=0, row=2)
-
-        self.spin2 = Spinbox(self.monty, values=('Python3入门', 'C语言','C++', 'Java', 'OpenCV'), width=13, bd=3, command=_spin2) 
-        self.spin2.grid(column=1, row=2,sticky='W')
- 
         # Using a scrolled Text control
         self.scrolW = 30
         self.scrolH = 5
+        ttk.Label(self.monty, text="策略配置:").grid(column=0, row=2,sticky='W')
         self.scr = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.scr.grid(column=0, row=3, sticky='WE', columnspan=3)
 
+        ttk.Label(self.monty, text="日志信息:").grid(column=0, row=4,sticky='W')
+        self.log = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+        self.log.grid(column=0, row=5, sticky='WE', columnspan=3)
+
+        # Adding a Button
+        self.btaction = ttk.Button(self.monty,text="开始",width=10,command=clickMe)   
+        self.btaction.grid(column=0,row=6)
+
         # Add Tooltip
-        self.createToolTip(self.spin,       '这是一个Spinbox.')
-        self.createToolTip(self.spin2,      '这是一个Spinbox.')
-        self.createToolTip(self.btaction,   '这是一个Button.')
-        self.createToolTip(self.nameEntered,'这是一个Entry.')
-        self.createToolTip(self.bookChosen, '这是一个Combobox.')
-        self.createToolTip(self.scr,        '这是一个ScrolledText.')
+        #self.createToolTip(self.spin,       '这是一个Spinbox.'),rowspan=2,ipady=7
+        #self.createToolTip(self.spin2,      '这是一个Spinbox.')
+        #self.createToolTip(self.btaction,   '这是一个Button.')
+        #self.createToolTip(self.nameEntered,'这是一个Entry.')
+        #self.createToolTip(self.bookChosen, '这是一个Combobox.')
+        #self.createToolTip(self.scr,        '这是一个ScrolledText.')
 
         # 一次性控制各控件之间的距离
         for child in self.monty.winfo_children(): 
             child.grid_configure(padx=3,pady=1)
         # 单独控制个别控件之间的距离
-        self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
+        #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
     def createTab2(self):
         #---------------Tab2控件介绍------------------#

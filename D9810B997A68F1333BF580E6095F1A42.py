@@ -71,7 +71,7 @@ while True:#无限循环
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        print ( 'The server couldn\'t fulfill the request.')
+        print ('The server couldn\'t fulfill the request.')
         print ('Error code: ' +str( e.code))
         print ('Error reason: ' + e.reason)
     except urllib.error.URLError as e:
@@ -100,7 +100,7 @@ while True:#无限循环
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        print ( 'The server couldn\'t fulfill the request.')
+        print ('The server couldn\'t fulfill the request.')
         print ('Error code: ' +str( e.code))
         print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
@@ -122,7 +122,7 @@ while True:#无限循环
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        print ( 'The server couldn\'t fulfill the request.')
+        print ('The server couldn\'t fulfill the request.')
         print ('Error code: ' +str( e.code))
         print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
@@ -145,7 +145,7 @@ while True:#无限循环
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        print ( 'The server couldn\'t fulfill the request.')
+        print ('The server couldn\'t fulfill the request.')
         print ('Error code: ' +str( e.code))
         print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
@@ -168,7 +168,7 @@ while True:#无限循环
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        print ( 'The server couldn\'t fulfill the request.')
+        print ('The server couldn\'t fulfill the request.')
         print ('Error code: ' +str( e.code))
         print ('Error reason: ' + e.reason)
         print("error lineno:"+str(sys._getframe().f_lineno))
