@@ -47,22 +47,21 @@ class TestThread(threading.Thread):
 
     def run(self):
         def target_func():
-            #inp = raw_input("Thread %d: " % self.thread_num)
-            #print('Thread %s input %s' % (self.thread_num, inp))
+            self.target.log.insert(tk.INSERT,'线程执行目录函数\n')
+
             conn = sqlite3.connect('test.db')
             cursor = conn.cursor()
             cursor.execute("select * from monery")
             monerys = cursor.fetchall()
             if len(monerys) == 0:
                 return
+
             driver = webdriver.Chrome()
+            #driver = webdriver.Firefox()
             while self.stopped != True:
                 PostUrl = "http://bw1.cpa700.com/"
 
-                #driver=webdriver.Firefox()
                 driver.get(PostUrl)
-                self.target.log.insert(tk.INSERT,'开始执行\n')
-
 
                 driver.implicitly_wait(5)
                 while self.stopped != True:
@@ -72,26 +71,26 @@ class TestThread(threading.Thread):
                         driver.find_element_by_id("menu_1")
                         jump = False
                         handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
-                        print(handles) # 输出句柄集合
+                        #print(handles) # 输出句柄集合
                         for handle in handles:# 切换窗口
                             if handle != driver.current_window_handle:
-                                print('switch to ',handle)
+                                #print('switch to ',handle)
                                 driver.switch_to_window(handle)
-                                print(driver.current_window_handle)
+                                #print(driver.current_window_handle)
                                 jump = True
                                 break
                         if jump:
                             break
                     except:
-                        print("error lineno:" + str(sys._getframe().f_lineno))
+                        #print("error lineno:" + str(sys._getframe().f_lineno))
+                        self.target.log.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
 
                 while self.stopped != True:
-                    try:
-                        time.sleep(5)
-                        print("begin")
+                    time.sleep(5)
+                    try:    
                         driver.switch_to.default_content()
-                        #print("default current_url:" + driver.current_url)
-                        #print("default title:" + driver.title)
+                        print("default current_url:" + driver.current_url)
+                        print("default title:" + driver.title)
 
 
                         frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
@@ -128,7 +127,7 @@ class TestThread(threading.Thread):
                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
                         conn.commit()                                                                                        
-                        print("update data Cur_Award_Issue:" + Cur_Award_Issue)
+                        self.target.log.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue)
                         
 
                         BaLL_Idx = 1
@@ -139,12 +138,11 @@ class TestThread(threading.Thread):
                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
                         datas = cursor.fetchall()
                         for data in datas:# 切换窗口
-                            print("deal with Cur_Award_Issue: " + Cur_Award_Issue)
+                            self.target.log.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue)
                             #处理未开奖数据
                             Have_Cur_Award_Issue = True
                             if data[11] != None and data[12] == None:
                                 Deal_Cur_Award_Issue = True
-                                print("deal win Cur_Award_Issue:" + Cur_Award_Issue)
                                 items = data[11].split("=")
                                 if len(items) != 3:
                                     break
@@ -187,7 +185,6 @@ class TestThread(threading.Thread):
                                     BaLL_Idx = 1
                             elif data[11] != None and data[12] != None:
                                 Deal_Cur_Award_Issue = True
-                                print("deal win Cur_Award_Issue:" + Cur_Award_Issue)
                                 items = data[11].split("=")
                                 if len(items) != 3:
                                     break
@@ -230,13 +227,15 @@ class TestThread(threading.Thread):
                         #处理新订单，如果没有找到的话
                         if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True): 
                             if Have_Cur_Award_Issue == False:
-                                print("程序第一次开始执行")
+                                #print("程序第一次开始执行")
+                                pass
                             else:
-                                print("打到旧订单，并已经处理开奖结果")
+                                #print("打到旧订单，并已经处理开奖结果")
+                                pass
                             cursor.execute("select * from data where issue = ?", (Cur_Issue,))
                             datas = cursor.fetchall()
                             if len(datas) == 0:
-                                print("处理新订单 Cur_Issue:" + Cur_Issue)
+                                self.target.log.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue)
                                 ##################################################
                                 Sel_Monery = None
                                 if Have_Cur_Award_Issue:
@@ -254,8 +253,8 @@ class TestThread(threading.Thread):
                                 else:
                                      Sel_Monery = monerys[0]                                       
                                 ##################################################
-                                print("deal new BaLL_Idx:" + str(BaLL_Idx))
-                                print("deal new Monery_Idx:" + str(Sel_Monery[0]))
+                                #print("deal new BaLL_Idx:" + str(BaLL_Idx))
+                                #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
                                 if self.target.bookChosen.get() == "大":
                                     xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "1.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
@@ -283,19 +282,22 @@ class TestThread(threading.Thread):
                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
                                 conn.commit()
                             else:
-                                print("新订单已经处理 Cur_Issue:" + Cur_Issue)
+                                self.target.log.insert(tk.INSERT,"新订单已经处理期号:" + Cur_Issue)
+                                pass
                         ############################################################3
                         driver.switch_to.parent_frame()
-                        print("end")
-                        print("**************************************************")
+                        #print("end")
+                        #print("**************************************************")
                     except:
-                        print("error lineno:" + str(sys._getframe().f_lineno))
-                        print("end")
-                        print("**************************************************")
+                        #print("error lineno:" + str(sys._getframe().f_lineno))
+                        self.target.log.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
+                        #print("end")
+                        #print("**************************************************")
             driver.quit()
             cursor.close()
             conn.close()
-                    
+ 
+        self.target.log.insert(tk.INSERT,'Thread start\n')                   
         subthread = threading.Thread(target=target_func, args=())
         subthread.setDaemon(True)
         subthread.start()
@@ -335,34 +337,34 @@ class Application(tk.Tk):
         # ~ Tab Control introduced here
                                                            # -----------------------------------------
         self.createTab1()
-
+    
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
         # Modified Button Click Function
         def clickMe():
+            self.cursor.execute('delete from users')
             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
             self.conn.commit()
 
             url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
-            print('正在抓取首页 <---  ' + url)
             request = urllib.request.Request(url, headers = headers)
             try:
                 #response = urllib.request.urlopen(request)
                 response = opener.open(request, timeout = 5)
                 html = response.read().decode()
             except urllib.error.HTTPError as e:
-                print('The server couldn\'t fulfill the request.')
-                print('Error code: ' + str(e.code))
-                print('Error reason: ' + e.reason)
+                #print('The server couldn\'t fulfill the request.')
+                #print('Error code: ' + str(e.code))
+                #print('Error reason: ' + e.reason)
                 messagebox.showerror("错误","网络连接错误！")
                 return
             except urllib.error.URLError as e:
-                print('We failed to reach a server.')
-                print('Reason: ' + e.reason)
+                #print('We failed to reach a server.')
+                #print('Reason: ' + e.reason)
                 messagebox.showerror("错误","网络连接错误！")
                 return
             except:
-                print("error lineno:" + str(sys._getframe().f_lineno))
+                #print("error lineno:" + str(sys._getframe().f_lineno))
                 messagebox.showerror("错误","网络连接错误！")
                 return
             if html != "1":
@@ -377,11 +379,11 @@ class Application(tk.Tk):
             else:
                 self.btaction.configure(text='关闭')
                 #btaction.configure(state='disabled') # Disable the Button
-                #Widget
                 self.thread = TestThread(self)
                 self.thread.start()
+
         def save():#self.text.get(1.0, END)
-            print(self.text.get(1.0, END))
+            #print(self.text.get(1.0, END))
             text = self.text.get(1.0, END)
             lines = text.split("\n") 
             for line1 in lines:
@@ -500,4 +502,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+    
