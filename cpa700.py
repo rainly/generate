@@ -347,6 +347,7 @@ class Application(tk.Tk):
             self.conn.commit()
 
             url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
+            print(url)
             request = urllib.request.Request(url, headers = headers)
             try:
                 #response = urllib.request.urlopen(request)
@@ -367,6 +368,8 @@ class Application(tk.Tk):
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 messagebox.showerror("错误","网络连接错误！")
                 return
+            html = html.strip()
+            print(html)
             if html != "1":
                 messagebox.showerror("错误","账号未注册！")
                 return
