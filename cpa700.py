@@ -48,12 +48,14 @@ class TestThread(threading.Thread):
     def run(self):
         def target_func():
             self.target.log.insert(tk.INSERT,'线程执行目录函数\n')
-
             conn = sqlite3.connect('test.db')
             cursor = conn.cursor()
             cursor.execute("select * from monery")
             monerys = cursor.fetchall()
             if len(monerys) == 0:
+                cursor.close()
+                conn.close()
+                self.target.log.insert(tk.INSERT,'策略未配置\n')
                 return
 
             driver = webdriver.Chrome()
@@ -346,8 +348,15 @@ class Application(tk.Tk):
             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
             self.conn.commit()
 
+            self.cursor.execute("select * from monery")
+            monerys = self.cursor.fetchall()
+            if len(monerys) == 0:
+                messagebox.showerror("错误","策略未配置")
+                return        
+            
+
             url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
-            print(url)
+            #print(url)
             request = urllib.request.Request(url, headers = headers)
             try:
                 #response = urllib.request.urlopen(request)
@@ -505,4 +514,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
     
