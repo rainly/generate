@@ -143,7 +143,7 @@ class TestThread(threading.Thread):
                             self.target.log.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue)
                             #处理未开奖数据
                             Have_Cur_Award_Issue = True
-                            if data[11] != None and data[12] == None:
+                            if data[11] != None:
                                 Deal_Cur_Award_Issue = True
                                 items = data[11].split("=")
                                 if len(items) != 3:
@@ -176,47 +176,6 @@ class TestThread(threading.Thread):
                                         Win = 1
                                 Monery_Idx = int(items[2])
 
-                                cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
-                                conn.commit()
-                        
-                                if Win == 1:
-                                    BaLL_Idx = 1
-                                else:
-                                    BaLL_Idx = BaLL_Idx + 1
-                                if BaLL_Idx > 5:
-                                    BaLL_Idx = 1
-                            elif data[11] != None and data[12] != None:
-                                Deal_Cur_Award_Issue = True
-                                items = data[11].split("=")
-                                if len(items) != 3:
-                                    break
-                                BaLL_No = 1
-                                BaLL_Idx = int(items[0])
-                                if BaLL_Idx == 1:
-                                    BaLL_No = int(BaLL_No1)
-                                elif BaLL_Idx == 2:
-                                    BaLL_No = int(BaLL_No2)
-                                elif BaLL_Idx == 3:
-                                    BaLL_No = int(BaLL_No3)
-                                elif BaLL_Idx == 4:
-                                    BaLL_No = int(BaLL_No4)
-                                elif BaLL_Idx == 5:
-                                    BaLL_No = int(BaLL_No5)
-                                ##########################
-                                #('大', '小','单','双')
-                                if items[1] == "大":
-                                    if BaLL_No >= 5:
-                                        Win = 1
-                                elif items[1] == "小":
-                                    if BaLL_No < 5:
-                                        Win = 1
-                                elif items[1] == "单":
-                                    if BaLL_No / 2 == 1:
-                                        Win = 1
-                                elif items[1] == "双":
-                                    if BaLL_No / 2 == 0:
-                                        Win = 1
-                                Monery_Idx = int(items[2])
                                 cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
                                 conn.commit()
                         
