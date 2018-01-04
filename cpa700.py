@@ -181,7 +181,8 @@ class TestThread(threading.Thread):
                                 conn.commit()
                         
                                 if Win == 1:
-                                    BaLL_Idx = 1
+                                    #BaLL_Idx = 1
+                                    pass
                                 else:
                                     BaLL_Idx = BaLL_Idx + 1
                                 if BaLL_Idx > 5:
