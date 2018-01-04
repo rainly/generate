@@ -92,8 +92,8 @@ class TestThread(threading.Thread):
                     time.sleep(5)
                     try:    
                         driver.switch_to.default_content()
-                        print("default current_url:" + driver.current_url)
-                        print("default title:" + driver.title)
+                        #print("default current_url:" + driver.current_url)
+                        #print("default title:" + driver.title)
 
 
                         frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
@@ -130,7 +130,7 @@ class TestThread(threading.Thread):
                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
                         conn.commit()                                                                                        
-                        self.target.textlog.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue)
+                        #self.target.textlog.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue + "\n")
                         
 
                         BaLL_Idx = 1
@@ -141,7 +141,7 @@ class TestThread(threading.Thread):
                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
                         datas = cursor.fetchall()
                         for data in datas:# 切换窗口
-                            self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue)
+                            #self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue+ "\n")
                             #处理未开奖数据
                             Have_Cur_Award_Issue = True
                             if data[11] != None:
@@ -214,7 +214,7 @@ class TestThread(threading.Thread):
                                 else:
                                      Sel_Monery = monerys[0] 
                                      
-                                self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Sel_Monery[1]))                                     
+                                self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Sel_Monery[1]) + "\n")                                     
                                 ##################################################
                                 #print("deal new BaLL_Idx:" + str(BaLL_Idx))
                                 #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
@@ -245,7 +245,7 @@ class TestThread(threading.Thread):
                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
                                 conn.commit()
                             else:
-                                self.target.textlog.insert(tk.INSERT,"新订单已经处理期号:" + Cur_Issue)
+                                #self.target.textlog.insert(tk.INSERT,"新订单已经处理期号:" + Cur_Issue+ "\n")
                                 pass
                         ############################################################3
                         driver.switch_to.parent_frame()
@@ -269,7 +269,7 @@ class TestThread(threading.Thread):
         while not self.stopped:
             subthread.join(self.timeout)
 
-        self.target.textlog.insert(tk.INSERT,'Thread stopped')
+        self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
     def stop(self):
         self.stopped = True
@@ -340,7 +340,7 @@ class Application(tk.Tk):
                 messagebox.showerror("错误","网络连接错误！")
                 return
             html = html.strip()
-            print(html)
+            #print(html)
             if html != "1":
                 messagebox.showerror("错误","账号未注册！")
                 return
