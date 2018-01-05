@@ -167,7 +167,7 @@ class TestThread(threading.Thread):
                                     if BaLL_No > 5:
                                         Win = 1
                                 elif items[1] == "小":
-                                    if BaLL_No < 5:
+                                    if BaLL_No <= 5:
                                         Win = 1
                                 elif items[1] == "单":
                                     if BaLL_No / 2 == 1:
@@ -437,7 +437,7 @@ class Application(tk.Tk):
         self.scrolW = 80
         self.scrolH = 10
         #第三行
-        ttk.Label(self.monty, text="策略配置:").grid(column=0, row=2,sticky='W')
+        ttk.Label(self.monty, text="策略配置(序号=金额=赢跳转序号=输跳转序号)").grid(column=0, row=2,sticky='W')
         #第四行
         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)

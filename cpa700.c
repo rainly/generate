@@ -1248,7 +1248,7 @@ static const char __pyx_k_WORD[] = "WORD";
 static const char __pyx_k__102[] = "\346\223\215\344\275\234\345\214\272";
 static const char __pyx_k__103[] = "\350\264\246\345\217\267:";
 static const char __pyx_k__104[] = "\350\257\267\351\200\211\346\213\251:";
-static const char __pyx_k__107[] = "\347\255\226\347\225\245\351\205\215\347\275\256:";
+static const char __pyx_k__107[] = "\347\255\226\347\225\245\351\205\215\347\275\256(\345\272\217\345\217\267=\351\207\221\351\242\235=\350\265\242\350\267\263\350\275\254\345\272\217\345\217\267=\350\276\223\350\267\263\350\275\254\345\272\217\345\217\267)";
 static const char __pyx_k__108[] = "\344\277\235\345\255\230";
 static const char __pyx_k__109[] = "\346\227\245\345\277\227\344\277\241\346\201\257:";
 static const char __pyx_k__113[] = "*";
@@ -4254,7 +4254,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                     if BaLL_No > 5:
  *                                         Win = 1             # <<<<<<<<<<<<<<
  *                                 elif items[1] == "":
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  */
                   __pyx_v_Win = 1;
 
@@ -4281,7 +4281,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                     if BaLL_No > 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1
  */
               __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L22_error)
@@ -4293,18 +4293,18 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 /* "cpa700.py":170
  *                                         Win = 1
  *                                 elif items[1] == "":
- *                                     if BaLL_No < 5:             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
-                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L22_error)
+                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L22_error)
                 __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 170, __pyx_L22_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                 if (__pyx_t_8) {
 
                   /* "cpa700.py":171
  *                                 elif items[1] == "":
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1             # <<<<<<<<<<<<<<
  *                                 elif items[1] == "":
  *                                     if BaLL_No / 2 == 1:
@@ -4314,7 +4314,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   /* "cpa700.py":170
  *                                         Win = 1
  *                                 elif items[1] == "":
- *                                     if BaLL_No < 5:             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
@@ -4324,14 +4324,14 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                     if BaLL_No > 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1
  */
                 goto __pyx_L36;
               }
 
               /* "cpa700.py":172
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No / 2 == 1:
@@ -4378,7 +4378,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
 
                 /* "cpa700.py":172
- *                                     if BaLL_No < 5:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No / 2 == 1:
@@ -10854,14 +10854,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_4createTab1(CYTHON_UNUSED PyObje
  *         self.scrolW = 80
  *         self.scrolH = 10             # <<<<<<<<<<<<<<
  *         #
- *         ttk.Label(self.monty, text=":").grid(column=0, row=2,sticky='W')
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolH, __pyx_int_10) < 0) __PYX_ERR(0, 438, __pyx_L1_error)
 
   /* "cpa700.py":440
  *         self.scrolH = 10
  *         #
- *         ttk.Label(self.monty, text=":").grid(column=0, row=2,sticky='W')             # <<<<<<<<<<<<<<
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')             # <<<<<<<<<<<<<<
  *         #
  *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
  */
@@ -10900,7 +10900,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_4createTab1(CYTHON_UNUSED PyObje
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cpa700.py":442
- *         ttk.Label(self.monty, text=":").grid(column=0, row=2,sticky='W')
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
  *         #
  *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)             # <<<<<<<<<<<<<<
  *         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)
