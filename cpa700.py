@@ -83,6 +83,9 @@ class TestThread(threading.Thread):
                                 break
                         if jump:
                             break
+                    except Exception as msg:
+                        print("Exception:%s" % msg)
+                        pass
                     except:
                         #print("error lineno:" + str(sys._getframe().f_lineno))
                         #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
@@ -265,6 +268,9 @@ class TestThread(threading.Thread):
                         driver.switch_to.parent_frame()
                         #print("end")
                         #print("**************************************************")
+                    except Exception as msg:
+                        print("Exception:%s" % msg)
+                        pass
                     except:
                         #print("error lineno:" + str(sys._getframe().f_lineno))
                         #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
@@ -302,6 +308,9 @@ class Application(tk.Tk):
             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
+        except Exception as msg:
+            print("Exception:%s" % msg)
+            pass
         except:
             pass
         self.createWidgets()
@@ -318,111 +327,7 @@ class Application(tk.Tk):
     
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
-        # Modified Button Click Function
-        def clickMe():
-            self.cursor.execute('delete from users')
-            self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
-            self.conn.commit()
-
-            self.cursor.execute("select * from monery")
-            monerys = self.cursor.fetchall()
-            if len(monerys) == 0:
-                messagebox.showerror("错误","策略未配置")
-                return        
-            
-
-            url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
-            #print(url)
-            request = urllib.request.Request(url, headers = headers)
-            try:
-                #response = urllib.request.urlopen(request)
-                response = opener.open(request, timeout = 5)
-                html = response.read().decode()
-            except urllib.error.HTTPError as e:
-                #print('The server couldn\'t fulfill the request.')
-                #print('Error code: ' + str(e.code))
-                #print('Error reason: ' + e.reason)
-                messagebox.showerror("错误","网络连接错误！")
-                return
-            except urllib.error.URLError as e:
-                #print('We failed to reach a server.')
-                #print('Reason: ' + e.reason)
-                messagebox.showerror("错误","网络连接错误！")
-                return
-            except:
-                #print("error lineno:" + str(sys._getframe().f_lineno))
-                messagebox.showerror("错误","网络连接错误！")
-                return
-            html = html.strip()
-            #print(html)
-            if html != "1":
-                messagebox.showerror("错误","账号未注册！")
-                return
-
-            text = self.btaction.config('text')
-            if  text[4] == '关闭':
-                self.btaction.configure(text='开始')
-                self.thread.stop()
-                #self.thread.join()
-            else:
-                self.btaction.configure(text='关闭')
-                #btaction.configure(state='disabled') # Disable the Button
-                self.thread = TestThread(self)
-                self.thread.start()
-
-        def save():
-            text = self.text.get(1.0, END)
-            lines = text.split("\n") 
-            for line1 in lines:
-                if line1 == "":
-                    continue
-                item1s = line1.split("=") 
-                if len(item1s) != 4:
-                    messagebox.showerror("错误","配置出错，请重新配置！")
-                    return
-                win = False
-                lose = False
-                for line2 in lines:
-                    if line2 == "":
-                        continue
-                    item2s = line2.split("=")
-                    if len(item2s) != 4:
-                        messagebox.showerror("错误","配置出错，请重新配置！")
-                        return
-                    #成功
-                    if item1s[2] == item2s[0]:
-                        win = True
-                    #失败
-                    if item1s[3] == item2s[0]:
-                        lose = True
-
-                if win == False or lose == False:
-                    messagebox.showerror("错误","配置出错，请重新配置！")
-                    return
-                
-            self.cursor.execute('delete from monery') 
-            for line in lines:
-                items = line.split("=") 
-                if len(items) != 4:
-                    continue
-                sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
-                self.cursor.execute(sql)
-            self.conn.commit()
-            FlushTest()
-            messagebox.showinfo("提示","配置成功！")
-            
-            
-        def Chosen(*args):  
-            print(self.bookChosen.get())  
-        
-        def FlushTest():
-            self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
-            self.cursor.execute('select * from monery')
-            datas = self.cursor.fetchall()
-            for data in datas:# 切换窗口
-                self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
-                
-            
+        # Modified Button Click Function  
         # We are creating a container tab3 to hold all other widgets
         self.monty = ttk.LabelFrame(self.tab1, text='操作区')
         self.monty.grid(column=0, row=0, padx=8, pady=4)
@@ -444,7 +349,7 @@ class Application(tk.Tk):
         self.bookChosen.grid(column=1, row=1, sticky='W')
         self.bookChosen.current(0)  #设置初始显示值，值为元组['values']的下标
         self.bookChosen.config(state='readonly')  #设为只读模式
-        self.bookChosen.bind("<<ComboboxSelected>>", Chosen)  
+        self.bookChosen.bind("<<ComboboxSelected>>", self.Chosen)  
 
         # Using a scrolled Text control
         self.scrolW = 80
@@ -456,7 +361,7 @@ class Application(tk.Tk):
         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)
         #第五行
         # Adding a Button
-        self.btaction = ttk.Button(self.monty,text="保存",width=10,command=save).grid(column=1,row=4,sticky='E')   
+        self.btaction = ttk.Button(self.monty,text="保存",width=10,command=self.save).grid(column=1,row=4,sticky='E')   
 
         #第六行
         ttk.Label(self.monty, text="日志信息:").grid(column=0, row=5,sticky='W')
@@ -465,7 +370,7 @@ class Application(tk.Tk):
         self.textlog.grid(column=0, row=6, sticky='WE', columnspan=3)
         #第八行
         # Adding a Button
-        self.btaction = ttk.Button(self.monty,text="开始",width=10,command=clickMe)
+        self.btaction = ttk.Button(self.monty,text="开始",width=10,command=self.clickMe)
         self.btaction.grid(column=1,row=7,sticky='E')   
         # 一次性控制各控件之间的距离
         for child in self.monty.winfo_children(): 
@@ -473,12 +378,119 @@ class Application(tk.Tk):
         # 单独控制个别控件之间的距离
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
-        FlushTest()
+        self.FlushData()
         
         self.cursor.execute('select * from users')
         datas = self.cursor.fetchall()
         for data in datas:# 切换窗口
             self.nameEntered.insert(END, str(data[0]))
+            
+    def clickMe(self):
+        self.cursor.execute('delete from users')
+        self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+        self.conn.commit()
+
+        self.cursor.execute("select * from monery")
+        monerys = self.cursor.fetchall()
+        if len(monerys) == 0:
+            messagebox.showerror("错误","策略未配置")
+            return        
+        
+
+        url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
+        #print(url)
+        request = urllib.request.Request(url, headers = headers)
+        try:
+            #response = urllib.request.urlopen(request)
+            response = opener.open(request, timeout = 5)
+            html = response.read().decode()
+        except urllib.error.HTTPError as e:
+            #print('The server couldn\'t fulfill the request.')
+            #print('Error code: ' + str(e.code))
+            #print('Error reason: ' + e.reason)
+            messagebox.showerror("错误","网络连接错误！")
+            return
+        except urllib.error.URLError as e:
+            #print('We failed to reach a server.')
+            #print('Reason: ' + e.reason)
+            messagebox.showerror("错误","网络连接错误！")
+            return
+        except Exception as msg:
+            print("Exception:%s" % msg)
+            pass
+        except:
+            #print("error lineno:" + str(sys._getframe().f_lineno))
+            messagebox.showerror("错误","网络连接错误！")
+            return
+        html = html.strip()
+        #print(html)
+        if html != "1":
+            messagebox.showerror("错误","账号未注册！")
+            return
+
+        text = self.btaction.config('text')
+        if  text[4] == '关闭':
+            self.btaction.configure(text='开始')
+            self.thread.stop()
+            #self.thread.join()
+        else:
+            self.btaction.configure(text='关闭')
+            #btaction.configure(state='disabled') # Disable the Button
+            self.thread = TestThread(self)
+            self.thread.start()
+
+    def save(self):
+        text = self.text.get(1.0, END)
+        lines = text.split("\n") 
+        for line1 in lines:
+            if line1 == "":
+                continue
+            item1s = line1.split("=") 
+            if len(item1s) != 4:
+                messagebox.showerror("错误","配置出错，请重新配置！")
+                return
+            win = False
+            lose = False
+            for line2 in lines:
+                if line2 == "":
+                    continue
+                item2s = line2.split("=")
+                if len(item2s) != 4:
+                    messagebox.showerror("错误","配置出错，请重新配置！")
+                    return
+                #成功
+                if item1s[2] == item2s[0]:
+                    win = True
+                #失败
+                if item1s[3] == item2s[0]:
+                    lose = True
+
+            if win == False or lose == False:
+                messagebox.showerror("错误","配置出错，请重新配置！")
+                return
+            
+        self.cursor.execute('delete from monery') 
+        for line in lines:
+            items = line.split("=") 
+            if len(items) != 4:
+                continue
+            sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+            self.cursor.execute(sql)
+        self.conn.commit()
+        FlushData()
+        messagebox.showinfo("提示","配置成功！")
+        
+        
+    def Chosen(self, *args):  
+        print(self.bookChosen.get())  
+    
+    def FlushData(self):
+        self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+        self.cursor.execute('select * from monery')
+        datas = self.cursor.fetchall()
+        for data in datas:# 切换窗口
+            self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
+            
 
         
 def main():

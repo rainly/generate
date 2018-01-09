@@ -740,7 +740,6 @@ static const char *__pyx_f[] = {
 
 /*--- Type declarations ---*/
 struct __pyx_obj_6cpa700___pyx_scope_struct__run;
-struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1;
 
 /* "cpa700.py":48
  *         self.timeout = timeout
@@ -751,20 +750,6 @@ struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1;
  */
 struct __pyx_obj_6cpa700___pyx_scope_struct__run {
   PyObject_HEAD
-  PyObject *__pyx_v_self;
-};
-
-
-/* "cpa700.py":319
- *         self.createTab1()
- * 
- *     def createTab1(self):             # <<<<<<<<<<<<<<
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- */
-struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 {
-  PyObject_HEAD
-  PyObject *__pyx_v_FlushTest;
   PyObject *__pyx_v_self;
 };
 
@@ -950,6 +935,22 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
 #endif
 
+/* PyErrExceptionMatches.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
+#endif
+
+/* GetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#endif
+
 /* PyErrFetchRestore.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
@@ -1086,24 +1087,8 @@ static CYTHON_INLINE void __Pyx_CyFunction_SetAnnotationsDict(PyObject *m,
                                                               PyObject *dict);
 static int __pyx_CyFunction_init(void);
 
-/* PyErrExceptionMatches.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
-/* GetException.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
-#endif
-
-/* KeywordStringCheck.proto */
-static int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
+/* None.proto */
+static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
 
 /* Import.proto */
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
@@ -1149,15 +1134,15 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object);
 static void __Pyx_AddTraceback(const char *funcname, int c_line,
                                int py_line, const char *filename);
 
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
-
 /* Print.proto */
 static int __Pyx_Print(PyObject*, PyObject *, int);
 #if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
 static PyObject* __pyx_print = 0;
 static PyObject* __pyx_print_kwargs = 0;
 #endif
+
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 /* PrintOne.proto */
 static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
@@ -1192,7 +1177,6 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from 'cpa700' */
 static PyTypeObject *__pyx_ptype_6cpa700___pyx_scope_struct__run = 0;
-static PyTypeObject *__pyx_ptype_6cpa700___pyx_scope_struct_1_createTab1 = 0;
 #define __Pyx_MODULE_NAME "cpa700"
 extern int __pyx_module_is_main_cpa700;
 int __pyx_module_is_main_cpa700 = 0;
@@ -1221,22 +1205,28 @@ static const char __pyx_k__50[] = "\345\217\214";
 static const char __pyx_k__51[] = "\345\244\204\347\220\206\346\226\260\350\256\242\345\215\225\346\234\237\345\217\267:";
 static const char __pyx_k__52[] = "\n";
 static const char __pyx_k__64[] = "\347\254\254\344\270\200\351\241\265";
-static const char __pyx_k__67[] = "\351\224\231\350\257\257";
-static const char __pyx_k__68[] = "\347\255\226\347\225\245\346\234\252\351\205\215\347\275\256";
-static const char __pyx_k__70[] = "\347\275\221\347\273\234\350\277\236\346\216\245\351\224\231\350\257\257\357\274\201";
-static const char __pyx_k__74[] = "\350\264\246\345\217\267\346\234\252\346\263\250\345\206\214\357\274\201";
-static const char __pyx_k__77[] = "\345\205\263\351\227\255";
-static const char __pyx_k__78[] = "\345\274\200\345\247\213";
-static const char __pyx_k__81[] = "\351\205\215\347\275\256\345\207\272\351\224\231\357\274\214\350\257\267\351\207\215\346\226\260\351\205\215\347\275\256\357\274\201";
-static const char __pyx_k__88[] = ",";
-static const char __pyx_k__89[] = ")";
-static const char __pyx_k__90[] = "\346\217\220\347\244\272";
-static const char __pyx_k__91[] = "\351\205\215\347\275\256\346\210\220\345\212\237\357\274\201";
+static const char __pyx_k__65[] = "\346\223\215\344\275\234\345\214\272";
+static const char __pyx_k__66[] = "\350\264\246\345\217\267:";
+static const char __pyx_k__67[] = "\350\257\267\351\200\211\346\213\251:";
+static const char __pyx_k__70[] = "\347\255\226\347\225\245\351\205\215\347\275\256(\345\272\217\345\217\267=\351\207\221\351\242\235=\350\265\242\350\267\263\350\275\254\345\272\217\345\217\267=\350\276\223\350\267\263\350\275\254\345\272\217\345\217\267)";
+static const char __pyx_k__71[] = "\344\277\235\345\255\230";
+static const char __pyx_k__72[] = "\346\227\245\345\277\227\344\277\241\346\201\257:";
+static const char __pyx_k__73[] = "\345\274\200\345\247\213";
+static const char __pyx_k__77[] = "\351\224\231\350\257\257";
+static const char __pyx_k__78[] = "\347\255\226\347\225\245\346\234\252\351\205\215\347\275\256";
+static const char __pyx_k__80[] = "\347\275\221\347\273\234\350\277\236\346\216\245\351\224\231\350\257\257\357\274\201";
+static const char __pyx_k__84[] = "\350\264\246\345\217\267\346\234\252\346\263\250\345\206\214\357\274\201";
+static const char __pyx_k__87[] = "\345\205\263\351\227\255";
+static const char __pyx_k__90[] = "\351\205\215\347\275\256\345\207\272\351\224\231\357\274\214\350\257\267\351\207\215\346\226\260\351\205\215\347\275\256\357\274\201";
+static const char __pyx_k__97[] = ",";
+static const char __pyx_k__98[] = ")";
+static const char __pyx_k__99[] = "\346\217\220\347\244\272";
 static const char __pyx_k_add[] = "add";
 static const char __pyx_k_app[] = "app";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_end[] = "end";
 static const char __pyx_k_get[] = "get";
+static const char __pyx_k_msg[] = "msg";
 static const char __pyx_k_row[] = "row";
 static const char __pyx_k_run[] = "run";
 static const char __pyx_k_sql[] = "sql";
@@ -1245,13 +1235,8 @@ static const char __pyx_k_url[] = "url";
 static const char __pyx_k_win[] = "win";
 static const char __pyx_k_Menu[] = "Menu";
 static const char __pyx_k_WORD[] = "WORD";
-static const char __pyx_k__102[] = "\346\223\215\344\275\234\345\214\272";
-static const char __pyx_k__103[] = "\350\264\246\345\217\267:";
-static const char __pyx_k__104[] = "\350\257\267\351\200\211\346\213\251:";
-static const char __pyx_k__107[] = "\347\255\226\347\225\245\351\205\215\347\275\256(\345\272\217\345\217\267=\351\207\221\351\242\235=\350\265\242\350\267\263\350\275\254\345\272\217\345\217\267=\350\276\223\350\267\263\350\275\254\345\272\217\345\217\267)";
-static const char __pyx_k__108[] = "\344\277\235\345\255\230";
-static const char __pyx_k__109[] = "\346\227\245\345\277\227\344\277\241\346\201\257:";
-static const char __pyx_k__113[] = "*";
+static const char __pyx_k__100[] = "\351\205\215\347\275\256\346\210\220\345\212\237\357\274\201";
+static const char __pyx_k__105[] = "*";
 static const char __pyx_k_args[] = "args";
 static const char __pyx_k_bind[] = "bind";
 static const char __pyx_k_book[] = "book";
@@ -1399,7 +1384,7 @@ static const char __pyx_k_showinfo[] = "showinfo";
 static const char __pyx_k_BaLL_No10[] = "BaLL_No10";
 static const char __pyx_k_CookieJar[] = "CookieJar";
 static const char __pyx_k_Cur_Issue[] = "Cur_Issue";
-static const char __pyx_k_FlushTest[] = "FlushTest";
+static const char __pyx_k_FlushData[] = "FlushData";
 static const char __pyx_k_HTTPError[] = "HTTPError";
 static const char __pyx_k_StringVar[] = "StringVar";
 static const char __pyx_k_configure[] = "configure";
@@ -1432,6 +1417,7 @@ static const char __pyx_k_tabControl[] = "tabControl";
 static const char __pyx_k_thread_num[] = "thread_num";
 static const char __pyx_k_user_agent[] = "user_agent";
 static const char __pyx_k_Application[] = "Application";
+static const char __pyx_k_Exception_s[] = "Exception:%s";
 static const char __pyx_k_id_BaLL_No1[] = "//*[@id=\"BaLL_No1\"]";
 static const char __pyx_k_id_BaLL_No2[] = "//*[@id=\"BaLL_No2\"]";
 static const char __pyx_k_id_BaLL_No3[] = "//*[@id=\"BaLL_No3\"]";
@@ -1468,12 +1454,14 @@ static const char __pyx_k_default_content[] = "default_content";
 static const char __pyx_k_implicitly_wait[] = "implicitly_wait";
 static const char __pyx_k_switch_to_alert[] = "switch_to_alert";
 static const char __pyx_k_urllib_response[] = "urllib.response";
+static const char __pyx_k_Application_save[] = "Application.save";
 static const char __pyx_k_ComboboxSelected[] = "<<ComboboxSelected>>";
 static const char __pyx_k_id_fset1_frame_2[] = "//*[@id=\"fset1\"]/frame[2]";
 static const char __pyx_k_switch_to_window[] = "switch_to_window";
 static const char __pyx_k_TestThread___init[] = "TestThread.__init__";
 static const char __pyx_k_delete_from_users[] = "delete from users";
 static const char __pyx_k_select_from_users[] = "select * from users";
+static const char __pyx_k_Application_Chosen[] = "Application.Chosen";
 static const char __pyx_k_Application___init[] = "Application.__init__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_delete_from_monery[] = "delete from monery";
@@ -1481,11 +1469,13 @@ static const char __pyx_k_find_element_by_id[] = "find_element_by_id";
 static const char __pyx_k_id_Cur_Award_Issue[] = "//*[@id=\"Cur_Award_Issue\"]";
 static const char __pyx_k_select_from_monery[] = "select * from monery";
 static const char __pyx_k_tkinter_messagebox[] = "tkinter.messagebox";
+static const char __pyx_k_Application_clickMe[] = "Application.clickMe";
 static const char __pyx_k_HTTPCookieProcessor[] = "HTTPCookieProcessor";
 static const char __pyx_k_http_bw1_htd188_com[] = "http://bw1.htd188.com/";
 static const char __pyx_k_Deal_Cur_Award_Issue[] = "Deal_Cur_Award_Issue";
 static const char __pyx_k_Have_Cur_Award_Issue[] = "Have_Cur_Award_Issue";
 static const char __pyx_k_TestThread_isStopped[] = "TestThread.isStopped";
+static const char __pyx_k_Application_FlushData[] = "Application.FlushData";
 static const char __pyx_k_current_window_handle[] = "current_window_handle";
 static const char __pyx_k_find_element_by_xpath[] = "find_element_by_xpath";
 static const char __pyx_k_Application_createTab1[] = "Application.createTab1";
@@ -1497,10 +1487,6 @@ static const char __pyx_k_select_from_data_where_issue[] = "select * from data w
 static const char __pyx_k_html_frameset_frameset_frame_2[] = "/html/frameset/frameset/frame[2]";
 static const char __pyx_k_CREATE_TABLE_IF_NOT_EXISTS_data[] = "CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))";
 static const char __pyx_k_update_data_set_win_where_issue[] = "update data set win = ? where issue = ?";
-static const char __pyx_k_Application_createTab1_locals_Ch[] = "Application.createTab1.<locals>.Chosen";
-static const char __pyx_k_Application_createTab1_locals_Fl[] = "Application.createTab1.<locals>.FlushTest";
-static const char __pyx_k_Application_createTab1_locals_cl[] = "Application.createTab1.<locals>.clickMe";
-static const char __pyx_k_Application_createTab1_locals_sa[] = "Application.createTab1.<locals>.save";
 static const char __pyx_k_CREATE_TABLE_IF_NOT_EXISTS_moner[] = "CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))";
 static const char __pyx_k_CREATE_TABLE_IF_NOT_EXISTS_users[] = "CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ";
 static const char __pyx_k_Mozilla_5_0_Windows_NT_6_1_WOW64[] = "Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36";
@@ -1515,13 +1501,13 @@ static PyObject *__pyx_kp_s_1;
 static PyObject *__pyx_kp_s_1_money;
 static PyObject *__pyx_kp_s_2_money;
 static PyObject *__pyx_n_s_Application;
+static PyObject *__pyx_n_s_Application_Chosen;
+static PyObject *__pyx_n_s_Application_FlushData;
 static PyObject *__pyx_n_s_Application___init;
+static PyObject *__pyx_n_s_Application_clickMe;
 static PyObject *__pyx_n_s_Application_createTab1;
-static PyObject *__pyx_n_s_Application_createTab1_locals_Ch;
-static PyObject *__pyx_n_s_Application_createTab1_locals_Fl;
-static PyObject *__pyx_n_s_Application_createTab1_locals_cl;
-static PyObject *__pyx_n_s_Application_createTab1_locals_sa;
 static PyObject *__pyx_n_s_Application_createWidgets;
+static PyObject *__pyx_n_s_Application_save;
 static PyObject *__pyx_kp_s_BaLL_Idx;
 static PyObject *__pyx_n_s_BaLL_Idx_2;
 static PyObject *__pyx_n_s_BaLL_Idx_3;
@@ -1551,7 +1537,8 @@ static PyObject *__pyx_n_s_Deal_Cur_Award_Issue;
 static PyObject *__pyx_n_s_E;
 static PyObject *__pyx_n_s_END;
 static PyObject *__pyx_n_s_Entry;
-static PyObject *__pyx_n_s_FlushTest;
+static PyObject *__pyx_kp_s_Exception_s;
+static PyObject *__pyx_n_s_FlushData;
 static PyObject *__pyx_n_s_Frame;
 static PyObject *__pyx_n_s_HTTPCookieProcessor;
 static PyObject *__pyx_n_s_HTTPError;
@@ -1588,13 +1575,8 @@ static PyObject *__pyx_n_s_W;
 static PyObject *__pyx_n_s_WE;
 static PyObject *__pyx_n_s_WORD;
 static PyObject *__pyx_n_s_Win;
-static PyObject *__pyx_kp_s__102;
-static PyObject *__pyx_kp_s__103;
-static PyObject *__pyx_kp_s__104;
-static PyObject *__pyx_kp_s__107;
-static PyObject *__pyx_kp_s__108;
-static PyObject *__pyx_kp_s__109;
-static PyObject *__pyx_n_s__113;
+static PyObject *__pyx_kp_s__100;
+static PyObject *__pyx_n_s__105;
 static PyObject *__pyx_kp_s__15;
 static PyObject *__pyx_kp_s__4;
 static PyObject *__pyx_kp_s__45;
@@ -1605,17 +1587,22 @@ static PyObject *__pyx_kp_s__50;
 static PyObject *__pyx_kp_s__51;
 static PyObject *__pyx_kp_s__52;
 static PyObject *__pyx_kp_s__64;
+static PyObject *__pyx_kp_s__65;
+static PyObject *__pyx_kp_s__66;
 static PyObject *__pyx_kp_s__67;
-static PyObject *__pyx_kp_s__68;
 static PyObject *__pyx_kp_s__70;
-static PyObject *__pyx_kp_s__74;
+static PyObject *__pyx_kp_s__71;
+static PyObject *__pyx_kp_s__72;
+static PyObject *__pyx_kp_s__73;
 static PyObject *__pyx_kp_s__77;
 static PyObject *__pyx_kp_s__78;
-static PyObject *__pyx_kp_s__81;
-static PyObject *__pyx_kp_s__88;
-static PyObject *__pyx_kp_s__89;
+static PyObject *__pyx_kp_s__80;
+static PyObject *__pyx_kp_s__84;
+static PyObject *__pyx_kp_s__87;
 static PyObject *__pyx_kp_s__90;
-static PyObject *__pyx_kp_s__91;
+static PyObject *__pyx_kp_s__97;
+static PyObject *__pyx_kp_s__98;
+static PyObject *__pyx_kp_s__99;
 static PyObject *__pyx_n_s_accept;
 static PyObject *__pyx_n_s_add;
 static PyObject *__pyx_n_s_alert;
@@ -1733,6 +1720,7 @@ static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_monery;
 static PyObject *__pyx_n_s_monerys;
 static PyObject *__pyx_n_s_monty;
+static PyObject *__pyx_n_s_msg;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_nameEntered;
 static PyObject *__pyx_n_s_name_2;
@@ -1826,14 +1814,13 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_4stop(CYTHON_UNUSED PyObject *__p
 static PyObject *__pyx_pf_6cpa700_10TestThread_6isStopped(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_4Chosen(PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject *__pyx_self); /* proto */
 static PyObject *__pyx_pf_6cpa700_11Application_4createTab1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cpa700_11Application_6clickMe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cpa700_11Application_8save(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cpa700_11Application_10Chosen(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_args); /* proto */
+static PyObject *__pyx_pf_6cpa700_11Application_12FlushData(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_6cpa700_main(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
 static PyObject *__pyx_tp_new_6cpa700___pyx_scope_struct__run(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cpa700___pyx_scope_struct_1_createTab1(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_float_0_0;
 static PyObject *__pyx_float_1_0;
 static PyObject *__pyx_int_0;
@@ -1901,35 +1888,35 @@ static PyObject *__pyx_tuple__60;
 static PyObject *__pyx_tuple__61;
 static PyObject *__pyx_tuple__62;
 static PyObject *__pyx_tuple__63;
-static PyObject *__pyx_tuple__65;
-static PyObject *__pyx_tuple__66;
+static PyObject *__pyx_tuple__68;
 static PyObject *__pyx_tuple__69;
-static PyObject *__pyx_tuple__71;
-static PyObject *__pyx_tuple__72;
-static PyObject *__pyx_tuple__73;
+static PyObject *__pyx_tuple__74;
 static PyObject *__pyx_tuple__75;
 static PyObject *__pyx_tuple__76;
 static PyObject *__pyx_tuple__79;
-static PyObject *__pyx_tuple__80;
+static PyObject *__pyx_tuple__81;
 static PyObject *__pyx_tuple__82;
 static PyObject *__pyx_tuple__83;
-static PyObject *__pyx_tuple__84;
 static PyObject *__pyx_tuple__85;
 static PyObject *__pyx_tuple__86;
-static PyObject *__pyx_tuple__87;
+static PyObject *__pyx_tuple__88;
+static PyObject *__pyx_tuple__89;
+static PyObject *__pyx_tuple__91;
 static PyObject *__pyx_tuple__92;
 static PyObject *__pyx_tuple__93;
 static PyObject *__pyx_tuple__94;
+static PyObject *__pyx_tuple__95;
 static PyObject *__pyx_tuple__96;
-static PyObject *__pyx_tuple__98;
-static PyObject *__pyx_tuple__100;
-static PyObject *__pyx_tuple__105;
+static PyObject *__pyx_tuple__101;
+static PyObject *__pyx_tuple__102;
+static PyObject *__pyx_tuple__103;
+static PyObject *__pyx_tuple__104;
 static PyObject *__pyx_tuple__106;
-static PyObject *__pyx_tuple__110;
+static PyObject *__pyx_tuple__108;
+static PyObject *__pyx_tuple__109;
 static PyObject *__pyx_tuple__111;
-static PyObject *__pyx_tuple__112;
-static PyObject *__pyx_tuple__114;
-static PyObject *__pyx_tuple__116;
+static PyObject *__pyx_tuple__113;
+static PyObject *__pyx_tuple__115;
 static PyObject *__pyx_tuple__117;
 static PyObject *__pyx_tuple__119;
 static PyObject *__pyx_tuple__121;
@@ -1938,11 +1925,11 @@ static PyObject *__pyx_tuple__125;
 static PyObject *__pyx_tuple__127;
 static PyObject *__pyx_tuple__129;
 static PyObject *__pyx_codeobj__58;
-static PyObject *__pyx_codeobj__95;
-static PyObject *__pyx_codeobj__97;
-static PyObject *__pyx_codeobj__99;
-static PyObject *__pyx_codeobj__101;
-static PyObject *__pyx_codeobj__115;
+static PyObject *__pyx_codeobj__107;
+static PyObject *__pyx_codeobj__110;
+static PyObject *__pyx_codeobj__112;
+static PyObject *__pyx_codeobj__114;
+static PyObject *__pyx_codeobj__116;
 static PyObject *__pyx_codeobj__118;
 static PyObject *__pyx_codeobj__120;
 static PyObject *__pyx_codeobj__122;
@@ -2214,6 +2201,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
   int __pyx_v_jump;
   PyObject *__pyx_v_handles = NULL;
   PyObject *__pyx_v_handle = NULL;
+  PyObject *__pyx_v_msg = NULL;
   PyObject *__pyx_v_frame2 = NULL;
   PyObject *__pyx_v_mainFrame = NULL;
   PyObject *__pyx_v_Cur_Award_Issue = NULL;
@@ -2974,7 +2962,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                 break
  *                         if jump:             # <<<<<<<<<<<<<<
  *                             break
- *                     except:
+ *                     except Exception as msg:
  */
           __pyx_t_8 = (__pyx_v_jump != 0);
           if (__pyx_t_8) {
@@ -2983,8 +2971,8 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                 break
  *                         if jump:
  *                             break             # <<<<<<<<<<<<<<
- *                     except:
- *                         #print("error lineno:" + str(sys._getframe().f_lineno))
+ *                     except Exception as msg:
+ *                         print("Exception:%s" % msg)
  */
             goto __pyx_L13_try_break;
 
@@ -2993,7 +2981,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                 break
  *                         if jump:             # <<<<<<<<<<<<<<
  *                             break
- *                     except:
+ *                     except Exception as msg:
  */
           }
 
@@ -3019,6 +3007,40 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
         /* "cpa700.py":86
  *                         if jump:
  *                             break
+ *                     except Exception as msg:             # <<<<<<<<<<<<<<
+ *                         print("Exception:%s" % msg)
+ *                         pass
+ */
+        __pyx_t_5 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+        if (__pyx_t_5) {
+          __Pyx_AddTraceback("cpa700.TestThread.run.target_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
+          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_4, &__pyx_t_2) < 0) __PYX_ERR(0, 86, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_XDECREF_SET(__pyx_v_msg, __pyx_t_4);
+
+          /* "cpa700.py":87
+ *                             break
+ *                     except Exception as msg:
+ *                         print("Exception:%s" % msg)             # <<<<<<<<<<<<<<
+ *                         pass
+ *                     except:
+ */
+          __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Exception_s, __pyx_v_msg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 87, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          if (__Pyx_PrintOne(0, __pyx_t_6) < 0) __PYX_ERR(0, 87, __pyx_L10_except_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          goto __pyx_L9_exception_handled;
+        }
+
+        /* "cpa700.py":89
+ *                         print("Exception:%s" % msg)
+ *                         pass
  *                     except:             # <<<<<<<<<<<<<<
  *                         #print("error lineno:" + str(sys._getframe().f_lineno))
  *                         #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
@@ -3027,7 +3049,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           __Pyx_ErrRestore(0,0,0);
           goto __pyx_L9_exception_handled;
         }
-        __pyx_L13_try_break:;
+        __pyx_L10_except_error:;
 
         /* "cpa700.py":71
  *                 while self.stopped != True:
@@ -3036,6 +3058,12 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                         driver.find_element_by_id("menu_1")
  *                         driver.find_element_by_id("menu_1")
  */
+        __Pyx_XGIVEREF(__pyx_t_9);
+        __Pyx_XGIVEREF(__pyx_t_10);
+        __Pyx_XGIVEREF(__pyx_t_11);
+        __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_10, __pyx_t_11);
+        goto __pyx_L1_error;
+        __pyx_L13_try_break:;
         __Pyx_XGIVEREF(__pyx_t_9);
         __Pyx_XGIVEREF(__pyx_t_10);
         __Pyx_XGIVEREF(__pyx_t_11);
@@ -3051,7 +3079,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
     }
     __pyx_L7_break:;
 
-    /* "cpa700.py":91
+    /* "cpa700.py":94
  *                         pass
  * 
  *                 while self.stopped != True:             # <<<<<<<<<<<<<<
@@ -3059,33 +3087,33 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                     try:
  */
     while (1) {
-      if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 91, __pyx_L1_error) }
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, Py_True, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+      if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 94, __pyx_L1_error) }
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, Py_True, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (!__pyx_t_8) break;
 
-      /* "cpa700.py":92
+      /* "cpa700.py":95
  * 
  *                 while self.stopped != True:
  *                     time.sleep(5)             # <<<<<<<<<<<<<<
  *                     try:
  *                         driver.switch_to.default_content()
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sleep); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sleep); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "cpa700.py":93
+      /* "cpa700.py":96
  *                 while self.stopped != True:
  *                     time.sleep(5)
  *                     try:             # <<<<<<<<<<<<<<
@@ -3101,519 +3129,519 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
         __Pyx_XGOTREF(__pyx_t_9);
         /*try:*/ {
 
-          /* "cpa700.py":94
+          /* "cpa700.py":97
  *                     time.sleep(5)
  *                     try:
  *                         driver.switch_to.default_content()             # <<<<<<<<<<<<<<
  *                         #print("default current_url:" + driver.current_url)
  *                         #print("default title:" + driver.title)
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_default_content); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = NULL;
-          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-            __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-            if (likely(__pyx_t_3)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-              __Pyx_INCREF(__pyx_t_3);
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_default_content); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = NULL;
+          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+            __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+            if (likely(__pyx_t_2)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+              __Pyx_INCREF(__pyx_t_2);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_2, function);
+              __Pyx_DECREF_SET(__pyx_t_3, function);
             }
           }
-          if (__pyx_t_3) {
-            __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L22_error)
-            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          if (__pyx_t_2) {
+            __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L24_error)
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           } else {
-            __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L22_error)
+            __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L24_error)
           }
           __Pyx_GOTREF(__pyx_t_4);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-          /* "cpa700.py":99
+          /* "cpa700.py":102
  * 
  * 
  *                         frame2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2]")             # <<<<<<<<<<<<<<
  *                         driver.switch_to.frame(frame2)
  *                         #print("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2] current_url:" +
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_frame2, __pyx_t_2);
-          __pyx_t_2 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_frame2, __pyx_t_3);
+          __pyx_t_3 = 0;
 
-          /* "cpa700.py":100
+          /* "cpa700.py":103
  * 
  *                         frame2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2]")
  *                         driver.switch_to.frame(frame2)             # <<<<<<<<<<<<<<
  *                         #print("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2] current_url:" +
  *                         #driver.current_url)
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_frame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_frame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __pyx_t_4 = NULL;
-          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
             if (likely(__pyx_t_4)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
               __Pyx_INCREF(__pyx_t_4);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_3, function);
+              __Pyx_DECREF_SET(__pyx_t_2, function);
             }
           }
           if (!__pyx_t_4) {
-            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_frame2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_frame2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_3);
           } else {
             #if CYTHON_FAST_PYCALL
-            if (PyFunction_Check(__pyx_t_3)) {
+            if (PyFunction_Check(__pyx_t_2)) {
               PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_frame2};
-              __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L22_error)
+              __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L24_error)
               __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_GOTREF(__pyx_t_3);
             } else
             #endif
             #if CYTHON_FAST_PYCCALL
-            if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+            if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
               PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_frame2};
-              __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L22_error)
+              __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L24_error)
               __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_GOTREF(__pyx_t_3);
             } else
             #endif
             {
-              __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L22_error)
+              __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
               __Pyx_INCREF(__pyx_v_frame2);
               __Pyx_GIVEREF(__pyx_v_frame2);
               PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_v_frame2);
-              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             }
           }
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "cpa700.py":106
+          /* "cpa700.py":109
  *                         #driver.title)
  * 
  *                         mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")             # <<<<<<<<<<<<<<
  *                         driver.switch_to.frame(mainFrame)
  *                         #print("/html/frameset/frameset/frame[2] current_url:"
  */
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L22_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_mainFrame, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_mainFrame, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":107
+          /* "cpa700.py":110
  * 
  *                         mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")
  *                         driver.switch_to.frame(mainFrame)             # <<<<<<<<<<<<<<
  *                         #print("/html/frameset/frameset/frame[2] current_url:"
  *                         #+ driver.current_url)
  */
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_frame); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 107, __pyx_L22_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_frame); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 110, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __pyx_t_2 = NULL;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __pyx_t_3 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-            __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-            if (likely(__pyx_t_2)) {
+            __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
+            if (likely(__pyx_t_3)) {
               PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-              __Pyx_INCREF(__pyx_t_2);
+              __Pyx_INCREF(__pyx_t_3);
               __Pyx_INCREF(function);
               __Pyx_DECREF_SET(__pyx_t_6, function);
             }
           }
-          if (!__pyx_t_2) {
-            __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_mainFrame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_3);
+          if (!__pyx_t_3) {
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_mainFrame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_2);
           } else {
             #if CYTHON_FAST_PYCALL
             if (PyFunction_Check(__pyx_t_6)) {
-              PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_mainFrame};
-              __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L22_error)
-              __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __Pyx_GOTREF(__pyx_t_3);
+              PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_mainFrame};
+              __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L24_error)
+              __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_GOTREF(__pyx_t_2);
             } else
             #endif
             #if CYTHON_FAST_PYCCALL
             if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-              PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_mainFrame};
-              __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L22_error)
-              __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __Pyx_GOTREF(__pyx_t_3);
+              PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_mainFrame};
+              __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L24_error)
+              __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_GOTREF(__pyx_t_2);
             } else
             #endif
             {
-              __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L22_error)
+              __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+              __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
               __Pyx_INCREF(__pyx_v_mainFrame);
               __Pyx_GIVEREF(__pyx_v_mainFrame);
               PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_mainFrame);
-              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             }
           }
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cpa700.py":114
+          /* "cpa700.py":117
  * 
  *                         #<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text             # <<<<<<<<<<<<<<
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 114, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_Cur_Award_Issue, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_Cur_Award_Issue, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":115
+          /* "cpa700.py":118
  *                         #<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 115, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 115, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 115, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_BaLL_No1, __pyx_t_6);
           __pyx_t_6 = 0;
 
-          /* "cpa700.py":116
+          /* "cpa700.py":119
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_BaLL_No2, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_BaLL_No2, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":117
+          /* "cpa700.py":120
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_BaLL_No3, __pyx_t_6);
           __pyx_t_6 = 0;
 
-          /* "cpa700.py":118
+          /* "cpa700.py":121
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_BaLL_No4, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_BaLL_No4, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":119
+          /* "cpa700.py":122
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 119, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_BaLL_No5, __pyx_t_6);
           __pyx_t_6 = 0;
 
-          /* "cpa700.py":120
+          /* "cpa700.py":123
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_BaLL_No6, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_BaLL_No6, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":121
+          /* "cpa700.py":124
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_BaLL_No7, __pyx_t_6);
           __pyx_t_6 = 0;
 
-          /* "cpa700.py":122
+          /* "cpa700.py":125
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_BaLL_No8, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_BaLL_No8, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":123
+          /* "cpa700.py":126
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 126, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 126, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_replace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 126, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_BaLL_No9, __pyx_t_6);
           __pyx_t_6 = 0;
 
-          /* "cpa700.py":124
+          /* "cpa700.py":127
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text
  * 
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get_attribute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L22_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_replace); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_BaLL_No10, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_BaLL_No10, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":125
+          /* "cpa700.py":128
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text             # <<<<<<<<<<<<<<
  * 
  *                         ##1
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 128, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_Cur_Issue, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_Cur_Issue, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":128
+          /* "cpa700.py":131
  * 
  *                         ##1
  *                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):             # <<<<<<<<<<<<<<
  *                             continue
  *                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
  */
-          __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_Cur_Award_Issue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 128, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_Cur_Award_Issue); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_Cur_Issue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L22_error)
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_Cur_Issue); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_2, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L24_error)
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 128, __pyx_L22_error)
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 131, __pyx_L24_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           if (__pyx_t_8) {
 
-            /* "cpa700.py":129
+            /* "cpa700.py":132
  *                         ##1
  *                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
  *                             continue             # <<<<<<<<<<<<<<
  *                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
  *                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
  */
-            goto __pyx_L28_try_continue;
+            goto __pyx_L30_try_continue;
 
-            /* "cpa700.py":128
+            /* "cpa700.py":131
  * 
  *                         ##1
  *                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):             # <<<<<<<<<<<<<<
@@ -3622,7 +3650,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
           }
 
-          /* "cpa700.py":130
+          /* "cpa700.py":133
  *                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
  *                             continue
  *                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"             # <<<<<<<<<<<<<<
@@ -3632,16 +3660,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           __Pyx_INCREF(__pyx_kp_s_update_data_set_data1_data2_data);
           __Pyx_XDECREF_SET(__pyx_v_sql, __pyx_kp_s_update_data_set_data1_data2_data);
 
-          /* "cpa700.py":131
+          /* "cpa700.py":134
  *                             continue
  *                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
  *                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))             # <<<<<<<<<<<<<<
  *                         conn.commit()
  *                         #self.target.textlog.insert(tk.INSERT,":" + Cur_Award_Issue + "\n")
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_6 = PyTuple_New(11); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_6 = PyTuple_New(11); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 134, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_INCREF(__pyx_v_BaLL_No1);
           __Pyx_GIVEREF(__pyx_v_BaLL_No1);
@@ -3676,41 +3704,41 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           __Pyx_INCREF(__pyx_v_Cur_Award_Issue);
           __Pyx_GIVEREF(__pyx_v_Cur_Award_Issue);
           PyTuple_SET_ITEM(__pyx_t_6, 10, __pyx_v_Cur_Award_Issue);
-          __pyx_t_2 = NULL;
+          __pyx_t_3 = NULL;
           __pyx_t_5 = 0;
-          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-            __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-            if (likely(__pyx_t_2)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-              __Pyx_INCREF(__pyx_t_2);
+          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+            __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+            if (likely(__pyx_t_3)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+              __Pyx_INCREF(__pyx_t_3);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_3, function);
+              __Pyx_DECREF_SET(__pyx_t_2, function);
               __pyx_t_5 = 1;
             }
           }
           #if CYTHON_FAST_PYCALL
-          if (PyFunction_Check(__pyx_t_3)) {
-            PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_sql, __pyx_t_6};
-            __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L22_error)
-            __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (PyFunction_Check(__pyx_t_2)) {
+            PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_sql, __pyx_t_6};
+            __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L24_error)
+            __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
-          if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-            PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_sql, __pyx_t_6};
-            __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L22_error)
-            __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+            PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_sql, __pyx_t_6};
+            __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L24_error)
+            __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           } else
           #endif
           {
-            __pyx_t_1 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L22_error)
+            __pyx_t_1 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L24_error)
             __Pyx_GOTREF(__pyx_t_1);
-            if (__pyx_t_2) {
-              __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2); __pyx_t_2 = NULL;
+            if (__pyx_t_3) {
+              __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3); __pyx_t_3 = NULL;
             }
             __Pyx_INCREF(__pyx_v_sql);
             __Pyx_GIVEREF(__pyx_v_sql);
@@ -3718,43 +3746,43 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
             __Pyx_GIVEREF(__pyx_t_6);
             PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_5, __pyx_t_6);
             __pyx_t_6 = 0;
-            __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L22_error)
+            __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L24_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           }
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-          /* "cpa700.py":132
+          /* "cpa700.py":135
  *                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
  *                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
  *                         conn.commit()             # <<<<<<<<<<<<<<
  *                         #self.target.textlog.insert(tk.INSERT,":" + Cur_Award_Issue + "\n")
  * 
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __pyx_t_1 = NULL;
-          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-            __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+            __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
             if (likely(__pyx_t_1)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
               __Pyx_INCREF(__pyx_t_1);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_3, function);
+              __Pyx_DECREF_SET(__pyx_t_2, function);
             }
           }
           if (__pyx_t_1) {
-            __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L22_error)
+            __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L24_error)
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           } else {
-            __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L22_error)
+            __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L24_error)
           }
           __Pyx_GOTREF(__pyx_t_4);
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-          /* "cpa700.py":136
+          /* "cpa700.py":139
  * 
  * 
  *                         BaLL_Idx = 1             # <<<<<<<<<<<<<<
@@ -3764,7 +3792,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           __Pyx_INCREF(__pyx_int_1);
           __Pyx_XDECREF_SET(__pyx_v_BaLL_Idx, __pyx_int_1);
 
-          /* "cpa700.py":137
+          /* "cpa700.py":140
  * 
  *                         BaLL_Idx = 1
  *                         Win = 0             # <<<<<<<<<<<<<<
@@ -3773,22 +3801,22 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
           __pyx_v_Win = 0;
 
-          /* "cpa700.py":138
+          /* "cpa700.py":141
  *                         BaLL_Idx = 1
  *                         Win = 0
  *                         Monery_Idx = monerys[0][0]             # <<<<<<<<<<<<<<
  *                         Have_Cur_Award_Issue = False
  *                         Deal_Cur_Award_Issue = False
  */
-          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_monerys, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_monerys, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_Monery_Idx, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_Monery_Idx, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":139
+          /* "cpa700.py":142
  *                         Win = 0
  *                         Monery_Idx = monerys[0][0]
  *                         Have_Cur_Award_Issue = False             # <<<<<<<<<<<<<<
@@ -3797,7 +3825,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
           __pyx_v_Have_Cur_Award_Issue = 0;
 
-          /* "cpa700.py":140
+          /* "cpa700.py":143
  *                         Monery_Idx = monerys[0][0]
  *                         Have_Cur_Award_Issue = False
  *                         Deal_Cur_Award_Issue = False             # <<<<<<<<<<<<<<
@@ -3806,16 +3834,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
           __pyx_v_Deal_Cur_Award_Issue = 0;
 
-          /* "cpa700.py":141
+          /* "cpa700.py":144
  *                         Have_Cur_Award_Issue = False
  *                         Deal_Cur_Award_Issue = False
  *                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))             # <<<<<<<<<<<<<<
  *                         datas = cursor.fetchall()
  *                         for data in datas:#
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L22_error)
+          __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_INCREF(__pyx_v_Cur_Award_Issue);
           __Pyx_GIVEREF(__pyx_v_Cur_Award_Issue);
@@ -3835,71 +3863,71 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_4)) {
             PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_s_select_from_data_where_issue, __pyx_t_1};
-            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L22_error)
+            __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L24_error)
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __Pyx_GOTREF(__pyx_t_3);
+            __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           } else
           #endif
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
             PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_kp_s_select_from_data_where_issue, __pyx_t_1};
-            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L22_error)
+            __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L24_error)
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __Pyx_GOTREF(__pyx_t_3);
+            __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           } else
           #endif
           {
-            __pyx_t_2 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_3 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_3);
             if (__pyx_t_6) {
-              __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_6); __pyx_t_6 = NULL;
+              __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6); __pyx_t_6 = NULL;
             }
             __Pyx_INCREF(__pyx_kp_s_select_from_data_where_issue);
             __Pyx_GIVEREF(__pyx_kp_s_select_from_data_where_issue);
-            PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_5, __pyx_kp_s_select_from_data_where_issue);
+            PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_5, __pyx_kp_s_select_from_data_where_issue);
             __Pyx_GIVEREF(__pyx_t_1);
-            PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_5, __pyx_t_1);
+            PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_5, __pyx_t_1);
             __pyx_t_1 = 0;
-            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           }
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cpa700.py":142
+          /* "cpa700.py":145
  *                         Deal_Cur_Award_Issue = False
  *                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
  *                         datas = cursor.fetchall()             # <<<<<<<<<<<<<<
  *                         for data in datas:#
  *                             #self.target.textlog.insert(tk.INSERT,": " + Cur_Award_Issue+ "\n")
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = NULL;
+          __pyx_t_3 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-            __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-            if (likely(__pyx_t_2)) {
+            __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+            if (likely(__pyx_t_3)) {
               PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-              __Pyx_INCREF(__pyx_t_2);
+              __Pyx_INCREF(__pyx_t_3);
               __Pyx_INCREF(function);
               __Pyx_DECREF_SET(__pyx_t_4, function);
             }
           }
-          if (__pyx_t_2) {
-            __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L22_error)
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (__pyx_t_3) {
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L24_error)
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           } else {
-            __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L22_error)
+            __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L24_error)
           }
-          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_datas, __pyx_t_3);
-          __pyx_t_3 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_datas, __pyx_t_2);
+          __pyx_t_2 = 0;
 
-          /* "cpa700.py":143
+          /* "cpa700.py":146
  *                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
  *                         datas = cursor.fetchall()
  *                         for data in datas:#             # <<<<<<<<<<<<<<
@@ -3907,39 +3935,39 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                             #
  */
           if (likely(PyList_CheckExact(__pyx_v_datas)) || PyTuple_CheckExact(__pyx_v_datas)) {
-            __pyx_t_3 = __pyx_v_datas; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+            __pyx_t_2 = __pyx_v_datas; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
             __pyx_t_12 = NULL;
           } else {
-            __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 143, __pyx_L22_error)
+            __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 146, __pyx_L24_error)
           }
           for (;;) {
             if (likely(!__pyx_t_12)) {
-              if (likely(PyList_CheckExact(__pyx_t_3))) {
-                if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+              if (likely(PyList_CheckExact(__pyx_t_2))) {
+                if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 143, __pyx_L22_error)
+                __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 146, __pyx_L24_error)
                 #else
-                __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L22_error)
+                __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 #endif
               } else {
-                if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+                if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
                 #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 143, __pyx_L22_error)
+                __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_4); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 146, __pyx_L24_error)
                 #else
-                __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L22_error)
+                __pyx_t_4 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 #endif
               }
             } else {
-              __pyx_t_4 = __pyx_t_12(__pyx_t_3);
+              __pyx_t_4 = __pyx_t_12(__pyx_t_2);
               if (unlikely(!__pyx_t_4)) {
                 PyObject* exc_type = PyErr_Occurred();
                 if (exc_type) {
                   if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                  else __PYX_ERR(0, 143, __pyx_L22_error)
+                  else __PYX_ERR(0, 146, __pyx_L24_error)
                 }
                 break;
               }
@@ -3948,7 +3976,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
             __Pyx_XDECREF_SET(__pyx_v_data, __pyx_t_4);
             __pyx_t_4 = 0;
 
-            /* "cpa700.py":146
+            /* "cpa700.py":149
  *                             #self.target.textlog.insert(tk.INSERT,": " + Cur_Award_Issue+ "\n")
  *                             #
  *                             Have_Cur_Award_Issue = True             # <<<<<<<<<<<<<<
@@ -3957,22 +3985,22 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
             __pyx_v_Have_Cur_Award_Issue = 1;
 
-            /* "cpa700.py":147
+            /* "cpa700.py":150
  *                             #
  *                             Have_Cur_Award_Issue = True
  *                             if data[11] != None:             # <<<<<<<<<<<<<<
  *                                 Deal_Cur_Award_Issue = True
  *                                 items = data[11].split("=")
  */
-            __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L22_error)
+            __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L24_error)
             __Pyx_GOTREF(__pyx_t_4);
-            __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L22_error)
+            __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, Py_None, Py_NE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L24_error)
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 147, __pyx_L22_error)
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 150, __pyx_L24_error)
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             if (__pyx_t_8) {
 
-              /* "cpa700.py":148
+              /* "cpa700.py":151
  *                             Have_Cur_Award_Issue = True
  *                             if data[11] != None:
  *                                 Deal_Cur_Award_Issue = True             # <<<<<<<<<<<<<<
@@ -3981,45 +4009,45 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
               __pyx_v_Deal_Cur_Award_Issue = 1;
 
-              /* "cpa700.py":149
+              /* "cpa700.py":152
  *                             if data[11] != None:
  *                                 Deal_Cur_Award_Issue = True
  *                                 items = data[11].split("=")             # <<<<<<<<<<<<<<
  *                                 if len(items) != 3:
  *                                     break
  */
-              __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_data, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_split); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L22_error)
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 11, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_split); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_XDECREF_SET(__pyx_v_items, __pyx_t_2);
-              __pyx_t_2 = 0;
+              __Pyx_XDECREF_SET(__pyx_v_items, __pyx_t_3);
+              __pyx_t_3 = 0;
 
-              /* "cpa700.py":150
+              /* "cpa700.py":153
  *                                 Deal_Cur_Award_Issue = True
  *                                 items = data[11].split("=")
  *                                 if len(items) != 3:             # <<<<<<<<<<<<<<
  *                                     break
  *                                 BaLL_No = 1
  */
-              __pyx_t_13 = PyObject_Length(__pyx_v_items); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 150, __pyx_L22_error)
+              __pyx_t_13 = PyObject_Length(__pyx_v_items); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 153, __pyx_L24_error)
               __pyx_t_8 = ((__pyx_t_13 != 3) != 0);
               if (__pyx_t_8) {
 
-                /* "cpa700.py":151
+                /* "cpa700.py":154
  *                                 items = data[11].split("=")
  *                                 if len(items) != 3:
  *                                     break             # <<<<<<<<<<<<<<
  *                                 BaLL_No = 1
  *                                 BaLL_Idx = int(items[0])
  */
-                goto __pyx_L32_break;
+                goto __pyx_L34_break;
 
-                /* "cpa700.py":150
+                /* "cpa700.py":153
  *                                 Deal_Cur_Award_Issue = True
  *                                 items = data[11].split("=")
  *                                 if len(items) != 3:             # <<<<<<<<<<<<<<
@@ -4028,7 +4056,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
               }
 
-              /* "cpa700.py":152
+              /* "cpa700.py":155
  *                                 if len(items) != 3:
  *                                     break
  *                                 BaLL_No = 1             # <<<<<<<<<<<<<<
@@ -4038,362 +4066,362 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               __Pyx_INCREF(__pyx_int_1);
               __Pyx_XDECREF_SET(__pyx_v_BaLL_No, __pyx_int_1);
 
-              /* "cpa700.py":153
+              /* "cpa700.py":156
  *                                     break
  *                                 BaLL_No = 1
  *                                 BaLL_Idx = int(items[0])             # <<<<<<<<<<<<<<
  *                                 if BaLL_Idx == 1:
  *                                     BaLL_No = int(BaLL_No1)
  */
-              __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L22_error)
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_items, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               __Pyx_DECREF_SET(__pyx_v_BaLL_Idx, __pyx_t_4);
               __pyx_t_4 = 0;
 
-              /* "cpa700.py":154
+              /* "cpa700.py":157
  *                                 BaLL_No = 1
  *                                 BaLL_Idx = int(items[0])
  *                                 if BaLL_Idx == 1:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No1)
  *                                 elif BaLL_Idx == 2:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 154, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 157, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":155
+                /* "cpa700.py":158
  *                                 BaLL_Idx = int(items[0])
  *                                 if BaLL_Idx == 1:
  *                                     BaLL_No = int(BaLL_No1)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 2:
  *                                     BaLL_No = int(BaLL_No2)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":154
+                /* "cpa700.py":157
  *                                 BaLL_No = 1
  *                                 BaLL_Idx = int(items[0])
  *                                 if BaLL_Idx == 1:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No1)
  *                                 elif BaLL_Idx == 2:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":156
+              /* "cpa700.py":159
  *                                 if BaLL_Idx == 1:
  *                                     BaLL_No = int(BaLL_No1)
  *                                 elif BaLL_Idx == 2:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No2)
  *                                 elif BaLL_Idx == 3:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 156, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 159, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":157
+                /* "cpa700.py":160
  *                                     BaLL_No = int(BaLL_No1)
  *                                 elif BaLL_Idx == 2:
  *                                     BaLL_No = int(BaLL_No2)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 3:
  *                                     BaLL_No = int(BaLL_No3)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":156
+                /* "cpa700.py":159
  *                                 if BaLL_Idx == 1:
  *                                     BaLL_No = int(BaLL_No1)
  *                                 elif BaLL_Idx == 2:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No2)
  *                                 elif BaLL_Idx == 3:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":158
+              /* "cpa700.py":161
  *                                 elif BaLL_Idx == 2:
  *                                     BaLL_No = int(BaLL_No2)
  *                                 elif BaLL_Idx == 3:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No3)
  *                                 elif BaLL_Idx == 4:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_3, 3, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_3, 3, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 158, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 161, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":159
+                /* "cpa700.py":162
  *                                     BaLL_No = int(BaLL_No2)
  *                                 elif BaLL_Idx == 3:
  *                                     BaLL_No = int(BaLL_No3)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 4:
  *                                     BaLL_No = int(BaLL_No4)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":158
+                /* "cpa700.py":161
  *                                 elif BaLL_Idx == 2:
  *                                     BaLL_No = int(BaLL_No2)
  *                                 elif BaLL_Idx == 3:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No3)
  *                                 elif BaLL_Idx == 4:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":160
+              /* "cpa700.py":163
  *                                 elif BaLL_Idx == 3:
  *                                     BaLL_No = int(BaLL_No3)
  *                                 elif BaLL_Idx == 4:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No4)
  *                                 elif BaLL_Idx == 5:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 160, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 163, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":161
+                /* "cpa700.py":164
  *                                     BaLL_No = int(BaLL_No3)
  *                                 elif BaLL_Idx == 4:
  *                                     BaLL_No = int(BaLL_No4)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 5:
  *                                     BaLL_No = int(BaLL_No5)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":160
+                /* "cpa700.py":163
  *                                 elif BaLL_Idx == 3:
  *                                     BaLL_No = int(BaLL_No3)
  *                                 elif BaLL_Idx == 4:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No4)
  *                                 elif BaLL_Idx == 5:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":162
+              /* "cpa700.py":165
  *                                 elif BaLL_Idx == 4:
  *                                     BaLL_No = int(BaLL_No4)
  *                                 elif BaLL_Idx == 5:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No5)
  *                                 elif BaLL_Idx == 6:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_5, 5, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_5, 5, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 162, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 165, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":163
+                /* "cpa700.py":166
  *                                     BaLL_No = int(BaLL_No4)
  *                                 elif BaLL_Idx == 5:
  *                                     BaLL_No = int(BaLL_No5)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 6:
  *                                     BaLL_No = int(BaLL_No6)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":162
+                /* "cpa700.py":165
  *                                 elif BaLL_Idx == 4:
  *                                     BaLL_No = int(BaLL_No4)
  *                                 elif BaLL_Idx == 5:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No5)
  *                                 elif BaLL_Idx == 6:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":164
+              /* "cpa700.py":167
  *                                 elif BaLL_Idx == 5:
  *                                     BaLL_No = int(BaLL_No5)
  *                                 elif BaLL_Idx == 6:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No6)
  *                                 elif BaLL_Idx == 7:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_6, 6, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_6, 6, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 164, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 167, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":165
+                /* "cpa700.py":168
  *                                     BaLL_No = int(BaLL_No5)
  *                                 elif BaLL_Idx == 6:
  *                                     BaLL_No = int(BaLL_No6)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 7:
  *                                     BaLL_No = int(BaLL_No7)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":164
+                /* "cpa700.py":167
  *                                 elif BaLL_Idx == 5:
  *                                     BaLL_No = int(BaLL_No5)
  *                                 elif BaLL_Idx == 6:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No6)
  *                                 elif BaLL_Idx == 7:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":166
+              /* "cpa700.py":169
  *                                 elif BaLL_Idx == 6:
  *                                     BaLL_No = int(BaLL_No6)
  *                                 elif BaLL_Idx == 7:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No7)
  *                                 elif BaLL_Idx == 8:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_7, 7, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_7, 7, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 166, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 169, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":167
+                /* "cpa700.py":170
  *                                     BaLL_No = int(BaLL_No6)
  *                                 elif BaLL_Idx == 7:
  *                                     BaLL_No = int(BaLL_No7)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 8:
  *                                     BaLL_No = int(BaLL_No8)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":166
+                /* "cpa700.py":169
  *                                 elif BaLL_Idx == 6:
  *                                     BaLL_No = int(BaLL_No6)
  *                                 elif BaLL_Idx == 7:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No7)
  *                                 elif BaLL_Idx == 8:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":168
+              /* "cpa700.py":171
  *                                 elif BaLL_Idx == 7:
  *                                     BaLL_No = int(BaLL_No7)
  *                                 elif BaLL_Idx == 8:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No8)
  *                                 elif BaLL_Idx == 9:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_8, 8, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_8, 8, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 168, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 171, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":169
+                /* "cpa700.py":172
  *                                     BaLL_No = int(BaLL_No7)
  *                                 elif BaLL_Idx == 8:
  *                                     BaLL_No = int(BaLL_No8)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 9:
  *                                     BaLL_No = int(BaLL_No9)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 169, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":168
+                /* "cpa700.py":171
  *                                 elif BaLL_Idx == 7:
  *                                     BaLL_No = int(BaLL_No7)
  *                                 elif BaLL_Idx == 8:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No8)
  *                                 elif BaLL_Idx == 9:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":170
+              /* "cpa700.py":173
  *                                 elif BaLL_Idx == 8:
  *                                     BaLL_No = int(BaLL_No8)
  *                                 elif BaLL_Idx == 9:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No9)
  *                                 elif BaLL_Idx == 10:
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_9, 9, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_9, 9, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 170, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 173, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":171
+                /* "cpa700.py":174
  *                                     BaLL_No = int(BaLL_No8)
  *                                 elif BaLL_Idx == 9:
  *                                     BaLL_No = int(BaLL_No9)             # <<<<<<<<<<<<<<
  *                                 elif BaLL_Idx == 10:
  *                                     BaLL_No = int(BaLL_No10)
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":170
+                /* "cpa700.py":173
  *                                 elif BaLL_Idx == 8:
  *                                     BaLL_No = int(BaLL_No8)
  *                                 elif BaLL_Idx == 9:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No9)
  *                                 elif BaLL_Idx == 10:
  */
-                goto __pyx_L35;
+                goto __pyx_L37;
               }
 
-              /* "cpa700.py":172
+              /* "cpa700.py":175
  *                                 elif BaLL_Idx == 9:
  *                                     BaLL_No = int(BaLL_No9)
  *                                 elif BaLL_Idx == 10:             # <<<<<<<<<<<<<<
  *                                     BaLL_No = int(BaLL_No10)
  *                                 ##########################
  */
-              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_10, 10, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_BaLL_Idx, __pyx_int_10, 10, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 172, __pyx_L22_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 175, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":173
+                /* "cpa700.py":176
  *                                     BaLL_No = int(BaLL_No9)
  *                                 elif BaLL_Idx == 10:
  *                                     BaLL_No = int(BaLL_No10)             # <<<<<<<<<<<<<<
  *                                 ##########################
  *                                 #('', '','','')
  */
-                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_v_BaLL_No10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_No, __pyx_t_4);
                 __pyx_t_4 = 0;
 
-                /* "cpa700.py":172
+                /* "cpa700.py":175
  *                                 elif BaLL_Idx == 9:
  *                                     BaLL_No = int(BaLL_No9)
  *                                 elif BaLL_Idx == 10:             # <<<<<<<<<<<<<<
@@ -4401,201 +4429,201 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                 ##########################
  */
               }
-              __pyx_L35:;
-
-              /* "cpa700.py":176
- *                                 ##########################
- *                                 #('', '','','')
- *                                 if items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No > 5:
- *                                         Win = 1
- */
-              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__47, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 176, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              if (__pyx_t_8) {
-
-                /* "cpa700.py":177
- *                                 #('', '','','')
- *                                 if items[1] == "":
- *                                     if BaLL_No > 5:             # <<<<<<<<<<<<<<
- *                                         Win = 1
- *                                 elif items[1] == "":
- */
-                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L22_error)
-                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 177, __pyx_L22_error)
-                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                if (__pyx_t_8) {
-
-                  /* "cpa700.py":178
- *                                 if items[1] == "":
- *                                     if BaLL_No > 5:
- *                                         Win = 1             # <<<<<<<<<<<<<<
- *                                 elif items[1] == "":
- *                                     if BaLL_No <= 5:
- */
-                  __pyx_v_Win = 1;
-
-                  /* "cpa700.py":177
- *                                 #('', '','','')
- *                                 if items[1] == "":
- *                                     if BaLL_No > 5:             # <<<<<<<<<<<<<<
- *                                         Win = 1
- *                                 elif items[1] == "":
- */
-                }
-
-                /* "cpa700.py":176
- *                                 ##########################
- *                                 #('', '','','')
- *                                 if items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No > 5:
- *                                         Win = 1
- */
-                goto __pyx_L36;
-              }
+              __pyx_L37:;
 
               /* "cpa700.py":179
+ *                                 ##########################
+ *                                 #('', '','','')
+ *                                 if items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No > 5:
  *                                         Win = 1
- *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No <= 5:
- *                                         Win = 1
  */
-              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__48, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 179, __pyx_L22_error)
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__47, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 179, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
                 /* "cpa700.py":180
- *                                         Win = 1
- *                                 elif items[1] == "":
- *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
+ *                                 #('', '','','')
+ *                                 if items[1] == "":
+ *                                     if BaLL_No > 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
-                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L22_error)
-                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 180, __pyx_L22_error)
+                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L24_error)
+                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 180, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                 if (__pyx_t_8) {
 
                   /* "cpa700.py":181
- *                                 elif items[1] == "":
- *                                     if BaLL_No <= 5:
+ *                                 if items[1] == "":
+ *                                     if BaLL_No > 5:
  *                                         Win = 1             # <<<<<<<<<<<<<<
  *                                 elif items[1] == "":
- *                                     if BaLL_No / 2 == 1:
+ *                                     if BaLL_No <= 5:
  */
                   __pyx_v_Win = 1;
 
                   /* "cpa700.py":180
- *                                         Win = 1
- *                                 elif items[1] == "":
- *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
+ *                                 #('', '','','')
+ *                                 if items[1] == "":
+ *                                     if BaLL_No > 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
                 }
 
                 /* "cpa700.py":179
+ *                                 ##########################
+ *                                 #('', '','','')
+ *                                 if items[1] == "":             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No > 5:
+ *                                         Win = 1
+ */
+                goto __pyx_L38;
+              }
+
+              /* "cpa700.py":182
  *                                     if BaLL_No > 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No <= 5:
  *                                         Win = 1
  */
-                goto __pyx_L36;
-              }
-
-              /* "cpa700.py":182
- *                                     if BaLL_No <= 5:
- *                                         Win = 1
- *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
- *                                     if BaLL_No / 2 == 1:
- *                                         Win = 1
- */
-              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__49, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 182, __pyx_L22_error)
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__48, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 182, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               if (__pyx_t_8) {
 
                 /* "cpa700.py":183
  *                                         Win = 1
  *                                 elif items[1] == "":
- *                                     if BaLL_No / 2 == 1:             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
-                __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_v_BaLL_No, __pyx_int_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_4);
-                __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_4, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
+                __pyx_t_4 = PyObject_RichCompare(__pyx_v_BaLL_No, __pyx_int_5, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L24_error)
+                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 183, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 183, __pyx_L22_error)
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 if (__pyx_t_8) {
 
                   /* "cpa700.py":184
  *                                 elif items[1] == "":
- *                                     if BaLL_No / 2 == 1:
+ *                                     if BaLL_No <= 5:
  *                                         Win = 1             # <<<<<<<<<<<<<<
  *                                 elif items[1] == "":
- *                                     if BaLL_No / 2 == 0:
+ *                                     if BaLL_No / 2 == 1:
  */
                   __pyx_v_Win = 1;
 
                   /* "cpa700.py":183
  *                                         Win = 1
  *                                 elif items[1] == "":
- *                                     if BaLL_No / 2 == 1:             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No <= 5:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 elif items[1] == "":
  */
                 }
 
                 /* "cpa700.py":182
+ *                                     if BaLL_No > 5:
+ *                                         Win = 1
+ *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No <= 5:
+ *                                         Win = 1
+ */
+                goto __pyx_L38;
+              }
+
+              /* "cpa700.py":185
  *                                     if BaLL_No <= 5:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No / 2 == 1:
  *                                         Win = 1
  */
-                goto __pyx_L36;
+              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_4);
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__49, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 185, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+              if (__pyx_t_8) {
+
+                /* "cpa700.py":186
+ *                                         Win = 1
+ *                                 elif items[1] == "":
+ *                                     if BaLL_No / 2 == 1:             # <<<<<<<<<<<<<<
+ *                                         Win = 1
+ *                                 elif items[1] == "":
+ */
+                __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_v_BaLL_No, __pyx_int_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_4);
+                __pyx_t_3 = __Pyx_PyInt_EqObjC(__pyx_t_4, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 186, __pyx_L24_error)
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                if (__pyx_t_8) {
+
+                  /* "cpa700.py":187
+ *                                 elif items[1] == "":
+ *                                     if BaLL_No / 2 == 1:
+ *                                         Win = 1             # <<<<<<<<<<<<<<
+ *                                 elif items[1] == "":
+ *                                     if BaLL_No / 2 == 0:
+ */
+                  __pyx_v_Win = 1;
+
+                  /* "cpa700.py":186
+ *                                         Win = 1
+ *                                 elif items[1] == "":
+ *                                     if BaLL_No / 2 == 1:             # <<<<<<<<<<<<<<
+ *                                         Win = 1
+ *                                 elif items[1] == "":
+ */
+                }
+
+                /* "cpa700.py":185
+ *                                     if BaLL_No <= 5:
+ *                                         Win = 1
+ *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
+ *                                     if BaLL_No / 2 == 1:
+ *                                         Win = 1
+ */
+                goto __pyx_L38;
               }
 
-              /* "cpa700.py":185
+              /* "cpa700.py":188
  *                                     if BaLL_No / 2 == 1:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
  *                                     if BaLL_No / 2 == 0:
  *                                         Win = 1
  */
-              __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_kp_s__50, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 185, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 188, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s__50, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 188, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":186
+                /* "cpa700.py":189
  *                                         Win = 1
  *                                 elif items[1] == "":
  *                                     if BaLL_No / 2 == 0:             # <<<<<<<<<<<<<<
  *                                         Win = 1
  *                                 Monery_Idx = int(items[2])
  */
-                __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_BaLL_No, __pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_t_2, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_BaLL_No, __pyx_int_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_t_3, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 186, __pyx_L22_error)
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 189, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                 if (__pyx_t_8) {
 
-                  /* "cpa700.py":187
+                  /* "cpa700.py":190
  *                                 elif items[1] == "":
  *                                     if BaLL_No / 2 == 0:
  *                                         Win = 1             # <<<<<<<<<<<<<<
@@ -4604,7 +4632,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
                   __pyx_v_Win = 1;
 
-                  /* "cpa700.py":186
+                  /* "cpa700.py":189
  *                                         Win = 1
  *                                 elif items[1] == "":
  *                                     if BaLL_No / 2 == 0:             # <<<<<<<<<<<<<<
@@ -4613,7 +4641,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
                 }
 
-                /* "cpa700.py":185
+                /* "cpa700.py":188
  *                                     if BaLL_No / 2 == 1:
  *                                         Win = 1
  *                                 elif items[1] == "":             # <<<<<<<<<<<<<<
@@ -4621,35 +4649,35 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                         Win = 1
  */
               }
-              __pyx_L36:;
+              __pyx_L38:;
 
-              /* "cpa700.py":188
+              /* "cpa700.py":191
  *                                     if BaLL_No / 2 == 0:
  *                                         Win = 1
  *                                 Monery_Idx = int(items[2])             # <<<<<<<<<<<<<<
  * 
  *                                 cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
  */
-              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 188, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_items, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF_SET(__pyx_v_Monery_Idx, __pyx_t_2);
-              __pyx_t_2 = 0;
+              __Pyx_DECREF_SET(__pyx_v_Monery_Idx, __pyx_t_3);
+              __pyx_t_3 = 0;
 
-              /* "cpa700.py":190
+              /* "cpa700.py":193
  *                                 Monery_Idx = int(items[2])
  * 
  *                                 cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))             # <<<<<<<<<<<<<<
  *                                 conn.commit()
  * 
  */
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 193, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_Win); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L22_error)
+              __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_Win); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 190, __pyx_L22_error)
+              __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 193, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_GIVEREF(__pyx_t_1);
               PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
@@ -4672,23 +4700,23 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_4)) {
                 PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_kp_s_update_data_set_win_where_issue, __pyx_t_6};
-                __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               } else
               #endif
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
                 PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_kp_s_update_data_set_win_where_issue, __pyx_t_6};
-                __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               } else
               #endif
               {
-                __pyx_t_14 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 190, __pyx_L22_error)
+                __pyx_t_14 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 193, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_14);
                 if (__pyx_t_1) {
                   __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_1); __pyx_t_1 = NULL;
@@ -4699,21 +4727,21 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 __Pyx_GIVEREF(__pyx_t_6);
                 PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_5, __pyx_t_6);
                 __pyx_t_6 = 0;
-                __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
+                __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
               }
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-              /* "cpa700.py":191
+              /* "cpa700.py":194
  * 
  *                                 cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
  *                                 conn.commit()             # <<<<<<<<<<<<<<
  * 
  *                                 if Win == 1:
  */
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 194, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
               __pyx_t_14 = NULL;
               if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4726,16 +4754,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_14) {
-                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_14); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
               } else {
-                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-              /* "cpa700.py":193
+              /* "cpa700.py":196
  *                                 conn.commit()
  * 
  *                                 if Win == 1:             # <<<<<<<<<<<<<<
@@ -4744,10 +4772,10 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
               __pyx_t_8 = ((__pyx_v_Win == 1) != 0);
               if (__pyx_t_8) {
-                goto __pyx_L41;
+                goto __pyx_L43;
               }
 
-              /* "cpa700.py":197
+              /* "cpa700.py":200
  *                                     pass
  *                                 else:
  *                                     BaLL_Idx = BaLL_Idx + 1             # <<<<<<<<<<<<<<
@@ -4755,26 +4783,26 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                     BaLL_Idx = 1
  */
               /*else*/ {
-                __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_BaLL_Idx, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __Pyx_DECREF_SET(__pyx_v_BaLL_Idx, __pyx_t_2);
-                __pyx_t_2 = 0;
+                __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_v_BaLL_Idx, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF_SET(__pyx_v_BaLL_Idx, __pyx_t_3);
+                __pyx_t_3 = 0;
               }
-              __pyx_L41:;
+              __pyx_L43:;
 
-              /* "cpa700.py":198
+              /* "cpa700.py":201
  *                                 else:
  *                                     BaLL_Idx = BaLL_Idx + 1
  *                                 if BaLL_Idx > 10:             # <<<<<<<<<<<<<<
  *                                     BaLL_Idx = 1
  *                         #
  */
-              __pyx_t_2 = PyObject_RichCompare(__pyx_v_BaLL_Idx, __pyx_int_10, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L22_error)
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 198, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_3 = PyObject_RichCompare(__pyx_v_BaLL_Idx, __pyx_int_10, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L24_error)
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 201, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":199
+                /* "cpa700.py":202
  *                                     BaLL_Idx = BaLL_Idx + 1
  *                                 if BaLL_Idx > 10:
  *                                     BaLL_Idx = 1             # <<<<<<<<<<<<<<
@@ -4784,7 +4812,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 __Pyx_INCREF(__pyx_int_1);
                 __Pyx_DECREF_SET(__pyx_v_BaLL_Idx, __pyx_int_1);
 
-                /* "cpa700.py":198
+                /* "cpa700.py":201
  *                                 else:
  *                                     BaLL_Idx = BaLL_Idx + 1
  *                                 if BaLL_Idx > 10:             # <<<<<<<<<<<<<<
@@ -4793,7 +4821,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
               }
 
-              /* "cpa700.py":147
+              /* "cpa700.py":150
  *                             #
  *                             Have_Cur_Award_Issue = True
  *                             if data[11] != None:             # <<<<<<<<<<<<<<
@@ -4802,7 +4830,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
             }
 
-            /* "cpa700.py":143
+            /* "cpa700.py":146
  *                         cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
  *                         datas = cursor.fetchall()
  *                         for data in datas:#             # <<<<<<<<<<<<<<
@@ -4810,10 +4838,10 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                             #
  */
           }
-          __pyx_L32_break:;
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __pyx_L34_break:;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cpa700.py":201
+          /* "cpa700.py":204
  *                                     BaLL_Idx = 1
  *                         #
  *                         if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True):             # <<<<<<<<<<<<<<
@@ -4824,20 +4852,20 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
           if (!__pyx_t_15) {
           } else {
             __pyx_t_8 = __pyx_t_15;
-            goto __pyx_L44_bool_binop_done;
+            goto __pyx_L46_bool_binop_done;
           }
           __pyx_t_15 = ((__pyx_v_Have_Cur_Award_Issue == 1) != 0);
           if (__pyx_t_15) {
           } else {
             __pyx_t_8 = __pyx_t_15;
-            goto __pyx_L44_bool_binop_done;
+            goto __pyx_L46_bool_binop_done;
           }
           __pyx_t_15 = ((__pyx_v_Deal_Cur_Award_Issue == 1) != 0);
           __pyx_t_8 = __pyx_t_15;
-          __pyx_L44_bool_binop_done:;
+          __pyx_L46_bool_binop_done:;
           if (__pyx_t_8) {
 
-            /* "cpa700.py":202
+            /* "cpa700.py":205
  *                         #
  *                         if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True):
  *                             if Have_Cur_Award_Issue == False:             # <<<<<<<<<<<<<<
@@ -4846,10 +4874,10 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
             __pyx_t_8 = ((__pyx_v_Have_Cur_Award_Issue == 0) != 0);
             if (__pyx_t_8) {
-              goto __pyx_L47;
+              goto __pyx_L49;
             }
 
-            /* "cpa700.py":207
+            /* "cpa700.py":210
  *                             else:
  *                                 #print("")
  *                                 pass             # <<<<<<<<<<<<<<
@@ -4858,54 +4886,54 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
             /*else*/ {
             }
-            __pyx_L47:;
+            __pyx_L49:;
 
-            /* "cpa700.py":208
+            /* "cpa700.py":211
  *                                 #print("")
  *                                 pass
  *                             cursor.execute("select * from data where issue = ?", (Cur_Issue,))             # <<<<<<<<<<<<<<
  *                             datas = cursor.fetchall()
  *                             if len(datas) == 0:
  */
-            __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L22_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_3);
+            __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 211, __pyx_L24_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_INCREF(__pyx_v_Cur_Issue);
             __Pyx_GIVEREF(__pyx_v_Cur_Issue);
             PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_Cur_Issue);
             __pyx_t_14 = NULL;
             __pyx_t_5 = 0;
-            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-              __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_2);
+            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+              __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_3);
               if (likely(__pyx_t_14)) {
-                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
                 __Pyx_INCREF(__pyx_t_14);
                 __Pyx_INCREF(function);
-                __Pyx_DECREF_SET(__pyx_t_2, function);
+                __Pyx_DECREF_SET(__pyx_t_3, function);
                 __pyx_t_5 = 1;
               }
             }
             #if CYTHON_FAST_PYCALL
-            if (PyFunction_Check(__pyx_t_2)) {
+            if (PyFunction_Check(__pyx_t_3)) {
               PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_kp_s_select_from_data_where_issue, __pyx_t_4};
-              __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L24_error)
               __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             } else
             #endif
             #if CYTHON_FAST_PYCCALL
-            if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+            if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
               PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_kp_s_select_from_data_where_issue, __pyx_t_4};
-              __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L24_error)
               __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             } else
             #endif
             {
-              __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 208, __pyx_L22_error)
+              __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 211, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               if (__pyx_t_14) {
                 __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_14); __pyx_t_14 = NULL;
@@ -4916,55 +4944,55 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               __Pyx_GIVEREF(__pyx_t_4);
               PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
               __pyx_t_4 = 0;
-              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             }
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-            /* "cpa700.py":209
+            /* "cpa700.py":212
  *                                 pass
  *                             cursor.execute("select * from data where issue = ?", (Cur_Issue,))
  *                             datas = cursor.fetchall()             # <<<<<<<<<<<<<<
  *                             if len(datas) == 0:
  *                                 ##################################################
  */
-            __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L22_error)
-            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L24_error)
+            __Pyx_GOTREF(__pyx_t_3);
             __pyx_t_6 = NULL;
-            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-              __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
+            if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+              __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
               if (likely(__pyx_t_6)) {
-                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
                 __Pyx_INCREF(__pyx_t_6);
                 __Pyx_INCREF(function);
-                __Pyx_DECREF_SET(__pyx_t_2, function);
+                __Pyx_DECREF_SET(__pyx_t_3, function);
               }
             }
             if (__pyx_t_6) {
-              __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             } else {
-              __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L24_error)
             }
-            __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __Pyx_DECREF_SET(__pyx_v_datas, __pyx_t_3);
-            __pyx_t_3 = 0;
+            __Pyx_GOTREF(__pyx_t_2);
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+            __Pyx_DECREF_SET(__pyx_v_datas, __pyx_t_2);
+            __pyx_t_2 = 0;
 
-            /* "cpa700.py":210
+            /* "cpa700.py":213
  *                             cursor.execute("select * from data where issue = ?", (Cur_Issue,))
  *                             datas = cursor.fetchall()
  *                             if len(datas) == 0:             # <<<<<<<<<<<<<<
  *                                 ##################################################
  *                                 Sel_Monery = None
  */
-            __pyx_t_7 = PyObject_Length(__pyx_v_datas); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 210, __pyx_L22_error)
+            __pyx_t_7 = PyObject_Length(__pyx_v_datas); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 213, __pyx_L24_error)
             __pyx_t_8 = ((__pyx_t_7 == 0) != 0);
             if (__pyx_t_8) {
 
-              /* "cpa700.py":212
+              /* "cpa700.py":215
  *                             if len(datas) == 0:
  *                                 ##################################################
  *                                 Sel_Monery = None             # <<<<<<<<<<<<<<
@@ -4974,7 +5002,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               __Pyx_INCREF(Py_None);
               __Pyx_XDECREF_SET(__pyx_v_Sel_Monery, Py_None);
 
-              /* "cpa700.py":213
+              /* "cpa700.py":216
  *                                 ##################################################
  *                                 Sel_Monery = None
  *                                 if Have_Cur_Award_Issue:             # <<<<<<<<<<<<<<
@@ -4984,7 +5012,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               __pyx_t_8 = (__pyx_v_Have_Cur_Award_Issue != 0);
               if (__pyx_t_8) {
 
-                /* "cpa700.py":214
+                /* "cpa700.py":217
  *                                 Sel_Monery = None
  *                                 if Have_Cur_Award_Issue:
  *                                     for monery in monerys:             # <<<<<<<<<<<<<<
@@ -4992,63 +5020,63 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                             Sel_Monery = monery
  */
                 if (likely(PyList_CheckExact(__pyx_v_monerys)) || PyTuple_CheckExact(__pyx_v_monerys)) {
-                  __pyx_t_3 = __pyx_v_monerys; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+                  __pyx_t_2 = __pyx_v_monerys; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
                   __pyx_t_12 = NULL;
                 } else {
-                  __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_monerys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_3);
-                  __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 214, __pyx_L22_error)
+                  __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_monerys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_2);
+                  __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 217, __pyx_L24_error)
                 }
                 for (;;) {
                   if (likely(!__pyx_t_12)) {
-                    if (likely(PyList_CheckExact(__pyx_t_3))) {
-                      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+                    if (likely(PyList_CheckExact(__pyx_t_2))) {
+                      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 214, __pyx_L22_error)
+                      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_3); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 217, __pyx_L24_error)
                       #else
-                      __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L22_error)
-                      __Pyx_GOTREF(__pyx_t_2);
+                      __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L24_error)
+                      __Pyx_GOTREF(__pyx_t_3);
                       #endif
                     } else {
-                      if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+                      if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 214, __pyx_L22_error)
+                      __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_3); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 217, __pyx_L24_error)
                       #else
-                      __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L22_error)
-                      __Pyx_GOTREF(__pyx_t_2);
+                      __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L24_error)
+                      __Pyx_GOTREF(__pyx_t_3);
                       #endif
                     }
                   } else {
-                    __pyx_t_2 = __pyx_t_12(__pyx_t_3);
-                    if (unlikely(!__pyx_t_2)) {
+                    __pyx_t_3 = __pyx_t_12(__pyx_t_2);
+                    if (unlikely(!__pyx_t_3)) {
                       PyObject* exc_type = PyErr_Occurred();
                       if (exc_type) {
                         if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                        else __PYX_ERR(0, 214, __pyx_L22_error)
+                        else __PYX_ERR(0, 217, __pyx_L24_error)
                       }
                       break;
                     }
-                    __Pyx_GOTREF(__pyx_t_2);
+                    __Pyx_GOTREF(__pyx_t_3);
                   }
-                  __Pyx_XDECREF_SET(__pyx_v_monery, __pyx_t_2);
-                  __pyx_t_2 = 0;
+                  __Pyx_XDECREF_SET(__pyx_v_monery, __pyx_t_3);
+                  __pyx_t_3 = 0;
 
-                  /* "cpa700.py":215
+                  /* "cpa700.py":218
  *                                 if Have_Cur_Award_Issue:
  *                                     for monery in monerys:
  *                                         if  monery[0] == Monery_Idx:             # <<<<<<<<<<<<<<
  *                                             Sel_Monery = monery
  *                                             break
  */
-                  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_2);
-                  __pyx_t_6 = PyObject_RichCompare(__pyx_t_2, __pyx_v_Monery_Idx, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L22_error)
-                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 215, __pyx_L22_error)
+                  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_3);
+                  __pyx_t_6 = PyObject_RichCompare(__pyx_t_3, __pyx_v_Monery_Idx, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L24_error)
+                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 218, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                   if (__pyx_t_8) {
 
-                    /* "cpa700.py":216
+                    /* "cpa700.py":219
  *                                     for monery in monerys:
  *                                         if  monery[0] == Monery_Idx:
  *                                             Sel_Monery = monery             # <<<<<<<<<<<<<<
@@ -5058,16 +5086,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                     __Pyx_INCREF(__pyx_v_monery);
                     __Pyx_DECREF_SET(__pyx_v_Sel_Monery, __pyx_v_monery);
 
-                    /* "cpa700.py":217
+                    /* "cpa700.py":220
  *                                         if  monery[0] == Monery_Idx:
  *                                             Sel_Monery = monery
  *                                             break             # <<<<<<<<<<<<<<
  *                                     for monery in monerys:
  *                                         if  Win == 1 and monery[0] == Sel_Monery[2]:
  */
-                    goto __pyx_L51_break;
+                    goto __pyx_L53_break;
 
-                    /* "cpa700.py":215
+                    /* "cpa700.py":218
  *                                 if Have_Cur_Award_Issue:
  *                                     for monery in monerys:
  *                                         if  monery[0] == Monery_Idx:             # <<<<<<<<<<<<<<
@@ -5076,7 +5104,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
                   }
 
-                  /* "cpa700.py":214
+                  /* "cpa700.py":217
  *                                 Sel_Monery = None
  *                                 if Have_Cur_Award_Issue:
  *                                     for monery in monerys:             # <<<<<<<<<<<<<<
@@ -5084,10 +5112,10 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                             Sel_Monery = monery
  */
                 }
-                __pyx_L51_break:;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_L53_break:;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":218
+                /* "cpa700.py":221
  *                                             Sel_Monery = monery
  *                                             break
  *                                     for monery in monerys:             # <<<<<<<<<<<<<<
@@ -5095,39 +5123,39 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                             Sel_Monery = monery
  */
                 if (likely(PyList_CheckExact(__pyx_v_monerys)) || PyTuple_CheckExact(__pyx_v_monerys)) {
-                  __pyx_t_3 = __pyx_v_monerys; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+                  __pyx_t_2 = __pyx_v_monerys; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
                   __pyx_t_12 = NULL;
                 } else {
-                  __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_monerys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_3);
-                  __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 218, __pyx_L22_error)
+                  __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_monerys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_2);
+                  __pyx_t_12 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 221, __pyx_L24_error)
                 }
                 for (;;) {
                   if (likely(!__pyx_t_12)) {
-                    if (likely(PyList_CheckExact(__pyx_t_3))) {
-                      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+                    if (likely(PyList_CheckExact(__pyx_t_2))) {
+                      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 218, __pyx_L22_error)
+                      __pyx_t_6 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 221, __pyx_L24_error)
                       #else
-                      __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L22_error)
+                      __pyx_t_6 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 221, __pyx_L24_error)
                       __Pyx_GOTREF(__pyx_t_6);
                       #endif
                     } else {
-                      if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+                      if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
                       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                      __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 218, __pyx_L22_error)
+                      __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 221, __pyx_L24_error)
                       #else
-                      __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L22_error)
+                      __pyx_t_6 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 221, __pyx_L24_error)
                       __Pyx_GOTREF(__pyx_t_6);
                       #endif
                     }
                   } else {
-                    __pyx_t_6 = __pyx_t_12(__pyx_t_3);
+                    __pyx_t_6 = __pyx_t_12(__pyx_t_2);
                     if (unlikely(!__pyx_t_6)) {
                       PyObject* exc_type = PyErr_Occurred();
                       if (exc_type) {
                         if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                        else __PYX_ERR(0, 218, __pyx_L22_error)
+                        else __PYX_ERR(0, 221, __pyx_L24_error)
                       }
                       break;
                     }
@@ -5136,7 +5164,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   __Pyx_XDECREF_SET(__pyx_v_monery, __pyx_t_6);
                   __pyx_t_6 = 0;
 
-                  /* "cpa700.py":219
+                  /* "cpa700.py":222
  *                                             break
  *                                     for monery in monerys:
  *                                         if  Win == 1 and monery[0] == Sel_Monery[2]:             # <<<<<<<<<<<<<<
@@ -5147,22 +5175,22 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   if (__pyx_t_15) {
                   } else {
                     __pyx_t_8 = __pyx_t_15;
-                    goto __pyx_L56_bool_binop_done;
+                    goto __pyx_L58_bool_binop_done;
                   }
-                  __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 219, __pyx_L22_error)
+                  __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_6);
-                  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_2);
-                  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L22_error)
+                  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_3);
+                  __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                  __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 219, __pyx_L22_error)
+                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 222, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   __pyx_t_8 = __pyx_t_15;
-                  __pyx_L56_bool_binop_done:;
+                  __pyx_L58_bool_binop_done:;
                   if (__pyx_t_8) {
 
-                    /* "cpa700.py":220
+                    /* "cpa700.py":223
  *                                     for monery in monerys:
  *                                         if  Win == 1 and monery[0] == Sel_Monery[2]:
  *                                             Sel_Monery = monery             # <<<<<<<<<<<<<<
@@ -5172,16 +5200,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                     __Pyx_INCREF(__pyx_v_monery);
                     __Pyx_DECREF_SET(__pyx_v_Sel_Monery, __pyx_v_monery);
 
-                    /* "cpa700.py":221
+                    /* "cpa700.py":224
  *                                         if  Win == 1 and monery[0] == Sel_Monery[2]:
  *                                             Sel_Monery = monery
  *                                             break             # <<<<<<<<<<<<<<
  *                                         if  Win == 0 and monery[0] == Sel_Monery[3]:
  *                                             Sel_Monery = monery
  */
-                    goto __pyx_L54_break;
+                    goto __pyx_L56_break;
 
-                    /* "cpa700.py":219
+                    /* "cpa700.py":222
  *                                             break
  *                                     for monery in monerys:
  *                                         if  Win == 1 and monery[0] == Sel_Monery[2]:             # <<<<<<<<<<<<<<
@@ -5190,7 +5218,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
                   }
 
-                  /* "cpa700.py":222
+                  /* "cpa700.py":225
  *                                             Sel_Monery = monery
  *                                             break
  *                                         if  Win == 0 and monery[0] == Sel_Monery[3]:             # <<<<<<<<<<<<<<
@@ -5201,22 +5229,22 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   if (__pyx_t_15) {
                   } else {
                     __pyx_t_8 = __pyx_t_15;
-                    goto __pyx_L59_bool_binop_done;
+                    goto __pyx_L61_bool_binop_done;
                   }
-                  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L22_error)
+                  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_4);
-                  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_2);
-                  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L22_error)
+                  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_3);
+                  __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 225, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                  __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 222, __pyx_L22_error)
+                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 225, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                   __pyx_t_8 = __pyx_t_15;
-                  __pyx_L59_bool_binop_done:;
+                  __pyx_L61_bool_binop_done:;
                   if (__pyx_t_8) {
 
-                    /* "cpa700.py":223
+                    /* "cpa700.py":226
  *                                             break
  *                                         if  Win == 0 and monery[0] == Sel_Monery[3]:
  *                                             Sel_Monery = monery             # <<<<<<<<<<<<<<
@@ -5226,16 +5254,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                     __Pyx_INCREF(__pyx_v_monery);
                     __Pyx_DECREF_SET(__pyx_v_Sel_Monery, __pyx_v_monery);
 
-                    /* "cpa700.py":224
+                    /* "cpa700.py":227
  *                                         if  Win == 0 and monery[0] == Sel_Monery[3]:
  *                                             Sel_Monery = monery
  *                                             break             # <<<<<<<<<<<<<<
  *                                 else:
  *                                      Sel_Monery = monerys[0]
  */
-                    goto __pyx_L54_break;
+                    goto __pyx_L56_break;
 
-                    /* "cpa700.py":222
+                    /* "cpa700.py":225
  *                                             Sel_Monery = monery
  *                                             break
  *                                         if  Win == 0 and monery[0] == Sel_Monery[3]:             # <<<<<<<<<<<<<<
@@ -5244,7 +5272,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
                   }
 
-                  /* "cpa700.py":218
+                  /* "cpa700.py":221
  *                                             Sel_Monery = monery
  *                                             break
  *                                     for monery in monerys:             # <<<<<<<<<<<<<<
@@ -5252,20 +5280,20 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                             Sel_Monery = monery
  */
                 }
-                __pyx_L54_break:;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_L56_break:;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":213
+                /* "cpa700.py":216
  *                                 ##################################################
  *                                 Sel_Monery = None
  *                                 if Have_Cur_Award_Issue:             # <<<<<<<<<<<<<<
  *                                     for monery in monerys:
  *                                         if  monery[0] == Monery_Idx:
  */
-                goto __pyx_L49;
+                goto __pyx_L51;
               }
 
-              /* "cpa700.py":226
+              /* "cpa700.py":229
  *                                             break
  *                                 else:
  *                                      Sel_Monery = monerys[0]             # <<<<<<<<<<<<<<
@@ -5273,70 +5301,70 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                 self.target.textlog.insert(tk.INSERT,":" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Sel_Monery[1]) + "\n")
  */
               /*else*/ {
-                __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_monerys, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_DECREF_SET(__pyx_v_Sel_Monery, __pyx_t_3);
-                __pyx_t_3 = 0;
+                __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_monerys, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 229, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_DECREF_SET(__pyx_v_Sel_Monery, __pyx_t_2);
+                __pyx_t_2 = 0;
               }
-              __pyx_L49:;
+              __pyx_L51:;
 
-              /* "cpa700.py":228
+              /* "cpa700.py":231
  *                                      Sel_Monery = monerys[0]
  * 
  *                                 self.target.textlog.insert(tk.INSERT,":" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Sel_Monery[1]) + "\n")             # <<<<<<<<<<<<<<
  *                                 ##################################################
  *                                 #print("deal new BaLL_Idx:" + str(BaLL_Idx))
  */
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 228, __pyx_L22_error) }
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 231, __pyx_L24_error) }
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_textlog); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_textlog); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_insert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = PyNumber_Add(__pyx_kp_s__51, __pyx_v_Cur_Issue); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_14 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_BaLL_Idx); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = PyNumber_Add(__pyx_kp_s__51, __pyx_v_Cur_Issue); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_14 = PyNumber_Add(__pyx_t_3, __pyx_kp_s_BaLL_Idx); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_14);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_INCREF(__pyx_v_BaLL_Idx);
               __Pyx_GIVEREF(__pyx_v_BaLL_Idx);
-              PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_BaLL_Idx);
-              __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L22_error)
+              PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_BaLL_Idx);
+              __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = PyNumber_Add(__pyx_t_14, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = PyNumber_Add(__pyx_t_14, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-              __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_Monery); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_kp_s_Monery); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
-              __pyx_t_14 = PyTuple_New(1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_14 = PyTuple_New(1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_14);
-              __Pyx_GIVEREF(__pyx_t_2);
-              PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_2);
-              __pyx_t_2 = 0;
-              __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_GIVEREF(__pyx_t_3);
+              PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_3);
+              __pyx_t_3 = 0;
+              __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-              __pyx_t_14 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 228, __pyx_L22_error)
+              __pyx_t_14 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 231, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_14);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = PyNumber_Add(__pyx_t_14, __pyx_kp_s__52); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = PyNumber_Add(__pyx_t_14, __pyx_kp_s__52); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
               __pyx_t_14 = NULL;
               __pyx_t_5 = 0;
@@ -5352,44 +5380,44 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               }
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_6)) {
-                PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_4, __pyx_t_2};
-                __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L22_error)
+                PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_4, __pyx_t_3};
+                __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               } else
               #endif
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-                PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_4, __pyx_t_2};
-                __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L22_error)
+                PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_4, __pyx_t_3};
+                __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               } else
               #endif
               {
-                __pyx_t_1 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L22_error)
+                __pyx_t_1 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 if (__pyx_t_14) {
                   __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_14); __pyx_t_14 = NULL;
                 }
                 __Pyx_GIVEREF(__pyx_t_4);
                 PyTuple_SET_ITEM(__pyx_t_1, 0+__pyx_t_5, __pyx_t_4);
-                __Pyx_GIVEREF(__pyx_t_2);
-                PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_5, __pyx_t_2);
+                __Pyx_GIVEREF(__pyx_t_3);
+                PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_5, __pyx_t_3);
                 __pyx_t_4 = 0;
-                __pyx_t_2 = 0;
-                __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_3 = 0;
+                __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               }
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":232
+              /* "cpa700.py":235
  *                                 #print("deal new BaLL_Idx:" + str(BaLL_Idx))
  *                                 #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
  *                                 _BaLL_Idx = BaLL_Idx             # <<<<<<<<<<<<<<
@@ -5399,20 +5427,20 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               __Pyx_INCREF(__pyx_v_BaLL_Idx);
               __Pyx_XDECREF_SET(__pyx_v__BaLL_Idx, __pyx_v_BaLL_Idx);
 
-              /* "cpa700.py":233
+              /* "cpa700.py":236
  *                                 #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
  *                                 _BaLL_Idx = BaLL_Idx
  *                                 if _BaLL_Idx == 10:             # <<<<<<<<<<<<<<
  *                                     _BaLL_Idx = 0
  *                                 if self.target.bookChosen.get() == "":
  */
-              __pyx_t_3 = __Pyx_PyInt_EqObjC(__pyx_v__BaLL_Idx, __pyx_int_10, 10, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 233, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 233, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_v__BaLL_Idx, __pyx_int_10, 10, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 236, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":234
+                /* "cpa700.py":237
  *                                 _BaLL_Idx = BaLL_Idx
  *                                 if _BaLL_Idx == 10:
  *                                     _BaLL_Idx = 0             # <<<<<<<<<<<<<<
@@ -5422,7 +5450,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 __Pyx_INCREF(__pyx_int_0);
                 __Pyx_DECREF_SET(__pyx_v__BaLL_Idx, __pyx_int_0);
 
-                /* "cpa700.py":233
+                /* "cpa700.py":236
  *                                 #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
  *                                 _BaLL_Idx = BaLL_Idx
  *                                 if _BaLL_Idx == 10:             # <<<<<<<<<<<<<<
@@ -5431,20 +5459,20 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
               }
 
-              /* "cpa700.py":235
+              /* "cpa700.py":238
  *                                 if _BaLL_Idx == 10:
  *                                     _BaLL_Idx = 0
  *                                 if self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 235, __pyx_L22_error) }
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 235, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 238, __pyx_L24_error) }
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L22_error)
+              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 235, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               __pyx_t_1 = NULL;
@@ -5458,96 +5486,50 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_1) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 235, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 235, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s__47, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 235, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_kp_s__47, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 238, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":236
+                /* "cpa700.py":239
  *                                     _BaLL_Idx = 0
  *                                 if self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  */
-                __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 236, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_INCREF(__pyx_v__BaLL_Idx);
                 __Pyx_GIVEREF(__pyx_v__BaLL_Idx);
-                PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v__BaLL_Idx);
-                __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 236, __pyx_L22_error)
+                PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v__BaLL_Idx);
+                __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = PyNumber_Add(__pyx_kp_s_id_B_DX, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 236, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = PyNumber_Add(__pyx_kp_s_id_B_DX, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_kp_s_1_money); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 236, __pyx_L22_error)
+                __pyx_t_6 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_1_money); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_6);
                 __pyx_t_6 = 0;
 
-                /* "cpa700.py":237
+                /* "cpa700.py":240
  *                                 if self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  */
-                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L22_error)
+                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_2 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-                  if (likely(__pyx_t_2)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-                    __Pyx_INCREF(__pyx_t_2);
-                    __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_1, function);
-                  }
-                }
-                if (!__pyx_t_2) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_3);
-                } else {
-                  #if CYTHON_FAST_PYCALL
-                  if (PyFunction_Check(__pyx_t_1)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
-                  } else
-                  #endif
-                  #if CYTHON_FAST_PYCCALL
-                  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
-                  } else
-                  #endif
-                  {
-                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_4);
-                    __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
-                    __Pyx_INCREF(__pyx_v_xpath);
-                    __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_xpath);
-                    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_3);
-                    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                  }
-                }
-                __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_1);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                 __pyx_t_3 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
                   __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
@@ -5558,209 +5540,255 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                     __Pyx_DECREF_SET(__pyx_t_1, function);
                   }
                 }
-                if (__pyx_t_3) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 237, __pyx_L22_error)
-                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                if (!__pyx_t_3) {
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_2);
                 } else {
-                  __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 237, __pyx_L22_error)
+                  #if CYTHON_FAST_PYCALL
+                  if (PyFunction_Check(__pyx_t_1)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
+                  } else
+                  #endif
+                  #if CYTHON_FAST_PYCCALL
+                  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
+                  } else
+                  #endif
+                  {
+                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_4);
+                    __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
+                    __Pyx_INCREF(__pyx_v_xpath);
+                    __Pyx_GIVEREF(__pyx_v_xpath);
+                    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_xpath);
+                    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_2);
+                    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                  }
+                }
+                __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_1);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = NULL;
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+                  if (likely(__pyx_t_2)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+                    __Pyx_INCREF(__pyx_t_2);
+                    __Pyx_INCREF(function);
+                    __Pyx_DECREF_SET(__pyx_t_1, function);
+                  }
+                }
+                if (__pyx_t_2) {
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L24_error)
+                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                } else {
+                  __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L24_error)
                 }
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-                /* "cpa700.py":238
+                /* "cpa700.py":241
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))             # <<<<<<<<<<<<<<
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
  */
-                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 238, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __pyx_t_4 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-                  __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                  __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
                   if (likely(__pyx_t_4)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
                     __Pyx_INCREF(__pyx_t_4);
                     __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_3, function);
+                    __Pyx_DECREF_SET(__pyx_t_2, function);
                   }
                 }
                 if (!__pyx_t_4) {
-                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
+                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_1);
                 } else {
                   #if CYTHON_FAST_PYCALL
-                  if (PyFunction_Check(__pyx_t_3)) {
+                  if (PyFunction_Check(__pyx_t_2)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
                     __Pyx_GOTREF(__pyx_t_1);
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
-                  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+                  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
                     __Pyx_GOTREF(__pyx_t_1);
                   } else
                   #endif
                   {
-                    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_2);
-                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __pyx_t_4 = NULL;
+                    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __pyx_t_4 = NULL;
                     __Pyx_INCREF(__pyx_v_xpath);
                     __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_xpath);
-                    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
+                    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_xpath);
+                    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                   }
                 }
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 238, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __Pyx_GIVEREF(__pyx_t_1);
-                PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-                __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __pyx_t_2 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-                  if (likely(__pyx_t_2)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-                    __Pyx_INCREF(__pyx_t_2);
+                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+                __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_1);
+                __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GIVEREF(__pyx_t_1);
+                PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+                __pyx_t_1 = 0;
+                __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_1);
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_t_3 = NULL;
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                  __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+                  if (likely(__pyx_t_3)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_3);
                     __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_3, function);
+                    __Pyx_DECREF_SET(__pyx_t_2, function);
                   }
                 }
-                if (!__pyx_t_2) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L22_error)
+                if (!__pyx_t_3) {
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   __Pyx_GOTREF(__pyx_t_6);
                 } else {
                   #if CYTHON_FAST_PYCALL
-                  if (PyFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_1};
-                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                  if (PyFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_1};
+                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
-                  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_1};
-                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_1};
+                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   } else
                   #endif
                   {
-                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 238, __pyx_L22_error)
+                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_4);
-                    __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
                     __Pyx_GIVEREF(__pyx_t_1);
                     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_1);
                     __pyx_t_1 = 0;
-                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 238, __pyx_L22_error)
+                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_6);
                     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   }
                 }
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-                /* "cpa700.py":235
+                /* "cpa700.py":238
  *                                 if _BaLL_Idx == 10:
  *                                     _BaLL_Idx = 0
  *                                 if self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-                goto __pyx_L62;
+                goto __pyx_L64;
               }
 
-              /* "cpa700.py":239
+              /* "cpa700.py":242
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 239, __pyx_L22_error) }
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 242, __pyx_L24_error) }
+              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __pyx_t_4 = NULL;
-              if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-                __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+              if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
                 if (likely(__pyx_t_4)) {
-                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
                   __Pyx_INCREF(__pyx_t_4);
                   __Pyx_INCREF(function);
-                  __Pyx_DECREF_SET(__pyx_t_3, function);
+                  __Pyx_DECREF_SET(__pyx_t_2, function);
                 }
               }
               if (__pyx_t_4) {
-                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else {
-                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L24_error)
               }
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_6, __pyx_kp_s__48, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 239, __pyx_L22_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_6, __pyx_kp_s__48, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 242, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":240
+                /* "cpa700.py":243
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  */
-                __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L22_error)
+                __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_INCREF(__pyx_v__BaLL_Idx);
                 __Pyx_GIVEREF(__pyx_v__BaLL_Idx);
                 PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v__BaLL_Idx);
-                __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = PyNumber_Add(__pyx_kp_s_id_B_DX, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L22_error)
+                __pyx_t_6 = PyNumber_Add(__pyx_kp_s_id_B_DX, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_kp_s_0_money); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s_0_money); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_3);
-                __pyx_t_3 = 0;
+                __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_2);
+                __pyx_t_2 = 0;
 
-                /* "cpa700.py":241
+                /* "cpa700.py":244
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  */
-                __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __pyx_t_1 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -5773,13 +5801,13 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (!__pyx_t_1) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L22_error)
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_6);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_4)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
-                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L22_error)
+                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
@@ -5787,25 +5815,25 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
-                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L22_error)
+                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
                   #endif
                   {
-                    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_2);
-                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
+                    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1); __pyx_t_1 = NULL;
                     __Pyx_INCREF(__pyx_v_xpath);
                     __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_xpath);
-                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 241, __pyx_L22_error)
+                    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_xpath);
+                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_6);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_clear); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_clear); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                 __pyx_t_6 = NULL;
@@ -5819,78 +5847,78 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (__pyx_t_6) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L22_error)
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                 } else {
-                  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L22_error)
+                  __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L24_error)
                 }
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":242
+                /* "cpa700.py":245
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))             # <<<<<<<<<<<<<<
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
  */
-                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 245, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __pyx_t_2 = NULL;
+                __pyx_t_3 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-                  if (likely(__pyx_t_2)) {
+                  __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
+                  if (likely(__pyx_t_3)) {
                     PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-                    __Pyx_INCREF(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_3);
                     __Pyx_INCREF(function);
                     __Pyx_DECREF_SET(__pyx_t_6, function);
                   }
                 }
-                if (!__pyx_t_2) {
-                  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
+                if (!__pyx_t_3) {
+                  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_xpath); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_4);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_6)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_4);
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_4);
                   } else
                   #endif
                   {
-                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L22_error)
+                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2); __pyx_t_2 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3); __pyx_t_3 = NULL;
                     __Pyx_INCREF(__pyx_v_xpath);
                     __Pyx_GIVEREF(__pyx_v_xpath);
                     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_v_xpath);
-                    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
+                    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_4);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 245, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
-                __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L22_error)
+                __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_GIVEREF(__pyx_t_4);
                 PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
                 __pyx_t_4 = 0;
-                __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L22_error)
+                __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                 __pyx_t_1 = NULL;
@@ -5904,255 +5932,124 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (!__pyx_t_1) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L22_error)
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                  __Pyx_GOTREF(__pyx_t_3);
+                  __Pyx_GOTREF(__pyx_t_2);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_6)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_4};
-                    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L22_error)
+                    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_t_4};
-                    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L22_error)
+                    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   } else
                   #endif
                   {
-                    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_2);
-                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
-                    __Pyx_GIVEREF(__pyx_t_4);
-                    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_4);
-                    __pyx_t_4 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L22_error)
+                    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_3);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1); __pyx_t_1 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_4);
+                    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
+                    __pyx_t_4 = 0;
+                    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_2);
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":239
+                /* "cpa700.py":242
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-                goto __pyx_L62;
+                goto __pyx_L64;
               }
 
-              /* "cpa700.py":243
+              /* "cpa700.py":246
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 243, __pyx_L22_error) }
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 246, __pyx_L24_error) }
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              __pyx_t_2 = NULL;
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_3 = NULL;
               if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-                __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-                if (likely(__pyx_t_2)) {
+                __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
+                if (likely(__pyx_t_3)) {
                   PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-                  __Pyx_INCREF(__pyx_t_2);
+                  __Pyx_INCREF(__pyx_t_3);
                   __Pyx_INCREF(function);
                   __Pyx_DECREF_SET(__pyx_t_6, function);
                 }
               }
-              if (__pyx_t_2) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L22_error)
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              if (__pyx_t_3) {
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L24_error)
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s__49, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 243, __pyx_L22_error)
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_kp_s__49, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 246, __pyx_L24_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":244
+                /* "cpa700.py":247
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  */
-                __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_INCREF(__pyx_v__BaLL_Idx);
                 __Pyx_GIVEREF(__pyx_v__BaLL_Idx);
-                PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v__BaLL_Idx);
-                __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L22_error)
+                PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v__BaLL_Idx);
+                __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = PyNumber_Add(__pyx_kp_s_id_B_DS, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 244, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = PyNumber_Add(__pyx_kp_s_id_B_DS, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_kp_s_1_money); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L22_error)
+                __pyx_t_6 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_1_money); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
                 __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_6);
                 __pyx_t_6 = 0;
 
-                /* "cpa700.py":245
+                /* "cpa700.py":248
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  */
-                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __pyx_t_4 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-                  __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-                  if (likely(__pyx_t_4)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-                    __Pyx_INCREF(__pyx_t_4);
-                    __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_2, function);
-                  }
-                }
-                if (!__pyx_t_4) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_3);
-                } else {
-                  #if CYTHON_FAST_PYCALL
-                  if (PyFunction_Check(__pyx_t_2)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
-                  } else
-                  #endif
-                  #if CYTHON_FAST_PYCCALL
-                  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
-                  } else
-                  #endif
-                  {
-                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4); __pyx_t_4 = NULL;
-                    __Pyx_INCREF(__pyx_v_xpath);
-                    __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_v_xpath);
-                    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_3);
-                    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                  }
-                }
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_clear); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-                  __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-                  if (likely(__pyx_t_3)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-                    __Pyx_INCREF(__pyx_t_3);
-                    __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_2, function);
-                  }
-                }
-                if (__pyx_t_3) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 245, __pyx_L22_error)
-                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                } else {
-                  __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 245, __pyx_L22_error)
-                }
-                __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-                /* "cpa700.py":246
- *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
- *                                     driver.find_element_by_xpath(xpath).clear()
- *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))             # <<<<<<<<<<<<<<
- *                                 elif self.target.bookChosen.get() == "":
- *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
- */
-                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L22_error)
+                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_3);
-                __pyx_t_1 = NULL;
-                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-                  __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-                  if (likely(__pyx_t_1)) {
-                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-                    __Pyx_INCREF(__pyx_t_1);
-                    __Pyx_INCREF(function);
-                    __Pyx_DECREF_SET(__pyx_t_3, function);
-                  }
-                }
-                if (!__pyx_t_1) {
-                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                  __Pyx_GOTREF(__pyx_t_2);
-                } else {
-                  #if CYTHON_FAST_PYCALL
-                  if (PyFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
-                    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GOTREF(__pyx_t_2);
-                  } else
-                  #endif
-                  #if CYTHON_FAST_PYCCALL
-                  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
-                    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                    __Pyx_GOTREF(__pyx_t_2);
-                  } else
-                  #endif
-                  {
-                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_4);
-                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1); __pyx_t_1 = NULL;
-                    __Pyx_INCREF(__pyx_v_xpath);
-                    __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_xpath);
-                    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_2);
-                    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-                  }
-                }
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_4);
-                __Pyx_GIVEREF(__pyx_t_2);
-                PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
-                __pyx_t_2 = 0;
-                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
-                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                 __pyx_t_4 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
                   __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
@@ -6164,168 +6061,299 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (!__pyx_t_4) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L22_error)
-                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                  __Pyx_GOTREF(__pyx_t_6);
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_2);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L22_error)
+                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
+                    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-                    __Pyx_GOTREF(__pyx_t_6);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L22_error)
+                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
+                    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-                    __Pyx_GOTREF(__pyx_t_6);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
                   } else
                   #endif
                   {
-                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L22_error)
+                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_1);
                     __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4); __pyx_t_4 = NULL;
-                    __Pyx_GIVEREF(__pyx_t_2);
-                    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
-                    __pyx_t_2 = 0;
-                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 246, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_6);
+                    __Pyx_INCREF(__pyx_v_xpath);
+                    __Pyx_GIVEREF(__pyx_v_xpath);
+                    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_v_xpath);
+                    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_clear); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = NULL;
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+                  if (likely(__pyx_t_2)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+                    __Pyx_INCREF(__pyx_t_2);
+                    __Pyx_INCREF(function);
+                    __Pyx_DECREF_SET(__pyx_t_3, function);
+                  }
+                }
+                if (__pyx_t_2) {
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 248, __pyx_L24_error)
+                  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                } else {
+                  __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 248, __pyx_L24_error)
+                }
+                __Pyx_GOTREF(__pyx_t_6);
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-                /* "cpa700.py":243
+                /* "cpa700.py":249
+ *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
+ *                                     driver.find_element_by_xpath(xpath).clear()
+ *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))             # <<<<<<<<<<<<<<
+ *                                 elif self.target.bookChosen.get() == "":
+ *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
+ */
+                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
+                __pyx_t_1 = NULL;
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                  __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+                  if (likely(__pyx_t_1)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_1);
+                    __Pyx_INCREF(function);
+                    __Pyx_DECREF_SET(__pyx_t_2, function);
+                  }
+                }
+                if (!__pyx_t_1) {
+                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_xpath); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                  __Pyx_GOTREF(__pyx_t_3);
+                } else {
+                  #if CYTHON_FAST_PYCALL
+                  if (PyFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
+                    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+                    __Pyx_GOTREF(__pyx_t_3);
+                  } else
+                  #endif
+                  #if CYTHON_FAST_PYCCALL
+                  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_1, __pyx_v_xpath};
+                    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+                    __Pyx_GOTREF(__pyx_t_3);
+                  } else
+                  #endif
+                  {
+                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_4);
+                    __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1); __pyx_t_1 = NULL;
+                    __Pyx_INCREF(__pyx_v_xpath);
+                    __Pyx_GIVEREF(__pyx_v_xpath);
+                    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_xpath);
+                    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                  }
+                }
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_4);
+                __Pyx_GIVEREF(__pyx_t_3);
+                PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
+                __pyx_t_3 = 0;
+                __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+                __pyx_t_4 = NULL;
+                if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                  __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+                  if (likely(__pyx_t_4)) {
+                    PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_4);
+                    __Pyx_INCREF(function);
+                    __Pyx_DECREF_SET(__pyx_t_2, function);
+                  }
+                }
+                if (!__pyx_t_4) {
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L24_error)
+                  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  __Pyx_GOTREF(__pyx_t_6);
+                } else {
+                  #if CYTHON_FAST_PYCALL
+                  if (PyFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
+                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+                    __Pyx_GOTREF(__pyx_t_6);
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  } else
+                  #endif
+                  #if CYTHON_FAST_PYCCALL
+                  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+                    PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_3};
+                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+                    __Pyx_GOTREF(__pyx_t_6);
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                  } else
+                  #endif
+                  {
+                    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_1);
+                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4); __pyx_t_4 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_3);
+                    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_3);
+                    __pyx_t_3 = 0;
+                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_6);
+                    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+                  }
+                }
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+                /* "cpa700.py":246
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-                goto __pyx_L62;
+                goto __pyx_L64;
               }
 
-              /* "cpa700.py":247
+              /* "cpa700.py":250
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 247, __pyx_L22_error) }
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 247, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 250, __pyx_L24_error) }
+              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 247, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               __pyx_t_1 = NULL;
-              if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-                __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+              if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+                __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
                 if (likely(__pyx_t_1)) {
-                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
                   __Pyx_INCREF(__pyx_t_1);
                   __Pyx_INCREF(function);
-                  __Pyx_DECREF_SET(__pyx_t_3, function);
+                  __Pyx_DECREF_SET(__pyx_t_2, function);
                 }
               }
               if (__pyx_t_1) {
-                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 250, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               } else {
-                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 250, __pyx_L24_error)
               }
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_6, __pyx_kp_s__50, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 247, __pyx_L22_error)
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_6, __pyx_kp_s__50, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 250, __pyx_L24_error)
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               if (__pyx_t_8) {
 
-                /* "cpa700.py":248
+                /* "cpa700.py":251
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  */
-                __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 248, __pyx_L22_error)
+                __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 251, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_INCREF(__pyx_v__BaLL_Idx);
                 __Pyx_GIVEREF(__pyx_v__BaLL_Idx);
                 PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v__BaLL_Idx);
-                __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = PyNumber_Add(__pyx_kp_s_id_B_DS, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 248, __pyx_L22_error)
+                __pyx_t_6 = PyNumber_Add(__pyx_kp_s_id_B_DS, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 251, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-                __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_kp_s_2_money); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s_2_money); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_3);
-                __pyx_t_3 = 0;
+                __Pyx_XDECREF_SET(__pyx_v_xpath, __pyx_t_2);
+                __pyx_t_2 = 0;
 
-                /* "cpa700.py":249
+                /* "cpa700.py":252
  *                                 elif self.target.bookChosen.get() == "":
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()             # <<<<<<<<<<<<<<
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  * 
  */
-                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L22_error)
+                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_2 = NULL;
+                __pyx_t_3 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-                  if (likely(__pyx_t_2)) {
+                  __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
+                  if (likely(__pyx_t_3)) {
                     PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-                    __Pyx_INCREF(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_3);
                     __Pyx_INCREF(function);
                     __Pyx_DECREF_SET(__pyx_t_1, function);
                   }
                 }
-                if (!__pyx_t_2) {
-                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L22_error)
+                if (!__pyx_t_3) {
+                  __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 252, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_6);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_1)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 252, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_xpath};
-                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_xpath};
+                    __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 252, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                     __Pyx_GOTREF(__pyx_t_6);
                   } else
                   #endif
                   {
-                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L22_error)
+                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 252, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_4);
-                    __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
                     __Pyx_INCREF(__pyx_v_xpath);
                     __Pyx_GIVEREF(__pyx_v_xpath);
                     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_xpath);
-                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 249, __pyx_L22_error)
+                    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 252, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_6);
                     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L22_error)
+                __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                 __pyx_t_6 = NULL;
@@ -6339,23 +6367,23 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (__pyx_t_6) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L22_error)
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
                 } else {
-                  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L22_error)
+                  __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L24_error)
                 }
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":250
+                /* "cpa700.py":253
  *                                     xpath = "//[inserted by cython to avoid comment start]*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))             # <<<<<<<<<<<<<<
  * 
  *                                 time.sleep(2)
  */
-                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 250, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 253, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __pyx_t_4 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -6368,13 +6396,13 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   }
                 }
                 if (!__pyx_t_4) {
-                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_xpath); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                   __Pyx_GOTREF(__pyx_t_1);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_6)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
                     __Pyx_GOTREF(__pyx_t_1);
                   } else
@@ -6382,86 +6410,86 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
                     PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_v_xpath};
-                    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
                     __Pyx_GOTREF(__pyx_t_1);
                   } else
                   #endif
                   {
-                    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_2);
-                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __pyx_t_4 = NULL;
+                    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_3);
+                    __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __pyx_t_4 = NULL;
                     __Pyx_INCREF(__pyx_v_xpath);
                     __Pyx_GIVEREF(__pyx_v_xpath);
-                    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_xpath);
-                    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_xpath);
+                    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_1);
-                    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 250, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_send_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 253, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
+                __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_GIVEREF(__pyx_t_1);
-                PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+                PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
                 __pyx_t_1 = 0;
-                __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L22_error)
+                __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L24_error)
                 __Pyx_GOTREF(__pyx_t_1);
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-                __pyx_t_2 = NULL;
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __pyx_t_3 = NULL;
                 if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-                  __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-                  if (likely(__pyx_t_2)) {
+                  __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
+                  if (likely(__pyx_t_3)) {
                     PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-                    __Pyx_INCREF(__pyx_t_2);
+                    __Pyx_INCREF(__pyx_t_3);
                     __Pyx_INCREF(function);
                     __Pyx_DECREF_SET(__pyx_t_6, function);
                   }
                 }
-                if (!__pyx_t_2) {
-                  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L22_error)
+                if (!__pyx_t_3) {
+                  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L24_error)
                   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-                  __Pyx_GOTREF(__pyx_t_3);
+                  __Pyx_GOTREF(__pyx_t_2);
                 } else {
                   #if CYTHON_FAST_PYCALL
                   if (PyFunction_Check(__pyx_t_6)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_1};
-                    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_1};
+                    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   } else
                   #endif
                   #if CYTHON_FAST_PYCCALL
                   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-                    PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_1};
-                    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L22_error)
-                    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-                    __Pyx_GOTREF(__pyx_t_3);
+                    PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_t_1};
+                    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L24_error)
+                    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
                   } else
                   #endif
                   {
-                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 250, __pyx_L22_error)
+                    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L24_error)
                     __Pyx_GOTREF(__pyx_t_4);
-                    __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+                    __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __pyx_t_3 = NULL;
                     __Pyx_GIVEREF(__pyx_t_1);
                     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_1);
                     __pyx_t_1 = 0;
-                    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L22_error)
-                    __Pyx_GOTREF(__pyx_t_3);
+                    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L24_error)
+                    __Pyx_GOTREF(__pyx_t_2);
                     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
                   }
                 }
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-                /* "cpa700.py":247
+                /* "cpa700.py":250
  *                                     driver.find_element_by_xpath(xpath).clear()
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  *                                 elif self.target.bookChosen.get() == "":             # <<<<<<<<<<<<<<
@@ -6469,38 +6497,38 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  *                                     driver.find_element_by_xpath(xpath).clear()
  */
               }
-              __pyx_L62:;
+              __pyx_L64:;
 
-              /* "cpa700.py":252
+              /* "cpa700.py":255
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  * 
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()
  *                                 time.sleep(2)
  */
-              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 252, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 255, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__53, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__53, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":253
+              /* "cpa700.py":256
  * 
  *                                 time.sleep(2)
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()             # <<<<<<<<<<<<<<
  *                                 time.sleep(2)
  *                                 alert = driver.switch_to_alert()
  */
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 253, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_find_element_by_xpath); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__54, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__54, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_click); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 253, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_click); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __pyx_t_4 = NULL;
@@ -6514,40 +6542,40 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_4) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":254
+              /* "cpa700.py":257
  *                                 time.sleep(2)
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 alert = driver.switch_to_alert()
  *                                 time.sleep(2)
  */
-              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 254, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 257, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__55, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__55, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":255
+              /* "cpa700.py":258
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()
  *                                 time.sleep(2)
  *                                 alert = driver.switch_to_alert()             # <<<<<<<<<<<<<<
  *                                 time.sleep(2)
  *                                 alert.accept()
  */
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to_alert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 255, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to_alert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __pyx_t_4 = NULL;
               if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -6560,41 +6588,41 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_4) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_XDECREF_SET(__pyx_v_alert, __pyx_t_3);
-              __pyx_t_3 = 0;
+              __Pyx_XDECREF_SET(__pyx_v_alert, __pyx_t_2);
+              __pyx_t_2 = 0;
 
-              /* "cpa700.py":256
+              /* "cpa700.py":259
  *                                 time.sleep(2)
  *                                 alert = driver.switch_to_alert()
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 alert.accept()
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])
  */
-              __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L22_error)
+              __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sleep); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__56, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__56, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":257
+              /* "cpa700.py":260
  *                                 alert = driver.switch_to_alert()
  *                                 time.sleep(2)
  *                                 alert.accept()             # <<<<<<<<<<<<<<
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])
  *                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
  */
-              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_alert, __pyx_n_s_accept); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 257, __pyx_L22_error)
+              __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_alert, __pyx_n_s_accept); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 260, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __pyx_t_4 = NULL;
               if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -6607,40 +6635,40 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_4) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":258
+              /* "cpa700.py":261
  *                                 time.sleep(2)
  *                                 alert.accept()
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])             # <<<<<<<<<<<<<<
  *                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
  *                                 conn.commit()
  */
-              __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_INCREF(__pyx_v_BaLL_Idx);
               __Pyx_GIVEREF(__pyx_v_BaLL_Idx);
-              PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_BaLL_Idx);
-              __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L22_error)
+              PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_BaLL_Idx);
+              __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__45); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__45); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 258, __pyx_L22_error) }
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L22_error)
+              if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 261, __pyx_L24_error) }
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               __pyx_t_1 = NULL;
@@ -6654,47 +6682,47 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
                 }
               }
               if (__pyx_t_1) {
-                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L24_error)
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               } else {
-                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L22_error)
+                __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L24_error)
               }
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-              __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_kp_s__45); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_kp_s__45); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_Sel_Monery, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_GIVEREF(__pyx_t_4);
-              PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
+              PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4);
               __pyx_t_4 = 0;
-              __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L22_error)
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L24_error)
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_XDECREF_SET(__pyx_v_tt, __pyx_t_3);
-              __pyx_t_3 = 0;
+              __Pyx_XDECREF_SET(__pyx_v_tt, __pyx_t_2);
+              __pyx_t_2 = 0;
 
-              /* "cpa700.py":259
+              /* "cpa700.py":262
  *                                 alert.accept()
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])
  *                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))             # <<<<<<<<<<<<<<
  *                                 conn.commit()
  *                             else:
  */
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L22_error)
+              __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 262, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_INCREF(__pyx_v_Cur_Issue);
               __Pyx_GIVEREF(__pyx_v_Cur_Issue);
@@ -6717,80 +6745,80 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
               #if CYTHON_FAST_PYCALL
               if (PyFunction_Check(__pyx_t_4)) {
                 PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_kp_s_insert_into_data_issue_order_VAL, __pyx_t_6};
-                __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               } else
               #endif
               #if CYTHON_FAST_PYCCALL
               if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
                 PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_kp_s_insert_into_data_issue_order_VAL, __pyx_t_6};
-                __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L24_error)
                 __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_GOTREF(__pyx_t_2);
                 __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
               } else
               #endif
               {
-                __pyx_t_2 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_2);
+                __pyx_t_3 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_3);
                 if (__pyx_t_1) {
-                  __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
+                  __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1); __pyx_t_1 = NULL;
                 }
                 __Pyx_INCREF(__pyx_kp_s_insert_into_data_issue_order_VAL);
                 __Pyx_GIVEREF(__pyx_kp_s_insert_into_data_issue_order_VAL);
-                PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_5, __pyx_kp_s_insert_into_data_issue_order_VAL);
+                PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_5, __pyx_kp_s_insert_into_data_issue_order_VAL);
                 __Pyx_GIVEREF(__pyx_t_6);
-                PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_5, __pyx_t_6);
+                PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_5, __pyx_t_6);
                 __pyx_t_6 = 0;
-                __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L22_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+                __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L24_error)
+                __Pyx_GOTREF(__pyx_t_2);
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               }
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":260
+              /* "cpa700.py":263
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])
  *                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
  *                                 conn.commit()             # <<<<<<<<<<<<<<
  *                             else:
  *                                 #self.target.textlog.insert(tk.INSERT,":" + Cur_Issue+ "\n")
  */
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L22_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L24_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_2 = NULL;
+              __pyx_t_3 = NULL;
               if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-                __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-                if (likely(__pyx_t_2)) {
+                __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+                if (likely(__pyx_t_3)) {
                   PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-                  __Pyx_INCREF(__pyx_t_2);
+                  __Pyx_INCREF(__pyx_t_3);
                   __Pyx_INCREF(function);
                   __Pyx_DECREF_SET(__pyx_t_4, function);
                 }
               }
-              if (__pyx_t_2) {
-                __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L22_error)
-                __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+              if (__pyx_t_3) {
+                __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L24_error)
+                __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               } else {
-                __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L22_error)
+                __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L24_error)
               }
-              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+              __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-              /* "cpa700.py":210
+              /* "cpa700.py":213
  *                             cursor.execute("select * from data where issue = ?", (Cur_Issue,))
  *                             datas = cursor.fetchall()
  *                             if len(datas) == 0:             # <<<<<<<<<<<<<<
  *                                 ##################################################
  *                                 Sel_Monery = None
  */
-              goto __pyx_L48;
+              goto __pyx_L50;
             }
 
-            /* "cpa700.py":263
+            /* "cpa700.py":266
  *                             else:
  *                                 #self.target.textlog.insert(tk.INSERT,":" + Cur_Issue+ "\n")
  *                                 pass             # <<<<<<<<<<<<<<
@@ -6799,9 +6827,9 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
             /*else*/ {
             }
-            __pyx_L48:;
+            __pyx_L50:;
 
-            /* "cpa700.py":201
+            /* "cpa700.py":204
  *                                     BaLL_Idx = 1
  *                         #
  *                         if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True):             # <<<<<<<<<<<<<<
@@ -6810,39 +6838,39 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
  */
           }
 
-          /* "cpa700.py":265
+          /* "cpa700.py":268
  *                                 pass
  *                         ############################################################3
  *                         driver.switch_to.parent_frame()             # <<<<<<<<<<<<<<
  *                         #print("end")
  *                         #print("**************************************************")
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 265, __pyx_L22_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_switch_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L24_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_parent_frame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L22_error)
-          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_parent_frame); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L24_error)
+          __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __pyx_t_4 = NULL;
-          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+          if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+            __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
             if (likely(__pyx_t_4)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
               __Pyx_INCREF(__pyx_t_4);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_2, function);
+              __Pyx_DECREF_SET(__pyx_t_3, function);
             }
           }
           if (__pyx_t_4) {
-            __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L22_error)
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 268, __pyx_L24_error)
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           } else {
-            __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L22_error)
+            __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 268, __pyx_L24_error)
           }
-          __Pyx_GOTREF(__pyx_t_3);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cpa700.py":93
+          /* "cpa700.py":96
  *                 while self.stopped != True:
  *                     time.sleep(5)
  *                     try:             # <<<<<<<<<<<<<<
@@ -6853,29 +6881,63 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        goto __pyx_L29_try_end;
-        __pyx_L22_error:;
+        goto __pyx_L31_try_end;
+        __pyx_L24_error:;
         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "cpa700.py":268
+        /* "cpa700.py":271
  *                         #print("end")
  *                         #print("**************************************************")
+ *                     except Exception as msg:             # <<<<<<<<<<<<<<
+ *                         print("Exception:%s" % msg)
+ *                         pass
+ */
+        __pyx_t_5 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+        if (__pyx_t_5) {
+          __Pyx_AddTraceback("cpa700.TestThread.run.target_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 271, __pyx_L26_except_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_3);
+          __Pyx_XDECREF_SET(__pyx_v_msg, __pyx_t_3);
+
+          /* "cpa700.py":272
+ *                         #print("**************************************************")
+ *                     except Exception as msg:
+ *                         print("Exception:%s" % msg)             # <<<<<<<<<<<<<<
+ *                         pass
+ *                     except:
+ */
+          __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_Exception_s, __pyx_v_msg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 272, __pyx_L26_except_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          if (__Pyx_PrintOne(0, __pyx_t_6) < 0) __PYX_ERR(0, 272, __pyx_L26_except_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+          goto __pyx_L25_exception_handled;
+        }
+
+        /* "cpa700.py":274
+ *                         print("Exception:%s" % msg)
+ *                         pass
  *                     except:             # <<<<<<<<<<<<<<
  *                         #print("error lineno:" + str(sys._getframe().f_lineno))
  *                         #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
  */
         /*except:*/ {
           __Pyx_ErrRestore(0,0,0);
-          goto __pyx_L23_exception_handled;
+          goto __pyx_L25_exception_handled;
         }
-        __pyx_L28_try_continue:;
+        __pyx_L26_except_error:;
 
-        /* "cpa700.py":93
+        /* "cpa700.py":96
  *                 while self.stopped != True:
  *                     time.sleep(5)
  *                     try:             # <<<<<<<<<<<<<<
@@ -6886,104 +6948,110 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
         __Pyx_XGIVEREF(__pyx_t_10);
         __Pyx_XGIVEREF(__pyx_t_9);
         __Pyx_ExceptionReset(__pyx_t_11, __pyx_t_10, __pyx_t_9);
-        goto __pyx_L20_continue;
-        __pyx_L23_exception_handled:;
+        goto __pyx_L1_error;
+        __pyx_L30_try_continue:;
         __Pyx_XGIVEREF(__pyx_t_11);
         __Pyx_XGIVEREF(__pyx_t_10);
         __Pyx_XGIVEREF(__pyx_t_9);
         __Pyx_ExceptionReset(__pyx_t_11, __pyx_t_10, __pyx_t_9);
-        __pyx_L29_try_end:;
+        goto __pyx_L22_continue;
+        __pyx_L25_exception_handled:;
+        __Pyx_XGIVEREF(__pyx_t_11);
+        __Pyx_XGIVEREF(__pyx_t_10);
+        __Pyx_XGIVEREF(__pyx_t_9);
+        __Pyx_ExceptionReset(__pyx_t_11, __pyx_t_10, __pyx_t_9);
+        __pyx_L31_try_end:;
       }
-      __pyx_L20_continue:;
+      __pyx_L22_continue:;
     }
   }
 
-  /* "cpa700.py":274
+  /* "cpa700.py":280
  *                         #print("**************************************************")
  *                         pass
  *             driver.quit()             # <<<<<<<<<<<<<<
  *             cursor.close()
  *             conn.close()
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_quit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_driver, __pyx_n_s_quit); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
     }
   }
-  if (__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__pyx_t_2) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
   }
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "cpa700.py":275
+  /* "cpa700.py":281
  *                         pass
  *             driver.quit()
  *             cursor.close()             # <<<<<<<<<<<<<<
  *             conn.close()
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_close); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cursor, __pyx_n_s_close); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
     }
   }
-  if (__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__pyx_t_2) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
   }
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "cpa700.py":276
+  /* "cpa700.py":282
  *             driver.quit()
  *             cursor.close()
  *             conn.close()             # <<<<<<<<<<<<<<
  * 
  *         self.target.textlog.insert(tk.INSERT,'Thread start\n')
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_close); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 276, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_conn, __pyx_n_s_close); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
     }
   }
-  if (__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__pyx_t_2) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
   }
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "cpa700.py":49
  * 
@@ -7013,6 +7081,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_3run_target_func(PyObject *__pyx_
   __Pyx_XDECREF(__pyx_v_PostUrl);
   __Pyx_XDECREF(__pyx_v_handles);
   __Pyx_XDECREF(__pyx_v_handle);
+  __Pyx_XDECREF(__pyx_v_msg);
   __Pyx_XDECREF(__pyx_v_frame2);
   __Pyx_XDECREF(__pyx_v_mainFrame);
   __Pyx_XDECREF(__pyx_v_Cur_Award_Issue);
@@ -7093,24 +7162,24 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   __pyx_v_target_func = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cpa700.py":278
+  /* "cpa700.py":284
  *             conn.close()
  * 
  *         self.target.textlog.insert(tk.INSERT,'Thread start\n')             # <<<<<<<<<<<<<<
  *         subthread = threading.Thread(target=target_func, args=())
  *         subthread.setDaemon(True)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_textlog); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_textlog); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -7128,7 +7197,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_4, __pyx_kp_s_Thread_start};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7137,14 +7206,14 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_4, __pyx_kp_s_Thread_start};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -7155,58 +7224,58 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
     __Pyx_GIVEREF(__pyx_kp_s_Thread_start);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_kp_s_Thread_start);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":279
+  /* "cpa700.py":285
  * 
  *         self.target.textlog.insert(tk.INSERT,'Thread start\n')
  *         subthread = threading.Thread(target=target_func, args=())             # <<<<<<<<<<<<<<
  *         subthread.setDaemon(True)
  *         subthread.start()
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_threading); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_threading); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Thread); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Thread); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_target, __pyx_v_target_func) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_args, __pyx_empty_tuple) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 279, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_target, __pyx_v_target_func) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_args, __pyx_empty_tuple) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_subthread = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "cpa700.py":280
+  /* "cpa700.py":286
  *         self.target.textlog.insert(tk.INSERT,'Thread start\n')
  *         subthread = threading.Thread(target=target_func, args=())
  *         subthread.setDaemon(True)             # <<<<<<<<<<<<<<
  *         subthread.start()
  * 
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_setDaemon); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_setDaemon); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__59, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__59, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":281
+  /* "cpa700.py":287
  *         subthread = threading.Thread(target=target_func, args=())
  *         subthread.setDaemon(True)
  *         subthread.start()             # <<<<<<<<<<<<<<
  * 
  *         while not self.stopped:
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_start); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_start); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -7219,16 +7288,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":283
+  /* "cpa700.py":289
  *         subthread.start()
  * 
  *         while not self.stopped:             # <<<<<<<<<<<<<<
@@ -7236,23 +7305,23 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
  * 
  */
   while (1) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 283, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = ((!__pyx_t_7) != 0);
     if (!__pyx_t_8) break;
 
-    /* "cpa700.py":284
+    /* "cpa700.py":290
  * 
  *         while not self.stopped:
  *             subthread.join(self.timeout)             # <<<<<<<<<<<<<<
  * 
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_join); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_subthread, __pyx_n_s_join); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_timeout); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_timeout); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -7265,14 +7334,14 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
       }
     }
     if (!__pyx_t_4) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_6)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7281,20 +7350,20 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
         PyObject *__pyx_temp[2] = {__pyx_t_4, __pyx_t_2};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       } else
       #endif
       {
-        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_GIVEREF(__pyx_t_2);
         PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_2);
         __pyx_t_2 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
@@ -7303,27 +7372,27 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "cpa700.py":286
+  /* "cpa700.py":292
  *             subthread.join(self.timeout)
  * 
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")             # <<<<<<<<<<<<<<
  * 
  *     def stop(self):
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_target); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_textlog); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_textlog); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Thread_stopped, __pyx_kp_s__52); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Thread_stopped, __pyx_kp_s__52); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -7340,7 +7409,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7350,7 +7419,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7358,7 +7427,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7369,7 +7438,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_5, __pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
@@ -7405,7 +7474,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_2run(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 
-/* "cpa700.py":288
+/* "cpa700.py":294
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -7432,16 +7501,16 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_4stop(CYTHON_UNUSED PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("stop", 0);
 
-  /* "cpa700.py":289
+  /* "cpa700.py":295
  * 
  *     def stop(self):
  *         self.stopped = True             # <<<<<<<<<<<<<<
  * 
  *     def isStopped(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_stopped, Py_True) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_stopped, Py_True) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
 
-  /* "cpa700.py":288
+  /* "cpa700.py":294
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
@@ -7461,7 +7530,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_4stop(CYTHON_UNUSED PyObject *__p
   return __pyx_r;
 }
 
-/* "cpa700.py":291
+/* "cpa700.py":297
  *         self.stopped = True
  * 
  *     def isStopped(self):             # <<<<<<<<<<<<<<
@@ -7489,7 +7558,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_6isStopped(CYTHON_UNUSED PyObject
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("isStopped", 0);
 
-  /* "cpa700.py":292
+  /* "cpa700.py":298
  * 
  *     def isStopped(self):
  *         return self.stopped             # <<<<<<<<<<<<<<
@@ -7497,13 +7566,13 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_6isStopped(CYTHON_UNUSED PyObject
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_stopped); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cpa700.py":291
+  /* "cpa700.py":297
  *         self.stopped = True
  * 
  *     def isStopped(self):             # <<<<<<<<<<<<<<
@@ -7522,7 +7591,7 @@ static PyObject *__pyx_pf_6cpa700_10TestThread_6isStopped(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "cpa700.py":296
+/* "cpa700.py":302
  * 
  * class Application(tk.Tk):
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -7545,6 +7614,7 @@ static PyObject *__pyx_pw_6cpa700_11Application_1__init__(PyObject *__pyx_self, 
 }
 
 static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_v_msg = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7553,9 +7623,11 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cpa700.py":297
+  /* "cpa700.py":303
  * class Application(tk.Tk):
  *     def __init__(self):
  *         super().__init__()             # <<<<<<<<<<<<<<
@@ -7563,9 +7635,9 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
  *         try:
  */
   __pyx_t_2 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 297, __pyx_L1_error) }
+  if (!__pyx_t_2) { PyErr_SetString(PyExc_SystemError, "super(): empty __class__ cell"); __PYX_ERR(0, 303, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -7573,10 +7645,10 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
   __Pyx_GIVEREF(__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_self);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_super, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_init); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_init); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -7590,25 +7662,25 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":298
+  /* "cpa700.py":304
  *     def __init__(self):
  *         super().__init__()
  *         self.thread = None             # <<<<<<<<<<<<<<
  *         try:
  *             self.conn = sqlite3.connect('cpa700.db')
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_thread, Py_None) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_thread, Py_None) < 0) __PYX_ERR(0, 304, __pyx_L1_error)
 
-  /* "cpa700.py":299
+  /* "cpa700.py":305
  *         super().__init__()
  *         self.thread = None
  *         try:             # <<<<<<<<<<<<<<
@@ -7624,34 +7696,34 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cpa700.py":300
+      /* "cpa700.py":306
  *         self.thread = None
  *         try:
  *             self.conn = sqlite3.connect('cpa700.db')             # <<<<<<<<<<<<<<
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_sqlite3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_sqlite3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_connect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L3_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_connect); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 306, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__60, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__60, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_conn, __pyx_t_1) < 0) __PYX_ERR(0, 300, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_conn, __pyx_t_1) < 0) __PYX_ERR(0, 306, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cpa700.py":301
+      /* "cpa700.py":307
  *         try:
  *             self.conn = sqlite3.connect('cpa700.db')
  *             self.cursor = self.conn.cursor()             # <<<<<<<<<<<<<<
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L3_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_cursor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L3_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_cursor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 307, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -7665,68 +7737,68 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
         }
       }
       if (__pyx_t_3) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L3_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L3_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else {
-        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L3_error)
+        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L3_error)
       }
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_cursor, __pyx_t_1) < 0) __PYX_ERR(0, 301, __pyx_L3_error)
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_cursor, __pyx_t_1) < 0) __PYX_ERR(0, 307, __pyx_L3_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cpa700.py":302
+      /* "cpa700.py":308
  *             self.conn = sqlite3.connect('cpa700.db')
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')             # <<<<<<<<<<<<<<
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L3_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__61, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__61, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cpa700.py":303
+      /* "cpa700.py":309
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")             # <<<<<<<<<<<<<<
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
- *         except:
+ *         except Exception as msg:
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L3_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__62, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__62, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cpa700.py":304
+      /* "cpa700.py":310
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")             # <<<<<<<<<<<<<<
- *         except:
- *             pass
+ *         except Exception as msg:
+ *             print("Exception:%s" % msg)
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L3_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__63, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__63, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cpa700.py":299
+      /* "cpa700.py":305
  *         super().__init__()
  *         self.thread = None
  *         try:             # <<<<<<<<<<<<<<
@@ -7743,9 +7815,43 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cpa700.py":305
+    /* "cpa700.py":311
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
+ *         except Exception as msg:             # <<<<<<<<<<<<<<
+ *             print("Exception:%s" % msg)
+ *             pass
+ */
+    __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+    if (__pyx_t_7) {
+      __Pyx_AddTraceback("cpa700.Application.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 311, __pyx_L5_except_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __pyx_v_msg = __pyx_t_2;
+
+      /* "cpa700.py":312
+ *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
+ *         except Exception as msg:
+ *             print("Exception:%s" % msg)             # <<<<<<<<<<<<<<
+ *             pass
+ *         except:
+ */
+      __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_Exception_s, __pyx_v_msg); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L5_except_error)
+      __Pyx_GOTREF(__pyx_t_8);
+      if (__Pyx_PrintOne(0, __pyx_t_8) < 0) __PYX_ERR(0, 312, __pyx_L5_except_error)
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      goto __pyx_L4_exception_handled;
+    }
+
+    /* "cpa700.py":314
+ *             print("Exception:%s" % msg)
+ *             pass
  *         except:             # <<<<<<<<<<<<<<
  *             pass
  *         self.createWidgets()
@@ -7754,6 +7860,20 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
       __Pyx_ErrRestore(0,0,0);
       goto __pyx_L4_exception_handled;
     }
+    __pyx_L5_except_error:;
+
+    /* "cpa700.py":305
+ *         super().__init__()
+ *         self.thread = None
+ *         try:             # <<<<<<<<<<<<<<
+ *             self.conn = sqlite3.connect('cpa700.db')
+ *             self.cursor = self.conn.cursor()
+ */
+    __Pyx_XGIVEREF(__pyx_t_4);
+    __Pyx_XGIVEREF(__pyx_t_5);
+    __Pyx_XGIVEREF(__pyx_t_6);
+    __Pyx_ExceptionReset(__pyx_t_4, __pyx_t_5, __pyx_t_6);
+    goto __pyx_L1_error;
     __pyx_L4_exception_handled:;
     __Pyx_XGIVEREF(__pyx_t_4);
     __Pyx_XGIVEREF(__pyx_t_5);
@@ -7762,36 +7882,36 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
     __pyx_L8_try_end:;
   }
 
-  /* "cpa700.py":307
+  /* "cpa700.py":316
  *         except:
  *             pass
  *         self.createWidgets()             # <<<<<<<<<<<<<<
  * 
  *     def createWidgets(self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_createWidgets); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 307, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_createWidgets); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
+  __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__pyx_t_1) {
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
   }
-  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":296
+  /* "cpa700.py":302
  * 
  * class Application(tk.Tk):
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -7806,15 +7926,17 @@ static PyObject *__pyx_pf_6cpa700_11Application___init__(CYTHON_UNUSED PyObject 
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("cpa700.Application.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_msg);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cpa700.py":309
+/* "cpa700.py":318
  *         self.createWidgets()
  * 
  *     def createWidgets(self):             # <<<<<<<<<<<<<<
@@ -7846,16 +7968,16 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("createWidgets", 0);
 
-  /* "cpa700.py":311
+  /* "cpa700.py":320
  *     def createWidgets(self):
  *         # Tab Control introduced here --------------------------------------
  *         self.tabControl = ttk.Notebook(self)          # Create Tab Control             # <<<<<<<<<<<<<<
  *         self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
  *         self.tabControl.add(self.tab1, text='')      # Add the tab
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Notebook); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Notebook); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -7869,13 +7991,13 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_self};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -7883,40 +8005,40 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_self};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_INCREF(__pyx_v_self);
       __Pyx_GIVEREF(__pyx_v_self);
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_self);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_tabControl, __pyx_t_1) < 0) __PYX_ERR(0, 311, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_tabControl, __pyx_t_1) < 0) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":312
+  /* "cpa700.py":321
  *         # Tab Control introduced here --------------------------------------
  *         self.tabControl = ttk.Notebook(self)          # Create Tab Control
  *         self.tab1 = ttk.Frame(self.tabControl)            # Create a tab             # <<<<<<<<<<<<<<
  *         self.tabControl.add(self.tab1, text='')      # Add the tab
  *         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Frame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Frame); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7929,14 +8051,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7945,87 +8067,87 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
       PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_t_3};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_tab1, __pyx_t_1) < 0) __PYX_ERR(0, 312, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_tab1, __pyx_t_1) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":313
+  /* "cpa700.py":322
  *         self.tabControl = ttk.Notebook(self)          # Create Tab Control
  *         self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
  *         self.tabControl.add(self.tab1, text='')      # Add the tab             # <<<<<<<<<<<<<<
  *         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
  *         # ~ Tab Control introduced here
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_add); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_add); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tab1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tab1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__64) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__64) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":314
+  /* "cpa700.py":323
  *         self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
  *         self.tabControl.add(self.tab1, text='')      # Add the tab
  *         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible             # <<<<<<<<<<<<<<
  *         # ~ Tab Control introduced here
  *                                                            # -----------------------------------------
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tabControl); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_expand, __pyx_int_1) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_fill, __pyx_n_s_both) < 0) __PYX_ERR(0, 314, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 314, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_expand, __pyx_int_1) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_fill, __pyx_n_s_both) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cpa700.py":317
+  /* "cpa700.py":326
  *         # ~ Tab Control introduced here
  *                                                            # -----------------------------------------
  *         self.createTab1()             # <<<<<<<<<<<<<<
  * 
  *     def createTab1(self):
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_createTab1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_createTab1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -8038,16 +8160,16 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 326, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 326, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cpa700.py":309
+  /* "cpa700.py":318
  *         self.createWidgets()
  * 
  *     def createWidgets(self):             # <<<<<<<<<<<<<<
@@ -8072,7 +8194,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_2createWidgets(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "cpa700.py":319
+/* "cpa700.py":328
  *         self.createTab1()
  * 
  *     def createTab1(self):             # <<<<<<<<<<<<<<
@@ -8094,37 +8216,1169 @@ static PyObject *__pyx_pw_6cpa700_11Application_5createTab1(PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "cpa700.py":322
+static PyObject *__pyx_pf_6cpa700_11Application_4createTab1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_v_child = NULL;
+  PyObject *__pyx_v_datas = NULL;
+  PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  Py_ssize_t __pyx_t_7;
+  PyObject *(*__pyx_t_8)(PyObject *);
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  __Pyx_RefNannySetupContext("createTab1", 0);
+
+  /* "cpa700.py":332
+ *         # Modified Button Click Function
+ *         # We are creating a container tab3 to hold all other widgets
+ *         self.monty = ttk.LabelFrame(self.tab1, text='')             # <<<<<<<<<<<<<<
+ *         self.monty.grid(column=0, row=0, padx=8, pady=4)
+ *         #
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_LabelFrame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_tab1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__65) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_monty, __pyx_t_4) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "cpa700.py":333
+ *         # We are creating a container tab3 to hold all other widgets
+ *         self.monty = ttk.LabelFrame(self.tab1, text='')
+ *         self.monty.grid(column=0, row=0, padx=8, pady=4)             # <<<<<<<<<<<<<<
+ *         #
+ *         # Changing our Label
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_padx, __pyx_int_8) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_pady, __pyx_int_4) < 0) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":336
+ *         #
+ *         # Changing our Label
+ *         ttk.Label(self.monty, text=":").grid(column=0, row=0, sticky='W')             # <<<<<<<<<<<<<<
+ * 
+ *         # Adding a Textbox Entry widget
+ */
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
+  __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_text, __pyx_kp_s__66) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":339
+ * 
+ *         # Adding a Textbox Entry widget
+ *         self.name = tk.StringVar()             # <<<<<<<<<<<<<<
+ *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)
+ *         self.nameEntered.grid(column=1, row=0, sticky='W')
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_StringVar); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 339, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  if (__pyx_t_2) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  } else {
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
+  }
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_name, __pyx_t_1) < 0) __PYX_ERR(0, 339, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":340
+ *         # Adding a Textbox Entry widget
+ *         self.name = tk.StringVar()
+ *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)             # <<<<<<<<<<<<<<
+ *         self.nameEntered.grid(column=1, row=0, sticky='W')
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Entry); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_60) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_textvariable, __pyx_t_4) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_nameEntered, __pyx_t_4) < 0) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "cpa700.py":341
+ *         self.name = tk.StringVar()
+ *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)
+ *         self.nameEntered.grid(column=1, row=0, sticky='W')             # <<<<<<<<<<<<<<
+ * 
+ *         #
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cpa700.py":344
+ * 
+ *         #
+ *         ttk.Label(self.monty, text=":").grid(column=0, row=1,sticky='W')             # <<<<<<<<<<<<<<
+ *         # Adding a Combobox
+ *         self.book = tk.StringVar()
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_text, __pyx_kp_s__67) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_1) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 344, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":346
+ *         ttk.Label(self.monty, text=":").grid(column=0, row=1,sticky='W')
+ *         # Adding a Combobox
+ *         self.book = tk.StringVar()             # <<<<<<<<<<<<<<
+ *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
+ *         self.bookChosen['values'] = ('', '','','')
+ */
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_StringVar); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  if (__pyx_t_3) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 346, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else {
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 346, __pyx_L1_error)
+  }
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_book, __pyx_t_1) < 0) __PYX_ERR(0, 346, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":347
+ *         # Adding a Combobox
+ *         self.book = tk.StringVar()
+ *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)             # <<<<<<<<<<<<<<
+ *         self.bookChosen['values'] = ('', '','','')
+ *         self.bookChosen.grid(column=1, row=1, sticky='W')
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Combobox); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_60) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_book); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_textvariable, __pyx_t_4) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen, __pyx_t_4) < 0) __PYX_ERR(0, 347, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "cpa700.py":348
+ *         self.book = tk.StringVar()
+ *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
+ *         self.bookChosen['values'] = ('', '','','')             # <<<<<<<<<<<<<<
+ *         self.bookChosen.grid(column=1, row=1, sticky='W')
+ *         self.bookChosen.current(0)  #['values']
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (unlikely(PyObject_SetItem(__pyx_t_4, __pyx_n_s_values, __pyx_tuple__68) < 0)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "cpa700.py":349
+ *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
+ *         self.bookChosen['values'] = ('', '','','')
+ *         self.bookChosen.grid(column=1, row=1, sticky='W')             # <<<<<<<<<<<<<<
+ *         self.bookChosen.current(0)  #['values']
+ *         self.bookChosen.config(state='readonly')  #
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 349, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_1) < 0) __PYX_ERR(0, 349, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":350
+ *         self.bookChosen['values'] = ('', '','','')
+ *         self.bookChosen.grid(column=1, row=1, sticky='W')
+ *         self.bookChosen.current(0)  #['values']             # <<<<<<<<<<<<<<
+ *         self.bookChosen.config(state='readonly')  #
+ *         self.bookChosen.bind("<<ComboboxSelected>>", self.Chosen)
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_current); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__69, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":351
+ *         self.bookChosen.grid(column=1, row=1, sticky='W')
+ *         self.bookChosen.current(0)  #['values']
+ *         self.bookChosen.config(state='readonly')  #             # <<<<<<<<<<<<<<
+ *         self.bookChosen.bind("<<ComboboxSelected>>", self.Chosen)
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_config); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_state, __pyx_n_s_readonly) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":352
+ *         self.bookChosen.current(0)  #['values']
+ *         self.bookChosen.config(state='readonly')  #
+ *         self.bookChosen.bind("<<ComboboxSelected>>", self.Chosen)             # <<<<<<<<<<<<<<
+ * 
+ *         # Using a scrolled Text control
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_bind); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_Chosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_4)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_ComboboxSelected, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_ComboboxSelected, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
+    }
+    __Pyx_INCREF(__pyx_kp_s_ComboboxSelected);
+    __Pyx_GIVEREF(__pyx_kp_s_ComboboxSelected);
+    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_kp_s_ComboboxSelected);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":355
+ * 
+ *         # Using a scrolled Text control
+ *         self.scrolW = 80             # <<<<<<<<<<<<<<
+ *         self.scrolH = 10
+ *         #
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_scrolW, __pyx_int_80) < 0) __PYX_ERR(0, 355, __pyx_L1_error)
+
+  /* "cpa700.py":356
+ *         # Using a scrolled Text control
+ *         self.scrolW = 80
+ *         self.scrolH = 10             # <<<<<<<<<<<<<<
+ *         #
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_scrolH, __pyx_int_10) < 0) __PYX_ERR(0, 356, __pyx_L1_error)
+
+  /* "cpa700.py":358
+ *         self.scrolH = 10
+ *         #
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')             # <<<<<<<<<<<<<<
+ *         #
+ *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__70) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_2) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":360
+ *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
+ *         #
+ *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)             # <<<<<<<<<<<<<<
+ *         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)
+ *         #
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_scrolledtext); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_ScrolledText); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
+  __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_scrolW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_width, __pyx_t_4) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_scrolH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_height, __pyx_t_4) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_WORD); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_wrap, __pyx_t_2) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_text, __pyx_t_2) < 0) __PYX_ERR(0, 360, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cpa700.py":361
+ *         #
+ *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+ *         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)             # <<<<<<<<<<<<<<
+ *         #
+ *         # Adding a Button
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_grid); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_row, __pyx_int_3) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_sticky, __pyx_n_s_WE) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_columnspan, __pyx_int_3) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":364
+ *         #
+ *         # Adding a Button
+ *         self.btaction = ttk.Button(self.monty,text="",width=10,command=self.save).grid(column=1,row=4,sticky='E')             # <<<<<<<<<<<<<<
+ * 
+ *         #
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Button); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__71) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_10) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_command, __pyx_t_3) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_4) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_E) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_btaction, __pyx_t_6) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":367
+ * 
+ *         #
+ *         ttk.Label(self.monty, text=":").grid(column=0, row=5,sticky='W')             # <<<<<<<<<<<<<<
+ *         #
+ *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_Label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
+  __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_text, __pyx_kp_s__72) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_grid); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_row, __pyx_int_5) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 367, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":369
+ *         ttk.Label(self.monty, text=":").grid(column=0, row=5,sticky='W')
+ *         #
+ *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)             # <<<<<<<<<<<<<<
+ *         self.textlog.grid(column=0, row=6, sticky='WE', columnspan=3)
+ *         #
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_scrolledtext); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ScrolledText); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_scrolW); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_t_3) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_scrolH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_height, __pyx_t_3) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WORD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_wrap, __pyx_t_4) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_textlog, __pyx_t_4) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "cpa700.py":370
+ *         #
+ *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+ *         self.textlog.grid(column=0, row=6, sticky='WE', columnspan=3)             # <<<<<<<<<<<<<<
+ *         #
+ *         # Adding a Button
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_textlog); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_6) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_WE) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_columnspan, __pyx_int_3) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":373
+ *         #
+ *         # Adding a Button
+ *         self.btaction = ttk.Button(self.monty,text="",width=10,command=self.clickMe)             # <<<<<<<<<<<<<<
+ *         self.btaction.grid(column=1,row=7,sticky='E')
+ *         #
+ */
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_Button); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
+  __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_text, __pyx_kp_s__73) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_width, __pyx_int_10) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clickMe); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_command, __pyx_t_2) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_btaction, __pyx_t_2) < 0) __PYX_ERR(0, 373, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cpa700.py":374
+ *         # Adding a Button
+ *         self.btaction = ttk.Button(self.monty,text="",width=10,command=self.clickMe)
+ *         self.btaction.grid(column=1,row=7,sticky='E')             # <<<<<<<<<<<<<<
+ *         #
+ *         for child in self.monty.winfo_children():
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_grid); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_row, __pyx_int_7) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_sticky, __pyx_n_s_E) < 0) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cpa700.py":376
+ *         self.btaction.grid(column=1,row=7,sticky='E')
+ *         #
+ *         for child in self.monty.winfo_children():             # <<<<<<<<<<<<<<
+ *             child.grid_configure(padx=3,pady=1)
+ *         #
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_winfo_children); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+    }
+  }
+  if (__pyx_t_2) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  } else {
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+  }
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_6 = __pyx_t_1; __Pyx_INCREF(__pyx_t_6); __pyx_t_7 = 0;
+    __pyx_t_8 = NULL;
+  } else {
+    __pyx_t_7 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 376, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 376, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_8)) {
+      if (likely(PyList_CheckExact(__pyx_t_6))) {
+        if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_6)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_8(__pyx_t_6);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 376, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cpa700.py":377
+ *         #
+ *         for child in self.monty.winfo_children():
+ *             child.grid_configure(padx=3,pady=1)             # <<<<<<<<<<<<<<
+ *         #
+ *         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_grid_configure); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_padx, __pyx_int_3) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_pady, __pyx_int_1) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "cpa700.py":376
+ *         self.btaction.grid(column=1,row=7,sticky='E')
+ *         #
+ *         for child in self.monty.winfo_children():             # <<<<<<<<<<<<<<
+ *             child.grid_configure(padx=3,pady=1)
+ *         #
+ */
+  }
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":381
+ *         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
+ *         #---------------Tab1------------------#
+ *         self.FlushData()             # <<<<<<<<<<<<<<
+ * 
+ *         self.cursor.execute('select * from users')
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_FlushData); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  if (__pyx_t_2) {
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  } else {
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
+  }
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":383
+ *         self.FlushData()
+ * 
+ *         self.cursor.execute('select * from users')             # <<<<<<<<<<<<<<
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#
+ */
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__74, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":384
+ * 
+ *         self.cursor.execute('select * from users')
+ *         datas = self.cursor.fetchall()             # <<<<<<<<<<<<<<
+ *         for data in datas:#
+ *             self.nameEntered.insert(END, str(data[0]))
+ */
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  if (__pyx_t_4) {
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 384, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else {
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 384, __pyx_L1_error)
+  }
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_datas = __pyx_t_6;
+  __pyx_t_6 = 0;
+
+  /* "cpa700.py":385
+ *         self.cursor.execute('select * from users')
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#             # <<<<<<<<<<<<<<
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ */
+  if (likely(PyList_CheckExact(__pyx_v_datas)) || PyTuple_CheckExact(__pyx_v_datas)) {
+    __pyx_t_6 = __pyx_v_datas; __Pyx_INCREF(__pyx_t_6); __pyx_t_7 = 0;
+    __pyx_t_8 = NULL;
+  } else {
+    __pyx_t_7 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 385, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 385, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_8)) {
+      if (likely(PyList_CheckExact(__pyx_t_6))) {
+        if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_6)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 385, __pyx_L1_error)
+        #else
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 385, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        #endif
+      } else {
+        if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 385, __pyx_L1_error)
+        #else
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_6, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 385, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        #endif
+      }
+    } else {
+      __pyx_t_2 = __pyx_t_8(__pyx_t_6);
+      if (unlikely(!__pyx_t_2)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 385, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_2);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_data, __pyx_t_2);
+    __pyx_t_2 = 0;
+
+    /* "cpa700.py":386
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#
+ *             self.nameEntered.insert(END, str(data[0]))             # <<<<<<<<<<<<<<
+ * 
+ *     def clickMe(self):
+ */
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_insert); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __pyx_t_9 = NULL;
+    __pyx_t_5 = 0;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_9)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_9);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __pyx_t_5 = 1;
+      }
+    }
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(__pyx_t_1)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_4, __pyx_t_3};
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    } else
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_4, __pyx_t_3};
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    } else
+    #endif
+    {
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      if (__pyx_t_9) {
+        __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
+      }
+      __Pyx_GIVEREF(__pyx_t_4);
+      PyTuple_SET_ITEM(__pyx_t_10, 0+__pyx_t_5, __pyx_t_4);
+      __Pyx_GIVEREF(__pyx_t_3);
+      PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_5, __pyx_t_3);
+      __pyx_t_4 = 0;
+      __pyx_t_3 = 0;
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "cpa700.py":385
+ *         self.cursor.execute('select * from users')
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#             # <<<<<<<<<<<<<<
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ */
+  }
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "cpa700.py":328
+ *         self.createTab1()
+ * 
+ *     def createTab1(self):             # <<<<<<<<<<<<<<
  *         #---------------Tab1------------------#
  *         # Modified Button Click Function
- *         def clickMe():             # <<<<<<<<<<<<<<
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_AddTraceback("cpa700.Application.createTab1", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_child);
+  __Pyx_XDECREF(__pyx_v_datas);
+  __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cpa700.py":388
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ *     def clickMe(self):             # <<<<<<<<<<<<<<
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_1clickMe(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyMethodDef __pyx_mdef_6cpa700_11Application_10createTab1_1clickMe = {"clickMe", (PyCFunction)__pyx_pw_6cpa700_11Application_10createTab1_1clickMe, METH_NOARGS, 0};
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_1clickMe(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_6cpa700_11Application_7clickMe(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6cpa700_11Application_7clickMe = {"clickMe", (PyCFunction)__pyx_pw_6cpa700_11Application_7clickMe, METH_O, 0};
+static PyObject *__pyx_pw_6cpa700_11Application_7clickMe(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clickMe (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cpa700_11Application_10createTab1_clickMe(__pyx_self);
+  __pyx_r = __pyx_pf_6cpa700_11Application_6clickMe(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *__pyx_self) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_cur_scope;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_outer_scope;
+static PyObject *__pyx_pf_6cpa700_11Application_6clickMe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_monerys = NULL;
   PyObject *__pyx_v_url = NULL;
   PyObject *__pyx_v_request = NULL;
   PyObject *__pyx_v_response = NULL;
   PyObject *__pyx_v_html = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_e = NULL;
+  PyObject *__pyx_v_msg = NULL;
   PyObject *__pyx_v_text = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -8140,44 +9394,39 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   PyObject *__pyx_t_10 = NULL;
   PyObject *__pyx_t_11 = NULL;
   __Pyx_RefNannySetupContext("clickMe", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "cpa700.py":323
- *         # Modified Button Click Function
- *         def clickMe():
- *             self.cursor.execute('delete from users')             # <<<<<<<<<<<<<<
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
- *             self.conn.commit()
+  /* "cpa700.py":389
+ * 
+ *     def clickMe(self):
+ *         self.cursor.execute('delete from users')             # <<<<<<<<<<<<<<
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ *         self.conn.commit()
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 323, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__65, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__75, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":324
- *         def clickMe():
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))             # <<<<<<<<<<<<<<
- *             self.conn.commit()
+  /* "cpa700.py":390
+ *     def clickMe(self):
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))             # <<<<<<<<<<<<<<
+ *         self.conn.commit()
  * 
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 324, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 324, __pyx_L1_error) }
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8191,14 +9440,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -8218,7 +9467,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_replace_into_users_username_valu, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -8227,14 +9476,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_replace_into_users_username_valu, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_4 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -8245,24 +9494,23 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_6, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":325
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
- *             self.conn.commit()             # <<<<<<<<<<<<<<
+  /* "cpa700.py":391
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ *         self.conn.commit()             # <<<<<<<<<<<<<<
  * 
- *             self.cursor.execute("select * from monery")
+ *         self.cursor.execute("select * from monery")
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 325, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 391, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_commit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 391, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -8276,44 +9524,42 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":327
- *             self.conn.commit()
+  /* "cpa700.py":393
+ *         self.conn.commit()
  * 
- *             self.cursor.execute("select * from monery")             # <<<<<<<<<<<<<<
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:
+ *         self.cursor.execute("select * from monery")             # <<<<<<<<<<<<<<
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 327, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__66, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__76, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":328
+  /* "cpa700.py":394
  * 
- *             self.cursor.execute("select * from monery")
- *             monerys = self.cursor.fetchall()             # <<<<<<<<<<<<<<
- *             if len(monerys) == 0:
- *                 messagebox.showerror("","")
+ *         self.cursor.execute("select * from monery")
+ *         monerys = self.cursor.fetchall()             # <<<<<<<<<<<<<<
+ *         if len(monerys) == 0:
+ *             messagebox.showerror("","")
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 328, __pyx_L1_error) }
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8327,48 +9573,48 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     }
   }
   if (__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_monerys = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cpa700.py":329
- *             self.cursor.execute("select * from monery")
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:             # <<<<<<<<<<<<<<
- *                 messagebox.showerror("","")
- *                 return
+  /* "cpa700.py":395
+ *         self.cursor.execute("select * from monery")
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:             # <<<<<<<<<<<<<<
+ *             messagebox.showerror("","")
+ *             return
  */
-  __pyx_t_7 = PyObject_Length(__pyx_v_monerys); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Length(__pyx_v_monerys); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 395, __pyx_L1_error)
   __pyx_t_8 = ((__pyx_t_7 == 0) != 0);
   if (__pyx_t_8) {
 
-    /* "cpa700.py":330
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
+    /* "cpa700.py":396
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
  * 
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_showerror); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_showerror); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__69, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__79, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cpa700.py":331
- *             if len(monerys) == 0:
- *                 messagebox.showerror("","")
- *                 return             # <<<<<<<<<<<<<<
+    /* "cpa700.py":397
+ *         if len(monerys) == 0:
+ *             messagebox.showerror("","")
+ *             return             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -8376,26 +9622,25 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "cpa700.py":329
- *             self.cursor.execute("select * from monery")
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:             # <<<<<<<<<<<<<<
- *                 messagebox.showerror("","")
- *                 return
+    /* "cpa700.py":395
+ *         self.cursor.execute("select * from monery")
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:             # <<<<<<<<<<<<<<
+ *             messagebox.showerror("","")
+ *             return
  */
   }
 
-  /* "cpa700.py":334
+  /* "cpa700.py":400
  * 
  * 
- *             url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()             # <<<<<<<<<<<<<<
- *             #print(url)
- *             request = urllib.request.Request(url, headers = headers)
+ *         url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()             # <<<<<<<<<<<<<<
+ *         #print(url)
+ *         request = urllib.request.Request(url, headers = headers)
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 334, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -8409,46 +9654,46 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_kp_s_http_121_40_206_168_soft_net_SBD, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_kp_s_http_121_40_206_168_soft_net_SBD, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_url = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "cpa700.py":336
- *             url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
- *             #print(url)
- *             request = urllib.request.Request(url, headers = headers)             # <<<<<<<<<<<<<<
- *             try:
- *                 #response = urllib.request.urlopen(request)
+  /* "cpa700.py":402
+ *         url = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + self.nameEntered.get()
+ *         #print(url)
+ *         request = urllib.request.Request(url, headers = headers)             # <<<<<<<<<<<<<<
+ *         try:
+ *             #response = urllib.request.urlopen(request)
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_request); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_request); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Request); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Request); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_url);
   __Pyx_GIVEREF(__pyx_v_url);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_url);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_headers); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_headers); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_headers, __pyx_t_5) < 0) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_headers, __pyx_t_5) < 0) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8456,12 +9701,12 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   __pyx_v_request = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "cpa700.py":337
- *             #print(url)
- *             request = urllib.request.Request(url, headers = headers)
- *             try:             # <<<<<<<<<<<<<<
- *                 #response = urllib.request.urlopen(request)
- *                 response = opener.open(request, timeout = 5)
+  /* "cpa700.py":403
+ *         #print(url)
+ *         request = urllib.request.Request(url, headers = headers)
+ *         try:             # <<<<<<<<<<<<<<
+ *             #response = urllib.request.urlopen(request)
+ *             response = opener.open(request, timeout = 5)
  */
   {
     __Pyx_PyThreadState_declare
@@ -8472,27 +9717,27 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     __Pyx_XGOTREF(__pyx_t_11);
     /*try:*/ {
 
-      /* "cpa700.py":339
- *             try:
- *                 #response = urllib.request.urlopen(request)
- *                 response = opener.open(request, timeout = 5)             # <<<<<<<<<<<<<<
- *                 html = response.read().decode()
- *             except urllib.error.HTTPError as e:
+      /* "cpa700.py":405
+ *         try:
+ *             #response = urllib.request.urlopen(request)
+ *             response = opener.open(request, timeout = 5)             # <<<<<<<<<<<<<<
+ *             html = response.read().decode()
+ *         except urllib.error.HTTPError as e:
  */
-      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_opener); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 339, __pyx_L4_error)
+      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_opener); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 405, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_open); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 339, __pyx_L4_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_open); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 405, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 339, __pyx_L4_error)
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 405, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_v_request);
       __Pyx_GIVEREF(__pyx_v_request);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_request);
-      __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L4_error)
+      __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 405, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_timeout, __pyx_int_5) < 0) __PYX_ERR(0, 339, __pyx_L4_error)
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L4_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_timeout, __pyx_int_5) < 0) __PYX_ERR(0, 405, __pyx_L4_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 405, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -8500,14 +9745,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
       __pyx_v_response = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "cpa700.py":340
- *                 #response = urllib.request.urlopen(request)
- *                 response = opener.open(request, timeout = 5)
- *                 html = response.read().decode()             # <<<<<<<<<<<<<<
- *             except urllib.error.HTTPError as e:
- *                 #print('The server couldn\'t fulfill the request.')
+      /* "cpa700.py":406
+ *             #response = urllib.request.urlopen(request)
+ *             response = opener.open(request, timeout = 5)
+ *             html = response.read().decode()             # <<<<<<<<<<<<<<
+ *         except urllib.error.HTTPError as e:
+ *             #print('The server couldn\'t fulfill the request.')
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_response, __pyx_n_s_read); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 340, __pyx_L4_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_response, __pyx_n_s_read); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 406, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -8520,14 +9765,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
         }
       }
       if (__pyx_t_3) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L4_error)
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else {
-        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L4_error)
+        __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L4_error)
       }
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 340, __pyx_L4_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 406, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_1 = NULL;
@@ -8541,22 +9786,22 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
         }
       }
       if (__pyx_t_1) {
-        __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L4_error)
+        __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 406, __pyx_L4_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
-        __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L4_error)
+        __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 406, __pyx_L4_error)
       }
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_html = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "cpa700.py":337
- *             #print(url)
- *             request = urllib.request.Request(url, headers = headers)
- *             try:             # <<<<<<<<<<<<<<
- *                 #response = urllib.request.urlopen(request)
- *                 response = opener.open(request, timeout = 5)
+      /* "cpa700.py":403
+ *         #print(url)
+ *         request = urllib.request.Request(url, headers = headers)
+ *         try:             # <<<<<<<<<<<<<<
+ *             #response = urllib.request.urlopen(request)
+ *             response = opener.open(request, timeout = 5)
  */
     }
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -8570,55 +9815,55 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "cpa700.py":341
- *                 response = opener.open(request, timeout = 5)
- *                 html = response.read().decode()
- *             except urllib.error.HTTPError as e:             # <<<<<<<<<<<<<<
- *                 #print('The server couldn\'t fulfill the request.')
- *                 #print('Error code: ' + str(e.code))
+    /* "cpa700.py":407
+ *             response = opener.open(request, timeout = 5)
+ *             html = response.read().decode()
+ *         except urllib.error.HTTPError as e:             # <<<<<<<<<<<<<<
+ *             #print('The server couldn\'t fulfill the request.')
+ *             #print('Error code: ' + str(e.code))
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L6_except_error)
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 341, __pyx_L6_except_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 407, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_HTTPError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L6_except_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_HTTPError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = __Pyx_PyErr_ExceptionMatches(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_6) {
-      __Pyx_AddTraceback("cpa700.Application.createTab1.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 341, __pyx_L6_except_error)
+      __Pyx_AddTraceback("cpa700.Application.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 407, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_5);
       __pyx_v_e = __pyx_t_5;
 
-      /* "cpa700.py":345
- *                 #print('Error code: ' + str(e.code))
- *                 #print('Error reason: ' + e.reason)
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             except urllib.error.URLError as e:
+      /* "cpa700.py":411
+ *             #print('Error code: ' + str(e.code))
+ *             #print('Error reason: ' + e.reason)
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         except urllib.error.URLError as e:
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 411, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L6_except_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__71, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__81, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 411, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cpa700.py":346
- *                 #print('Error reason: ' + e.reason)
- *                 messagebox.showerror("","")
- *                 return             # <<<<<<<<<<<<<<
- *             except urllib.error.URLError as e:
- *                 #print('We failed to reach a server.')
+      /* "cpa700.py":412
+ *             #print('Error reason: ' + e.reason)
+ *             messagebox.showerror("","")
+ *             return             # <<<<<<<<<<<<<<
+ *         except urllib.error.URLError as e:
+ *             #print('We failed to reach a server.')
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -8628,55 +9873,55 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
       goto __pyx_L7_except_return;
     }
 
-    /* "cpa700.py":347
- *                 messagebox.showerror("","")
- *                 return
- *             except urllib.error.URLError as e:             # <<<<<<<<<<<<<<
- *                 #print('We failed to reach a server.')
- *                 #print('Reason: ' + e.reason)
+    /* "cpa700.py":413
+ *             messagebox.showerror("","")
+ *             return
+ *         except urllib.error.URLError as e:             # <<<<<<<<<<<<<<
+ *             #print('We failed to reach a server.')
+ *             #print('Reason: ' + e.reason)
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L6_except_error)
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_urllib); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 347, __pyx_L6_except_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 413, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_URLError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 347, __pyx_L6_except_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_URLError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L6_except_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = __Pyx_PyErr_ExceptionMatches(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_6) {
-      __Pyx_AddTraceback("cpa700.Application.createTab1.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_5, &__pyx_t_4) < 0) __PYX_ERR(0, 347, __pyx_L6_except_error)
+      __Pyx_AddTraceback("cpa700.Application.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_5, &__pyx_t_4) < 0) __PYX_ERR(0, 413, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_5);
       __pyx_v_e = __pyx_t_5;
 
-      /* "cpa700.py":350
- *                 #print('We failed to reach a server.')
- *                 #print('Reason: ' + e.reason)
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             except:
+      /* "cpa700.py":416
+ *             #print('We failed to reach a server.')
+ *             #print('Reason: ' + e.reason)
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         except Exception as msg:
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L6_except_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__72, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__82, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cpa700.py":351
- *                 #print('Reason: ' + e.reason)
- *                 messagebox.showerror("","")
- *                 return             # <<<<<<<<<<<<<<
- *             except:
- *                 #print("error lineno:" + str(sys._getframe().f_lineno))
+      /* "cpa700.py":417
+ *             #print('Reason: ' + e.reason)
+ *             messagebox.showerror("","")
+ *             return             # <<<<<<<<<<<<<<
+ *         except Exception as msg:
+ *             print("Exception:%s" % msg)
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -8686,43 +9931,77 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
       goto __pyx_L7_except_return;
     }
 
-    /* "cpa700.py":352
- *                 messagebox.showerror("","")
- *                 return
- *             except:             # <<<<<<<<<<<<<<
- *                 #print("error lineno:" + str(sys._getframe().f_lineno))
- *                 messagebox.showerror("","")
+    /* "cpa700.py":418
+ *             messagebox.showerror("","")
+ *             return
+ *         except Exception as msg:             # <<<<<<<<<<<<<<
+ *             print("Exception:%s" % msg)
+ *             pass
  */
-    /*except:*/ {
-      __Pyx_AddTraceback("cpa700.Application.createTab1.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 352, __pyx_L6_except_error)
+    __pyx_t_6 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+    if (__pyx_t_6) {
+      __Pyx_AddTraceback("cpa700.Application.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_5, &__pyx_t_1) < 0) __PYX_ERR(0, 418, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_5);
+      __pyx_v_msg = __pyx_t_5;
 
-      /* "cpa700.py":354
- *             except:
- *                 #print("error lineno:" + str(sys._getframe().f_lineno))
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             html = html.strip()
+      /* "cpa700.py":419
+ *             return
+ *         except Exception as msg:
+ *             print("Exception:%s" % msg)             # <<<<<<<<<<<<<<
+ *             pass
+ *         except:
  */
-      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 354, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_Exception_s, __pyx_v_msg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L6_except_error)
+      if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 419, __pyx_L6_except_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L5_exception_handled;
+    }
+
+    /* "cpa700.py":421
+ *             print("Exception:%s" % msg)
+ *             pass
+ *         except:             # <<<<<<<<<<<<<<
+ *             #print("error lineno:" + str(sys._getframe().f_lineno))
+ *             messagebox.showerror("","")
+ */
+    /*except:*/ {
+      __Pyx_AddTraceback("cpa700.Application.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_5, &__pyx_t_4) < 0) __PYX_ERR(0, 421, __pyx_L6_except_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_GOTREF(__pyx_t_4);
+
+      /* "cpa700.py":423
+ *         except:
+ *             #print("error lineno:" + str(sys._getframe().f_lineno))
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         html = html.strip()
+ */
+      __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L6_except_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__73, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 354, __pyx_L6_except_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__83, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cpa700.py":355
- *                 #print("error lineno:" + str(sys._getframe().f_lineno))
- *                 messagebox.showerror("","")
- *                 return             # <<<<<<<<<<<<<<
- *             html = html.strip()
- *             #print(html)
+      /* "cpa700.py":424
+ *             #print("error lineno:" + str(sys._getframe().f_lineno))
+ *             messagebox.showerror("","")
+ *             return             # <<<<<<<<<<<<<<
+ *         html = html.strip()
+ *         #print(html)
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -8733,12 +10012,12 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     }
     __pyx_L6_except_error:;
 
-    /* "cpa700.py":337
- *             #print(url)
- *             request = urllib.request.Request(url, headers = headers)
- *             try:             # <<<<<<<<<<<<<<
- *                 #response = urllib.request.urlopen(request)
- *                 response = opener.open(request, timeout = 5)
+    /* "cpa700.py":403
+ *         #print(url)
+ *         request = urllib.request.Request(url, headers = headers)
+ *         try:             # <<<<<<<<<<<<<<
+ *             #response = urllib.request.urlopen(request)
+ *             response = opener.open(request, timeout = 5)
  */
     __Pyx_XGIVEREF(__pyx_t_9);
     __Pyx_XGIVEREF(__pyx_t_10);
@@ -8751,304 +10030,303 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
     __Pyx_XGIVEREF(__pyx_t_11);
     __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_10, __pyx_t_11);
     goto __pyx_L0;
+    __pyx_L5_exception_handled:;
+    __Pyx_XGIVEREF(__pyx_t_9);
+    __Pyx_XGIVEREF(__pyx_t_10);
+    __Pyx_XGIVEREF(__pyx_t_11);
+    __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_10, __pyx_t_11);
     __pyx_L9_try_end:;
   }
 
-  /* "cpa700.py":356
- *                 messagebox.showerror("","")
- *                 return
- *             html = html.strip()             # <<<<<<<<<<<<<<
- *             #print(html)
- *             if html != "1":
+  /* "cpa700.py":425
+ *             messagebox.showerror("","")
+ *             return
+ *         html = html.strip()             # <<<<<<<<<<<<<<
+ *         #print(html)
+ *         if html != "1":
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_html, __pyx_n_s_strip); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 356, __pyx_L1_error)
+  if (unlikely(!__pyx_v_html)) { __Pyx_RaiseUnboundLocalError("html"); __PYX_ERR(0, 425, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_html, __pyx_n_s_strip); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 425, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = NULL;
+  __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_1)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_5, function);
     }
   }
-  if (__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__pyx_t_1) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 425, __pyx_L1_error)
   }
-  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_DECREF_SET(__pyx_v_html, __pyx_t_1);
-  __pyx_t_1 = 0;
+  __Pyx_XDECREF_SET(__pyx_v_html, __pyx_t_4);
+  __pyx_t_4 = 0;
 
-  /* "cpa700.py":358
- *             html = html.strip()
- *             #print(html)
- *             if html != "1":             # <<<<<<<<<<<<<<
- *                 messagebox.showerror("","")
- *                 return
+  /* "cpa700.py":427
+ *         html = html.strip()
+ *         #print(html)
+ *         if html != "1":             # <<<<<<<<<<<<<<
+ *             messagebox.showerror("","")
+ *             return
  */
-  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_v_html, __pyx_kp_s_1, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_v_html, __pyx_kp_s_1, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
   if (__pyx_t_8) {
 
-    /* "cpa700.py":359
- *             #print(html)
- *             if html != "1":
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
+    /* "cpa700.py":428
+ *         #print(html)
+ *         if html != "1":
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
  * 
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_showerror); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_showerror); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__75, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 359, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__85, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "cpa700.py":360
- *             if html != "1":
- *                 messagebox.showerror("","")
- *                 return             # <<<<<<<<<<<<<<
+    /* "cpa700.py":429
+ *         if html != "1":
+ *             messagebox.showerror("","")
+ *             return             # <<<<<<<<<<<<<<
  * 
- *             text = self.btaction.config('text')
+ *         text = self.btaction.config('text')
  */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "cpa700.py":358
- *             html = html.strip()
- *             #print(html)
- *             if html != "1":             # <<<<<<<<<<<<<<
- *                 messagebox.showerror("","")
- *                 return
+    /* "cpa700.py":427
+ *         html = html.strip()
+ *         #print(html)
+ *         if html != "1":             # <<<<<<<<<<<<<<
+ *             messagebox.showerror("","")
+ *             return
  */
   }
 
-  /* "cpa700.py":362
- *                 return
+  /* "cpa700.py":431
+ *             return
  * 
- *             text = self.btaction.config('text')             # <<<<<<<<<<<<<<
- *             if  text[4] == '':
- *                 self.btaction.configure(text='')
+ *         text = self.btaction.config('text')             # <<<<<<<<<<<<<<
+ *         if  text[4] == '':
+ *             self.btaction.configure(text='')
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 362, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 431, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__76, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__86, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_text = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_v_text = __pyx_t_4;
+  __pyx_t_4 = 0;
 
-  /* "cpa700.py":363
+  /* "cpa700.py":432
  * 
- *             text = self.btaction.config('text')
- *             if  text[4] == '':             # <<<<<<<<<<<<<<
- *                 self.btaction.configure(text='')
- *                 self.thread.stop()
+ *         text = self.btaction.config('text')
+ *         if  text[4] == '':             # <<<<<<<<<<<<<<
+ *             self.btaction.configure(text='')
+ *             self.thread.stop()
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_text, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_kp_s__77, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_text, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_8 = (__Pyx_PyString_Equals(__pyx_t_4, __pyx_kp_s__87, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_8) {
 
-    /* "cpa700.py":364
- *             text = self.btaction.config('text')
- *             if  text[4] == '':
- *                 self.btaction.configure(text='')             # <<<<<<<<<<<<<<
- *                 self.thread.stop()
- *                 #self.thread.join()
+    /* "cpa700.py":433
+ *         text = self.btaction.config('text')
+ *         if  text[4] == '':
+ *             self.btaction.configure(text='')             # <<<<<<<<<<<<<<
+ *             self.thread.stop()
+ *             #self.thread.join()
  */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 364, __pyx_L1_error) }
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_configure); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 364, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 364, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__78) < 0) __PYX_ERR(0, 364, __pyx_L1_error)
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-    /* "cpa700.py":365
- *             if  text[4] == '':
- *                 self.btaction.configure(text='')
- *                 self.thread.stop()             # <<<<<<<<<<<<<<
- *                 #self.thread.join()
- *             else:
- */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 365, __pyx_L1_error) }
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_thread); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_stop); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_configure); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_text, __pyx_kp_s__73) < 0) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = NULL;
+
+    /* "cpa700.py":434
+ *         if  text[4] == '':
+ *             self.btaction.configure(text='')
+ *             self.thread.stop()             # <<<<<<<<<<<<<<
+ *             #self.thread.join()
+ *         else:
+ */
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_thread); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_stop); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_5);
-      if (likely(__pyx_t_1)) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_4)) {
         PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-        __Pyx_INCREF(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_4);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_5, function);
       }
     }
-    if (__pyx_t_1) {
-      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (__pyx_t_4) {
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
     }
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-    /* "cpa700.py":363
- * 
- *             text = self.btaction.config('text')
- *             if  text[4] == '':             # <<<<<<<<<<<<<<
- *                 self.btaction.configure(text='')
- *                 self.thread.stop()
- */
-    goto __pyx_L17;
-  }
-
-  /* "cpa700.py":368
- *                 #self.thread.join()
- *             else:
- *                 self.btaction.configure(text='')             # <<<<<<<<<<<<<<
- *                 #btaction.configure(state='disabled') # Disable the Button
- *                 self.thread = TestThread(self)
- */
-  /*else*/ {
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 368, __pyx_L1_error) }
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 368, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_configure); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 368, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 368, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_text, __pyx_kp_s__77) < 0) __PYX_ERR(0, 368, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cpa700.py":370
- *                 self.btaction.configure(text='')
- *                 #btaction.configure(state='disabled') # Disable the Button
- *                 self.thread = TestThread(self)             # <<<<<<<<<<<<<<
- *                 self.thread.start()
+    /* "cpa700.py":432
+ * 
+ *         text = self.btaction.config('text')
+ *         if  text[4] == '':             # <<<<<<<<<<<<<<
+ *             self.btaction.configure(text='')
+ *             self.thread.stop()
+ */
+    goto __pyx_L19;
+  }
+
+  /* "cpa700.py":437
+ *             #self.thread.join()
+ *         else:
+ *             self.btaction.configure(text='')             # <<<<<<<<<<<<<<
+ *             #btaction.configure(state='disabled') # Disable the Button
+ *             self.thread = TestThread(self)
+ */
+  /*else*/ {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_configure); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__87) < 0) __PYX_ERR(0, 437, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "cpa700.py":439
+ *             self.btaction.configure(text='')
+ *             #btaction.configure(state='disabled') # Disable the Button
+ *             self.thread = TestThread(self)             # <<<<<<<<<<<<<<
+ *             self.thread.start()
  * 
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_TestThread); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 370, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 370, __pyx_L1_error) }
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_TestThread); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_5 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
       if (likely(__pyx_t_5)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_4, function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
       }
     }
     if (!__pyx_t_5) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_cur_scope->__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_self); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
     } else {
       #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_4)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_cur_scope->__pyx_v_self};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+      if (PyFunction_Check(__pyx_t_1)) {
+        PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_self};
+        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GOTREF(__pyx_t_4);
       } else
       #endif
       #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
-        PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_cur_scope->__pyx_v_self};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+        PyObject *__pyx_temp[2] = {__pyx_t_5, __pyx_v_self};
+        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GOTREF(__pyx_t_4);
       } else
       #endif
       {
-        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 439, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __pyx_t_5 = NULL;
-        __Pyx_INCREF(__pyx_cur_scope->__pyx_v_self);
-        __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_self);
-        PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_cur_scope->__pyx_v_self);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 370, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_INCREF(__pyx_v_self);
+        __Pyx_GIVEREF(__pyx_v_self);
+        PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_v_self);
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
     }
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 370, __pyx_L1_error) }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_thread, __pyx_t_1) < 0) __PYX_ERR(0, 370, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-    /* "cpa700.py":371
- *                 #btaction.configure(state='disabled') # Disable the Button
- *                 self.thread = TestThread(self)
- *                 self.thread.start()             # <<<<<<<<<<<<<<
- * 
- *         def save():
- */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 371, __pyx_L1_error) }
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_thread); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 371, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 371, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_thread, __pyx_t_4) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = NULL;
+
+    /* "cpa700.py":440
+ *             #btaction.configure(state='disabled') # Disable the Button
+ *             self.thread = TestThread(self)
+ *             self.thread.start()             # <<<<<<<<<<<<<<
+ * 
+ *     def save(self):
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_thread); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 440, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 440, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_4)) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+      if (likely(__pyx_t_1)) {
         PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_4);
+        __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_3, function);
       }
     }
-    if (__pyx_t_4) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (__pyx_t_1) {
+      __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 371, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
     }
-    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_L17:;
+  __pyx_L19:;
 
-  /* "cpa700.py":322
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- *         def clickMe():             # <<<<<<<<<<<<<<
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+  /* "cpa700.py":388
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ *     def clickMe(self):             # <<<<<<<<<<<<<<
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
  */
 
   /* function exit code */
@@ -9060,7 +10338,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("cpa700.Application.createTab1.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cpa700.Application.clickMe", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_monerys);
@@ -9069,37 +10347,36 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_clickMe(PyObject *_
   __Pyx_XDECREF(__pyx_v_response);
   __Pyx_XDECREF(__pyx_v_html);
   __Pyx_XDECREF(__pyx_v_e);
+  __Pyx_XDECREF(__pyx_v_msg);
   __Pyx_XDECREF(__pyx_v_text);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cpa700.py":373
- *                 self.thread.start()
+/* "cpa700.py":442
+ *             self.thread.start()
  * 
- *         def save():             # <<<<<<<<<<<<<<
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
+ *     def save(self):             # <<<<<<<<<<<<<<
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_3save(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyMethodDef __pyx_mdef_6cpa700_11Application_10createTab1_3save = {"save", (PyCFunction)__pyx_pw_6cpa700_11Application_10createTab1_3save, METH_NOARGS, 0};
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_3save(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_6cpa700_11Application_9save(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6cpa700_11Application_9save = {"save", (PyCFunction)__pyx_pw_6cpa700_11Application_9save, METH_O, 0};
+static PyObject *__pyx_pw_6cpa700_11Application_9save(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("save (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cpa700_11Application_10createTab1_2save(__pyx_self);
+  __pyx_r = __pyx_pf_6cpa700_11Application_8save(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__pyx_self) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_cur_scope;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_outer_scope;
+static PyObject *__pyx_pf_6cpa700_11Application_8save(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_text = NULL;
   PyObject *__pyx_v_lines = NULL;
   PyObject *__pyx_v_line1 = NULL;
@@ -9127,23 +10404,20 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   Py_ssize_t __pyx_t_12;
   int __pyx_t_13;
   __Pyx_RefNannySetupContext("save", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "cpa700.py":374
+  /* "cpa700.py":443
  * 
- *         def save():
- *             text = self.text.get(1.0, END)             # <<<<<<<<<<<<<<
- *             lines = text.split("\n")
- *             for line1 in lines:
+ *     def save(self):
+ *         text = self.text.get(1.0, END)             # <<<<<<<<<<<<<<
+ *         lines = text.split("\n")
+ *         for line1 in lines:
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 374, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -9160,7 +10434,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_float_1_0, __pyx_t_2};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -9169,14 +10443,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_float_1_0, __pyx_t_2};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -9187,7 +10461,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -9195,52 +10469,52 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   __pyx_v_text = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cpa700.py":375
- *         def save():
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")             # <<<<<<<<<<<<<<
- *             for line1 in lines:
- *                 if line1 == "":
+  /* "cpa700.py":444
+ *     def save(self):
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")             # <<<<<<<<<<<<<<
+ *         for line1 in lines:
+ *             if line1 == "":
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_text, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_text, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__79, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__88, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_lines = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cpa700.py":376
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
- *             for line1 in lines:             # <<<<<<<<<<<<<<
- *                 if line1 == "":
- *                     continue
+  /* "cpa700.py":445
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
+ *         for line1 in lines:             # <<<<<<<<<<<<<<
+ *             if line1 == "":
+ *                 continue
  */
   if (likely(PyList_CheckExact(__pyx_v_lines)) || PyTuple_CheckExact(__pyx_v_lines)) {
     __pyx_t_3 = __pyx_v_lines; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 376, __pyx_L1_error)
+    __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 445, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 376, __pyx_L1_error)
+    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 445, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_8)) {
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 445, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 445, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -9250,7 +10524,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 376, __pyx_L1_error)
+          else __PYX_ERR(0, 445, __pyx_L1_error)
         }
         break;
       }
@@ -9259,147 +10533,147 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     __Pyx_XDECREF_SET(__pyx_v_line1, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cpa700.py":377
- *             lines = text.split("\n")
- *             for line1 in lines:
- *                 if line1 == "":             # <<<<<<<<<<<<<<
- *                     continue
- *                 item1s = line1.split("=")
+    /* "cpa700.py":446
+ *         lines = text.split("\n")
+ *         for line1 in lines:
+ *             if line1 == "":             # <<<<<<<<<<<<<<
+ *                 continue
+ *             item1s = line1.split("=")
  */
-    __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_line1, __pyx_kp_s__15, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_line1, __pyx_kp_s__15, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 446, __pyx_L1_error)
     if (__pyx_t_9) {
 
-      /* "cpa700.py":378
- *             for line1 in lines:
- *                 if line1 == "":
- *                     continue             # <<<<<<<<<<<<<<
- *                 item1s = line1.split("=")
- *                 if len(item1s) != 4:
+      /* "cpa700.py":447
+ *         for line1 in lines:
+ *             if line1 == "":
+ *                 continue             # <<<<<<<<<<<<<<
+ *             item1s = line1.split("=")
+ *             if len(item1s) != 4:
  */
       goto __pyx_L3_continue;
 
-      /* "cpa700.py":377
- *             lines = text.split("\n")
- *             for line1 in lines:
- *                 if line1 == "":             # <<<<<<<<<<<<<<
- *                     continue
- *                 item1s = line1.split("=")
+      /* "cpa700.py":446
+ *         lines = text.split("\n")
+ *         for line1 in lines:
+ *             if line1 == "":             # <<<<<<<<<<<<<<
+ *                 continue
+ *             item1s = line1.split("=")
  */
     }
 
-    /* "cpa700.py":379
- *                 if line1 == "":
- *                     continue
- *                 item1s = line1.split("=")             # <<<<<<<<<<<<<<
- *                 if len(item1s) != 4:
- *                     messagebox.showerror("","")
+    /* "cpa700.py":448
+ *             if line1 == "":
+ *                 continue
+ *             item1s = line1.split("=")             # <<<<<<<<<<<<<<
+ *             if len(item1s) != 4:
+ *                 messagebox.showerror("","")
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_line1, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_line1, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 448, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__80, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__89, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 448, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_item1s, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "cpa700.py":380
- *                     continue
- *                 item1s = line1.split("=")
- *                 if len(item1s) != 4:             # <<<<<<<<<<<<<<
- *                     messagebox.showerror("","")
- *                     return
+    /* "cpa700.py":449
+ *                 continue
+ *             item1s = line1.split("=")
+ *             if len(item1s) != 4:             # <<<<<<<<<<<<<<
+ *                 messagebox.showerror("","")
+ *                 return
  */
-    __pyx_t_10 = PyObject_Length(__pyx_v_item1s); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 380, __pyx_L1_error)
+    __pyx_t_10 = PyObject_Length(__pyx_v_item1s); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 449, __pyx_L1_error)
     __pyx_t_9 = ((__pyx_t_10 != 4) != 0);
     if (__pyx_t_9) {
 
-      /* "cpa700.py":381
- *                 item1s = line1.split("=")
- *                 if len(item1s) != 4:
- *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                     return
- *                 win = False
+      /* "cpa700.py":450
+ *             item1s = line1.split("=")
+ *             if len(item1s) != 4:
+ *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                 return
+ *             win = False
  */
-      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_showerror); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_showerror); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__82, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__91, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "cpa700.py":382
- *                 if len(item1s) != 4:
- *                     messagebox.showerror("","")
- *                     return             # <<<<<<<<<<<<<<
- *                 win = False
- *                 lose = False
+      /* "cpa700.py":451
+ *             if len(item1s) != 4:
+ *                 messagebox.showerror("","")
+ *                 return             # <<<<<<<<<<<<<<
+ *             win = False
+ *             lose = False
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "cpa700.py":380
- *                     continue
- *                 item1s = line1.split("=")
- *                 if len(item1s) != 4:             # <<<<<<<<<<<<<<
- *                     messagebox.showerror("","")
- *                     return
+      /* "cpa700.py":449
+ *                 continue
+ *             item1s = line1.split("=")
+ *             if len(item1s) != 4:             # <<<<<<<<<<<<<<
+ *                 messagebox.showerror("","")
+ *                 return
  */
     }
 
-    /* "cpa700.py":383
- *                     messagebox.showerror("","")
- *                     return
- *                 win = False             # <<<<<<<<<<<<<<
- *                 lose = False
- *                 for line2 in lines:
+    /* "cpa700.py":452
+ *                 messagebox.showerror("","")
+ *                 return
+ *             win = False             # <<<<<<<<<<<<<<
+ *             lose = False
+ *             for line2 in lines:
  */
     __pyx_v_win = 0;
 
-    /* "cpa700.py":384
- *                     return
- *                 win = False
- *                 lose = False             # <<<<<<<<<<<<<<
- *                 for line2 in lines:
- *                     if line2 == "":
+    /* "cpa700.py":453
+ *                 return
+ *             win = False
+ *             lose = False             # <<<<<<<<<<<<<<
+ *             for line2 in lines:
+ *                 if line2 == "":
  */
     __pyx_v_lose = 0;
 
-    /* "cpa700.py":385
- *                 win = False
- *                 lose = False
- *                 for line2 in lines:             # <<<<<<<<<<<<<<
- *                     if line2 == "":
- *                         continue
+    /* "cpa700.py":454
+ *             win = False
+ *             lose = False
+ *             for line2 in lines:             # <<<<<<<<<<<<<<
+ *                 if line2 == "":
+ *                     continue
  */
     if (likely(PyList_CheckExact(__pyx_v_lines)) || PyTuple_CheckExact(__pyx_v_lines)) {
       __pyx_t_6 = __pyx_v_lines; __Pyx_INCREF(__pyx_t_6); __pyx_t_10 = 0;
       __pyx_t_11 = NULL;
     } else {
-      __pyx_t_10 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 385, __pyx_L1_error)
+      __pyx_t_10 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 454, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_11 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 385, __pyx_L1_error)
+      __pyx_t_11 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 454, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_11)) {
         if (likely(PyList_CheckExact(__pyx_t_6))) {
           if (__pyx_t_10 >= PyList_GET_SIZE(__pyx_t_6)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 385, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 454, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 385, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_10 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 385, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 454, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 385, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -9409,7 +10683,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 385, __pyx_L1_error)
+            else __PYX_ERR(0, 454, __pyx_L1_error)
           }
           break;
         }
@@ -9418,83 +10692,83 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
       __Pyx_XDECREF_SET(__pyx_v_line2, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cpa700.py":386
- *                 lose = False
- *                 for line2 in lines:
- *                     if line2 == "":             # <<<<<<<<<<<<<<
- *                         continue
- *                     item2s = line2.split("=")
+      /* "cpa700.py":455
+ *             lose = False
+ *             for line2 in lines:
+ *                 if line2 == "":             # <<<<<<<<<<<<<<
+ *                     continue
+ *                 item2s = line2.split("=")
  */
-      __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_line2, __pyx_kp_s__15, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_9 = (__Pyx_PyString_Equals(__pyx_v_line2, __pyx_kp_s__15, Py_EQ)); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 455, __pyx_L1_error)
       if (__pyx_t_9) {
 
-        /* "cpa700.py":387
- *                 for line2 in lines:
- *                     if line2 == "":
- *                         continue             # <<<<<<<<<<<<<<
- *                     item2s = line2.split("=")
- *                     if len(item2s) != 4:
+        /* "cpa700.py":456
+ *             for line2 in lines:
+ *                 if line2 == "":
+ *                     continue             # <<<<<<<<<<<<<<
+ *                 item2s = line2.split("=")
+ *                 if len(item2s) != 4:
  */
         goto __pyx_L7_continue;
 
-        /* "cpa700.py":386
- *                 lose = False
- *                 for line2 in lines:
- *                     if line2 == "":             # <<<<<<<<<<<<<<
- *                         continue
- *                     item2s = line2.split("=")
+        /* "cpa700.py":455
+ *             lose = False
+ *             for line2 in lines:
+ *                 if line2 == "":             # <<<<<<<<<<<<<<
+ *                     continue
+ *                 item2s = line2.split("=")
  */
       }
 
-      /* "cpa700.py":388
- *                     if line2 == "":
- *                         continue
- *                     item2s = line2.split("=")             # <<<<<<<<<<<<<<
- *                     if len(item2s) != 4:
- *                         messagebox.showerror("","")
+      /* "cpa700.py":457
+ *                 if line2 == "":
+ *                     continue
+ *                 item2s = line2.split("=")             # <<<<<<<<<<<<<<
+ *                 if len(item2s) != 4:
+ *                     messagebox.showerror("","")
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_line2, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_line2, __pyx_n_s_split); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__83, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__92, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_item2s, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "cpa700.py":389
- *                         continue
- *                     item2s = line2.split("=")
- *                     if len(item2s) != 4:             # <<<<<<<<<<<<<<
- *                         messagebox.showerror("","")
- *                         return
+      /* "cpa700.py":458
+ *                     continue
+ *                 item2s = line2.split("=")
+ *                 if len(item2s) != 4:             # <<<<<<<<<<<<<<
+ *                     messagebox.showerror("","")
+ *                     return
  */
-      __pyx_t_12 = PyObject_Length(__pyx_v_item2s); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 389, __pyx_L1_error)
+      __pyx_t_12 = PyObject_Length(__pyx_v_item2s); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 458, __pyx_L1_error)
       __pyx_t_9 = ((__pyx_t_12 != 4) != 0);
       if (__pyx_t_9) {
 
-        /* "cpa700.py":390
- *                     item2s = line2.split("=")
- *                     if len(item2s) != 4:
- *                         messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                         return
- *                     #
+        /* "cpa700.py":459
+ *                 item2s = line2.split("=")
+ *                 if len(item2s) != 4:
+ *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                     return
+ *                 #
  */
-        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_showerror); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_showerror); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__84, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__93, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "cpa700.py":391
- *                     if len(item2s) != 4:
- *                         messagebox.showerror("","")
- *                         return             # <<<<<<<<<<<<<<
- *                     #
- *                     if item1s[2] == item2s[0]:
+        /* "cpa700.py":460
+ *                 if len(item2s) != 4:
+ *                     messagebox.showerror("","")
+ *                     return             # <<<<<<<<<<<<<<
+ *                 #
+ *                 if item1s[2] == item2s[0]:
  */
         __Pyx_XDECREF(__pyx_r);
         __pyx_r = Py_None; __Pyx_INCREF(Py_None);
@@ -9502,104 +10776,104 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         goto __pyx_L0;
 
-        /* "cpa700.py":389
- *                         continue
- *                     item2s = line2.split("=")
- *                     if len(item2s) != 4:             # <<<<<<<<<<<<<<
- *                         messagebox.showerror("","")
- *                         return
+        /* "cpa700.py":458
+ *                     continue
+ *                 item2s = line2.split("=")
+ *                 if len(item2s) != 4:             # <<<<<<<<<<<<<<
+ *                     messagebox.showerror("","")
+ *                     return
  */
       }
 
-      /* "cpa700.py":393
- *                         return
- *                     #
- *                     if item1s[2] == item2s[0]:             # <<<<<<<<<<<<<<
- *                         win = True
- *                     #
+      /* "cpa700.py":462
+ *                     return
+ *                 #
+ *                 if item1s[2] == item2s[0]:             # <<<<<<<<<<<<<<
+ *                     win = True
+ *                 #
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item1s, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_item1s, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item2s, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item2s, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 393, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 462, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (__pyx_t_9) {
 
-        /* "cpa700.py":394
- *                     #
- *                     if item1s[2] == item2s[0]:
- *                         win = True             # <<<<<<<<<<<<<<
- *                     #
- *                     if item1s[3] == item2s[0]:
+        /* "cpa700.py":463
+ *                 #
+ *                 if item1s[2] == item2s[0]:
+ *                     win = True             # <<<<<<<<<<<<<<
+ *                 #
+ *                 if item1s[3] == item2s[0]:
  */
         __pyx_v_win = 1;
 
-        /* "cpa700.py":393
- *                         return
- *                     #
- *                     if item1s[2] == item2s[0]:             # <<<<<<<<<<<<<<
- *                         win = True
- *                     #
+        /* "cpa700.py":462
+ *                     return
+ *                 #
+ *                 if item1s[2] == item2s[0]:             # <<<<<<<<<<<<<<
+ *                     win = True
+ *                 #
  */
       }
 
-      /* "cpa700.py":396
- *                         win = True
- *                     #
- *                     if item1s[3] == item2s[0]:             # <<<<<<<<<<<<<<
- *                         lose = True
+      /* "cpa700.py":465
+ *                     win = True
+ *                 #
+ *                 if item1s[3] == item2s[0]:             # <<<<<<<<<<<<<<
+ *                     lose = True
  * 
  */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_item1s, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_item1s, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 465, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item2s, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_item2s, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 465, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 465, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 465, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_9) {
 
-        /* "cpa700.py":397
- *                     #
- *                     if item1s[3] == item2s[0]:
- *                         lose = True             # <<<<<<<<<<<<<<
+        /* "cpa700.py":466
+ *                 #
+ *                 if item1s[3] == item2s[0]:
+ *                     lose = True             # <<<<<<<<<<<<<<
  * 
- *                 if win == False or lose == False:
+ *             if win == False or lose == False:
  */
         __pyx_v_lose = 1;
 
-        /* "cpa700.py":396
- *                         win = True
- *                     #
- *                     if item1s[3] == item2s[0]:             # <<<<<<<<<<<<<<
- *                         lose = True
+        /* "cpa700.py":465
+ *                     win = True
+ *                 #
+ *                 if item1s[3] == item2s[0]:             # <<<<<<<<<<<<<<
+ *                     lose = True
  * 
  */
       }
 
-      /* "cpa700.py":385
- *                 win = False
- *                 lose = False
- *                 for line2 in lines:             # <<<<<<<<<<<<<<
- *                     if line2 == "":
- *                         continue
+      /* "cpa700.py":454
+ *             win = False
+ *             lose = False
+ *             for line2 in lines:             # <<<<<<<<<<<<<<
+ *                 if line2 == "":
+ *                     continue
  */
       __pyx_L7_continue:;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "cpa700.py":399
- *                         lose = True
+    /* "cpa700.py":468
+ *                     lose = True
  * 
- *                 if win == False or lose == False:             # <<<<<<<<<<<<<<
- *                     messagebox.showerror("","")
- *                     return
+ *             if win == False or lose == False:             # <<<<<<<<<<<<<<
+ *                 messagebox.showerror("","")
+ *                 return
  */
     __pyx_t_13 = ((__pyx_v_win == 0) != 0);
     if (!__pyx_t_13) {
@@ -9612,104 +10886,103 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     __pyx_L14_bool_binop_done:;
     if (__pyx_t_9) {
 
-      /* "cpa700.py":400
+      /* "cpa700.py":469
  * 
- *                 if win == False or lose == False:
- *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                     return
+ *             if win == False or lose == False:
+ *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                 return
  * 
  */
-      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_showerror); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__85, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__94, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "cpa700.py":401
- *                 if win == False or lose == False:
- *                     messagebox.showerror("","")
- *                     return             # <<<<<<<<<<<<<<
+      /* "cpa700.py":470
+ *             if win == False or lose == False:
+ *                 messagebox.showerror("","")
+ *                 return             # <<<<<<<<<<<<<<
  * 
- *             self.cursor.execute('delete from monery')
+ *         self.cursor.execute('delete from monery')
  */
       __Pyx_XDECREF(__pyx_r);
       __pyx_r = Py_None; __Pyx_INCREF(Py_None);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "cpa700.py":399
- *                         lose = True
+      /* "cpa700.py":468
+ *                     lose = True
  * 
- *                 if win == False or lose == False:             # <<<<<<<<<<<<<<
- *                     messagebox.showerror("","")
- *                     return
+ *             if win == False or lose == False:             # <<<<<<<<<<<<<<
+ *                 messagebox.showerror("","")
+ *                 return
  */
     }
 
-    /* "cpa700.py":376
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
- *             for line1 in lines:             # <<<<<<<<<<<<<<
- *                 if line1 == "":
- *                     continue
+    /* "cpa700.py":445
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
+ *         for line1 in lines:             # <<<<<<<<<<<<<<
+ *             if line1 == "":
+ *                 continue
  */
     __pyx_L3_continue:;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":403
- *                     return
+  /* "cpa700.py":472
+ *                 return
  * 
- *             self.cursor.execute('delete from monery')             # <<<<<<<<<<<<<<
- *             for line in lines:
- *                 items = line.split("=")
+ *         self.cursor.execute('delete from monery')             # <<<<<<<<<<<<<<
+ *         for line in lines:
+ *             items = line.split("=")
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 403, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_execute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_execute); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__86, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__95, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":404
+  /* "cpa700.py":473
  * 
- *             self.cursor.execute('delete from monery')
- *             for line in lines:             # <<<<<<<<<<<<<<
- *                 items = line.split("=")
- *                 if len(items) != 4:
+ *         self.cursor.execute('delete from monery')
+ *         for line in lines:             # <<<<<<<<<<<<<<
+ *             items = line.split("=")
+ *             if len(items) != 4:
  */
   if (likely(PyList_CheckExact(__pyx_v_lines)) || PyTuple_CheckExact(__pyx_v_lines)) {
     __pyx_t_3 = __pyx_v_lines; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 404, __pyx_L1_error)
+    __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 473, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 404, __pyx_L1_error)
+    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 473, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_8)) {
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 404, __pyx_L1_error)
+        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 473, __pyx_L1_error)
         #else
-        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 404, __pyx_L1_error)
+        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 473, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
       } else {
         if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 404, __pyx_L1_error)
+        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 473, __pyx_L1_error)
         #else
-        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 404, __pyx_L1_error)
+        __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 473, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
       }
@@ -9719,7 +10992,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 404, __pyx_L1_error)
+          else __PYX_ERR(0, 473, __pyx_L1_error)
         }
         break;
       }
@@ -9728,138 +11001,137 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     __Pyx_XDECREF_SET(__pyx_v_line, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "cpa700.py":405
- *             self.cursor.execute('delete from monery')
- *             for line in lines:
- *                 items = line.split("=")             # <<<<<<<<<<<<<<
- *                 if len(items) != 4:
- *                     continue
+    /* "cpa700.py":474
+ *         self.cursor.execute('delete from monery')
+ *         for line in lines:
+ *             items = line.split("=")             # <<<<<<<<<<<<<<
+ *             if len(items) != 4:
+ *                 continue
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_line, __pyx_n_s_split); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 474, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__87, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__96, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 474, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_items, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cpa700.py":406
- *             for line in lines:
- *                 items = line.split("=")
- *                 if len(items) != 4:             # <<<<<<<<<<<<<<
- *                     continue
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+    /* "cpa700.py":475
+ *         for line in lines:
+ *             items = line.split("=")
+ *             if len(items) != 4:             # <<<<<<<<<<<<<<
+ *                 continue
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
  */
-    __pyx_t_10 = PyObject_Length(__pyx_v_items); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 406, __pyx_L1_error)
+    __pyx_t_10 = PyObject_Length(__pyx_v_items); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 475, __pyx_L1_error)
     __pyx_t_9 = ((__pyx_t_10 != 4) != 0);
     if (__pyx_t_9) {
 
-      /* "cpa700.py":407
- *                 items = line.split("=")
- *                 if len(items) != 4:
- *                     continue             # <<<<<<<<<<<<<<
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
- *                 self.cursor.execute(sql)
+      /* "cpa700.py":476
+ *             items = line.split("=")
+ *             if len(items) != 4:
+ *                 continue             # <<<<<<<<<<<<<<
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+ *             self.cursor.execute(sql)
  */
       goto __pyx_L16_continue;
 
-      /* "cpa700.py":406
- *             for line in lines:
- *                 items = line.split("=")
- *                 if len(items) != 4:             # <<<<<<<<<<<<<<
- *                     continue
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+      /* "cpa700.py":475
+ *         for line in lines:
+ *             items = line.split("=")
+ *             if len(items) != 4:             # <<<<<<<<<<<<<<
+ *                 continue
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
  */
     }
 
-    /* "cpa700.py":408
- *                 if len(items) != 4:
- *                     continue
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"             # <<<<<<<<<<<<<<
- *                 self.cursor.execute(sql)
- *             self.conn.commit()
+    /* "cpa700.py":477
+ *             if len(items) != 4:
+ *                 continue
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"             # <<<<<<<<<<<<<<
+ *             self.cursor.execute(sql)
+ *         self.conn.commit()
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_insert_into_monery_values, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_insert_into_monery_values, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__88); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__97); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_items, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_kp_s__88); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_kp_s__97); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_items, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_items, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_s__88); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_kp_s__97); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_items, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__89); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__98); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_sql, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cpa700.py":409
- *                     continue
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
- *                 self.cursor.execute(sql)             # <<<<<<<<<<<<<<
- *             self.conn.commit()
- *             FlushTest()
+    /* "cpa700.py":478
+ *                 continue
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+ *             self.cursor.execute(sql)             # <<<<<<<<<<<<<<
+ *         self.conn.commit()
+ *         FlushData()
  */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 409, __pyx_L1_error) }
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 478, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_execute); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_execute); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -9873,13 +11145,13 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_sql); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_sql); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     } else {
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_1)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_v_sql};
-        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
@@ -9887,19 +11159,19 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
         PyObject *__pyx_temp[2] = {__pyx_t_6, __pyx_v_sql};
-        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_GOTREF(__pyx_t_2);
       } else
       #endif
       {
-        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 478, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __pyx_t_6 = NULL;
         __Pyx_INCREF(__pyx_v_sql);
         __Pyx_GIVEREF(__pyx_v_sql);
         PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_sql);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
@@ -9907,28 +11179,27 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "cpa700.py":404
+    /* "cpa700.py":473
  * 
- *             self.cursor.execute('delete from monery')
- *             for line in lines:             # <<<<<<<<<<<<<<
- *                 items = line.split("=")
- *                 if len(items) != 4:
+ *         self.cursor.execute('delete from monery')
+ *         for line in lines:             # <<<<<<<<<<<<<<
+ *             items = line.split("=")
+ *             if len(items) != 4:
  */
     __pyx_L16_continue:;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":410
- *                 sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
- *                 self.cursor.execute(sql)
- *             self.conn.commit()             # <<<<<<<<<<<<<<
- *             FlushTest()
- *             messagebox.showinfo("","")
+  /* "cpa700.py":479
+ *             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
+ *             self.cursor.execute(sql)
+ *         self.conn.commit()             # <<<<<<<<<<<<<<
+ *         FlushData()
+ *         messagebox.showinfo("","")
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 410, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_conn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_commit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_commit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -9942,50 +11213,67 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 479, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 410, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 479, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":411
- *                 self.cursor.execute(sql)
- *             self.conn.commit()
- *             FlushTest()             # <<<<<<<<<<<<<<
- *             messagebox.showinfo("","")
+  /* "cpa700.py":480
+ *             self.cursor.execute(sql)
+ *         self.conn.commit()
+ *         FlushData()             # <<<<<<<<<<<<<<
+ *         messagebox.showinfo("","")
  * 
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_FlushTest)) { __Pyx_RaiseClosureNameError("FlushTest"); __PYX_ERR(0, 411, __pyx_L1_error) }
-  __pyx_t_3 = __pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(__pyx_cur_scope->__pyx_v_FlushTest); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 411, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "cpa700.py":412
- *             self.conn.commit()
- *             FlushTest()
- *             messagebox.showinfo("","")             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_FlushData); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__92, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (__pyx_t_2) {
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 480, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  } else {
+    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 480, __pyx_L1_error)
+  }
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":373
- *                 self.thread.start()
+  /* "cpa700.py":481
+ *         self.conn.commit()
+ *         FlushData()
+ *         messagebox.showinfo("","")             # <<<<<<<<<<<<<<
  * 
- *         def save():             # <<<<<<<<<<<<<<
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
+ * 
+ */
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_messagebox); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 481, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_showinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 481, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__101, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 481, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":442
+ *             self.thread.start()
+ * 
+ *     def save(self):             # <<<<<<<<<<<<<<
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
  */
 
   /* function exit code */
@@ -9997,7 +11285,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cpa700.Application.createTab1.save", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cpa700.Application.save", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_text);
@@ -10014,26 +11302,72 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_2save(PyObject *__p
   return __pyx_r;
 }
 
-/* "cpa700.py":415
+/* "cpa700.py":484
  * 
  * 
- *         def Chosen(*args):             # <<<<<<<<<<<<<<
- *             print(self.bookChosen.get())
+ *     def Chosen(self, *args):             # <<<<<<<<<<<<<<
+ *         print(self.bookChosen.get())
  * 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_5Chosen(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6cpa700_11Application_10createTab1_5Chosen = {"Chosen", (PyCFunction)__pyx_pw_6cpa700_11Application_10createTab1_5Chosen, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_5Chosen(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6cpa700_11Application_11Chosen(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6cpa700_11Application_11Chosen = {"Chosen", (PyCFunction)__pyx_pw_6cpa700_11Application_11Chosen, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cpa700_11Application_11Chosen(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
   CYTHON_UNUSED PyObject *__pyx_v_args = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("Chosen (wrapper)", 0);
-  if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "Chosen", 0))) return NULL;
-  __Pyx_INCREF(__pyx_args);
-  __pyx_v_args = __pyx_args;
-  __pyx_r = __pyx_pf_6cpa700_11Application_10createTab1_4Chosen(__pyx_self, __pyx_v_args);
+  if (PyTuple_GET_SIZE(__pyx_args) > 1) {
+    __pyx_v_args = PyTuple_GetSlice(__pyx_args, 1, PyTuple_GET_SIZE(__pyx_args));
+    if (unlikely(!__pyx_v_args)) {
+      __Pyx_RefNannyFinishContext();
+      return NULL;
+    }
+    __Pyx_GOTREF(__pyx_v_args);
+  } else {
+    __pyx_v_args = __pyx_empty_tuple; __Pyx_INCREF(__pyx_empty_tuple);
+  }
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,0};
+    PyObject* values[1] = {0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        default:
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t used_pos_args = (pos_args < 1) ? pos_args : 1;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, used_pos_args, "Chosen") < 0)) __PYX_ERR(0, 484, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) < 1) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("Chosen", 0, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 484, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_DECREF(__pyx_v_args); __pyx_v_args = 0;
+  __Pyx_AddTraceback("cpa700.Application.Chosen", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6cpa700_11Application_10Chosen(__pyx_self, __pyx_v_self, __pyx_v_args);
 
   /* function exit code */
   __Pyx_XDECREF(__pyx_v_args);
@@ -10041,29 +11375,24 @@ static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_5Chosen(PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_4Chosen(PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_args) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_cur_scope;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_outer_scope;
+static PyObject *__pyx_pf_6cpa700_11Application_10Chosen(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_args) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("Chosen", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "cpa700.py":416
+  /* "cpa700.py":485
  * 
- *         def Chosen(*args):
- *             print(self.bookChosen.get())             # <<<<<<<<<<<<<<
+ *     def Chosen(self, *args):
+ *         print(self.bookChosen.get())             # <<<<<<<<<<<<<<
  * 
- *         def FlushTest():
+ *     def FlushData(self):
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 416, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -10077,21 +11406,21 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_4Chosen(PyObject *_
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 416, __pyx_L1_error)
+  if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":415
+  /* "cpa700.py":484
  * 
  * 
- *         def Chosen(*args):             # <<<<<<<<<<<<<<
- *             print(self.bookChosen.get())
+ *     def Chosen(self, *args):             # <<<<<<<<<<<<<<
+ *         print(self.bookChosen.get())
  * 
  */
 
@@ -10102,7 +11431,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_4Chosen(PyObject *_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cpa700.Application.createTab1.Chosen", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cpa700.Application.Chosen", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10110,31 +11439,29 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_4Chosen(PyObject *_
   return __pyx_r;
 }
 
-/* "cpa700.py":418
- *             print(self.bookChosen.get())
+/* "cpa700.py":487
+ *         print(self.bookChosen.get())
  * 
- *         def FlushTest():             # <<<<<<<<<<<<<<
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')
+ *     def FlushData(self):             # <<<<<<<<<<<<<<
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_7FlushTest(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyMethodDef __pyx_mdef_6cpa700_11Application_10createTab1_7FlushTest = {"FlushTest", (PyCFunction)__pyx_pw_6cpa700_11Application_10createTab1_7FlushTest, METH_NOARGS, 0};
-static PyObject *__pyx_pw_6cpa700_11Application_10createTab1_7FlushTest(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_6cpa700_11Application_13FlushData(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6cpa700_11Application_13FlushData = {"FlushData", (PyCFunction)__pyx_pw_6cpa700_11Application_13FlushData, METH_O, 0};
+static PyObject *__pyx_pw_6cpa700_11Application_13FlushData(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("FlushTest (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(__pyx_self);
+  __Pyx_RefNannySetupContext("FlushData (wrapper)", 0);
+  __pyx_r = __pyx_pf_6cpa700_11Application_12FlushData(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject *__pyx_self) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_cur_scope;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_outer_scope;
+static PyObject *__pyx_pf_6cpa700_11Application_12FlushData(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_datas = NULL;
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_r = NULL;
@@ -10149,30 +11476,26 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   PyObject *__pyx_t_8 = NULL;
   Py_ssize_t __pyx_t_9;
   PyObject *(*__pyx_t_10)(PyObject *);
-  __Pyx_RefNannySetupContext("FlushTest", 0);
-  __pyx_outer_scope = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
+  __Pyx_RefNannySetupContext("FlushData", 0);
 
-  /* "cpa700.py":419
+  /* "cpa700.py":488
  * 
- *         def FlushTest():
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)             # <<<<<<<<<<<<<<
- *             self.cursor.execute('select * from monery')
- *             datas = self.cursor.fetchall()
+ *     def FlushData(self):
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)             # <<<<<<<<<<<<<<
+ *         self.cursor.execute('select * from monery')
+ *         datas = self.cursor.fetchall()
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 419, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_delete); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_delete); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 419, __pyx_L1_error) }
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = NULL;
   __pyx_t_7 = 0;
@@ -10189,7 +11512,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_float_0_0, __pyx_t_4};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -10198,14 +11521,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_float_0_0, __pyx_t_4};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -10216,14 +11539,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_9 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_9 = PyObject_Length(__pyx_t_2); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_t_9 - 1.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 419, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_t_9 - 1.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_5 = NULL;
   __pyx_t_7 = 0;
@@ -10240,7 +11563,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_float_0_0, __pyx_t_2};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -10249,14 +11572,14 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_float_0_0, __pyx_t_2};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -10267,42 +11590,40 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":420
- *         def FlushTest():
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')             # <<<<<<<<<<<<<<
- *             datas = self.cursor.fetchall()
- *             for data in datas:#
+  /* "cpa700.py":489
+ *     def FlushData(self):
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')             # <<<<<<<<<<<<<<
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 420, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_execute); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__93, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__102, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":421
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')
- *             datas = self.cursor.fetchall()             # <<<<<<<<<<<<<<
- *             for data in datas:#
- *                 self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
+  /* "cpa700.py":490
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')
+ *         datas = self.cursor.fetchall()             # <<<<<<<<<<<<<<
+ *         for data in datas:#
+ *             self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
  */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 421, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 421, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -10316,47 +11637,47 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_datas = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cpa700.py":422
- *             self.cursor.execute('select * from monery')
- *             datas = self.cursor.fetchall()
- *             for data in datas:#             # <<<<<<<<<<<<<<
- *                 self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
+  /* "cpa700.py":491
+ *         self.cursor.execute('select * from monery')
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#             # <<<<<<<<<<<<<<
+ *             self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
  * 
  */
   if (likely(PyList_CheckExact(__pyx_v_datas)) || PyTuple_CheckExact(__pyx_v_datas)) {
     __pyx_t_1 = __pyx_v_datas; __Pyx_INCREF(__pyx_t_1); __pyx_t_9 = 0;
     __pyx_t_10 = NULL;
   } else {
-    __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
+    __pyx_t_9 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 422, __pyx_L1_error)
+    __pyx_t_10 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 491, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_10)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_8 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_8 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
         #else
-        __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 491, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         #endif
       } else {
         if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_9); __Pyx_INCREF(__pyx_t_8); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
         #else
-        __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_8 = PySequence_ITEM(__pyx_t_1, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 491, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         #endif
       }
@@ -10366,7 +11687,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 422, __pyx_L1_error)
+          else __PYX_ERR(0, 491, __pyx_L1_error)
         }
         break;
       }
@@ -10375,86 +11696,85 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     __Pyx_XDECREF_SET(__pyx_v_data, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "cpa700.py":423
- *             datas = self.cursor.fetchall()
- *             for data in datas:#
- *                 self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")             # <<<<<<<<<<<<<<
+    /* "cpa700.py":492
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#
+ *             self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); __PYX_ERR(0, 423, __pyx_L1_error) }
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insert); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_INSERT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_kp_s__45); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_kp_s__45); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__45); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_kp_s__45); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_data, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_data, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_kp_s__45); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_kp_s__45); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_data, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_kp_s__52); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 423, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_kp_s__52); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 492, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -10472,7 +11792,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_5, __pyx_t_4};
-      __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 423, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 492, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -10482,7 +11802,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_5, __pyx_t_4};
-      __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 423, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 492, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -10490,7 +11810,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 492, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       if (__pyx_t_3) {
         __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -10501,29 +11821,29 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
       PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_7, __pyx_t_4);
       __pyx_t_5 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 423, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 492, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "cpa700.py":422
- *             self.cursor.execute('select * from monery')
- *             datas = self.cursor.fetchall()
- *             for data in datas:#             # <<<<<<<<<<<<<<
- *                 self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
+    /* "cpa700.py":491
+ *         self.cursor.execute('select * from monery')
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#             # <<<<<<<<<<<<<<
+ *             self.text.insert(tk.INSERT, str(data[0]) + "=" + str(data[1]) + "=" + str(data[2]) + "=" + str(data[3]) + "\n")
  * 
  */
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":418
- *             print(self.bookChosen.get())
+  /* "cpa700.py":487
+ *         print(self.bookChosen.get())
  * 
- *         def FlushTest():             # <<<<<<<<<<<<<<
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')
+ *     def FlushData(self):             # <<<<<<<<<<<<<<
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')
  */
 
   /* function exit code */
@@ -10537,7 +11857,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cpa700.Application.createTab1.FlushTest", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cpa700.Application.FlushData", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_datas);
@@ -10547,1188 +11867,7 @@ static PyObject *__pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(PyObject
   return __pyx_r;
 }
 
-/* "cpa700.py":319
- *         self.createTab1()
- * 
- *     def createTab1(self):             # <<<<<<<<<<<<<<
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- */
-
-static PyObject *__pyx_pf_6cpa700_11Application_4createTab1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_cur_scope;
-  PyObject *__pyx_v_clickMe = 0;
-  PyObject *__pyx_v_save = 0;
-  PyObject *__pyx_v_Chosen = 0;
-  PyObject *__pyx_v_child = NULL;
-  PyObject *__pyx_v_datas = NULL;
-  PyObject *__pyx_v_data = NULL;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  Py_ssize_t __pyx_t_7;
-  PyObject *(*__pyx_t_8)(PyObject *);
-  PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  __Pyx_RefNannySetupContext("createTab1", 0);
-  __pyx_cur_scope = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)__pyx_tp_new_6cpa700___pyx_scope_struct_1_createTab1(__pyx_ptype_6cpa700___pyx_scope_struct_1_createTab1, __pyx_empty_tuple, NULL);
-  if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)Py_None);
-    __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 319, __pyx_L1_error)
-  } else {
-    __Pyx_GOTREF(__pyx_cur_scope);
-  }
-  __pyx_cur_scope->__pyx_v_self = __pyx_v_self;
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_self);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_self);
-
-  /* "cpa700.py":322
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- *         def clickMe():             # <<<<<<<<<<<<<<
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
- */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_10createTab1_1clickMe, 0, __pyx_n_s_Application_createTab1_locals_cl, ((PyObject*)__pyx_cur_scope), __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__95)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_clickMe = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "cpa700.py":373
- *                 self.thread.start()
- * 
- *         def save():             # <<<<<<<<<<<<<<
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
- */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_10createTab1_3save, 0, __pyx_n_s_Application_createTab1_locals_sa, ((PyObject*)__pyx_cur_scope), __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__97)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_save = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "cpa700.py":415
- * 
- * 
- *         def Chosen(*args):             # <<<<<<<<<<<<<<
- *             print(self.bookChosen.get())
- * 
- */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_10createTab1_5Chosen, 0, __pyx_n_s_Application_createTab1_locals_Ch, ((PyObject*)__pyx_cur_scope), __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__99)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_Chosen = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "cpa700.py":418
- *             print(self.bookChosen.get())
- * 
- *         def FlushTest():             # <<<<<<<<<<<<<<
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')
- */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_10createTab1_7FlushTest, 0, __pyx_n_s_Application_createTab1_locals_Fl, ((PyObject*)__pyx_cur_scope), __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__101)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_cur_scope->__pyx_v_FlushTest = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "cpa700.py":427
- * 
- *         # We are creating a container tab3 to hold all other widgets
- *         self.monty = ttk.LabelFrame(self.tab1, text='')             # <<<<<<<<<<<<<<
- *         self.monty.grid(column=0, row=0, padx=8, pady=4)
- *         #
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_LabelFrame); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_tab1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__102) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty, __pyx_t_4) < 0) __PYX_ERR(0, 427, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "cpa700.py":428
- *         # We are creating a container tab3 to hold all other widgets
- *         self.monty = ttk.LabelFrame(self.tab1, text='')
- *         self.monty.grid(column=0, row=0, padx=8, pady=4)             # <<<<<<<<<<<<<<
- *         #
- *         # Changing our Label
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 428, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 428, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_padx, __pyx_int_8) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_pady, __pyx_int_4) < 0) __PYX_ERR(0, 428, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 428, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "cpa700.py":431
- *         #
- *         # Changing our Label
- *         ttk.Label(self.monty, text=":").grid(column=0, row=0, sticky='W')             # <<<<<<<<<<<<<<
- * 
- *         # Adding a Textbox Entry widget
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
-  __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_text, __pyx_kp_s__103) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_grid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 431, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":434
- * 
- *         # Adding a Textbox Entry widget
- *         self.name = tk.StringVar()             # <<<<<<<<<<<<<<
- *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)
- *         self.nameEntered.grid(column=1, row=0, sticky='W')
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 434, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_StringVar); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_name, __pyx_t_1) < 0) __PYX_ERR(0, 434, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":435
- *         # Adding a Textbox Entry widget
- *         self.name = tk.StringVar()
- *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)             # <<<<<<<<<<<<<<
- *         self.nameEntered.grid(column=1, row=0, sticky='W')
- * 
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Entry); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_60) < 0) __PYX_ERR(0, 435, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_textvariable, __pyx_t_4) < 0) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_nameEntered, __pyx_t_4) < 0) __PYX_ERR(0, 435, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "cpa700.py":436
- *         self.name = tk.StringVar()
- *         self.nameEntered = ttk.Entry(self.monty, width=60, textvariable=self.name)
- *         self.nameEntered.grid(column=1, row=0, sticky='W')             # <<<<<<<<<<<<<<
- * 
- *         #
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 436, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 436, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_0) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 436, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":439
- * 
- *         #
- *         ttk.Label(self.monty, text=":").grid(column=0, row=1,sticky='W')             # <<<<<<<<<<<<<<
- *         # Adding a Combobox
- *         self.book = tk.StringVar()
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_text, __pyx_kp_s__104) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_1) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":441
- *         ttk.Label(self.monty, text=":").grid(column=0, row=1,sticky='W')
- *         # Adding a Combobox
- *         self.book = tk.StringVar()             # <<<<<<<<<<<<<<
- *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
- *         self.bookChosen['values'] = ('', '','','')
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 441, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_StringVar); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 441, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_book, __pyx_t_1) < 0) __PYX_ERR(0, 441, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":442
- *         # Adding a Combobox
- *         self.book = tk.StringVar()
- *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)             # <<<<<<<<<<<<<<
- *         self.bookChosen['values'] = ('', '','','')
- *         self.bookChosen.grid(column=1, row=1, sticky='W')
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Combobox); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_60) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_book); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_textvariable, __pyx_t_4) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen, __pyx_t_4) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "cpa700.py":443
- *         self.book = tk.StringVar()
- *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
- *         self.bookChosen['values'] = ('', '','','')             # <<<<<<<<<<<<<<
- *         self.bookChosen.grid(column=1, row=1, sticky='W')
- *         self.bookChosen.current(0)  #['values']
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 443, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely(PyObject_SetItem(__pyx_t_4, __pyx_n_s_values, __pyx_tuple__105) < 0)) __PYX_ERR(0, 443, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "cpa700.py":444
- *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
- *         self.bookChosen['values'] = ('', '','','')
- *         self.bookChosen.grid(column=1, row=1, sticky='W')             # <<<<<<<<<<<<<<
- *         self.bookChosen.current(0)  #['values']
- *         self.bookChosen.config(state='readonly')  #
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 444, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 444, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_1) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 444, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "cpa700.py":445
- *         self.bookChosen['values'] = ('', '','','')
- *         self.bookChosen.grid(column=1, row=1, sticky='W')
- *         self.bookChosen.current(0)  #['values']             # <<<<<<<<<<<<<<
- *         self.bookChosen.config(state='readonly')  #
- *         self.bookChosen.bind("<<ComboboxSelected>>", Chosen)
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 445, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_current); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 445, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__106, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 445, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "cpa700.py":446
- *         self.bookChosen.grid(column=1, row=1, sticky='W')
- *         self.bookChosen.current(0)  #['values']
- *         self.bookChosen.config(state='readonly')  #             # <<<<<<<<<<<<<<
- *         self.bookChosen.bind("<<ComboboxSelected>>", Chosen)
- * 
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_config); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 446, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_state, __pyx_n_s_readonly) < 0) __PYX_ERR(0, 446, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":447
- *         self.bookChosen.current(0)  #['values']
- *         self.bookChosen.config(state='readonly')  #
- *         self.bookChosen.bind("<<ComboboxSelected>>", Chosen)             # <<<<<<<<<<<<<<
- * 
- *         # Using a scrolled Text control
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_bookChosen); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 447, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_bind); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = NULL;
-  __pyx_t_5 = 0;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_5 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_4)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_kp_s_ComboboxSelected, __pyx_v_Chosen};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_kp_s_ComboboxSelected, __pyx_v_Chosen};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else
-  #endif
-  {
-    __pyx_t_2 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 447, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (__pyx_t_3) {
-      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
-    }
-    __Pyx_INCREF(__pyx_kp_s_ComboboxSelected);
-    __Pyx_GIVEREF(__pyx_kp_s_ComboboxSelected);
-    PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_5, __pyx_kp_s_ComboboxSelected);
-    __Pyx_INCREF(__pyx_v_Chosen);
-    __Pyx_GIVEREF(__pyx_v_Chosen);
-    PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_5, __pyx_v_Chosen);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":450
- * 
- *         # Using a scrolled Text control
- *         self.scrolW = 80             # <<<<<<<<<<<<<<
- *         self.scrolH = 10
- *         #
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolW, __pyx_int_80) < 0) __PYX_ERR(0, 450, __pyx_L1_error)
-
-  /* "cpa700.py":451
- *         # Using a scrolled Text control
- *         self.scrolW = 80
- *         self.scrolH = 10             # <<<<<<<<<<<<<<
- *         #
- *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolH, __pyx_int_10) < 0) __PYX_ERR(0, 451, __pyx_L1_error)
-
-  /* "cpa700.py":453
- *         self.scrolH = 10
- *         #
- *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')             # <<<<<<<<<<<<<<
- *         #
- *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Label); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__107) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_2) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":455
- *         ttk.Label(self.monty, text="(===)").grid(column=0, row=2,sticky='W')
- *         #
- *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)             # <<<<<<<<<<<<<<
- *         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)
- *         #
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_scrolledtext); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_ScrolledText); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_width, __pyx_t_4) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolH); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_height, __pyx_t_4) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_WORD); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_wrap, __pyx_t_6) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text, __pyx_t_6) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-  /* "cpa700.py":456
- *         #
- *         self.text = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
- *         self.text.grid(column=0, row=3, sticky='WE', columnspan=3)             # <<<<<<<<<<<<<<
- *         #
- *         # Adding a Button
- */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_text); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 456, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 456, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 456, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_row, __pyx_int_3) < 0) __PYX_ERR(0, 456, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_sticky, __pyx_n_s_WE) < 0) __PYX_ERR(0, 456, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_columnspan, __pyx_int_3) < 0) __PYX_ERR(0, 456, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":459
- *         #
- *         # Adding a Button
- *         self.btaction = ttk.Button(self.monty,text="",width=10,command=save).grid(column=1,row=4,sticky='E')             # <<<<<<<<<<<<<<
- * 
- *         #
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Button); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_text, __pyx_kp_s__108) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_int_10) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_command, __pyx_v_save) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_row, __pyx_int_4) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_sticky, __pyx_n_s_E) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction, __pyx_t_2) < 0) __PYX_ERR(0, 459, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":462
- * 
- *         #
- *         ttk.Label(self.monty, text=":").grid(column=0, row=5,sticky='W')             # <<<<<<<<<<<<<<
- *         #
- *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Label); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_text, __pyx_kp_s__109) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_row, __pyx_int_5) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_sticky, __pyx_n_s_W) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":464
- *         ttk.Label(self.monty, text=":").grid(column=0, row=5,sticky='W')
- *         #
- *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)             # <<<<<<<<<<<<<<
- *         self.textlog.grid(column=0, row=6, sticky='WE', columnspan=3)
- *         #
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_scrolledtext); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_ScrolledText); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolW); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_width, __pyx_t_3) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_scrolH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_height, __pyx_t_3) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_WORD); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_wrap, __pyx_t_4) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_textlog, __pyx_t_4) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-  /* "cpa700.py":465
- *         #
- *         self.textlog = scrolledtext.ScrolledText(self.monty, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
- *         self.textlog.grid(column=0, row=6, sticky='WE', columnspan=3)             # <<<<<<<<<<<<<<
- *         #
- *         # Adding a Button
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_textlog); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 465, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_grid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 465, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 465, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_column, __pyx_int_0) < 0) __PYX_ERR(0, 465, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_row, __pyx_int_6) < 0) __PYX_ERR(0, 465, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_sticky, __pyx_n_s_WE) < 0) __PYX_ERR(0, 465, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_columnspan, __pyx_int_3) < 0) __PYX_ERR(0, 465, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 465, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":468
- *         #
- *         # Adding a Button
- *         self.btaction = ttk.Button(self.monty,text="",width=10,command=clickMe)             # <<<<<<<<<<<<<<
- *         self.btaction.grid(column=1,row=7,sticky='E')
- *         #
- */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_ttk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Button); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_text, __pyx_kp_s__78) < 0) __PYX_ERR(0, 468, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_width, __pyx_int_10) < 0) __PYX_ERR(0, 468, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_command, __pyx_v_clickMe) < 0) __PYX_ERR(0, 468, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction, __pyx_t_6) < 0) __PYX_ERR(0, 468, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-  /* "cpa700.py":469
- *         # Adding a Button
- *         self.btaction = ttk.Button(self.monty,text="",width=10,command=clickMe)
- *         self.btaction.grid(column=1,row=7,sticky='E')             # <<<<<<<<<<<<<<
- *         #
- *         for child in self.monty.winfo_children():
- */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_btaction); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 469, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_grid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 469, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 469, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_column, __pyx_int_1) < 0) __PYX_ERR(0, 469, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_row, __pyx_int_7) < 0) __PYX_ERR(0, 469, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_sticky, __pyx_n_s_E) < 0) __PYX_ERR(0, 469, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 469, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "cpa700.py":471
- *         self.btaction.grid(column=1,row=7,sticky='E')
- *         #
- *         for child in self.monty.winfo_children():             # <<<<<<<<<<<<<<
- *             child.grid_configure(padx=3,pady=1)
- *         #
- */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_monty); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 471, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_winfo_children); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 471, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_6);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-    }
-  }
-  if (__pyx_t_6) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
-    __pyx_t_8 = NULL;
-  } else {
-    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 471, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 471, __pyx_L1_error)
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  for (;;) {
-    if (likely(!__pyx_t_8)) {
-      if (likely(PyList_CheckExact(__pyx_t_2))) {
-        if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 471, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      } else {
-        if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 471, __pyx_L1_error)
-        #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        #endif
-      }
-    } else {
-      __pyx_t_1 = __pyx_t_8(__pyx_t_2);
-      if (unlikely(!__pyx_t_1)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 471, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_1);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
-    __pyx_t_1 = 0;
-
-    /* "cpa700.py":472
- *         #
- *         for child in self.monty.winfo_children():
- *             child.grid_configure(padx=3,pady=1)             # <<<<<<<<<<<<<<
- *         #
- *         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_grid_configure); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 472, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_padx, __pyx_int_3) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_pady, __pyx_int_1) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 472, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-    /* "cpa700.py":471
- *         self.btaction.grid(column=1,row=7,sticky='E')
- *         #
- *         for child in self.monty.winfo_children():             # <<<<<<<<<<<<<<
- *             child.grid_configure(padx=3,pady=1)
- *         #
- */
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":476
- *         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
- *         #---------------Tab1------------------#
- *         FlushTest()             # <<<<<<<<<<<<<<
- * 
- *         self.cursor.execute('select * from users')
- */
-  __pyx_t_2 = __pyx_pf_6cpa700_11Application_10createTab1_6FlushTest(__pyx_cur_scope->__pyx_v_FlushTest); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 476, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":478
- *         FlushTest()
- * 
- *         self.cursor.execute('select * from users')             # <<<<<<<<<<<<<<
- *         datas = self.cursor.fetchall()
- *         for data in datas:#
- */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_execute); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 478, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__110, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":479
- * 
- *         self.cursor.execute('select * from users')
- *         datas = self.cursor.fetchall()             # <<<<<<<<<<<<<<
- *         for data in datas:#
- *             self.nameEntered.insert(END, str(data[0]))
- */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_cursor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 479, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_fetchall); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 479, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_6);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_6, function);
-    }
-  }
-  if (__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 479, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  } else {
-    __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 479, __pyx_L1_error)
-  }
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_v_datas = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "cpa700.py":480
- *         self.cursor.execute('select * from users')
- *         datas = self.cursor.fetchall()
- *         for data in datas:#             # <<<<<<<<<<<<<<
- *             self.nameEntered.insert(END, str(data[0]))
- * 
- */
-  if (likely(PyList_CheckExact(__pyx_v_datas)) || PyTuple_CheckExact(__pyx_v_datas)) {
-    __pyx_t_2 = __pyx_v_datas; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
-    __pyx_t_8 = NULL;
-  } else {
-    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_datas); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 480, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 480, __pyx_L1_error)
-  }
-  for (;;) {
-    if (likely(!__pyx_t_8)) {
-      if (likely(PyList_CheckExact(__pyx_t_2))) {
-        if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 480, __pyx_L1_error)
-        #else
-        __pyx_t_6 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 480, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
-        #endif
-      } else {
-        if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_6); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 480, __pyx_L1_error)
-        #else
-        __pyx_t_6 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 480, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
-        #endif
-      }
-    } else {
-      __pyx_t_6 = __pyx_t_8(__pyx_t_2);
-      if (unlikely(!__pyx_t_6)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 480, __pyx_L1_error)
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_6);
-    }
-    __Pyx_XDECREF_SET(__pyx_v_data, __pyx_t_6);
-    __pyx_t_6 = 0;
-
-    /* "cpa700.py":481
- *         datas = self.cursor.fetchall()
- *         for data in datas:#
- *             self.nameEntered.insert(END, str(data[0]))             # <<<<<<<<<<<<<<
- * 
- * 
- */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_self, __pyx_n_s_nameEntered); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_insert); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_END); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_data, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_9 = PyTuple_New(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_3);
-    __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)(&PyString_Type)), __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 481, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = NULL;
-    __pyx_t_5 = 0;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_9)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_9);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
-        __pyx_t_5 = 1;
-      }
-    }
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_1)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_4, __pyx_t_3};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 481, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    } else
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_4, __pyx_t_3};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 481, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    } else
-    #endif
-    {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 481, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      if (__pyx_t_9) {
-        __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __pyx_t_9 = NULL;
-      }
-      __Pyx_GIVEREF(__pyx_t_4);
-      PyTuple_SET_ITEM(__pyx_t_10, 0+__pyx_t_5, __pyx_t_4);
-      __Pyx_GIVEREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_5, __pyx_t_3);
-      __pyx_t_4 = 0;
-      __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 481, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-    /* "cpa700.py":480
- *         self.cursor.execute('select * from users')
- *         datas = self.cursor.fetchall()
- *         for data in datas:#             # <<<<<<<<<<<<<<
- *             self.nameEntered.insert(END, str(data[0]))
- * 
- */
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "cpa700.py":319
- *         self.createTab1()
- * 
- *     def createTab1(self):             # <<<<<<<<<<<<<<
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cpa700.Application.createTab1", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_clickMe);
-  __Pyx_XDECREF(__pyx_v_save);
-  __Pyx_XDECREF(__pyx_v_Chosen);
-  __Pyx_XDECREF(__pyx_v_child);
-  __Pyx_XDECREF(__pyx_v_datas);
-  __Pyx_XDECREF(__pyx_v_data);
-  __Pyx_DECREF(((PyObject *)__pyx_cur_scope));
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "cpa700.py":484
+/* "cpa700.py":496
  * 
  * 
  * def main():             # <<<<<<<<<<<<<<
@@ -11759,14 +11898,14 @@ static PyObject *__pyx_pf_6cpa700_main(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("main", 0);
 
-  /* "cpa700.py":485
+  /* "cpa700.py":497
  * 
  * def main():
  *     app = Application()             # <<<<<<<<<<<<<<
  *     app.title("cpa700 ")
  *     app.resizable(0,0) #Python GUI
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Application); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 485, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_Application); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 497, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -11779,52 +11918,52 @@ static PyObject *__pyx_pf_6cpa700_main(CYTHON_UNUSED PyObject *__pyx_self) {
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 497, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 497, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_app = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cpa700.py":486
+  /* "cpa700.py":498
  * def main():
  *     app = Application()
  *     app.title("cpa700 ")             # <<<<<<<<<<<<<<
  *     app.resizable(0,0) #Python GUI
  *     # :
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_title); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_title); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__111, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 486, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__103, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 498, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cpa700.py":487
+  /* "cpa700.py":499
  *     app = Application()
  *     app.title("cpa700 ")
  *     app.resizable(0,0) #Python GUI             # <<<<<<<<<<<<<<
  *     # :
  *     app.mainloop()
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_resizable); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 487, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_resizable); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__112, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 487, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__104, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":489
+  /* "cpa700.py":501
  *     app.resizable(0,0) #Python GUI
  *     # :
  *     app.mainloop()             # <<<<<<<<<<<<<<
  * 
  * if __name__ == "__main__":
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_mainloop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_app, __pyx_n_s_mainloop); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -11837,16 +11976,16 @@ static PyObject *__pyx_pf_6cpa700_main(CYTHON_UNUSED PyObject *__pyx_self) {
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":484
+  /* "cpa700.py":496
  * 
  * 
  * def main():             # <<<<<<<<<<<<<<
@@ -11974,117 +12113,6 @@ static PyTypeObject __pyx_type_6cpa700___pyx_scope_struct__run = {
   #endif
 };
 
-static struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *__pyx_freelist_6cpa700___pyx_scope_struct_1_createTab1[8];
-static int __pyx_freecount_6cpa700___pyx_scope_struct_1_createTab1 = 0;
-
-static PyObject *__pyx_tp_new_6cpa700___pyx_scope_struct_1_createTab1(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  PyObject *o;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_6cpa700___pyx_scope_struct_1_createTab1 > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1)))) {
-    o = (PyObject*)__pyx_freelist_6cpa700___pyx_scope_struct_1_createTab1[--__pyx_freecount_6cpa700___pyx_scope_struct_1_createTab1];
-    memset(o, 0, sizeof(struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1));
-    (void) PyObject_INIT(o, t);
-    PyObject_GC_Track(o);
-  } else {
-    o = (*t->tp_alloc)(t, 0);
-    if (unlikely(!o)) return 0;
-  }
-  return o;
-}
-
-static void __pyx_tp_dealloc_6cpa700___pyx_scope_struct_1_createTab1(PyObject *o) {
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *p = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)o;
-  PyObject_GC_UnTrack(o);
-  Py_CLEAR(p->__pyx_v_FlushTest);
-  Py_CLEAR(p->__pyx_v_self);
-  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_6cpa700___pyx_scope_struct_1_createTab1 < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1)))) {
-    __pyx_freelist_6cpa700___pyx_scope_struct_1_createTab1[__pyx_freecount_6cpa700___pyx_scope_struct_1_createTab1++] = ((struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)o);
-  } else {
-    (*Py_TYPE(o)->tp_free)(o);
-  }
-}
-
-static int __pyx_tp_traverse_6cpa700___pyx_scope_struct_1_createTab1(PyObject *o, visitproc v, void *a) {
-  int e;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *p = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)o;
-  if (p->__pyx_v_FlushTest) {
-    e = (*v)(p->__pyx_v_FlushTest, a); if (e) return e;
-  }
-  if (p->__pyx_v_self) {
-    e = (*v)(p->__pyx_v_self, a); if (e) return e;
-  }
-  return 0;
-}
-
-static int __pyx_tp_clear_6cpa700___pyx_scope_struct_1_createTab1(PyObject *o) {
-  PyObject* tmp;
-  struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *p = (struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1 *)o;
-  tmp = ((PyObject*)p->__pyx_v_FlushTest);
-  p->__pyx_v_FlushTest = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->__pyx_v_self);
-  p->__pyx_v_self = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  return 0;
-}
-
-static PyTypeObject __pyx_type_6cpa700___pyx_scope_struct_1_createTab1 = {
-  PyVarObject_HEAD_INIT(0, 0)
-  "cpa700.__pyx_scope_struct_1_createTab1", /*tp_name*/
-  sizeof(struct __pyx_obj_6cpa700___pyx_scope_struct_1_createTab1), /*tp_basicsize*/
-  0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cpa700___pyx_scope_struct_1_createTab1, /*tp_dealloc*/
-  0, /*tp_print*/
-  0, /*tp_getattr*/
-  0, /*tp_setattr*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*tp_compare*/
-  #endif
-  #if PY_MAJOR_VERSION >= 3
-  0, /*tp_as_async*/
-  #endif
-  0, /*tp_repr*/
-  0, /*tp_as_number*/
-  0, /*tp_as_sequence*/
-  0, /*tp_as_mapping*/
-  0, /*tp_hash*/
-  0, /*tp_call*/
-  0, /*tp_str*/
-  0, /*tp_getattro*/
-  0, /*tp_setattro*/
-  0, /*tp_as_buffer*/
-  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  0, /*tp_doc*/
-  __pyx_tp_traverse_6cpa700___pyx_scope_struct_1_createTab1, /*tp_traverse*/
-  __pyx_tp_clear_6cpa700___pyx_scope_struct_1_createTab1, /*tp_clear*/
-  0, /*tp_richcompare*/
-  0, /*tp_weaklistoffset*/
-  0, /*tp_iter*/
-  0, /*tp_iternext*/
-  0, /*tp_methods*/
-  0, /*tp_members*/
-  0, /*tp_getset*/
-  0, /*tp_base*/
-  0, /*tp_dict*/
-  0, /*tp_descr_get*/
-  0, /*tp_descr_set*/
-  0, /*tp_dictoffset*/
-  0, /*tp_init*/
-  0, /*tp_alloc*/
-  __pyx_tp_new_6cpa700___pyx_scope_struct_1_createTab1, /*tp_new*/
-  0, /*tp_free*/
-  0, /*tp_is_gc*/
-  0, /*tp_bases*/
-  0, /*tp_mro*/
-  0, /*tp_cache*/
-  0, /*tp_subclasses*/
-  0, /*tp_weaklist*/
-  0, /*tp_del*/
-  0, /*tp_version_tag*/
-  #if PY_VERSION_HEX >= 0x030400a1
-  0, /*tp_finalize*/
-  #endif
-};
-
 static PyMethodDef __pyx_methods[] = {
   {0, 0, 0, 0}
 };
@@ -12099,7 +12127,6 @@ static int __pyx_import_star_set(PyObject *o, PyObject* py_name, char *name) {
     "__pyx_ctuple_long__and_long",
     "__pyx_ctuple_long__and_long_struct",
     "__pyx_ctuple_long_struct",
-    "__pyx_scope_struct_1_createTab1",
     "__pyx_scope_struct__run",
     0
   };
@@ -12384,13 +12411,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_1_money, __pyx_k_1_money, sizeof(__pyx_k_1_money), 0, 0, 1, 0},
   {&__pyx_kp_s_2_money, __pyx_k_2_money, sizeof(__pyx_k_2_money), 0, 0, 1, 0},
   {&__pyx_n_s_Application, __pyx_k_Application, sizeof(__pyx_k_Application), 0, 0, 1, 1},
+  {&__pyx_n_s_Application_Chosen, __pyx_k_Application_Chosen, sizeof(__pyx_k_Application_Chosen), 0, 0, 1, 1},
+  {&__pyx_n_s_Application_FlushData, __pyx_k_Application_FlushData, sizeof(__pyx_k_Application_FlushData), 0, 0, 1, 1},
   {&__pyx_n_s_Application___init, __pyx_k_Application___init, sizeof(__pyx_k_Application___init), 0, 0, 1, 1},
+  {&__pyx_n_s_Application_clickMe, __pyx_k_Application_clickMe, sizeof(__pyx_k_Application_clickMe), 0, 0, 1, 1},
   {&__pyx_n_s_Application_createTab1, __pyx_k_Application_createTab1, sizeof(__pyx_k_Application_createTab1), 0, 0, 1, 1},
-  {&__pyx_n_s_Application_createTab1_locals_Ch, __pyx_k_Application_createTab1_locals_Ch, sizeof(__pyx_k_Application_createTab1_locals_Ch), 0, 0, 1, 1},
-  {&__pyx_n_s_Application_createTab1_locals_Fl, __pyx_k_Application_createTab1_locals_Fl, sizeof(__pyx_k_Application_createTab1_locals_Fl), 0, 0, 1, 1},
-  {&__pyx_n_s_Application_createTab1_locals_cl, __pyx_k_Application_createTab1_locals_cl, sizeof(__pyx_k_Application_createTab1_locals_cl), 0, 0, 1, 1},
-  {&__pyx_n_s_Application_createTab1_locals_sa, __pyx_k_Application_createTab1_locals_sa, sizeof(__pyx_k_Application_createTab1_locals_sa), 0, 0, 1, 1},
   {&__pyx_n_s_Application_createWidgets, __pyx_k_Application_createWidgets, sizeof(__pyx_k_Application_createWidgets), 0, 0, 1, 1},
+  {&__pyx_n_s_Application_save, __pyx_k_Application_save, sizeof(__pyx_k_Application_save), 0, 0, 1, 1},
   {&__pyx_kp_s_BaLL_Idx, __pyx_k_BaLL_Idx, sizeof(__pyx_k_BaLL_Idx), 0, 0, 1, 0},
   {&__pyx_n_s_BaLL_Idx_2, __pyx_k_BaLL_Idx_2, sizeof(__pyx_k_BaLL_Idx_2), 0, 0, 1, 1},
   {&__pyx_n_s_BaLL_Idx_3, __pyx_k_BaLL_Idx_3, sizeof(__pyx_k_BaLL_Idx_3), 0, 0, 1, 1},
@@ -12420,7 +12447,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_E, __pyx_k_E, sizeof(__pyx_k_E), 0, 0, 1, 1},
   {&__pyx_n_s_END, __pyx_k_END, sizeof(__pyx_k_END), 0, 0, 1, 1},
   {&__pyx_n_s_Entry, __pyx_k_Entry, sizeof(__pyx_k_Entry), 0, 0, 1, 1},
-  {&__pyx_n_s_FlushTest, __pyx_k_FlushTest, sizeof(__pyx_k_FlushTest), 0, 0, 1, 1},
+  {&__pyx_kp_s_Exception_s, __pyx_k_Exception_s, sizeof(__pyx_k_Exception_s), 0, 0, 1, 0},
+  {&__pyx_n_s_FlushData, __pyx_k_FlushData, sizeof(__pyx_k_FlushData), 0, 0, 1, 1},
   {&__pyx_n_s_Frame, __pyx_k_Frame, sizeof(__pyx_k_Frame), 0, 0, 1, 1},
   {&__pyx_n_s_HTTPCookieProcessor, __pyx_k_HTTPCookieProcessor, sizeof(__pyx_k_HTTPCookieProcessor), 0, 0, 1, 1},
   {&__pyx_n_s_HTTPError, __pyx_k_HTTPError, sizeof(__pyx_k_HTTPError), 0, 0, 1, 1},
@@ -12457,13 +12485,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_WE, __pyx_k_WE, sizeof(__pyx_k_WE), 0, 0, 1, 1},
   {&__pyx_n_s_WORD, __pyx_k_WORD, sizeof(__pyx_k_WORD), 0, 0, 1, 1},
   {&__pyx_n_s_Win, __pyx_k_Win, sizeof(__pyx_k_Win), 0, 0, 1, 1},
-  {&__pyx_kp_s__102, __pyx_k__102, sizeof(__pyx_k__102), 0, 0, 1, 0},
-  {&__pyx_kp_s__103, __pyx_k__103, sizeof(__pyx_k__103), 0, 0, 1, 0},
-  {&__pyx_kp_s__104, __pyx_k__104, sizeof(__pyx_k__104), 0, 0, 1, 0},
-  {&__pyx_kp_s__107, __pyx_k__107, sizeof(__pyx_k__107), 0, 0, 1, 0},
-  {&__pyx_kp_s__108, __pyx_k__108, sizeof(__pyx_k__108), 0, 0, 1, 0},
-  {&__pyx_kp_s__109, __pyx_k__109, sizeof(__pyx_k__109), 0, 0, 1, 0},
-  {&__pyx_n_s__113, __pyx_k__113, sizeof(__pyx_k__113), 0, 0, 1, 1},
+  {&__pyx_kp_s__100, __pyx_k__100, sizeof(__pyx_k__100), 0, 0, 1, 0},
+  {&__pyx_n_s__105, __pyx_k__105, sizeof(__pyx_k__105), 0, 0, 1, 1},
   {&__pyx_kp_s__15, __pyx_k__15, sizeof(__pyx_k__15), 0, 0, 1, 0},
   {&__pyx_kp_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 0},
   {&__pyx_kp_s__45, __pyx_k__45, sizeof(__pyx_k__45), 0, 0, 1, 0},
@@ -12474,17 +12497,22 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s__51, __pyx_k__51, sizeof(__pyx_k__51), 0, 0, 1, 0},
   {&__pyx_kp_s__52, __pyx_k__52, sizeof(__pyx_k__52), 0, 0, 1, 0},
   {&__pyx_kp_s__64, __pyx_k__64, sizeof(__pyx_k__64), 0, 0, 1, 0},
+  {&__pyx_kp_s__65, __pyx_k__65, sizeof(__pyx_k__65), 0, 0, 1, 0},
+  {&__pyx_kp_s__66, __pyx_k__66, sizeof(__pyx_k__66), 0, 0, 1, 0},
   {&__pyx_kp_s__67, __pyx_k__67, sizeof(__pyx_k__67), 0, 0, 1, 0},
-  {&__pyx_kp_s__68, __pyx_k__68, sizeof(__pyx_k__68), 0, 0, 1, 0},
   {&__pyx_kp_s__70, __pyx_k__70, sizeof(__pyx_k__70), 0, 0, 1, 0},
-  {&__pyx_kp_s__74, __pyx_k__74, sizeof(__pyx_k__74), 0, 0, 1, 0},
+  {&__pyx_kp_s__71, __pyx_k__71, sizeof(__pyx_k__71), 0, 0, 1, 0},
+  {&__pyx_kp_s__72, __pyx_k__72, sizeof(__pyx_k__72), 0, 0, 1, 0},
+  {&__pyx_kp_s__73, __pyx_k__73, sizeof(__pyx_k__73), 0, 0, 1, 0},
   {&__pyx_kp_s__77, __pyx_k__77, sizeof(__pyx_k__77), 0, 0, 1, 0},
   {&__pyx_kp_s__78, __pyx_k__78, sizeof(__pyx_k__78), 0, 0, 1, 0},
-  {&__pyx_kp_s__81, __pyx_k__81, sizeof(__pyx_k__81), 0, 0, 1, 0},
-  {&__pyx_kp_s__88, __pyx_k__88, sizeof(__pyx_k__88), 0, 0, 1, 0},
-  {&__pyx_kp_s__89, __pyx_k__89, sizeof(__pyx_k__89), 0, 0, 1, 0},
+  {&__pyx_kp_s__80, __pyx_k__80, sizeof(__pyx_k__80), 0, 0, 1, 0},
+  {&__pyx_kp_s__84, __pyx_k__84, sizeof(__pyx_k__84), 0, 0, 1, 0},
+  {&__pyx_kp_s__87, __pyx_k__87, sizeof(__pyx_k__87), 0, 0, 1, 0},
   {&__pyx_kp_s__90, __pyx_k__90, sizeof(__pyx_k__90), 0, 0, 1, 0},
-  {&__pyx_kp_s__91, __pyx_k__91, sizeof(__pyx_k__91), 0, 0, 1, 0},
+  {&__pyx_kp_s__97, __pyx_k__97, sizeof(__pyx_k__97), 0, 0, 1, 0},
+  {&__pyx_kp_s__98, __pyx_k__98, sizeof(__pyx_k__98), 0, 0, 1, 0},
+  {&__pyx_kp_s__99, __pyx_k__99, sizeof(__pyx_k__99), 0, 0, 1, 0},
   {&__pyx_n_s_accept, __pyx_k_accept, sizeof(__pyx_k_accept), 0, 0, 1, 1},
   {&__pyx_n_s_add, __pyx_k_add, sizeof(__pyx_k_add), 0, 0, 1, 1},
   {&__pyx_n_s_alert, __pyx_k_alert, sizeof(__pyx_k_alert), 0, 0, 1, 1},
@@ -12602,6 +12630,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_monery, __pyx_k_monery, sizeof(__pyx_k_monery), 0, 0, 1, 1},
   {&__pyx_n_s_monerys, __pyx_k_monerys, sizeof(__pyx_k_monerys), 0, 0, 1, 1},
   {&__pyx_n_s_monty, __pyx_k_monty, sizeof(__pyx_k_monty), 0, 0, 1, 1},
+  {&__pyx_n_s_msg, __pyx_k_msg, sizeof(__pyx_k_msg), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_nameEntered, __pyx_k_nameEntered, sizeof(__pyx_k_nameEntered), 0, 0, 1, 1},
   {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
@@ -12767,283 +12796,283 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "cpa700.py":92
+  /* "cpa700.py":95
  * 
  *                 while self.stopped != True:
  *                     time.sleep(5)             # <<<<<<<<<<<<<<
  *                     try:
  *                         driver.switch_to.default_content()
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_int_5); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_int_5); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "cpa700.py":99
+  /* "cpa700.py":102
  * 
  * 
  *                         frame2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2]")             # <<<<<<<<<<<<<<
  *                         driver.switch_to.frame(frame2)
  *                         #print("//[inserted by cython to avoid comment start]*[@id=\"fset1\"]/frame[2] current_url:" +
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_id_fset1_frame_2); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_id_fset1_frame_2); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "cpa700.py":106
+  /* "cpa700.py":109
  *                         #driver.title)
  * 
  *                         mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")             # <<<<<<<<<<<<<<
  *                         driver.switch_to.frame(mainFrame)
  *                         #print("/html/frameset/frameset/frame[2] current_url:"
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_html_frameset_frameset_frame_2); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_html_frameset_frameset_frame_2); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "cpa700.py":114
+  /* "cpa700.py":117
  * 
  *                         #<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text             # <<<<<<<<<<<<<<
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_id_Cur_Award_Issue); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_id_Cur_Award_Issue); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "cpa700.py":115
+  /* "cpa700.py":118
  *                         #<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No1); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No1); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "cpa700.py":116
+  /* "cpa700.py":119
  *                         Cur_Award_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Award_Issue\"]").text
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No2); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No2); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "cpa700.py":117
+  /* "cpa700.py":120
  *                         BaLL_No1 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No3); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No3); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_tuple__22 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "cpa700.py":118
+  /* "cpa700.py":121
  *                         BaLL_No2 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No4); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No4); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "cpa700.py":119
+  /* "cpa700.py":122
  *                         BaLL_No3 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No5); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No5); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
 
-  /* "cpa700.py":120
+  /* "cpa700.py":123
  *                         BaLL_No4 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No6); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No6); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "cpa700.py":121
+  /* "cpa700.py":124
  *                         BaLL_No5 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No7); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No7); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
-  __pyx_tuple__34 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_tuple__34 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
 
-  /* "cpa700.py":122
+  /* "cpa700.py":125
  *                         BaLL_No6 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  */
-  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No8); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No8); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__36);
   __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_tuple__37 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
 
-  /* "cpa700.py":123
+  /* "cpa700.py":126
  *                         BaLL_No7 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text
  */
-  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No9); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No9); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_GIVEREF(__pyx_tuple__38);
-  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__39);
   __Pyx_GIVEREF(__pyx_tuple__39);
-  __pyx_tuple__40 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_tuple__40 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__40);
   __Pyx_GIVEREF(__pyx_tuple__40);
 
-  /* "cpa700.py":124
+  /* "cpa700.py":127
  *                         BaLL_No8 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")             # <<<<<<<<<<<<<<
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text
  * 
  */
-  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No10); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_id_BaLL_No10); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
-  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_n_s_class); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
-  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(2, __pyx_n_s_No, __pyx_kp_s__15); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
 
-  /* "cpa700.py":125
+  /* "cpa700.py":128
  *                         BaLL_No9 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
  *                         BaLL_No10 = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
  *                         Cur_Issue = driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"Cur_Issue\"]").text             # <<<<<<<<<<<<<<
  * 
  *                         ##1
  */
-  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_id_Cur_Issue); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_id_Cur_Issue); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
 
-  /* "cpa700.py":149
+  /* "cpa700.py":152
  *                             if data[11] != None:
  *                                 Deal_Cur_Award_Issue = True
  *                                 items = data[11].split("=")             # <<<<<<<<<<<<<<
  *                                 if len(items) != 3:
  *                                     break
  */
-  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__46);
   __Pyx_GIVEREF(__pyx_tuple__46);
 
-  /* "cpa700.py":252
+  /* "cpa700.py":255
  *                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
  * 
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()
  *                                 time.sleep(2)
  */
-  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__53);
   __Pyx_GIVEREF(__pyx_tuple__53);
 
-  /* "cpa700.py":253
+  /* "cpa700.py":256
  * 
  *                                 time.sleep(2)
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()             # <<<<<<<<<<<<<<
  *                                 time.sleep(2)
  *                                 alert = driver.switch_to_alert()
  */
-  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_id_btn_order_2); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_id_btn_order_2); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__54);
   __Pyx_GIVEREF(__pyx_tuple__54);
 
-  /* "cpa700.py":254
+  /* "cpa700.py":257
  *                                 time.sleep(2)
  *                                 driver.find_element_by_xpath("//[inserted by cython to avoid comment start]*[@id=\"btn_order_2\"]").click()
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 alert = driver.switch_to_alert()
  *                                 time.sleep(2)
  */
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__55);
   __Pyx_GIVEREF(__pyx_tuple__55);
 
-  /* "cpa700.py":256
+  /* "cpa700.py":259
  *                                 time.sleep(2)
  *                                 alert = driver.switch_to_alert()
  *                                 time.sleep(2)             # <<<<<<<<<<<<<<
  *                                 alert.accept()
  *                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0])
  */
-  __pyx_tuple__56 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_tuple__56 = PyTuple_Pack(1, __pyx_int_2); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__56);
   __Pyx_GIVEREF(__pyx_tuple__56);
 
@@ -13054,366 +13083,318 @@ static int __Pyx_InitCachedConstants(void) {
  *             self.target.textlog.insert(tk.INSERT,'\n')
  *             conn = sqlite3.connect('cpa700.db')
  */
-  __pyx_tuple__57 = PyTuple_Pack(38, __pyx_n_s_conn, __pyx_n_s_cursor, __pyx_n_s_monerys, __pyx_n_s_driver, __pyx_n_s_PostUrl, __pyx_n_s_jump, __pyx_n_s_handles, __pyx_n_s_handle, __pyx_n_s_frame2, __pyx_n_s_mainFrame, __pyx_n_s_Cur_Award_Issue, __pyx_n_s_BaLL_No1, __pyx_n_s_BaLL_No2, __pyx_n_s_BaLL_No3, __pyx_n_s_BaLL_No4, __pyx_n_s_BaLL_No5, __pyx_n_s_BaLL_No6, __pyx_n_s_BaLL_No7, __pyx_n_s_BaLL_No8, __pyx_n_s_BaLL_No9, __pyx_n_s_BaLL_No10, __pyx_n_s_Cur_Issue, __pyx_n_s_sql, __pyx_n_s_BaLL_Idx_2, __pyx_n_s_Win, __pyx_n_s_Monery_Idx, __pyx_n_s_Have_Cur_Award_Issue, __pyx_n_s_Deal_Cur_Award_Issue, __pyx_n_s_datas, __pyx_n_s_data, __pyx_n_s_items, __pyx_n_s_BaLL_No, __pyx_n_s_Sel_Monery, __pyx_n_s_monery, __pyx_n_s_BaLL_Idx_3, __pyx_n_s_xpath, __pyx_n_s_alert, __pyx_n_s_tt); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_tuple__57 = PyTuple_Pack(39, __pyx_n_s_conn, __pyx_n_s_cursor, __pyx_n_s_monerys, __pyx_n_s_driver, __pyx_n_s_PostUrl, __pyx_n_s_jump, __pyx_n_s_handles, __pyx_n_s_handle, __pyx_n_s_msg, __pyx_n_s_frame2, __pyx_n_s_mainFrame, __pyx_n_s_Cur_Award_Issue, __pyx_n_s_BaLL_No1, __pyx_n_s_BaLL_No2, __pyx_n_s_BaLL_No3, __pyx_n_s_BaLL_No4, __pyx_n_s_BaLL_No5, __pyx_n_s_BaLL_No6, __pyx_n_s_BaLL_No7, __pyx_n_s_BaLL_No8, __pyx_n_s_BaLL_No9, __pyx_n_s_BaLL_No10, __pyx_n_s_Cur_Issue, __pyx_n_s_sql, __pyx_n_s_BaLL_Idx_2, __pyx_n_s_Win, __pyx_n_s_Monery_Idx, __pyx_n_s_Have_Cur_Award_Issue, __pyx_n_s_Deal_Cur_Award_Issue, __pyx_n_s_datas, __pyx_n_s_data, __pyx_n_s_items, __pyx_n_s_BaLL_No, __pyx_n_s_Sel_Monery, __pyx_n_s_monery, __pyx_n_s_BaLL_Idx_3, __pyx_n_s_xpath, __pyx_n_s_alert, __pyx_n_s_tt); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__57);
   __Pyx_GIVEREF(__pyx_tuple__57);
-  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(0, 0, 38, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_target_func, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(0, 0, 39, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_target_func, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(0, 49, __pyx_L1_error)
 
-  /* "cpa700.py":280
+  /* "cpa700.py":286
  *         self.target.textlog.insert(tk.INSERT,'Thread start\n')
  *         subthread = threading.Thread(target=target_func, args=())
  *         subthread.setDaemon(True)             # <<<<<<<<<<<<<<
  *         subthread.start()
  * 
  */
-  __pyx_tuple__59 = PyTuple_Pack(1, Py_True); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_tuple__59 = PyTuple_Pack(1, Py_True); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__59);
   __Pyx_GIVEREF(__pyx_tuple__59);
 
-  /* "cpa700.py":300
+  /* "cpa700.py":306
  *         self.thread = None
  *         try:
  *             self.conn = sqlite3.connect('cpa700.db')             # <<<<<<<<<<<<<<
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  */
-  __pyx_tuple__60 = PyTuple_Pack(1, __pyx_kp_s_cpa700_db); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_tuple__60 = PyTuple_Pack(1, __pyx_kp_s_cpa700_db); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__60);
   __Pyx_GIVEREF(__pyx_tuple__60);
 
-  /* "cpa700.py":302
+  /* "cpa700.py":308
  *             self.conn = sqlite3.connect('cpa700.db')
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')             # <<<<<<<<<<<<<<
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
  */
-  __pyx_tuple__61 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_data); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_tuple__61 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_data); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__61);
   __Pyx_GIVEREF(__pyx_tuple__61);
 
-  /* "cpa700.py":303
+  /* "cpa700.py":309
  *             self.cursor = self.conn.cursor()
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")             # <<<<<<<<<<<<<<
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")
- *         except:
+ *         except Exception as msg:
  */
-  __pyx_tuple__62 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_moner); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_tuple__62 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_moner); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__62);
   __Pyx_GIVEREF(__pyx_tuple__62);
 
-  /* "cpa700.py":304
+  /* "cpa700.py":310
  *             self.cursor.execute('CREATE TABLE IF NOT EXISTS \"data\" (\"issue\"  varchar(20),\"data1\"  INTEGER,\"data2\"  INTEGER,\"data3\"  INTEGER,\"data4\"  INTEGER,\"data5\"  INTEGER,\"data6\"  INTEGER,\"data7\"  INTEGER,\"data8\"  INTEGER,\"data9\"  INTEGER,\"data10\"  INTEGER,\"order\"  TEXT,\"win\"  INTEGER, PRIMARY KEY (\"issue\" ASC))')
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"monery\" (\"id\"  INTEGER NOT NULL,\"monery\"  INTEGER,\"win\"  INTEGER,\"loss\"  INTEGER,PRIMARY KEY (\"id\" ASC))")
  *             self.cursor.execute("CREATE TABLE IF NOT EXISTS \"users\" (\"username\"  TEXT(56)) ")             # <<<<<<<<<<<<<<
- *         except:
- *             pass
+ *         except Exception as msg:
+ *             print("Exception:%s" % msg)
  */
-  __pyx_tuple__63 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_users); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_tuple__63 = PyTuple_Pack(1, __pyx_kp_s_CREATE_TABLE_IF_NOT_EXISTS_users); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__63);
   __Pyx_GIVEREF(__pyx_tuple__63);
 
-  /* "cpa700.py":323
- *         # Modified Button Click Function
- *         def clickMe():
- *             self.cursor.execute('delete from users')             # <<<<<<<<<<<<<<
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
- *             self.conn.commit()
- */
-  __pyx_tuple__65 = PyTuple_Pack(1, __pyx_kp_s_delete_from_users); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(0, 323, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__65);
-  __Pyx_GIVEREF(__pyx_tuple__65);
-
-  /* "cpa700.py":327
- *             self.conn.commit()
- * 
- *             self.cursor.execute("select * from monery")             # <<<<<<<<<<<<<<
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:
- */
-  __pyx_tuple__66 = PyTuple_Pack(1, __pyx_kp_s_select_from_monery); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(0, 327, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__66);
-  __Pyx_GIVEREF(__pyx_tuple__66);
-
-  /* "cpa700.py":330
- *             monerys = self.cursor.fetchall()
- *             if len(monerys) == 0:
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- * 
- */
-  __pyx_tuple__69 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__68); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 330, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__69);
-  __Pyx_GIVEREF(__pyx_tuple__69);
-
-  /* "cpa700.py":345
- *                 #print('Error code: ' + str(e.code))
- *                 #print('Error reason: ' + e.reason)
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             except urllib.error.URLError as e:
- */
-  __pyx_tuple__71 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__70); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(0, 345, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__71);
-  __Pyx_GIVEREF(__pyx_tuple__71);
-
-  /* "cpa700.py":350
- *                 #print('We failed to reach a server.')
- *                 #print('Reason: ' + e.reason)
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             except:
- */
-  __pyx_tuple__72 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__70); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(0, 350, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__72);
-  __Pyx_GIVEREF(__pyx_tuple__72);
-
-  /* "cpa700.py":354
- *             except:
- *                 #print("error lineno:" + str(sys._getframe().f_lineno))
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- *             html = html.strip()
- */
-  __pyx_tuple__73 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__70); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(0, 354, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__73);
-  __Pyx_GIVEREF(__pyx_tuple__73);
-
-  /* "cpa700.py":359
- *             #print(html)
- *             if html != "1":
- *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                 return
- * 
- */
-  __pyx_tuple__75 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__74); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 359, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__75);
-  __Pyx_GIVEREF(__pyx_tuple__75);
-
-  /* "cpa700.py":362
- *                 return
- * 
- *             text = self.btaction.config('text')             # <<<<<<<<<<<<<<
- *             if  text[4] == '':
- *                 self.btaction.configure(text='')
- */
-  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_n_s_text); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 362, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__76);
-  __Pyx_GIVEREF(__pyx_tuple__76);
-
-  /* "cpa700.py":375
- *         def save():
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")             # <<<<<<<<<<<<<<
- *             for line1 in lines:
- *                 if line1 == "":
- */
-  __pyx_tuple__79 = PyTuple_Pack(1, __pyx_kp_s__52); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 375, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__79);
-  __Pyx_GIVEREF(__pyx_tuple__79);
-
-  /* "cpa700.py":379
- *                 if line1 == "":
- *                     continue
- *                 item1s = line1.split("=")             # <<<<<<<<<<<<<<
- *                 if len(item1s) != 4:
- *                     messagebox.showerror("","")
- */
-  __pyx_tuple__80 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(0, 379, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__80);
-  __Pyx_GIVEREF(__pyx_tuple__80);
-
-  /* "cpa700.py":381
- *                 item1s = line1.split("=")
- *                 if len(item1s) != 4:
- *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                     return
- *                 win = False
- */
-  __pyx_tuple__82 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__81); if (unlikely(!__pyx_tuple__82)) __PYX_ERR(0, 381, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__82);
-  __Pyx_GIVEREF(__pyx_tuple__82);
-
-  /* "cpa700.py":388
- *                     if line2 == "":
- *                         continue
- *                     item2s = line2.split("=")             # <<<<<<<<<<<<<<
- *                     if len(item2s) != 4:
- *                         messagebox.showerror("","")
- */
-  __pyx_tuple__83 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__83)) __PYX_ERR(0, 388, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__83);
-  __Pyx_GIVEREF(__pyx_tuple__83);
-
-  /* "cpa700.py":390
- *                     item2s = line2.split("=")
- *                     if len(item2s) != 4:
- *                         messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                         return
- *                     #
- */
-  __pyx_tuple__84 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__81); if (unlikely(!__pyx_tuple__84)) __PYX_ERR(0, 390, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__84);
-  __Pyx_GIVEREF(__pyx_tuple__84);
-
-  /* "cpa700.py":400
- * 
- *                 if win == False or lose == False:
- *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
- *                     return
- * 
- */
-  __pyx_tuple__85 = PyTuple_Pack(2, __pyx_kp_s__67, __pyx_kp_s__81); if (unlikely(!__pyx_tuple__85)) __PYX_ERR(0, 400, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__85);
-  __Pyx_GIVEREF(__pyx_tuple__85);
-
-  /* "cpa700.py":403
- *                     return
- * 
- *             self.cursor.execute('delete from monery')             # <<<<<<<<<<<<<<
- *             for line in lines:
- *                 items = line.split("=")
- */
-  __pyx_tuple__86 = PyTuple_Pack(1, __pyx_kp_s_delete_from_monery); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(0, 403, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__86);
-  __Pyx_GIVEREF(__pyx_tuple__86);
-
-  /* "cpa700.py":405
- *             self.cursor.execute('delete from monery')
- *             for line in lines:
- *                 items = line.split("=")             # <<<<<<<<<<<<<<
- *                 if len(items) != 4:
- *                     continue
- */
-  __pyx_tuple__87 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__87)) __PYX_ERR(0, 405, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__87);
-  __Pyx_GIVEREF(__pyx_tuple__87);
-
-  /* "cpa700.py":412
- *             self.conn.commit()
- *             FlushTest()
- *             messagebox.showinfo("","")             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_tuple__92 = PyTuple_Pack(2, __pyx_kp_s__90, __pyx_kp_s__91); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(0, 412, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__92);
-  __Pyx_GIVEREF(__pyx_tuple__92);
-
-  /* "cpa700.py":420
- *         def FlushTest():
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')             # <<<<<<<<<<<<<<
- *             datas = self.cursor.fetchall()
- *             for data in datas:#
- */
-  __pyx_tuple__93 = PyTuple_Pack(1, __pyx_kp_s_select_from_monery); if (unlikely(!__pyx_tuple__93)) __PYX_ERR(0, 420, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__93);
-  __Pyx_GIVEREF(__pyx_tuple__93);
-
-  /* "cpa700.py":322
- *         #---------------Tab1------------------#
- *         # Modified Button Click Function
- *         def clickMe():             # <<<<<<<<<<<<<<
- *             self.cursor.execute('delete from users')
- *             self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
- */
-  __pyx_tuple__94 = PyTuple_Pack(7, __pyx_n_s_monerys, __pyx_n_s_url, __pyx_n_s_request, __pyx_n_s_response, __pyx_n_s_html, __pyx_n_s_e, __pyx_n_s_text); if (unlikely(!__pyx_tuple__94)) __PYX_ERR(0, 322, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__94);
-  __Pyx_GIVEREF(__pyx_tuple__94);
-  __pyx_codeobj__95 = (PyObject*)__Pyx_PyCode_New(0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__94, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_clickMe, 322, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__95)) __PYX_ERR(0, 322, __pyx_L1_error)
-
-  /* "cpa700.py":373
- *                 self.thread.start()
- * 
- *         def save():             # <<<<<<<<<<<<<<
- *             text = self.text.get(1.0, END)
- *             lines = text.split("\n")
- */
-  __pyx_tuple__96 = PyTuple_Pack(11, __pyx_n_s_text, __pyx_n_s_lines, __pyx_n_s_line1, __pyx_n_s_item1s, __pyx_n_s_win, __pyx_n_s_lose, __pyx_n_s_line2, __pyx_n_s_item2s, __pyx_n_s_line, __pyx_n_s_items, __pyx_n_s_sql); if (unlikely(!__pyx_tuple__96)) __PYX_ERR(0, 373, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__96);
-  __Pyx_GIVEREF(__pyx_tuple__96);
-  __pyx_codeobj__97 = (PyObject*)__Pyx_PyCode_New(0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__96, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_save, 373, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__97)) __PYX_ERR(0, 373, __pyx_L1_error)
-
-  /* "cpa700.py":415
- * 
- * 
- *         def Chosen(*args):             # <<<<<<<<<<<<<<
- *             print(self.bookChosen.get())
- * 
- */
-  __pyx_tuple__98 = PyTuple_Pack(1, __pyx_n_s_args); if (unlikely(!__pyx_tuple__98)) __PYX_ERR(0, 415, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__98);
-  __Pyx_GIVEREF(__pyx_tuple__98);
-  __pyx_codeobj__99 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__98, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_Chosen, 415, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__99)) __PYX_ERR(0, 415, __pyx_L1_error)
-
-  /* "cpa700.py":418
- *             print(self.bookChosen.get())
- * 
- *         def FlushTest():             # <<<<<<<<<<<<<<
- *             self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
- *             self.cursor.execute('select * from monery')
- */
-  __pyx_tuple__100 = PyTuple_Pack(2, __pyx_n_s_datas, __pyx_n_s_data); if (unlikely(!__pyx_tuple__100)) __PYX_ERR(0, 418, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__100);
-  __Pyx_GIVEREF(__pyx_tuple__100);
-  __pyx_codeobj__101 = (PyObject*)__Pyx_PyCode_New(0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__100, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_FlushTest, 418, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__101)) __PYX_ERR(0, 418, __pyx_L1_error)
-
-  /* "cpa700.py":443
+  /* "cpa700.py":348
  *         self.book = tk.StringVar()
  *         self.bookChosen = ttk.Combobox(self.monty, width=60, textvariable=self.book)
  *         self.bookChosen['values'] = ('', '','','')             # <<<<<<<<<<<<<<
  *         self.bookChosen.grid(column=1, row=1, sticky='W')
  *         self.bookChosen.current(0)  #['values']
  */
-  __pyx_tuple__105 = PyTuple_Pack(4, __pyx_kp_s__47, __pyx_kp_s__48, __pyx_kp_s__49, __pyx_kp_s__50); if (unlikely(!__pyx_tuple__105)) __PYX_ERR(0, 443, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__105);
-  __Pyx_GIVEREF(__pyx_tuple__105);
+  __pyx_tuple__68 = PyTuple_Pack(4, __pyx_kp_s__47, __pyx_kp_s__48, __pyx_kp_s__49, __pyx_kp_s__50); if (unlikely(!__pyx_tuple__68)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__68);
+  __Pyx_GIVEREF(__pyx_tuple__68);
 
-  /* "cpa700.py":445
+  /* "cpa700.py":350
  *         self.bookChosen['values'] = ('', '','','')
  *         self.bookChosen.grid(column=1, row=1, sticky='W')
  *         self.bookChosen.current(0)  #['values']             # <<<<<<<<<<<<<<
  *         self.bookChosen.config(state='readonly')  #
- *         self.bookChosen.bind("<<ComboboxSelected>>", Chosen)
+ *         self.bookChosen.bind("<<ComboboxSelected>>", self.Chosen)
  */
-  __pyx_tuple__106 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__106)) __PYX_ERR(0, 445, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__106);
-  __Pyx_GIVEREF(__pyx_tuple__106);
+  __pyx_tuple__69 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__69);
+  __Pyx_GIVEREF(__pyx_tuple__69);
 
-  /* "cpa700.py":478
- *         FlushTest()
+  /* "cpa700.py":383
+ *         self.FlushData()
  * 
  *         self.cursor.execute('select * from users')             # <<<<<<<<<<<<<<
  *         datas = self.cursor.fetchall()
  *         for data in datas:#
  */
-  __pyx_tuple__110 = PyTuple_Pack(1, __pyx_kp_s_select_from_users); if (unlikely(!__pyx_tuple__110)) __PYX_ERR(0, 478, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__110);
-  __Pyx_GIVEREF(__pyx_tuple__110);
+  __pyx_tuple__74 = PyTuple_Pack(1, __pyx_kp_s_select_from_users); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(0, 383, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__74);
+  __Pyx_GIVEREF(__pyx_tuple__74);
 
-  /* "cpa700.py":486
+  /* "cpa700.py":389
+ * 
+ *     def clickMe(self):
+ *         self.cursor.execute('delete from users')             # <<<<<<<<<<<<<<
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ *         self.conn.commit()
+ */
+  __pyx_tuple__75 = PyTuple_Pack(1, __pyx_kp_s_delete_from_users); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(0, 389, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__75);
+  __Pyx_GIVEREF(__pyx_tuple__75);
+
+  /* "cpa700.py":393
+ *         self.conn.commit()
+ * 
+ *         self.cursor.execute("select * from monery")             # <<<<<<<<<<<<<<
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:
+ */
+  __pyx_tuple__76 = PyTuple_Pack(1, __pyx_kp_s_select_from_monery); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__76);
+  __Pyx_GIVEREF(__pyx_tuple__76);
+
+  /* "cpa700.py":396
+ *         monerys = self.cursor.fetchall()
+ *         if len(monerys) == 0:
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ * 
+ */
+  __pyx_tuple__79 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__78); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__79);
+  __Pyx_GIVEREF(__pyx_tuple__79);
+
+  /* "cpa700.py":411
+ *             #print('Error code: ' + str(e.code))
+ *             #print('Error reason: ' + e.reason)
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         except urllib.error.URLError as e:
+ */
+  __pyx_tuple__81 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__80); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__81);
+  __Pyx_GIVEREF(__pyx_tuple__81);
+
+  /* "cpa700.py":416
+ *             #print('We failed to reach a server.')
+ *             #print('Reason: ' + e.reason)
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         except Exception as msg:
+ */
+  __pyx_tuple__82 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__80); if (unlikely(!__pyx_tuple__82)) __PYX_ERR(0, 416, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__82);
+  __Pyx_GIVEREF(__pyx_tuple__82);
+
+  /* "cpa700.py":423
+ *         except:
+ *             #print("error lineno:" + str(sys._getframe().f_lineno))
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ *         html = html.strip()
+ */
+  __pyx_tuple__83 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__80); if (unlikely(!__pyx_tuple__83)) __PYX_ERR(0, 423, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__83);
+  __Pyx_GIVEREF(__pyx_tuple__83);
+
+  /* "cpa700.py":428
+ *         #print(html)
+ *         if html != "1":
+ *             messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *             return
+ * 
+ */
+  __pyx_tuple__85 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__84); if (unlikely(!__pyx_tuple__85)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__85);
+  __Pyx_GIVEREF(__pyx_tuple__85);
+
+  /* "cpa700.py":431
+ *             return
+ * 
+ *         text = self.btaction.config('text')             # <<<<<<<<<<<<<<
+ *         if  text[4] == '':
+ *             self.btaction.configure(text='')
+ */
+  __pyx_tuple__86 = PyTuple_Pack(1, __pyx_n_s_text); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(0, 431, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__86);
+  __Pyx_GIVEREF(__pyx_tuple__86);
+
+  /* "cpa700.py":444
+ *     def save(self):
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")             # <<<<<<<<<<<<<<
+ *         for line1 in lines:
+ *             if line1 == "":
+ */
+  __pyx_tuple__88 = PyTuple_Pack(1, __pyx_kp_s__52); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__88);
+  __Pyx_GIVEREF(__pyx_tuple__88);
+
+  /* "cpa700.py":448
+ *             if line1 == "":
+ *                 continue
+ *             item1s = line1.split("=")             # <<<<<<<<<<<<<<
+ *             if len(item1s) != 4:
+ *                 messagebox.showerror("","")
+ */
+  __pyx_tuple__89 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__89)) __PYX_ERR(0, 448, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__89);
+  __Pyx_GIVEREF(__pyx_tuple__89);
+
+  /* "cpa700.py":450
+ *             item1s = line1.split("=")
+ *             if len(item1s) != 4:
+ *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                 return
+ *             win = False
+ */
+  __pyx_tuple__91 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__90); if (unlikely(!__pyx_tuple__91)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__91);
+  __Pyx_GIVEREF(__pyx_tuple__91);
+
+  /* "cpa700.py":457
+ *                 if line2 == "":
+ *                     continue
+ *                 item2s = line2.split("=")             # <<<<<<<<<<<<<<
+ *                 if len(item2s) != 4:
+ *                     messagebox.showerror("","")
+ */
+  __pyx_tuple__92 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(0, 457, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__92);
+  __Pyx_GIVEREF(__pyx_tuple__92);
+
+  /* "cpa700.py":459
+ *                 item2s = line2.split("=")
+ *                 if len(item2s) != 4:
+ *                     messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                     return
+ *                 #
+ */
+  __pyx_tuple__93 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__90); if (unlikely(!__pyx_tuple__93)) __PYX_ERR(0, 459, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__93);
+  __Pyx_GIVEREF(__pyx_tuple__93);
+
+  /* "cpa700.py":469
+ * 
+ *             if win == False or lose == False:
+ *                 messagebox.showerror("","")             # <<<<<<<<<<<<<<
+ *                 return
+ * 
+ */
+  __pyx_tuple__94 = PyTuple_Pack(2, __pyx_kp_s__77, __pyx_kp_s__90); if (unlikely(!__pyx_tuple__94)) __PYX_ERR(0, 469, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__94);
+  __Pyx_GIVEREF(__pyx_tuple__94);
+
+  /* "cpa700.py":472
+ *                 return
+ * 
+ *         self.cursor.execute('delete from monery')             # <<<<<<<<<<<<<<
+ *         for line in lines:
+ *             items = line.split("=")
+ */
+  __pyx_tuple__95 = PyTuple_Pack(1, __pyx_kp_s_delete_from_monery); if (unlikely(!__pyx_tuple__95)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__95);
+  __Pyx_GIVEREF(__pyx_tuple__95);
+
+  /* "cpa700.py":474
+ *         self.cursor.execute('delete from monery')
+ *         for line in lines:
+ *             items = line.split("=")             # <<<<<<<<<<<<<<
+ *             if len(items) != 4:
+ *                 continue
+ */
+  __pyx_tuple__96 = PyTuple_Pack(1, __pyx_kp_s__45); if (unlikely(!__pyx_tuple__96)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__96);
+  __Pyx_GIVEREF(__pyx_tuple__96);
+
+  /* "cpa700.py":481
+ *         self.conn.commit()
+ *         FlushData()
+ *         messagebox.showinfo("","")             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_tuple__101 = PyTuple_Pack(2, __pyx_kp_s__99, __pyx_kp_s__100); if (unlikely(!__pyx_tuple__101)) __PYX_ERR(0, 481, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__101);
+  __Pyx_GIVEREF(__pyx_tuple__101);
+
+  /* "cpa700.py":489
+ *     def FlushData(self):
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')             # <<<<<<<<<<<<<<
+ *         datas = self.cursor.fetchall()
+ *         for data in datas:#
+ */
+  __pyx_tuple__102 = PyTuple_Pack(1, __pyx_kp_s_select_from_monery); if (unlikely(!__pyx_tuple__102)) __PYX_ERR(0, 489, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__102);
+  __Pyx_GIVEREF(__pyx_tuple__102);
+
+  /* "cpa700.py":498
  * def main():
  *     app = Application()
  *     app.title("cpa700 ")             # <<<<<<<<<<<<<<
  *     app.resizable(0,0) #Python GUI
  *     # :
  */
-  __pyx_tuple__111 = PyTuple_Pack(1, __pyx_kp_s_cpa700_2); if (unlikely(!__pyx_tuple__111)) __PYX_ERR(0, 486, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__111);
-  __Pyx_GIVEREF(__pyx_tuple__111);
+  __pyx_tuple__103 = PyTuple_Pack(1, __pyx_kp_s_cpa700_2); if (unlikely(!__pyx_tuple__103)) __PYX_ERR(0, 498, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__103);
+  __Pyx_GIVEREF(__pyx_tuple__103);
 
-  /* "cpa700.py":487
+  /* "cpa700.py":499
  *     app = Application()
  *     app.title("cpa700 ")
  *     app.resizable(0,0) #Python GUI             # <<<<<<<<<<<<<<
  *     # :
  *     app.mainloop()
  */
-  __pyx_tuple__112 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__112)) __PYX_ERR(0, 487, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__112);
-  __Pyx_GIVEREF(__pyx_tuple__112);
+  __pyx_tuple__104 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__104)) __PYX_ERR(0, 499, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__104);
+  __Pyx_GIVEREF(__pyx_tuple__104);
 
   /* "cpa700.py":41
  * class TestThread(threading.Thread):
@@ -13422,13 +13403,13 @@ static int __Pyx_InitCachedConstants(void) {
  *         super(TestThread, self).__init__()
  *         self.target = target
  */
-  __pyx_tuple__114 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_thread_num, __pyx_n_s_timeout); if (unlikely(!__pyx_tuple__114)) __PYX_ERR(0, 41, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__114);
-  __Pyx_GIVEREF(__pyx_tuple__114);
-  __pyx_codeobj__115 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__114, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_init, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__115)) __PYX_ERR(0, 41, __pyx_L1_error)
-  __pyx_tuple__116 = PyTuple_Pack(2, ((PyObject *)__pyx_int_0), ((PyObject*)__pyx_float_1_0)); if (unlikely(!__pyx_tuple__116)) __PYX_ERR(0, 41, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__116);
-  __Pyx_GIVEREF(__pyx_tuple__116);
+  __pyx_tuple__106 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_thread_num, __pyx_n_s_timeout); if (unlikely(!__pyx_tuple__106)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__106);
+  __Pyx_GIVEREF(__pyx_tuple__106);
+  __pyx_codeobj__107 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__106, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_init, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__107)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_tuple__108 = PyTuple_Pack(2, ((PyObject *)__pyx_int_0), ((PyObject*)__pyx_float_1_0)); if (unlikely(!__pyx_tuple__108)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__108);
+  __Pyx_GIVEREF(__pyx_tuple__108);
 
   /* "cpa700.py":48
  *         self.timeout = timeout
@@ -13437,82 +13418,130 @@ static int __Pyx_InitCachedConstants(void) {
  *         def target_func():
  *             self.target.textlog.insert(tk.INSERT,'\n')
  */
-  __pyx_tuple__117 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_target_func, __pyx_n_s_target_func, __pyx_n_s_subthread); if (unlikely(!__pyx_tuple__117)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__117);
-  __Pyx_GIVEREF(__pyx_tuple__117);
-  __pyx_codeobj__118 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__117, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_run, 48, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__118)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_tuple__109 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_target_func, __pyx_n_s_target_func, __pyx_n_s_subthread); if (unlikely(!__pyx_tuple__109)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__109);
+  __Pyx_GIVEREF(__pyx_tuple__109);
+  __pyx_codeobj__110 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__109, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_run, 48, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__110)) __PYX_ERR(0, 48, __pyx_L1_error)
 
-  /* "cpa700.py":288
+  /* "cpa700.py":294
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
  *         self.stopped = True
  * 
  */
-  __pyx_tuple__119 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__119)) __PYX_ERR(0, 288, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__119);
-  __Pyx_GIVEREF(__pyx_tuple__119);
-  __pyx_codeobj__120 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__119, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_stop, 288, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__120)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_tuple__111 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__111)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__111);
+  __Pyx_GIVEREF(__pyx_tuple__111);
+  __pyx_codeobj__112 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__111, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_stop, 294, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__112)) __PYX_ERR(0, 294, __pyx_L1_error)
 
-  /* "cpa700.py":291
+  /* "cpa700.py":297
  *         self.stopped = True
  * 
  *     def isStopped(self):             # <<<<<<<<<<<<<<
  *         return self.stopped
  * 
  */
-  __pyx_tuple__121 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__121)) __PYX_ERR(0, 291, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__121);
-  __Pyx_GIVEREF(__pyx_tuple__121);
-  __pyx_codeobj__122 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__121, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_isStopped, 291, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__122)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_tuple__113 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__113)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__113);
+  __Pyx_GIVEREF(__pyx_tuple__113);
+  __pyx_codeobj__114 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__113, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_isStopped, 297, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__114)) __PYX_ERR(0, 297, __pyx_L1_error)
 
-  /* "cpa700.py":296
+  /* "cpa700.py":302
  * 
  * class Application(tk.Tk):
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         super().__init__()
  *         self.thread = None
  */
-  __pyx_tuple__123 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__123)) __PYX_ERR(0, 296, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__123);
-  __Pyx_GIVEREF(__pyx_tuple__123);
-  __pyx_codeobj__124 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__123, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_init, 296, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__124)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_tuple__115 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_msg); if (unlikely(!__pyx_tuple__115)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__115);
+  __Pyx_GIVEREF(__pyx_tuple__115);
+  __pyx_codeobj__116 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__115, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_init, 302, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__116)) __PYX_ERR(0, 302, __pyx_L1_error)
 
-  /* "cpa700.py":309
+  /* "cpa700.py":318
  *         self.createWidgets()
  * 
  *     def createWidgets(self):             # <<<<<<<<<<<<<<
  *         # Tab Control introduced here --------------------------------------
  *         self.tabControl = ttk.Notebook(self)          # Create Tab Control
  */
-  __pyx_tuple__125 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__125)) __PYX_ERR(0, 309, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__125);
-  __Pyx_GIVEREF(__pyx_tuple__125);
-  __pyx_codeobj__126 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__125, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_createWidgets, 309, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__126)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_tuple__117 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__117)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__117);
+  __Pyx_GIVEREF(__pyx_tuple__117);
+  __pyx_codeobj__118 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__117, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_createWidgets, 318, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__118)) __PYX_ERR(0, 318, __pyx_L1_error)
 
-  /* "cpa700.py":319
+  /* "cpa700.py":328
  *         self.createTab1()
  * 
  *     def createTab1(self):             # <<<<<<<<<<<<<<
  *         #---------------Tab1------------------#
  *         # Modified Button Click Function
  */
-  __pyx_tuple__127 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_clickMe, __pyx_n_s_clickMe, __pyx_n_s_save, __pyx_n_s_save, __pyx_n_s_Chosen, __pyx_n_s_Chosen, __pyx_n_s_FlushTest, __pyx_n_s_FlushTest, __pyx_n_s_child, __pyx_n_s_datas, __pyx_n_s_data); if (unlikely(!__pyx_tuple__127)) __PYX_ERR(0, 319, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__127);
-  __Pyx_GIVEREF(__pyx_tuple__127);
-  __pyx_codeobj__128 = (PyObject*)__Pyx_PyCode_New(1, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__127, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_createTab1, 319, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__128)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_tuple__119 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_child, __pyx_n_s_datas, __pyx_n_s_data); if (unlikely(!__pyx_tuple__119)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__119);
+  __Pyx_GIVEREF(__pyx_tuple__119);
+  __pyx_codeobj__120 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__119, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_createTab1, 328, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__120)) __PYX_ERR(0, 328, __pyx_L1_error)
+
+  /* "cpa700.py":388
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ *     def clickMe(self):             # <<<<<<<<<<<<<<
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ */
+  __pyx_tuple__121 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_monerys, __pyx_n_s_url, __pyx_n_s_request, __pyx_n_s_response, __pyx_n_s_html, __pyx_n_s_e, __pyx_n_s_msg, __pyx_n_s_text); if (unlikely(!__pyx_tuple__121)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__121);
+  __Pyx_GIVEREF(__pyx_tuple__121);
+  __pyx_codeobj__122 = (PyObject*)__Pyx_PyCode_New(1, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__121, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_clickMe, 388, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__122)) __PYX_ERR(0, 388, __pyx_L1_error)
+
+  /* "cpa700.py":442
+ *             self.thread.start()
+ * 
+ *     def save(self):             # <<<<<<<<<<<<<<
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
+ */
+  __pyx_tuple__123 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_text, __pyx_n_s_lines, __pyx_n_s_line1, __pyx_n_s_item1s, __pyx_n_s_win, __pyx_n_s_lose, __pyx_n_s_line2, __pyx_n_s_item2s, __pyx_n_s_line, __pyx_n_s_items, __pyx_n_s_sql); if (unlikely(!__pyx_tuple__123)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__123);
+  __Pyx_GIVEREF(__pyx_tuple__123);
+  __pyx_codeobj__124 = (PyObject*)__Pyx_PyCode_New(1, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__123, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_save, 442, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__124)) __PYX_ERR(0, 442, __pyx_L1_error)
 
   /* "cpa700.py":484
+ * 
+ * 
+ *     def Chosen(self, *args):             # <<<<<<<<<<<<<<
+ *         print(self.bookChosen.get())
+ * 
+ */
+  __pyx_tuple__125 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_args); if (unlikely(!__pyx_tuple__125)) __PYX_ERR(0, 484, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__125);
+  __Pyx_GIVEREF(__pyx_tuple__125);
+  __pyx_codeobj__126 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__125, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_Chosen, 484, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__126)) __PYX_ERR(0, 484, __pyx_L1_error)
+
+  /* "cpa700.py":487
+ *         print(self.bookChosen.get())
+ * 
+ *     def FlushData(self):             # <<<<<<<<<<<<<<
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')
+ */
+  __pyx_tuple__127 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_datas, __pyx_n_s_data); if (unlikely(!__pyx_tuple__127)) __PYX_ERR(0, 487, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__127);
+  __Pyx_GIVEREF(__pyx_tuple__127);
+  __pyx_codeobj__128 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__127, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_FlushData, 487, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__128)) __PYX_ERR(0, 487, __pyx_L1_error)
+
+  /* "cpa700.py":496
  * 
  * 
  * def main():             # <<<<<<<<<<<<<<
  *     app = Application()
  *     app.title("cpa700 ")
  */
-  __pyx_tuple__129 = PyTuple_Pack(1, __pyx_n_s_app); if (unlikely(!__pyx_tuple__129)) __PYX_ERR(0, 484, __pyx_L1_error)
+  __pyx_tuple__129 = PyTuple_Pack(1, __pyx_n_s_app); if (unlikely(!__pyx_tuple__129)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__129);
   __Pyx_GIVEREF(__pyx_tuple__129);
-  __pyx_codeobj__130 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__129, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_main_2, 484, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__130)) __PYX_ERR(0, 484, __pyx_L1_error)
+  __pyx_codeobj__130 = (PyObject*)__Pyx_PyCode_New(0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__129, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cpa700_py, __pyx_n_s_main_2, 496, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__130)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -13687,9 +13716,6 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
   if (PyType_Ready(&__pyx_type_6cpa700___pyx_scope_struct__run) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
   __pyx_type_6cpa700___pyx_scope_struct__run.tp_print = 0;
   __pyx_ptype_6cpa700___pyx_scope_struct__run = &__pyx_type_6cpa700___pyx_scope_struct__run;
-  if (PyType_Ready(&__pyx_type_6cpa700___pyx_scope_struct_1_createTab1) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
-  __pyx_type_6cpa700___pyx_scope_struct_1_createTab1.tp_print = 0;
-  __pyx_ptype_6cpa700___pyx_scope_struct_1_createTab1 = &__pyx_type_6cpa700___pyx_scope_struct_1_createTab1;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
@@ -13707,9 +13733,9 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_s__113);
-  __Pyx_GIVEREF(__pyx_n_s__113);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s__113);
+  __Pyx_INCREF(__pyx_n_s__105);
+  __Pyx_GIVEREF(__pyx_n_s__105);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s__105);
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_tkinter, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13725,9 +13751,9 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_n_s__113);
-  __Pyx_GIVEREF(__pyx_n_s__113);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__113);
+  __Pyx_INCREF(__pyx_n_s__105);
+  __Pyx_GIVEREF(__pyx_n_s__105);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__105);
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_tkinter, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13848,9 +13874,9 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_n_s__113);
-  __Pyx_GIVEREF(__pyx_n_s__113);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__113);
+  __Pyx_INCREF(__pyx_n_s__105);
+  __Pyx_GIVEREF(__pyx_n_s__105);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s__105);
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_tkinter_messagebox, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14230,9 +14256,9 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
  *         super(TestThread, self).__init__()
  *         self.target = target
  */
-  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_1__init__, 0, __pyx_n_s_TestThread___init, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__115)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_1__init__, 0, __pyx_n_s_TestThread___init, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__107)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_5, __pyx_tuple__116);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_5, __pyx_tuple__108);
   if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_init, __pyx_t_5) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
@@ -14243,33 +14269,33 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
  *         def target_func():
  *             self.target.textlog.insert(tk.INSERT,'\n')
  */
-  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_3run, 0, __pyx_n_s_TestThread_run, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__118)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_3run, 0, __pyx_n_s_TestThread_run, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__110)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_run, __pyx_t_5) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cpa700.py":288
+  /* "cpa700.py":294
  *         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
  * 
  *     def stop(self):             # <<<<<<<<<<<<<<
  *         self.stopped = True
  * 
  */
-  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_5stop, 0, __pyx_n_s_TestThread_stop, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__120)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_5stop, 0, __pyx_n_s_TestThread_stop, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__112)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_stop, __pyx_t_5) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_stop, __pyx_t_5) < 0) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cpa700.py":291
+  /* "cpa700.py":297
  *         self.stopped = True
  * 
  *     def isStopped(self):             # <<<<<<<<<<<<<<
  *         return self.stopped
  * 
  */
-  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_7isStopped, 0, __pyx_n_s_TestThread_isStopped, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__122)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_10TestThread_7isStopped, 0, __pyx_n_s_TestThread_isStopped, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__114)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_isStopped, __pyx_t_5) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_isStopped, __pyx_t_5) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "cpa700.py":39
@@ -14287,119 +14313,167 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":295
+  /* "cpa700.py":301
  * 
  * 
  * class Application(tk.Tk):             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         super().__init__()
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tk); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Tk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Tk); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Application, __pyx_n_s_Application, (PyObject *) NULL, __pyx_n_s_cpa700, (PyObject *) NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_Application, __pyx_n_s_Application, (PyObject *) NULL, __pyx_n_s_cpa700, (PyObject *) NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "cpa700.py":296
+  /* "cpa700.py":302
  * 
  * class Application(tk.Tk):
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         super().__init__()
  *         self.thread = None
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_1__init__, 0, __pyx_n_s_Application___init, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__124)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_1__init__, 0, __pyx_n_s_Application___init, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__116)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_t_3);
   PyList_Append(__pyx_t_5, __pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 296, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_init, __pyx_t_3) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":309
+  /* "cpa700.py":318
  *         self.createWidgets()
  * 
  *     def createWidgets(self):             # <<<<<<<<<<<<<<
  *         # Tab Control introduced here --------------------------------------
  *         self.tabControl = ttk.Notebook(self)          # Create Tab Control
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_3createWidgets, 0, __pyx_n_s_Application_createWidgets, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__126)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_3createWidgets, 0, __pyx_n_s_Application_createWidgets, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__118)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_createWidgets, __pyx_t_3) < 0) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_createWidgets, __pyx_t_3) < 0) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":319
+  /* "cpa700.py":328
  *         self.createTab1()
  * 
  *     def createTab1(self):             # <<<<<<<<<<<<<<
  *         #---------------Tab1------------------#
  *         # Modified Button Click Function
  */
-  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_5createTab1, 0, __pyx_n_s_Application_createTab1, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__128)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_5createTab1, 0, __pyx_n_s_Application_createTab1, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__120)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_createTab1, __pyx_t_3) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_createTab1, __pyx_t_3) < 0) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cpa700.py":295
+  /* "cpa700.py":388
+ *             self.nameEntered.insert(END, str(data[0]))
+ * 
+ *     def clickMe(self):             # <<<<<<<<<<<<<<
+ *         self.cursor.execute('delete from users')
+ *         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_7clickMe, 0, __pyx_n_s_Application_clickMe, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__122)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_clickMe, __pyx_t_3) < 0) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":442
+ *             self.thread.start()
+ * 
+ *     def save(self):             # <<<<<<<<<<<<<<
+ *         text = self.text.get(1.0, END)
+ *         lines = text.split("\n")
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_9save, 0, __pyx_n_s_Application_save, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__124)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_save, __pyx_t_3) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":484
+ * 
+ * 
+ *     def Chosen(self, *args):             # <<<<<<<<<<<<<<
+ *         print(self.bookChosen.get())
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_11Chosen, 0, __pyx_n_s_Application_Chosen, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__126)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 484, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_Chosen, __pyx_t_3) < 0) __PYX_ERR(0, 484, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":487
+ *         print(self.bookChosen.get())
+ * 
+ *     def FlushData(self):             # <<<<<<<<<<<<<<
+ *         self.text.delete(0.0,len(self.text.get(0.0,END)) - 1.0)
+ *         self.cursor.execute('select * from monery')
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_11Application_13FlushData, 0, __pyx_n_s_Application_FlushData, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__128)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 487, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyObject_SetItem(__pyx_t_4, __pyx_n_s_FlushData, __pyx_t_3) < 0) __PYX_ERR(0, 487, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cpa700.py":301
  * 
  * 
  * class Application(tk.Tk):             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         super().__init__()
  */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Application, __pyx_t_1, __pyx_t_4, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_Application, __pyx_t_1, __pyx_t_4, NULL, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_3) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_3) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Application, __pyx_t_3) < 0) __PYX_ERR(0, 295, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Application, __pyx_t_3) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":484
+  /* "cpa700.py":496
  * 
  * 
  * def main():             # <<<<<<<<<<<<<<
  *     app = Application()
  *     app.title("cpa700 ")
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_1main, 0, __pyx_n_s_main_2, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__130)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 484, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6cpa700_1main, 0, __pyx_n_s_main_2, NULL, __pyx_n_s_cpa700, __pyx_d, ((PyObject *)__pyx_codeobj__130)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_main_2, __pyx_t_1) < 0) __PYX_ERR(0, 484, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_main_2, __pyx_t_1) < 0) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cpa700.py":491
+  /* "cpa700.py":503
  *     app.mainloop()
  * 
  * if __name__ == "__main__":             # <<<<<<<<<<<<<<
  *     main()
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_name_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_name_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_n_s_main, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_1, __pyx_n_s_main, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 503, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "cpa700.py":492
+    /* "cpa700.py":504
  * 
  * if __name__ == "__main__":
  *     main()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_main_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 492, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_main_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 504, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -14412,16 +14486,16 @@ static int __pyx_pymod_exec_cpa700(PyObject *__pyx_pyinit_module)
       }
     }
     if (__pyx_t_4) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     } else {
-      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 492, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 504, __pyx_L1_error)
     }
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cpa700.py":491
+    /* "cpa700.py":503
  *     app.mainloop()
  * 
  * if __name__ == "__main__":             # <<<<<<<<<<<<<<
@@ -14948,8 +15022,103 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 }
 #endif
 
-/* PyErrFetchRestore */
+/* PyErrExceptionMatches */
     #if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+#if PY_MAJOR_VERSION >= 3
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+#endif
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    PyObject *exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+    if (unlikely(PyTuple_Check(err)))
+        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+}
+#endif
+
+/* GetException */
+    #if CYTHON_FAST_THREAD_STATE
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
+#endif
+    PyObject *local_type, *local_value, *local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    local_type = tstate->curexc_type;
+    local_value = tstate->curexc_value;
+    local_tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(&local_type, &local_value, &local_tb);
+#endif
+    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
+#if CYTHON_FAST_THREAD_STATE
+    if (unlikely(tstate->curexc_type))
+#else
+    if (unlikely(PyErr_Occurred()))
+#endif
+        goto bad;
+    #if PY_MAJOR_VERSION >= 3
+    if (local_tb) {
+        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
+            goto bad;
+    }
+    #endif
+    Py_XINCREF(local_tb);
+    Py_XINCREF(local_type);
+    Py_XINCREF(local_value);
+    *type = local_type;
+    *value = local_value;
+    *tb = local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    #if PY_VERSION_HEX >= 0x030700A2
+    tmp_type = tstate->exc_state.exc_type;
+    tmp_value = tstate->exc_state.exc_value;
+    tmp_tb = tstate->exc_state.exc_traceback;
+    tstate->exc_state.exc_type = local_type;
+    tstate->exc_state.exc_value = local_value;
+    tstate->exc_state.exc_traceback = local_tb;
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = local_type;
+    tstate->exc_value = local_value;
+    tstate->exc_traceback = local_tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_SetExcInfo(local_type, local_value, local_tb);
+#endif
+    return 0;
+bad:
+    *type = 0;
+    *value = 0;
+    *tb = 0;
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_tb);
+    return -1;
+}
+
+/* PyErrFetchRestore */
+      #if CYTHON_FAST_THREAD_STATE
 static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
     PyObject *tmp_type, *tmp_value, *tmp_tb;
     tmp_type = tstate->curexc_type;
@@ -14973,7 +15142,7 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #endif
 
 /* PyIntBinop */
-    #if !CYTHON_COMPILING_IN_PYPY
+      #if !CYTHON_COMPILING_IN_PYPY
 static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
     #if PY_MAJOR_VERSION < 3
     if (likely(PyInt_CheckExact(op1))) {
@@ -15089,7 +15258,7 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
 #endif
 
 /* GetItemInt */
-    static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+      static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
     PyObject *r;
     if (!j) return NULL;
     r = PyObject_GetItem(o, j);
@@ -15176,7 +15345,7 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
 }
 
 /* PyIntBinop */
-    #if !CYTHON_COMPILING_IN_PYPY
+      #if !CYTHON_COMPILING_IN_PYPY
 static PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {
     if (op1 == op2) {
         Py_RETURN_TRUE;
@@ -15261,7 +15430,7 @@ static PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED 
 #endif
 
 /* BytesEquals */
-    static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
+      static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
 #if CYTHON_COMPILING_IN_PYPY
     return PyObject_RichCompareBool(s1, s2, equals);
 #else
@@ -15308,7 +15477,7 @@ static PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED 
 }
 
 /* UnicodeEquals */
-    static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals) {
+      static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals) {
 #if CYTHON_COMPILING_IN_PYPY
     return PyObject_RichCompareBool(s1, s2, equals);
 #else
@@ -15407,7 +15576,7 @@ return_ne:
 }
 
 /* FetchCommonType */
-    static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type) {
+      static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type) {
     PyObject* fake_module;
     PyTypeObject* cached_type = NULL;
     fake_module = PyImport_AddModule((char*) "_cython_" CYTHON_ABI);
@@ -15446,7 +15615,7 @@ bad:
 }
 
 /* CythonFunction */
-    static PyObject *
+      static PyObject *
 __Pyx_CyFunction_get_doc(__pyx_CyFunctionObject *op, CYTHON_UNUSED void *closure)
 {
     if (unlikely(op->func_doc == NULL)) {
@@ -16038,139 +16207,9 @@ static CYTHON_INLINE void __Pyx_CyFunction_SetAnnotationsDict(PyObject *func, Py
     Py_INCREF(dict);
 }
 
-/* PyErrExceptionMatches */
-        #if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-#if PY_MAJOR_VERSION >= 3
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-#endif
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    PyObject *exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-    if (unlikely(PyTuple_Check(err)))
-        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-}
-#endif
-
-/* GetException */
-        #if CYTHON_FAST_THREAD_STATE
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
-#endif
-    PyObject *local_type, *local_value, *local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    local_type = tstate->curexc_type;
-    local_value = tstate->curexc_value;
-    local_tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(&local_type, &local_value, &local_tb);
-#endif
-    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
-#if CYTHON_FAST_THREAD_STATE
-    if (unlikely(tstate->curexc_type))
-#else
-    if (unlikely(PyErr_Occurred()))
-#endif
-        goto bad;
-    #if PY_MAJOR_VERSION >= 3
-    if (local_tb) {
-        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
-            goto bad;
-    }
-    #endif
-    Py_XINCREF(local_tb);
-    Py_XINCREF(local_type);
-    Py_XINCREF(local_value);
-    *type = local_type;
-    *value = local_value;
-    *tb = local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    #if PY_VERSION_HEX >= 0x030700A2
-    tmp_type = tstate->exc_state.exc_type;
-    tmp_value = tstate->exc_state.exc_value;
-    tmp_tb = tstate->exc_state.exc_traceback;
-    tstate->exc_state.exc_type = local_type;
-    tstate->exc_state.exc_value = local_value;
-    tstate->exc_state.exc_traceback = local_tb;
-    #else
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = local_type;
-    tstate->exc_value = local_value;
-    tstate->exc_traceback = local_tb;
-    #endif
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_SetExcInfo(local_type, local_value, local_tb);
-#endif
-    return 0;
-bad:
-    *type = 0;
-    *value = 0;
-    *tb = 0;
-    Py_XDECREF(local_type);
-    Py_XDECREF(local_value);
-    Py_XDECREF(local_tb);
-    return -1;
-}
-
-/* KeywordStringCheck */
-          static int __Pyx_CheckKeywordStrings(
-    PyObject *kwdict,
-    const char* function_name,
-    int kw_allowed)
-{
-    PyObject* key = 0;
-    Py_ssize_t pos = 0;
-#if CYTHON_COMPILING_IN_PYPY
-    if (!kw_allowed && PyDict_Next(kwdict, &pos, &key, 0))
-        goto invalid_keyword;
-    return 1;
-#else
-    while (PyDict_Next(kwdict, &pos, &key, 0)) {
-        #if PY_MAJOR_VERSION < 3
-        if (unlikely(!PyString_Check(key)))
-        #endif
-            if (unlikely(!PyUnicode_Check(key)))
-                goto invalid_keyword_type;
-    }
-    if ((!kw_allowed) && unlikely(key))
-        goto invalid_keyword;
-    return 1;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    return 0;
-#endif
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-    return 0;
+/* None */
+          static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
+    PyErr_Format(PyExc_UnboundLocalError, "local variable '%s' referenced before assignment", varname);
 }
 
 /* Import */
@@ -16581,37 +16620,6 @@ bad:
     Py_XDECREF(py_frame);
 }
 
-/* CIntToPy */
-          static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
-    const long neg_one = (long) -1, const_zero = (long) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(long) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(long) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(long) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(long) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(long) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(long),
-                                     little, !is_unsigned);
-    }
-}
-
 /* Print */
           #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
 static PyObject *__Pyx_GetStdout(void) {
@@ -16717,6 +16725,37 @@ bad:
     return -1;
 }
 #endif
+
+/* CIntToPy */
+          static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
+    const long neg_one = (long) -1, const_zero = (long) 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(long) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(long) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(long) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(long) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(long) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(long),
+                                     little, !is_unsigned);
+    }
+}
 
 /* PrintOne */
           #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
