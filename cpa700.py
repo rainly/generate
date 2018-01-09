@@ -61,7 +61,7 @@ class TestThread(threading.Thread):
             driver = webdriver.Chrome()
             #driver = webdriver.Firefox()
             while self.stopped != True:
-                PostUrl = "http://bw1.cpa700.com/"
+                PostUrl = "http://bw1.htd188.com/"
 
                 driver.get(PostUrl)
 
@@ -161,6 +161,16 @@ class TestThread(threading.Thread):
                                     BaLL_No = int(BaLL_No4)
                                 elif BaLL_Idx == 5:
                                     BaLL_No = int(BaLL_No5)
+                                elif BaLL_Idx == 6:
+                                    BaLL_No = int(BaLL_No6)
+                                elif BaLL_Idx == 7:
+                                    BaLL_No = int(BaLL_No7)
+                                elif BaLL_Idx == 8:
+                                    BaLL_No = int(BaLL_No8)
+                                elif BaLL_Idx == 9:
+                                    BaLL_No = int(BaLL_No9)
+                                elif BaLL_Idx == 10:
+                                    BaLL_No = int(BaLL_No10)                                    
                                 ##########################
                                 #('大', '小','单','双')
                                 if items[1] == "大":
@@ -185,7 +195,7 @@ class TestThread(threading.Thread):
                                     pass
                                 else:
                                     BaLL_Idx = BaLL_Idx + 1
-                                if BaLL_Idx > 5:
+                                if BaLL_Idx > 10:
                                     BaLL_Idx = 1
                         #处理新订单，如果没有找到的话
                         if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True): 
@@ -219,20 +229,23 @@ class TestThread(threading.Thread):
                                 ##################################################
                                 #print("deal new BaLL_Idx:" + str(BaLL_Idx))
                                 #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
+                                _BaLL_Idx = BaLL_Idx
+                                if _BaLL_Idx == 10:
+                                    _BaLL_Idx = 0
                                 if self.target.bookChosen.get() == "大":
-                                    xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "1.money\"]"
+                                    xpath = "//*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
                                 elif self.target.bookChosen.get() == "小":
-                                    xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "0.money\"]"
+                                    xpath = "//*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
                                 elif self.target.bookChosen.get() == "单":
-                                    xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx) + "1.money\"]"
+                                    xpath = "//*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
                                 elif self.target.bookChosen.get() == "双":
-                                    xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx) + "2.money\"]"
+                                    xpath = "//*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
                                     driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
 
