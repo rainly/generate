@@ -128,11 +128,18 @@ class TestThread(threading.Thread):
                         BaLL_No9 = driver.find_element_by_xpath("//*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
                         BaLL_No10 = driver.find_element_by_xpath("//*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
                         Cur_Issue = driver.find_element_by_xpath("//*[@id=\"Cur_Issue\"]").text
-
+                        
+                        ##用于保证数据可以下注
+                        for BaLL_Idx in range(0, 10):
+                            xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "1.money\"]"
+                            driver.find_element_by_xpath(xpath)
+                            
                         ##指定数据不差1，跳过
                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
                             continue
-                        sql = "update sqlite3.connectsqlite3.connectsqlite3.connect set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
+
+                        
+                        sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
                         conn.commit()                                                                                        
                         #self.target.textlog.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue + "\n")
@@ -326,7 +333,7 @@ class Application(tk.Tk):
         # ~ Tab Control introduced here
                                                            # -----------------------------------------
         self.createTab1()
-    
+        
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
         # Modified Button Click Function  
@@ -479,7 +486,7 @@ class Application(tk.Tk):
             sql = "insert into monery values(" + str(items[0]) + "," + str(items[1]) + "," + str(items[2]) + "," + str(items[3]) + ")"
             self.cursor.execute(sql)
         self.conn.commit()
-        FlushData()
+        self.FlushData()
         messagebox.showinfo("提示","配置成功！")
         
         
