@@ -50,6 +50,8 @@ class TestThread(threading.Thread):
             self.target.textlog.insert(tk.INSERT,'线程执行目录函数\n')
             conn = sqlite3.connect('cpa700.db')
             cursor = conn.cursor()
+            cursor.execute("delete from data")
+            conn.commit() 
             cursor.execute("select * from monery")
             monerys = cursor.fetchall()
             if len(monerys) == 0:
@@ -130,7 +132,7 @@ class TestThread(threading.Thread):
                         ##指定数据不差1，跳过
                         if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
                             continue
-                        sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
+                        sql = "update sqlite3.connectsqlite3.connectsqlite3.connect set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
                         conn.commit()                                                                                        
                         #self.target.textlog.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue + "\n")

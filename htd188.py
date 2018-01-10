@@ -159,6 +159,8 @@ class TestThread(threading.Thread):
                 
             conn = sqlite3.connect('htd188.db')
             cursor = conn.cursor()
+            cursor.execute("delete from data")
+            conn.commit() 
             ########################################
             cursor.execute("select * from monery")
             monerys = cursor.fetchall()
