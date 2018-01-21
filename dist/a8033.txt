@@ -1,0 +1,15 @@
+#url     µØÖ·
+#jump    ÊäÍ£
+#monery  ÏÂ×¢½ğ¶î
+
+[agent]
+value = tingziji
+
+[url]
+value = http://a8033.com/
+
+[jump]
+value = 3+6+4
+
+[monery]
+value = 1+2+3+4
