@@ -147,6 +147,7 @@ class TestThread(threading.Thread):
 
                         BaLL_Idx = 1
                         Win = 0
+                        FaildNum = 0 #统计在同一个坑中失败几镒
                         Monery_Idx = monerys[0][0]
                         Have_Cur_Award_Issue = False
                         Deal_Cur_Award_Issue = False
@@ -203,10 +204,17 @@ class TestThread(threading.Thread):
                                 conn.commit()
                         
                                 if Win == 1:
+                                    #检测赢是否回第一位置上
                                     #BaLL_Idx = 1
-                                    pass
+                                    #只要有赢，这个坑的失败次数就归0
+                                    FaildNum = 0;
                                 else:
-                                    BaLL_Idx = BaLL_Idx + 1
+                                    #累计失败次数
+                                    FaildNum = FaildNum + 1
+                                    #失败超过2次，跳转下一个，重置失败次数
+                                    if FaildNum >= 2:
+                                        FaildNum = 0;
+                                        BaLL_Idx = BaLL_Idx + 1
                                 if BaLL_Idx > 10:
                                     BaLL_Idx = 1
                         #处理新订单，如果没有找到的话
@@ -221,45 +229,45 @@ class TestThread(threading.Thread):
                             datas = cursor.fetchall()
                             if len(datas) == 0:
                                 ##################################################
-                                Sel_Monery = None
+                                Temp_Monery = None
                                 if Have_Cur_Award_Issue:
                                     for monery in monerys:
                                         if  monery[0] == Monery_Idx:
-                                            Sel_Monery = monery
+                                            Temp_Monery = monery
                                             break
                                     for monery in monerys:
-                                        if  Win == 1 and monery[0] == Sel_Monery[2]:
-                                            Sel_Monery = monery
+                                        if  Win == 1 and monery[0] == Temp_Monery[2]:
+                                            Temp_Monery = monery
                                             break
-                                        if  Win == 0 and monery[0] == Sel_Monery[3]:
-                                            Sel_Monery = monery
+                                        if  Win == 0 and monery[0] == Temp_Monery[3]:
+                                            Temp_Monery = monery
                                             break
                                 else:
-                                     Sel_Monery = monerys[0] 
+                                     Temp_Monery = monerys[0] 
                                      
-                                self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Sel_Monery[1]) + "\n")                                     
+                                self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Temp_Monery[1]) + "\n")                                     
                                 ##################################################
                                 #print("deal new BaLL_Idx:" + str(BaLL_Idx))
-                                #print("deal new Monery_Idx:" + str(Sel_Monery[0]))
-                                _BaLL_Idx = BaLL_Idx
-                                if _BaLL_Idx == 10:
-                                    _BaLL_Idx = 0
+                                #print("deal new Monery_Idx:" + str(Temp_Monery[0]))
+                                BaLL_Idx_Temp = BaLL_Idx
+                                if BaLL_Idx_Temp == 10:
+                                    BaLL_Idx_Temp = 0
                                 if self.target.bookChosen.get() == "大":
-                                    xpath = "//*[@id=\"B-DX-" + str(_BaLL_Idx) + "1.money\"]"
+                                    xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "1.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
-                                    driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
+                                    driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
                                 elif self.target.bookChosen.get() == "小":
-                                    xpath = "//*[@id=\"B-DX-" + str(_BaLL_Idx) + "0.money\"]"
+                                    xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "0.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
-                                    driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
+                                    driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
                                 elif self.target.bookChosen.get() == "单":
-                                    xpath = "//*[@id=\"B-DS-" + str(_BaLL_Idx) + "1.money\"]"
+                                    xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "1.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
-                                    driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
+                                    driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
                                 elif self.target.bookChosen.get() == "双":
-                                    xpath = "//*[@id=\"B-DS-" + str(_BaLL_Idx) + "2.money\"]"
+                                    xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "2.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
-                                    driver.find_element_by_xpath(xpath).send_keys(str(Sel_Monery[1]))
+                                    driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
 
                                 time.sleep(2)
                                 driver.find_element_by_xpath("//*[@id=\"btn_order_2\"]").click()
@@ -267,7 +275,7 @@ class TestThread(threading.Thread):
                                 alert = driver.switch_to_alert()
                                 time.sleep(2)
                                 alert.accept()
-                                tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Sel_Monery[0]) 
+                                tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Temp_Monery[0]) 
                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
                                 conn.commit()
                             else:
