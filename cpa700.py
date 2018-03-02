@@ -86,13 +86,13 @@ class TestThread(threading.Thread):
                         if jump:
                             break
                     except Exception as msg:
-                        print("Exception:%s" % msg)
+                        #print("Exception:%s" % msg)
                         pass
                     except:
                         #print("error lineno:" + str(sys._getframe().f_lineno))
-                        #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
                         pass
 
+                FaildNum = 0 #统计在同一个坑中失败几镒
                 while self.stopped != True:
                     time.sleep(5)
                     try:    
@@ -142,19 +142,18 @@ class TestThread(threading.Thread):
                         sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
                         cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
                         conn.commit()                                                                                        
-                        #self.target.textlog.insert(tk.INSERT,"更新期号:" + Cur_Award_Issue + "\n")
+                        #self.target.textlog.insert(tk.INSERT,"获取期号:" + Cur_Award_Issue + "数据\n")
                         
 
                         BaLL_Idx = 1
                         Win = 0
-                        FaildNum = 0 #统计在同一个坑中失败几镒
                         Monery_Idx = monerys[0][0]
                         Have_Cur_Award_Issue = False
                         Deal_Cur_Award_Issue = False
-                        cursor.execute("select * from data where issue = ?", (Cur_Award_Issue,))
+                        cursor.execute("select * from data where issue = ? and win is NULL", (Cur_Award_Issue,))
                         datas = cursor.fetchall()
                         for data in datas:# 切换窗口
-                            #self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue+ "\n")
+                            self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue+ "开奖数据\n")
                             #处理未开奖数据
                             Have_Cur_Award_Issue = True
                             if data[11] != None:
@@ -208,6 +207,7 @@ class TestThread(threading.Thread):
                                     #BaLL_Idx = 1
                                     #只要有赢，这个坑的失败次数就归0
                                     FaildNum = 0;
+                                    self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "中奖\n")
                                 else:
                                     #累计失败次数
                                     FaildNum = FaildNum + 1
@@ -215,6 +215,7 @@ class TestThread(threading.Thread):
                                     if FaildNum >= 2:
                                         FaildNum = 0;
                                         BaLL_Idx = BaLL_Idx + 1
+                                    self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "未中奖\n")
                                 if BaLL_Idx > 10:
                                     BaLL_Idx = 1
                         #处理新订单，如果没有找到的话
@@ -268,29 +269,25 @@ class TestThread(threading.Thread):
                                     xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "2.money\"]"
                                     driver.find_element_by_xpath(xpath).clear()
                                     driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
-
-                                time.sleep(2)
+            
+                                time.sleep(1)
                                 driver.find_element_by_xpath("//*[@id=\"btn_order_2\"]").click()
-                                time.sleep(2)
+                                time.sleep(1)
                                 alert = driver.switch_to_alert()
-                                time.sleep(2)
+                                time.sleep(1)
                                 alert.accept()
                                 tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Temp_Monery[0]) 
                                 cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
                                 conn.commit()
-                            else:
-                                #self.target.textlog.insert(tk.INSERT,"新订单已经处理期号:" + Cur_Issue+ "\n")
-                                pass
                         ############################################################3
                         driver.switch_to.parent_frame()
                         #print("end")
                         #print("**************************************************")
                     except Exception as msg:
-                        print("Exception:%s" % msg)
+                        #print("Exception:%s" % msg)
                         pass
                     except:
                         #print("error lineno:" + str(sys._getframe().f_lineno))
-                        #self.target.textlog.insert(tk.INSERT,"error lineno:" + str(sys._getframe().f_lineno))
                         #print("end")
                         #print("**************************************************")
                         pass
