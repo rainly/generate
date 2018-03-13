@@ -1,6 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
+#梯子游戏
 from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 import re
 import urllib
@@ -45,28 +46,28 @@ def main():
     conf.read("a8033.txt")
 
     if conf.has_section("url") == False:
-        printf("配置出错")
+        print("配置出错")
         time.sleep(3600)
         return
     url = conf.get("url", "value")
     print("地址:" + url)
 
     if conf.has_section("url") == False:
-        printf("配置出错")
+        print("配置出错")
         time.sleep(3600)
         return
     jump = conf.get("jump", "value")
     print("输停:" + jump)
 
     if conf.has_section("monery") == False:
-        printf("配置出错")
+        print("配置出错")
         time.sleep(3600)
         return
     monery = conf.get("monery", "value")
     print("下注金额:" + monery)
     
     if conf.has_section("agent") == False:
-        printf("配置出错")
+        print("配置出错")
         time.sleep(3600)
         return
     agent = conf.get("agent", "value")
@@ -109,7 +110,7 @@ def main():
     jumps   = jump.split("+")
     monerys = monery.split("+")
     if len(jumps) + 1 != len(monerys):
-        printf("输停长度 ！= 下注金额长度")
+        print("输停长度 ！= 下注金额长度")
         time.sleep(3600)
         return
     jumps.append("0")    

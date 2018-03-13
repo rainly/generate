@@ -1,6 +1,7 @@
 ﻿## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
+#北京赛车 自动打码神器
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
