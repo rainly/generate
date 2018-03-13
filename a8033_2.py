@@ -36,6 +36,8 @@ import threading
 ssl._create_default_https_context = ssl._create_unverified_context
 
 driver = webdriver.Chrome()
+driver.get("http://a8033.com/")
+
 
 
 #声明一个CookieJar对象实例来保存cookie
@@ -121,18 +123,22 @@ class TestThread(threading.Thread):
             print("错误","账号未注册！")
             return
         
-        jumps   = jump.split("+")
+        #jumps   = jump.split("+")
         monerys = monery.split("+")
-        if len(jumps) + 1 != len(monerys):
-            print("输停长度 ！= 下注金额长度")
+        if len(monerys) == 0:
+            print("错误","金额配置出错")
             return
-        jumps.append("0")  
+            
+        #if len(jumps) + 1 != len(monerys):
+        #    print("输停长度 ！= 下注金额长度")
+        #    return
+        #jumps.append("0")  
         
         #driver.get(url)
         driver.implicitly_wait(5)
         
         try:
-            while True:
+            while self.stopped == False:
                 print("检测是否打开梯子游戏")  
                 isJump = False
                 handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
@@ -149,109 +155,99 @@ class TestThread(threading.Thread):
                 
             print("已经打开梯子游戏")   
             Last_Award_Issue = ""
-            Last_Award_Issue_Have = False
+            Last_Award_Issue_tclass = ""
             Jump_Idx   = 0
-            Stop_num   = 0
 
-            while True:
+            while self.stopped == False:
                 try:
                     time.sleep(5)
-                    if  Jump_Idx >= len(jumps):
-                        print("***自动停止***")
-                        time.sleep(1000)
-                        continue
 
                     print("********************************************************")
                     Cur_Award_Issue1_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[1]").text
                     #Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]").text
-                    print(Cur_Award_Issue1_1)
+                    #print(Cur_Award_Issue1_1)
 
                     Cur_Award_Issue2_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]").text
                     #Cur_Award_Issue2_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]").text
-                    print(Cur_Award_Issue2_1)
+                    #print(Cur_Award_Issue2_1)
                     
                     if Cur_Award_Issue1_1 == Last_Award_Issue:
-                        print("***等待开奖***")
+                        print("***等待开奖*** ==>", Cur_Award_Issue1_1)
                         continue
 
                     Last_Award_Issue = Cur_Award_Issue1_1
+
+                    print("***处理中奖结果*** ==>", Cur_Award_Issue1_1)
+                    tclass = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
+                    #print(tclass)
+                    #<span class="LD-resultItem LD--s LD--l4o">4单</span>
+                    #<span class="LD-resultItem LD--s LD--r4e">4双</span>
+                    #<span class="LD-resultItem LD--s LD--r3o">3单</span>
+                    #<span class="LD-resultItem LD--s LD--l3e">3双</span>
                     #处理中奖结果
-                    if Last_Award_Issue_Have:
-                        print("***处理中奖结果***")
-                        tclass = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
-                        print(tclass)
-                        #<span class="LD-resultItem LD--s LD--l4o">单4</span>
-                        #<span class="LD-resultItem LD--s LD--r4e">双4</span>
-                        #<span class="LD-resultItem LD--s LD--r3o">单3</span>
-                        #<span class="LD-resultItem LD--s LD--l3e">双3</span>
-                        
+                    Last_Award_Issue_Win = False
+                    if Last_Award_Issue_tclass != "":                       
                         Last_Award_Issue_Win = False
-                        if tclass == "LD-resultItem LD--s LD--l4o":
-                            print("***开奖***单4")
+                        if tclass == Last_Award_Issue_tclass:
                             Last_Award_Issue_Win = True
-                            pass
-                        elif  tclass == "LD-resultItem LD--s LD--r4e":
-                            Last_Award_Issue_Win = True
-                            print("***开奖***双4")
-                            pass
-                        elif  tclass == "LD-resultItem LD--s LD--l3e":
-                            Last_Award_Issue_Win = True
-                            print("***开奖***双3")
-                            pass
-                        elif  tclass == "LD-resultItem LD--s LD--r3o":
-                            Last_Award_Issue_Win = False
-                            print("***开奖***单3")
-                            pass
                         else:
                             Last_Award_Issue_Win = False
-                            print("***等待开奖***单3")
-                            pass                     
-                        
+                        #######################################
                         if Last_Award_Issue_Win == True:
                             Jump_Idx    = 0
-                            Stop_num    = 0
                             print("***中奖***")
                         else:
-                            Stop_num    = 1
+                            Jump_Idx    = Jump_Idx + 1
                             print("***未中奖***")
-                            
-                    #print("***Stop_num:" + str(Stop_num))
-                    #print("***Jump_Idx:" + str(Jump_Idx))
-                    #print("***jumps[Jump_Idx]:" + jumps[Jump_Idx])
-                    if Stop_num != 0  and Stop_num <= int(jumps[Jump_Idx]) :
-                        Last_Award_Issue_Have = False
-                        Stop_num = Stop_num + 1
-                        print("***不下注***")
+                        #######################################
+                        if Jump_Idx >= len(monerys):
+                            Jump_Idx = 0;
+                    else:
+                        print("***未下注***")
+                                                 
+                    print("********************************************************") 
+                    Last_Award_Issue_tclass = "";
+                    if tclass == "LD-resultItem LD--s LD--l4o":
+                        print("***开奖***4单 ==>不购买")
+                        Last_Award_Issue_tclass = ""
+                    elif  tclass == "LD-resultItem LD--s LD--r4e":
+                        print("***开奖***4双 ==>购买3单")
+                        Last_Award_Issue_tclass = "LD-resultItem LD--s LD--r3o"
+                    elif  tclass == "LD-resultItem LD--s LD--l3e":
+                        print("***开奖***3双 ==>不购买") 
+                        Last_Award_Issue_tclass = ""
+                    elif  tclass == "LD-resultItem LD--s LD--r3o":
+                        print("***开奖***3单 ==>购买4双")  
+                        Last_Award_Issue_tclass = "LD-resultItem LD--s LD--r4e"
+                    else:
+                        print("***开奖***未知道类型")
+                        Last_Award_Issue_tclass = ""
+
+                    if Last_Award_Issue_tclass == "":
+                        print("***本轮不下注:***" + Cur_Award_Issue1_1, " 金额：", monerys[Jump_Idx])
                         continue
-                    elif Stop_num != 0 and Stop_num > int(jumps[Jump_Idx]):
-                        Jump_Idx   = Jump_Idx + 1
-                        
-                    if  Jump_Idx >= len(jumps):
-                        print("***自动停止***")
-                        continue
-                    Last_Award_Issue_Have = True                               
-                    Stop_num    = 0   
-                    print("***开始下注***" + Cur_Award_Issue1_1)
-                    #print("***Stop_num:" + str(Stop_num))
-                    #print("***Jump_Idx:" + str(Jump_Idx))
-                    #print("***jumps[Jump_Idx]:" + jumps[Jump_Idx])
-                    #print("***monerys[Jump_Idx]:" + monerys[Jump_Idx])
+                    else:
+                        print("***开始下注:***" + Cur_Award_Issue1_1, " 金额：", monerys[Jump_Idx])
+
 
                     input1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[1]/input")
                     input2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[2]/input")
                     input3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[3]/input")
                     input4 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[4]/input")
                     
-                    input2.clear()
-                    input2.send_keys(monerys[Jump_Idx])
-                    time.sleep(1)
-                    input3.clear()
-                    input3.send_keys(monerys[Jump_Idx])
-                    time.sleep(1)
-                    input4.clear()
-                    input4.send_keys(monerys[Jump_Idx])
-                    time.sleep(1)
-                    #print("获取确定订单位置\n")            
+                    #<span class="LD-resultItem LD--s LD--l4o">4单</span>
+                    #<span class="LD-resultItem LD--s LD--r4e">4双</span>
+                    #<span class="LD-resultItem LD--s LD--r3o">3单</span>
+                    #<span class="LD-resultItem LD--s LD--l3e">3双</span>
+                    
+                    if Last_Award_Issue_tclass == "LD-resultItem LD--s LD--r3o":#3单
+                        input1.clear()
+                        input1.send_keys(monerys[Jump_Idx])
+                    elif Last_Award_Issue_tclass == "LD-resultItem LD--s LD--r4e":#4双
+                        input4.clear()
+                        input4.send_keys(monerys[Jump_Idx])    
+                        
+                    time.sleep(1)          
                     driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/div[2]/button[2]").click()  
                     time.sleep(1)
                     driver.find_element_by_xpath("//*[@id=\"alertify\"]/div/div/div[2]/div[2]/button[2]").click()
@@ -328,7 +324,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("a8033.txt")
+        self.conf.read("a8033_2.txt")
 
         if self.conf.has_section("url") == True:
             self.url = self.conf.get("url", "value")
@@ -379,12 +375,12 @@ class Application(tk.Tk):
         self.MyFrame.grid(column=0, row=0, padx=8, pady=4)
         #第一行
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="地址:").grid(column=0, row=0, sticky='W')  
+        ttk.Label(self.MyFrame, text="代理:").grid(column=0, row=0, sticky='W')  
   
         # Adding a Textbox Entry widget  
         # self.url = tk.StringVar()  
-        self.urlEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.url)  
-        self.urlEntered.grid(column=1, row=0, sticky='W')  
+        self.agentEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.agent)  
+        self.agentEntered.grid(column=1, row=0, sticky='W')  
 
         #第二行
         ttk.Label(self.MyFrame, text="请选择:").grid(column=0, row=1,sticky='W')
@@ -401,13 +397,13 @@ class Application(tk.Tk):
         self.scrolW = 80
         self.scrolH = 10
         #第三行
-        ttk.Label(self.MyFrame, text="策略配置(序号=金额=赢跳转序号=输跳转序号)").grid(column=0, row=2,sticky='W')
+        ttk.Label(self.MyFrame, text="策略配置(3单、4双)(无需配置)").grid(column=0, row=2,sticky='W')
         #第四行
         self.textJump = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.textJump.grid(column=0, row=3, sticky='WE', columnspan=3)
     
         #第五行
-        ttk.Label(self.MyFrame, text="金额配置").grid(column=0, row=4,sticky='W')
+        ttk.Label(self.MyFrame, text="金额配置(10+20+40+80+...)").grid(column=0, row=4,sticky='W')
         #第五行
         self.textMonery = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.textMonery.grid(column=0, row=5, sticky='WE', columnspan=3)        
@@ -433,7 +429,7 @@ class Application(tk.Tk):
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
         
-        self.urlEntered.insert(END, self.url)
+        self.agentEntered.insert(END, self.agent)
         self.textJump.insert(tk.INSERT, self.jump)
         self.textMonery.insert(tk.INSERT, self.monery)
             
@@ -451,16 +447,15 @@ class Application(tk.Tk):
     def save(self):
         #增加新的section
         #
-        self.url = self.urlEntered.get()
+        self.agent = self.agentEntered.get()
         self.jump = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
         
-        self.conf.set("url", "value", self.urlEntered.get())
+        self.conf.set("agent", "value", self.agentEntered.get())
         self.conf.set("jump", "value", self.textJump.get(1.0, END))
         self.conf.set("monery", "value", self.textMonery.get(1.0, END))
-        self.conf.set("url", "value", self.urlEntered.get())
         #写回配置文件
-        self.conf.write(open("a8033.txt", "w"))
+        self.conf.write(open("a8033_2.txt", "w"))
         messagebox.showinfo("提示","配置成功！")
         
     def Chosen(self, *args):
@@ -468,7 +463,7 @@ class Application(tk.Tk):
         
 def main():
     app = Application()
-    app.title("cpa700 自动打码神器")
+    app.title("梯子游戏 自动打码神器")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
