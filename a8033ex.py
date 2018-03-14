@@ -166,6 +166,24 @@ class TestThread(threading.Thread):
             Last_Award_Issue = ""
             Last_Award_Issue_tclass = ""
             Jump_Idx   = 0
+            
+            #<span class="LD-resultItem LD--s LD--l4o">4单</span>
+            #<span class="LD-resultItem LD--s LD--r4e">4双</span>
+            #<span class="LD-resultItem LD--s LD--r3o">3单</span>
+            #<span class="LD-resultItem LD--s LD--l3e">3双</span>            
+            
+            MyKey1={}
+            MyKey1["3单"] = "LD-resultItem LD--s LD--r3o"
+            MyKey1["3双"] = "LD-resultItem LD--s LD--l3e"
+            MyKey1["4单"] = "LD-resultItem LD--s LD--l4o"
+            MyKey1["4双"] = "LD-resultItem LD--s LD--r4e"
+
+
+            MyKey2={}
+            MyKey2["LD-resultItem LD--s LD--r3o"] = "3单"
+            MyKey2["LD-resultItem LD--s LD--l3e"] = "3双"
+            MyKey2["LD-resultItem LD--s LD--l4o"] = "4单"
+            MyKey2["LD-resultItem LD--s LD--r4e"] = "4双"
 
             while self.stopped == False:
                 try:
@@ -173,38 +191,35 @@ class TestThread(threading.Thread):
 
                     self.logprint("********************************************************")
                     Cur_Award_Issue1_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[1]").text
-                    #Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]").text
-                    #self.logprint(Cur_Award_Issue1_1)
+                    Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]").text
+                    Cur_Award_Issue1_3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[3]").text
 
-                    Cur_Award_Issue2_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]").text
-                    #Cur_Award_Issue2_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]").text
-                    #self.logprint(Cur_Award_Issue2_1)
                     
                     if Cur_Award_Issue1_1 == Last_Award_Issue:
                         self.logprint("***等待开奖*** ==>" + Cur_Award_Issue1_1)
                         continue
 
                     Last_Award_Issue = Cur_Award_Issue1_1
-
                     self.logprint("***处理中奖结果*** ==>" + Cur_Award_Issue1_1)
-                    tclass = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
-                    #self.logprint(tclass)
-                    #<span class="LD-resultItem LD--s LD--l4o">4单</span>
-                    #<span class="LD-resultItem LD--s LD--r4e">4双</span>
-                    #<span class="LD-resultItem LD--s LD--r3o">3单</span>
-                    #<span class="LD-resultItem LD--s LD--l3e">3双</span>
+                    tclass1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]/span").get_attribute("class")
+                    tclass2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
+                    tclass3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[3]/span").get_attribute("class")
+                    
+                    self.logprint("***开奖***" + MyKey2[tclass2])  
+                    
                     #处理中奖结果
                     Last_Award_Issue_Win = False
-                    if Last_Award_Issue_tclass != "":                       
+                    if Last_Award_Issue_tclass2 != "":                       
                         Last_Award_Issue_Win = False
-                        if tclass == Last_Award_Issue_tclass:
+                        if MyKey2[tclass2] == Last_Award_Issue_tclass2:
                             Last_Award_Issue_Win = True
                         else:
                             Last_Award_Issue_Win = False
                         #######################################
                         if Last_Award_Issue_Win == True:
+                            #中奖，金额回归
                             Jump_Idx    = 0
-                            self.logprint("***中奖***")
+                            self.logprint("***中奖, 金额回归***")
                         else:
                             Jump_Idx    = Jump_Idx + 1
                             self.logprint("***未中奖***")
@@ -215,24 +230,45 @@ class TestThread(threading.Thread):
                         self.logprint("***未下注***")
                                                  
                     self.logprint("********************************************************") 
-                    Last_Award_Issue_tclass = "";
-                    if tclass == "LD-resultItem LD--s LD--l4o":
+                    
+                    
+                    if MyKey2[tclass2] == "4单": #4单
                         self.logprint("***开奖***4单 ==>不购买")
-                        Last_Award_Issue_tclass = ""
-                    elif  tclass == "LD-resultItem LD--s LD--r4e":
-                        self.logprint("***开奖***4双 ==>购买3单")
-                        Last_Award_Issue_tclass = "LD-resultItem LD--s LD--r3o"
-                    elif  tclass == "LD-resultItem LD--s LD--l3e":
+                        Last_Award_Issue_tclass2 = ""
+                    elif  MyKey2[tclass2] == "4双":#4双
+                        ##############################################
+                        if MyKey2[tclass3] == "3单":
+                            self.logprint("***开奖***3单 ==> 4双 ==>不购买")
+                            Last_Award_Issue_tclass2 = "3单"                        
+                        elif MyKey2[tclass3] == "4双":
+                            self.logprint("***开奖***4双 ==> 4双 ==>不购买")
+                            Last_Award_Issue_tclass2 = "3单"                        
+                        else:
+                            self.logprint("***开奖***4双 ==>购买3单")
+                            Last_Award_Issue_tclass2 = "3单"    
+                        ##############################################    
+                    elif  MyKey2[tclass2] == "3双":#3双
                         self.logprint("***开奖***3双 ==>不购买") 
-                        Last_Award_Issue_tclass = ""
-                    elif  tclass == "LD-resultItem LD--s LD--r3o":
-                        self.logprint("***开奖***3单 ==>购买4双")  
-                        Last_Award_Issue_tclass = "LD-resultItem LD--s LD--r4e"
+                        Last_Award_Issue_tclass2 = ""
+                    elif  MyKey2[tclass2] == "3单":#3单
+                        ##############################################
+                        if MyKey2[tclass3] == "3单":
+                            self.logprint("***开奖***3单 ==> 3单 ==>不购买")
+                            Last_Award_Issue_tclass2 = "3单"                        
+                        elif MyKey2[tclass3] == "4双":
+                            self.logprint("***开奖***4双 ==> 3单 ==>不购买")
+                            Last_Award_Issue_tclass2 = "3单"                        
+                        else:
+                            self.logprint("***开奖***4双 ==>购买4双")
+                            Last_Award_Issue_tclass2 = "4双"    
+                        ##############################################
                     else:
                         self.logprint("***开奖***未知道类型")
-                        Last_Award_Issue_tclass = ""
-
-                    if Last_Award_Issue_tclass == "":
+                        Last_Award_Issue_tclass2 = ""
+                        
+                    
+                    ##############################################
+                    if Last_Award_Issue_tclass2 == "":
                         self.logprint("***本轮不下注:***" + Cur_Award_Issue1_1 + " 金额：" + monerys[Jump_Idx])
                         continue
                     else:
@@ -249,10 +285,10 @@ class TestThread(threading.Thread):
                     #<span class="LD-resultItem LD--s LD--r3o">3单</span>
                     #<span class="LD-resultItem LD--s LD--l3e">3双</span>
                     
-                    if Last_Award_Issue_tclass == "LD-resultItem LD--s LD--r3o":#3单
+                    if Last_Award_Issue_tclass2 == "3单":#3单
                         input1.clear()
                         input1.send_keys(monerys[Jump_Idx])
-                    elif Last_Award_Issue_tclass == "LD-resultItem LD--s LD--r4e":#4双
+                    elif Last_Award_Issue_tclass2 == "4双":#4双
                         input4.clear()
                         input4.send_keys(monerys[Jump_Idx])    
                         
