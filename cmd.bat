@@ -17,5 +17,5 @@ pyinstaller -F  sbmsc_main.py
 
 pyinstaller -F  a8033_main.py
 
-pyinstaller -F -w a8033ex_main.py
+pyinstaller -F  a8033ex_main.py
 

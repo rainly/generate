@@ -39,9 +39,10 @@ import threading
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
+
 driver = webdriver.Chrome()
-#driver.get("http://a8033.com/")
-driver.get("http://baidu.com")
+driver.get("http://a8033.com/")
+#driver.get("http://baidu.com")
 
 
 
@@ -104,7 +105,7 @@ class TestThread(threading.Thread):
         self.logprint("代理:" + agent)    
         
         url_agent = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + agent
-        self.logprint(url_agent)
+        #self.logprint(url_agent)
         request = urllib.request.Request(url_agent, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -132,29 +133,26 @@ class TestThread(threading.Thread):
             self.logprint("错误 ==> 账号未注册！")
             return
         
+        self.logprint("账号登录成功！")
+        
         #jumps   = jump.split("+")
         monerys = monery.split("+")
         if len(monerys) == 0:
             self.logprint("错误 ==> 金额配置出错")
             return
-            
-        #if len(jumps) + 1 != len(monerys):
-        #    self.logprint("输停长度 ！= 下注金额长度")
-        #    return
-        #jumps.append("0")  
         
         #driver.get(url)
         driver.implicitly_wait(5)
         
         try:
             while self.stopped == False:
-                self.logprint("检测是否打开梯子游戏")  
+                self.logprint("***检测是否打开梯子游戏***")  
                 isJump = False
                 handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
                 for handle in handles:# 切换窗口
                     if handle != driver.current_window_handle:
                         driver.switch_to_window(handle)
-                        self.logprint(driver.title)
+                        #self.logprint(driver.title)
                         if driver.title == "梯子游戏":
                             isJump = True
                             break
@@ -162,9 +160,9 @@ class TestThread(threading.Thread):
                     break
                 time.sleep(5)
                 
-            self.logprint("已经打开梯子游戏")   
+            self.logprint("***打开梯子游戏正常***")   
             Last_Award_Issue = ""
-            Last_Award_Issue_tclass = ""
+            Last_Award_Issue_Buy = ""
             Jump_Idx   = 0
             
             #<span class="LD-resultItem LD--s LD--l4o">4单</span>
@@ -188,30 +186,30 @@ class TestThread(threading.Thread):
             while self.stopped == False:
                 try:
                     time.sleep(5)
-
-                    self.logprint("********************************************************")
+                    
                     Cur_Award_Issue1_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[1]").text
-                    Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]").text
-                    Cur_Award_Issue1_3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[3]").text
+                    Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]").text
+                    Cur_Award_Issue1_3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[3]/td[1]").text
 
                     
                     if Cur_Award_Issue1_1 == Last_Award_Issue:
                         self.logprint("***等待开奖*** ==>" + Cur_Award_Issue1_1)
                         continue
-
+                    
+                    self.logprint("********************************************************")
                     Last_Award_Issue = Cur_Award_Issue1_1
                     self.logprint("***处理中奖结果*** ==>" + Cur_Award_Issue1_1)
-                    tclass1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]/span").get_attribute("class")
+                    #tclass1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]/span").get_attribute("class")
                     tclass2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
-                    tclass3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[3]/span").get_attribute("class")
+                    tclass3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[3]/td[2]/span").get_attribute("class")
                     
                     self.logprint("***开奖***" + MyKey2[tclass2])  
                     
                     #处理中奖结果
                     Last_Award_Issue_Win = False
-                    if Last_Award_Issue_tclass2 != "":                       
+                    if Last_Award_Issue_Buy != "":                       
                         Last_Award_Issue_Win = False
-                        if MyKey2[tclass2] == Last_Award_Issue_tclass2:
+                        if MyKey2[tclass2] == Last_Award_Issue_Buy:
                             Last_Award_Issue_Win = True
                         else:
                             Last_Award_Issue_Win = False
@@ -219,13 +217,16 @@ class TestThread(threading.Thread):
                         if Last_Award_Issue_Win == True:
                             #中奖，金额回归
                             Jump_Idx    = 0
-                            self.logprint("***中奖, 金额回归***")
+                            self.logprint("***中奖*** 金额回归***" + monerys[Jump_Idx])
                         else:
                             Jump_Idx    = Jump_Idx + 1
-                            self.logprint("***未中奖***")
-                        #######################################
-                        if Jump_Idx >= len(monerys):
-                            Jump_Idx = 0;
+                            #######################################
+                            if Jump_Idx >= len(monerys):
+                                Jump_Idx = 0;
+                                self.logprint("***未中奖*** 金额达到最大回归：" + monerys[Jump_Idx])
+                            else:
+                                self.logprint("***未中奖*** 金额下移一个：" + monerys[Jump_Idx])
+                                
                     else:
                         self.logprint("***未下注***")
                                                  
@@ -233,43 +234,43 @@ class TestThread(threading.Thread):
                     
                     
                     if MyKey2[tclass2] == "4单": #4单
-                        self.logprint("***开奖***4单 ==>不购买")
-                        Last_Award_Issue_tclass2 = ""
+                        self.logprint("***检测是否下注***4单 ==>不购买")
+                        Last_Award_Issue_Buy = ""
                     elif  MyKey2[tclass2] == "4双":#4双
                         ##############################################
                         if MyKey2[tclass3] == "3单":
-                            self.logprint("***开奖***3单 ==> 4双 ==>不购买")
-                            Last_Award_Issue_tclass2 = "3单"                        
+                            self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：4双 ==>不购买")
+                            Last_Award_Issue_Buy = ""                        
                         elif MyKey2[tclass3] == "4双":
-                            self.logprint("***开奖***4双 ==> 4双 ==>不购买")
-                            Last_Award_Issue_tclass2 = "3单"                        
+                            self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：4双 ==>不购买")
+                            Last_Award_Issue_Buy = ""                        
                         else:
-                            self.logprint("***开奖***4双 ==>购买3单")
-                            Last_Award_Issue_tclass2 = "3单"    
+                            self.logprint("***检测是否下注*** 4双 ==>购买3单")
+                            Last_Award_Issue_Buy = "3单"    
                         ##############################################    
                     elif  MyKey2[tclass2] == "3双":#3双
-                        self.logprint("***开奖***3双 ==>不购买") 
-                        Last_Award_Issue_tclass2 = ""
+                        self.logprint("***检测是否下注***3双 ==>不购买") 
+                        Last_Award_Issue_Buy = ""
                     elif  MyKey2[tclass2] == "3单":#3单
                         ##############################################
                         if MyKey2[tclass3] == "3单":
-                            self.logprint("***开奖***3单 ==> 3单 ==>不购买")
-                            Last_Award_Issue_tclass2 = "3单"                        
+                            self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：3单 ==>不购买")
+                            Last_Award_Issue_Buy = ""                        
                         elif MyKey2[tclass3] == "4双":
-                            self.logprint("***开奖***4双 ==> 3单 ==>不购买")
-                            Last_Award_Issue_tclass2 = "3单"                        
+                            self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：3单 ==>不购买")
+                            Last_Award_Issue_Buy = ""                        
                         else:
-                            self.logprint("***开奖***4双 ==>购买4双")
-                            Last_Award_Issue_tclass2 = "4双"    
+                            self.logprint("***检测是否下注*** 4双 ==>购买4双")
+                            Last_Award_Issue_Buy = "4双"    
                         ##############################################
                     else:
-                        self.logprint("***开奖***未知道类型")
-                        Last_Award_Issue_tclass2 = ""
+                        self.logprint("***检测是否下注***未知类型")
+                        Last_Award_Issue_Buy = ""
                         
                     
                     ##############################################
-                    if Last_Award_Issue_tclass2 == "":
-                        self.logprint("***本轮不下注:***" + Cur_Award_Issue1_1 + " 金额：" + monerys[Jump_Idx])
+                    if Last_Award_Issue_Buy == "":
+                        self.logprint("***本轮不下注:***" + Cur_Award_Issue1_1)
                         continue
                     else:
                         self.logprint("***开始下注:***" + Cur_Award_Issue1_1 + " 金额：" + monerys[Jump_Idx])
@@ -285,10 +286,10 @@ class TestThread(threading.Thread):
                     #<span class="LD-resultItem LD--s LD--r3o">3单</span>
                     #<span class="LD-resultItem LD--s LD--l3e">3双</span>
                     
-                    if Last_Award_Issue_tclass2 == "3单":#3单
+                    if Last_Award_Issue_Buy == "3单":#3单
                         input1.clear()
                         input1.send_keys(monerys[Jump_Idx])
-                    elif Last_Award_Issue_tclass2 == "4双":#4双
+                    elif Last_Award_Issue_Buy == "4双":#4双
                         input4.clear()
                         input4.send_keys(monerys[Jump_Idx])    
                         
@@ -402,6 +403,7 @@ class Application(tk.Tk):
             self.conf.set("agent", "value", "")
         
         self.createWidgets()
+        
 
     def createWidgets(self):
         # Tab Control introduced here --------------------------------------
@@ -504,6 +506,7 @@ class Application(tk.Tk):
             self.btaction.configure(text='开始')
             if self.thread.is_alive():
                 self.thread.stop()
+            self.thread = None
             #self.thread.join()
         else:
             self.btaction.configure(text='关闭')
@@ -528,11 +531,11 @@ class Application(tk.Tk):
         messagebox.showinfo("提示", self.bookChosen.get())
         
     def Close(self):
-        self.btaction.configure(text='开始')
         if self.thread != None:
-            self.thread.stop()
+            messagebox.showinfo("提示","请先关闭自动打码！")
+            return
         self.destroy()    
-        
+    
         
 def main():
     app = Application()
