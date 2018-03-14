@@ -16,7 +16,7 @@ import json
 import pymysql.cursors
 import ssl
 import configparser
-from a8033_2 import *
+from a8033ex import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
 

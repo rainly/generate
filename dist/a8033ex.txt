@@ -1,7 +1,3 @@
-#url     µØÖ·
-#jump    ÊäÍ£
-#monery  ÏÂ×¢½ğ¶î
-
 [agent]
 value = tingziji
 
@@ -12,4 +8,4 @@ value = http://a8033.com/
 value = 3+6+4
 
 [monery]
-value = 1+2+3+4
+value = 10+20+40+80
