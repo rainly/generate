@@ -63,7 +63,7 @@ headers = { 'User-Agent' : user_agent }
 
 
 class TestThread(threading.Thread):
-    def __init__(self, target, thread_num=0, timeout=1.0):
+    def __init__(self, target, thread_num=0, timeout=5.0):
         super(TestThread, self).__init__()
         self.target = target
         self.thread_num = thread_num
@@ -76,7 +76,8 @@ class TestThread(threading.Thread):
         subthread.start()
 
         while not self.stopped:
-            subthread.join(self.timeout)
+            #print("***subthread.join***")
+            subthread.join(self.timeout + 1)
 
         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
@@ -158,7 +159,7 @@ class TestThread(threading.Thread):
                             break
                 if isJump:
                     break
-                time.sleep(5)
+                time.sleep(self.timeout)
                 
             self.logprint("***打开梯子游戏正常***")   
             Last_Award_Issue = ""
@@ -185,7 +186,7 @@ class TestThread(threading.Thread):
 
             while self.stopped == False:
                 try:
-                    time.sleep(5)
+                    time.sleep(self.timeout)
                     
                     Cur_Award_Issue1_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[1]").text
                     Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]").text
@@ -222,8 +223,9 @@ class TestThread(threading.Thread):
                             Jump_Idx    = Jump_Idx + 1
                             #######################################
                             if Jump_Idx >= len(monerys):
-                                Jump_Idx = 0;
-                                self.logprint("***未中奖*** 金额达到最大回归：" + monerys[Jump_Idx])
+                                #Jump_Idx = 0;
+                                self.logprint("***未中奖*** 金额达到最大,停止")
+                                return
                             else:
                                 self.logprint("***未中奖*** 金额下移一个：" + monerys[Jump_Idx])
                                 
