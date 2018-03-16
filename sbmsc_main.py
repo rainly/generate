@@ -1,6 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
+#跟投抓包数据
 from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 import re
 import urllib

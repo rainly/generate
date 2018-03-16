@@ -3,27 +3,6 @@
 #pyinstaller
 #梯子游戏
 
-import re
-import urllib
-import urllib.request
-import sys
-import io
-import json
-import time
-import datetime
-import http.cookiejar
-import json
-import pymysql.cursors
-import ssl
-#import sqlite3
-import configparser
-import random
-
-from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
-from collections import deque
-from selenium import webdriver
-from selenium.common.exceptions import *
-from selenium.common.exceptions import NoSuchElementException
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
@@ -31,18 +10,29 @@ from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import Spinbox
 from tkinter import messagebox as mBox
-
 import tkinter.messagebox as messagebox
 import tkinter as tk
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+import sqlite3
 import threading  
+import time
 
+import urllib
+import urllib.request
+import urllib.response
+import urllib.error
+import http.cookiejar
+import configparser
+import re
+import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
 driver = webdriver.Chrome()
-driver.get("http://a8033.com/")
-#driver.get("http://baidu.com")
+#driver.get("http://a8033.com/")
+driver.get("http://baidu.com")
 
 
 
@@ -136,11 +126,18 @@ class TestThread(threading.Thread):
         
         self.logprint("账号登录成功！")
         
-        #jumps   = jump.split("+")
         monerys = monery.split("+")
         if len(monerys) == 0:
             self.logprint("错误 ==> 金额配置出错")
             return
+            
+
+        jumps = []
+        line = self.target.jump.split("\r\n")
+        for item in line:
+            jump = re.split('[+=]',item)
+            jumps.append(jump)            
+            
         
         #driver.get(url)
         driver.implicitly_wait(5)
@@ -171,18 +168,11 @@ class TestThread(threading.Thread):
             #<span class="LD-resultItem LD--s LD--r3o">3单</span>
             #<span class="LD-resultItem LD--s LD--l3e">3双</span>            
             
-            MyKey1={}
-            MyKey1["3单"] = "LD-resultItem LD--s LD--r3o"
-            MyKey1["3双"] = "LD-resultItem LD--s LD--l3e"
-            MyKey1["4单"] = "LD-resultItem LD--s LD--l4o"
-            MyKey1["4双"] = "LD-resultItem LD--s LD--r4e"
-
-
-            MyKey2={}
-            MyKey2["LD-resultItem LD--s LD--r3o"] = "3单"
-            MyKey2["LD-resultItem LD--s LD--l3e"] = "3双"
-            MyKey2["LD-resultItem LD--s LD--l4o"] = "4单"
-            MyKey2["LD-resultItem LD--s LD--r4e"] = "4双"
+            MyKey={}
+            MyKey["LD-resultItem LD--s LD--r3o"] = "3单"
+            MyKey["LD-resultItem LD--s LD--l3e"] = "3双"
+            MyKey["LD-resultItem LD--s LD--l4o"] = "4单"
+            MyKey["LD-resultItem LD--s LD--r4e"] = "4双"
 
             while self.stopped == False:
                 try:
@@ -203,14 +193,23 @@ class TestThread(threading.Thread):
                     #tclass1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[2]/span").get_attribute("class")
                     tclass2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[2]/span").get_attribute("class")
                     tclass3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[3]/td[2]/span").get_attribute("class")
+                    tclass4 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[4]/td[2]/span").get_attribute("class")
+                    tclass5 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[5]/td[2]/span").get_attribute("class")
+                    tclass6 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[6]/td[2]/span").get_attribute("class")
+                    tclass7 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[7]/td[2]/span").get_attribute("class")
+                    tclass8 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[8]/td[2]/span").get_attribute("class")
+                    tclass9 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[9]/td[2]/span").get_attribute("class")
                     
-                    self.logprint("***开奖***" + MyKey2[tclass2])  
+                    self.logprint("***开奖***" + MyKey[tclass2])                      
                     
+                    roal = [MyKey[tclass9], MyKey[tclass8], MyKey[tclass7], MyKey[tclass6], MyKey[tclass5], MyKey[tclass4], MyKey[tclass3], MyKey[tclass2]]
+                    print(roal)                    
+
                     #处理中奖结果
                     Last_Award_Issue_Win = False
                     if Last_Award_Issue_Buy != "":                       
                         Last_Award_Issue_Win = False
-                        if MyKey2[tclass2] == Last_Award_Issue_Buy:
+                        if MyKey[tclass2] == Last_Award_Issue_Buy:
                             Last_Award_Issue_Win = True
                         else:
                             Last_Award_Issue_Win = False
@@ -234,66 +233,80 @@ class TestThread(threading.Thread):
                                                  
                     self.logprint("********************************************************") 
                     
-                    
-                    if MyKey2[tclass2] == "4单": #4单
-                        self.logprint("***检测是否下注***4单 ==>不购买")
-                        Last_Award_Issue_Buy = ""
-                    elif  MyKey2[tclass2] == "4双":#4双
-                        ##############################################
-                        if MyKey2[tclass3] == "3单":
-                            self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：4双 ==>不购买")
-                            Last_Award_Issue_Buy = ""                        
-                        elif MyKey2[tclass3] == "4双":
-                            self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：4双 ==>不购买")
-                            Last_Award_Issue_Buy = ""                        
+                    self.logprint("***检测规则是否下注***")
+                    for jump in jumps:
+                        tmp1 = jump[0:len(jump) - 1]
+                        tmp2 = roal[len(roal) - len(jump) + 1:len(roal)]
+                        if tmp1==tmp2:
+                            Last_Award_Issue_Buy = jump[len(jump) - 1]
+                            self.logprint("***规则符合条件***" + str(jump))
+                            break
                         else:
-                            self.logprint("***检测是否下注*** 4双 ==>购买3单")
-                            Last_Award_Issue_Buy = "3单"    
-                        ##############################################    
-                    elif  MyKey2[tclass2] == "3双":#3双
-                        self.logprint("***检测是否下注***3双 ==>不购买") 
-                        Last_Award_Issue_Buy = ""
-                    elif  MyKey2[tclass2] == "3单":#3单
-                        ##############################################
-                        if MyKey2[tclass3] == "3单":
-                            self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：3单 ==>不购买")
-                            Last_Award_Issue_Buy = ""                        
-                        elif MyKey2[tclass3] == "4双":
-                            self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：3单 ==>不购买")
-                            Last_Award_Issue_Buy = ""                        
-                        else:
-                            self.logprint("***检测是否下注*** 4双 ==>购买4双")
-                            Last_Award_Issue_Buy = "4双"    
-                        ##############################################
-                    else:
-                        self.logprint("***检测是否下注***未知类型")
-                        Last_Award_Issue_Buy = ""
-                        
-                    
+                            self.logprint("***规则不符合条件***" + str(jump))
+                            
+                    #if MyKey[tclass2] == "4单": #4单
+                    #    self.logprint("***检测是否下注***4单 ==>不购买")
+                    #    Last_Award_Issue_Buy = ""
+                    #ielif  MyKey[tclass2] == "4双":#4双
+                    #i    ##############################################
+                    #i    if MyKey[tclass3] == "3单":
+                    #i        self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：4双 ==>不购买")
+                    #i        Last_Award_Issue_Buy = ""                        
+                    #i    elif MyKey[tclass3] == "4双":
+                    #i        self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：4双 ==>不购买")
+                    #i        Last_Award_Issue_Buy = ""                        
+                    #i    else:
+                    #i        self.logprint("***检测是否下注*** 4双 ==>购买3单")
+                    #i        Last_Award_Issue_Buy = "3单"    
+                    #i    ##############################################    
+                    #ielif  MyKey[tclass2] == "3双":#3双
+                    #i    self.logprint("***检测是否下注***3双 ==>不购买") 
+                    #i    Last_Award_Issue_Buy = ""
+                    #ielif  MyKey[tclass2] == "3单":#3单
+                    #i    ##############################################
+                    #i    if MyKey[tclass3] == "3单":
+                    #i        self.logprint("***检测是否下注*** 上轮：3单 ==> 本轮：3单 ==>不购买")
+                    #i        Last_Award_Issue_Buy = ""                        
+                    #i   elif MyKey[tclass3] == "4双":
+                    #i        self.logprint("***检测是否下注*** 上轮：4双 ==> 本轮：3单 ==>不购买")
+                    #i        Last_Award_Issue_Buy = ""                        
+                    #i    else:
+                    #i        self.logprint("***检测是否下注*** 4双 ==>购买4双")
+                    #i        Last_Award_Issue_Buy = "4双"    
+                    #i    ##############################################
+                    #ielse:
+                    #i    self.logprint("***检测是否下注***未知类型")
+                    #i    Last_Award_Issue_Buy = ""
+                    #i    
+                    #i
                     ##############################################
-                    if Last_Award_Issue_Buy == "":
+                    if Last_Award_Issue_Buy == "" or Last_Award_Issue_Buy == "停":
                         self.logprint("***本轮不下注:***" + Cur_Award_Issue1_1)
                         continue
                     else:
                         self.logprint("***开始下注:***" + Cur_Award_Issue1_1 + " 金额：" + monerys[Jump_Idx])
-
 
                     input1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[1]/input")
                     input2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[2]/input")
                     input3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[3]/input")
                     input4 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/table/tbody/tr[2]/td[4]/div[4]/input")
                     
-                    #<span class="LD-resultItem LD--s LD--l4o">4单</span>
-                    #<span class="LD-resultItem LD--s LD--r4e">4双</span>
-                    #<span class="LD-resultItem LD--s LD--r3o">3单</span>
-                    #<span class="LD-resultItem LD--s LD--l3e">3双</span>
-                    
                     if Last_Award_Issue_Buy == "3单":#3单
                         input1.clear()
                         input1.send_keys(monerys[Jump_Idx])
+                    elif Last_Award_Issue_Buy == "3双":#3双
+                        input2.clear()
+                        input2.send_keys(monerys[Jump_Idx])                           
+                    elif Last_Award_Issue_Buy == "4单":#4单
+                        input2.clear()
+                        input2.send_keys(monerys[Jump_Idx])                          
                     elif Last_Award_Issue_Buy == "4双":#4双
                         input4.clear()
-                        input4.send_keys(monerys[Jump_Idx])    
+                        input4.send_keys(monerys[Jump_Idx])
+                    else:
+                        Last_Award_Issue_Buy = "";
+                        continue;
+                        
                         
                     time.sleep(1)          
                     driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[3]/div[2]/button[2]").click()  
@@ -388,7 +401,9 @@ class Application(tk.Tk):
             self.jump = ""
             self.conf.add_section("jump")
             self.conf.set("jump", "value", "")
-
+        
+        self.jump = "3单+3单=停\r\n3单+4双=停\r\n4双+3单=停\r\n4双+4双=停\r\n3单=4双\r\n4双=3单\r\n"
+        
         if self.conf.has_section("monery") == True:
             self.monery = self.conf.get("monery", "value")
         else:
@@ -522,9 +537,9 @@ class Application(tk.Tk):
         #self.jump  = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
         
-        self.conf.set("agent", "value", self.agentEntered.get())
-        #self.conf.set("jump", "value", self.textJump.get(1.0, END))
-        self.conf.set("monery", "value", self.textMonery.get(1.0, END))
+        self.conf.set("agent", "value", self.agent)
+        self.conf.set("jump", "value", self.jump)
+        self.conf.set("monery", "value", self.monery)
         #写回配置文件
         self.conf.write(open("a8033ex.txt", "w"))
         messagebox.showinfo("提示","配置成功！")
@@ -538,7 +553,7 @@ class Application(tk.Tk):
             return
         self.destroy()    
     
-        
+    
 def main():
     app = Application()
     app.title("梯子游戏 自动打码神器")

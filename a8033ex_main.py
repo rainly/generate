@@ -1,21 +1,31 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
-import re
+#梯子游戏
+
+from tkinter import *
+from tkinter import *
+from tkinter import ttk
+from tkinter import scrolledtext
+from tkinter import Menu
+from tkinter import Spinbox
+from tkinter import messagebox as mBox
+import tkinter.messagebox as messagebox
+import tkinter as tk
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+import sqlite3
+import threading  
+import time
+
 import urllib
 import urllib.request
-import sys
-import io
-import json
-from collections import deque
-import time
-import datetime
+import urllib.response
+import urllib.error
 import http.cookiejar
-import json
-import pymysql.cursors
-import ssl
 import configparser
+import re
+import ssl
 from a8033ex import *
 ssl._create_default_https_context = ssl._create_unverified_context
 

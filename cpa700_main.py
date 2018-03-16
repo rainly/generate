@@ -1,6 +1,7 @@
 ﻿## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
+#北京赛车 自动打码神器
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
@@ -23,12 +24,7 @@ import urllib.error
 import http.cookiejar
 from cpa700 import *
 
-   
-def main():
-    app = Application()
-    app.title("cpa700 自动打码神器")
-    # 主消息循环:
-    app.mainloop()
+
 
 if __name__ == "__main__":
     main()
