@@ -181,7 +181,14 @@ class TestThread(threading.Thread):
                     Cur_Award_Issue1_1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[1]/td[1]").text
                     Cur_Award_Issue1_2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[2]/td[1]").text
                     Cur_Award_Issue1_3 = driver.find_element_by_xpath("//*[@id=\"app\"]/div/div/div/main/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/table/tbody/tr[3]/td[1]").text
-
+                    
+                    if int(Cur_Award_Issue1_1) != (int(Cur_Award_Issue1_2) + 1):
+                        self.logprint("***期号不相差1*** " + Cur_Award_Issue1_1 + "~=" + Cur_Award_Issue1_2)
+                        continue                    
+    
+                    if int(Cur_Award_Issue1_1) != (int(Cur_Award_Issue1_3) + 2):
+                        self.logprint("***期号不相差2*** " + Cur_Award_Issue1_1 + "~=" + Cur_Award_Issue1_3)
+                        continue    
                     
                     if Cur_Award_Issue1_1 == Last_Award_Issue:
                         self.logprint("***等待开奖*** ==>" + Cur_Award_Issue1_1)
