@@ -1,0 +1,19 @@
+[agent]
+value = tingziji
+
+[url]
+value = http://a8033.com/
+
+[jump]
+value = 3µ¥+3µ¥=Í£
+	3µ¥+4Ë«=Í£
+	4Ë«+3µ¥=Í£
+	4Ë«+4Ë«=Í£
+	3µ¥=4Ë«
+	4Ë«=3µ¥
+	
+
+[monery]
+value = 10+20+40+80
+	
+
