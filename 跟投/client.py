@@ -446,11 +446,7 @@ class Application(tk.Tk):
         except:
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
-
-
-
-        
-        
+   
     def cli_clickMe(self):
         text = self.cli_btaction.config('text')
         if  text[4] == '关闭':
