@@ -1,13 +1,21 @@
 [url]
-value = 
+value = http://77t.snk686.com/search.aspx
 
 [jump]
 value = 
 
 [monery]
 value = 
-	
 
 [agent]
 value = лл
+
+[name]
+value = tbcs111
+
+[pwd]
+value = 5134abab
+
+[wd]
+value = 64801
 

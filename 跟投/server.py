@@ -90,9 +90,9 @@ print ("当前时间戳为:" , ticks)
 print ("当前时间戳为:" , ticks * 1000)
 
         
-class TestThread(threading.Thread):
+class ServerThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
-        super(TestThread, self).__init__()
+        super(ServerThread, self).__init__()
         self.target = target
         self.thread_num = thread_num
         self.stopped = False
@@ -124,7 +124,7 @@ class TestThread(threading.Thread):
             html = ""
             print("############################查询详细##############################") 
             #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
-            url = self.target.baseurl + "opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523"
+            url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523"
             print(url)
             request = urllib.request.Request(url = url, headers = headers, method = 'GET')
             try:
@@ -184,168 +184,175 @@ class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.protocol("WM_DELETE_WINDOW", self.Close)
-        self.thread = None
-        #生成config对象
-        self.conf = configparser.ConfigParser()
-        #用config对象读取配置文件
-        self.conf.read("server.txt")
-
-        if self.conf.has_section("name") == True:
-            self.name = self.conf.get("name", "value")
-        else:
-            self.name = ""
-            self.conf.add_section("name")
-            self.conf.set("name", "value", "")
-
-        if self.conf.has_section("pwd") == True:
-            self.pwd = self.conf.get("pwd", "value")
-        else:
-            self.pwd = ""
-            self.conf.add_section("pwd")
-            self.conf.set("pwd", "value", "")
-
-        if self.conf.has_section("agent") == True:
-            self.agent = self.conf.get("agent", "value")
-        else:
-            self.agent = ""
-            self.conf.add_section("agent")
-            self.conf.set("agent", "value", "")
- 
-        if self.conf.has_section("url") == True:
-            self.url = self.conf.get("url", "value")
-        else:
-            self.url = ""
-            self.conf.add_section("url")
-            self.conf.set("url", "value", "")
-
-        if self.conf.has_section("wd") == True:
-            self.wd = self.conf.get("wd", "value")
-        else:
-            self.wd = ""
-            self.conf.add_section("wd")
-            self.conf.set("wd", "value", "")
-
+        
+        self.ser_initdata()
         self.createWidgets()
         
+    def ser_initdata(self):
+        self.ser_thread = None
+        #生成config对象
+        self.ser_conf = configparser.ConfigParser()
+        #用config对象读取配置文件
+        self.ser_conf.read("server.txt")
+
+        if self.ser_conf.has_section("name") == True:
+            self.ser_name = self.ser_conf.get("name", "value")
+        else:
+            self.ser_name = ""
+            self.ser_conf.add_section("name")
+            self.ser_conf.set("name", "value", "")
+
+        if self.ser_conf.has_section("pwd") == True:
+            self.ser_pwd = self.ser_conf.get("pwd", "value")
+        else:
+            self.ser_pwd = ""
+            self.ser_conf.add_section("pwd")
+            self.ser_conf.set("pwd", "value", "")
+
+        if self.ser_conf.has_section("agent") == True:
+            self.ser_agent = self.ser_conf.get("agent", "value")
+        else:
+            self.ser_agent = ""
+            self.ser_conf.add_section("agent")
+            self.ser_conf.set("agent", "value", "")
+ 
+        if self.ser_conf.has_section("url") == True:
+            self.ser_url = self.ser_conf.get("url", "value")
+        else:
+            self.ser_url = ""
+            self.ser_conf.add_section("url")
+            self.ser_conf.set("url", "value", "")
+
+        if self.ser_conf.has_section("wd") == True:
+            self.ser_wd = self.ser_conf.get("wd", "value")
+        else:
+            self.ser_wd = ""
+            self.ser_conf.add_section("wd")
+            self.ser_conf.set("wd", "value", "")    
         
+       
 
     def createWidgets(self):
         # Tab Control introduced here --------------------------------------
         self.tabControl = ttk.Notebook(self)          # Create Tab Control
-        self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
-        self.tabControl.add(self.tab1, text='第一页')      # Add the tab
+        self.ser_tab  = ttk.Frame(self.tabControl)            # Create a tab
+        self.tabControl.add(self.ser_tab, text='**采集**')      # Add the tab
+        self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
+        
+        self.tab2 = ttk.Frame(self.tabControl)            # Create a tab
+        self.tabControl.add(self.tab2, text='**下注**')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
         # ~ Tab Control introduced here
         # -----------------------------------------
-        self.createTab1()
-        
-    def createTab1(self):
+        self.ser_createTab()
+            
+    def ser_createTab(self):
        
-        #---------------Tab1控件介绍------------------#
+        #---------------ser_tab控件介绍------------------#
         # Modified Button Click Function  
         # We are creating a container tab3 to hold all other widgets
-        self.MyFrame = ttk.LabelFrame(self.tab1, text='操作区')
-        self.MyFrame.grid(column=0, row=0, padx=8, pady=4)
+        self.ser_MyFrame = ttk.LabelFrame(self.ser_tab, text='操作区')
+        self.ser_MyFrame.grid(column=0, row=0, padx=8, pady=4)
         
         # Using a scrolled Text control
-        self.scrolW = 80
-        self.scrolH = 10
+        self.ser_scrolW = 80
+        self.ser_scrolH = 10
          #行
         line = 0
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="地址:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="地址:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.urlEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.url)  
-        self.urlEntered.grid(column=1, row=line, sticky='W')    
+        # self.ser_url = tk.StringVar()  
+        self.ser_urlEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_url)  
+        self.ser_urlEntered.grid(column=1, row=line, sticky='W')    
 
         #行
         line = line + 1
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.wdEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.wd)  
-        self.wdEntered.grid(column=1, row=line, sticky='W')
+        # self.ser_url = tk.StringVar()  
+        self.ser_wdEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_wd)  
+        self.ser_wdEntered.grid(column=1, row=line, sticky='W')
 
          # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame,text="进入",width=10,command=self.interMe)
-        self.btaction.grid(column=1,row=line,sticky='E')   
+        self.ser_btaction = ttk.Button(self.ser_MyFrame,text="进入",width=10,command=self.ser_interMe)
+        self.ser_btaction.grid(column=1,row=line,sticky='E')   
     
         #行
         line = line + 1
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="账号:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="账号:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.nameEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.name)  
-        self.nameEntered.grid(column=1, row=line, sticky='W')
+        # self.ser_url = tk.StringVar()  
+        self.ser_nameEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_name)  
+        self.ser_nameEntered.grid(column=1, row=line, sticky='W')
         
         #行
         line = line + 1
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="密码:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="密码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.pwdEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.pwd)  
-        self.pwdEntered.grid(column=1, row=line, sticky='W')  
+        # self.ser_url = tk.StringVar()  
+        self.ser_pwdEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_pwd)  
+        self.ser_pwdEntered.grid(column=1, row=line, sticky='W')  
 
         #行
         line = line + 1
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="验证码:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="验证码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.checkEntered = ttk.Entry(self.MyFrame, width=60, textvariable="")  
-        self.checkEntered.grid(column=1, row=line, sticky='W')
+        # self.ser_url = tk.StringVar()  
+        self.ser_checkEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable="")  
+        self.ser_checkEntered.grid(column=1, row=line, sticky='W')
 
         #行
         line = line + 1
-        self.label = tk.Label(self.MyFrame, bg='brown')
-        self.label.grid(column=0,row=line,sticky='W')
+        self.ser_label = tk.Label(self.ser_MyFrame, bg='brown')
+        self.ser_label.grid(column=0,row=line,sticky='W')
 
-        self.btaction = ttk.Button(self.MyFrame,text="刷新",width=10,command=self.flushMe)
-        self.btaction.grid(column=1,row=line,sticky='E')
+        self.ser_btaction = ttk.Button(self.ser_MyFrame,text="刷新",width=10,command=self.ser_flushMe)
+        self.ser_btaction.grid(column=1,row=line,sticky='E')
 
         #行
         line = line + 1
         # Changing our Label  
-        ttk.Label(self.MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.ser_MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.searchEntered = ttk.Entry(self.MyFrame, width=60, textvariable="")  
-        self.searchEntered.grid(column=1, row=line, sticky='W')
+        # self.ser_url = tk.StringVar()  
+        self.ser_searchEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable="")  
+        self.ser_searchEntered.grid(column=1, row=line, sticky='W')
 
          # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame,text="开始",width=10,command=self.clickMe)
-        self.btaction.grid(column=1,row=line,sticky='E')       
+        self.ser_btaction = ttk.Button(self.ser_MyFrame,text="开始",width=10,command=self.ser_clickMe)
+        self.ser_btaction.grid(column=1,row=line,sticky='E')       
         
         
         # 一次性控制各控件之间的距离
-        for child in self.MyFrame.winfo_children(): 
+        for child in self.ser_MyFrame.winfo_children(): 
             child.grid_configure(padx=3,pady=1)
         # 单独控制个别控件之间的距离
-        #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
-        #---------------Tab1控件介绍------------------#
+        #self.ser_btaction.grid(column=2,row=1,rowspan=2,padx=6)
+        #---------------ser_tab控件介绍------------------#
 
-        self.urlEntered.insert(END, "http://77t.snk686.com/search.aspx")
-        self.wdEntered.insert(END, "64801")
+        self.ser_urlEntered.insert(END, "http://77t.snk686.com/search.aspx")
+        self.ser_wdEntered.insert(END, "64801")
         
-        self.nameEntered.insert(END, "tbcs111")
-        self.pwdEntered.insert(END, "5134abab")
+        self.ser_nameEntered.insert(END, "tbcs111")
+        self.ser_pwdEntered.insert(END, "5134abab")
 
         
         
-    def interMe(self):
+    def ser_interMe(self):
         print("################进入网站#######################")
-        self.url  = self.urlEntered.get()
-        self.wd  = self.wdEntered.get()
-        print(self.url)
-        print(self.wd)
-        url = self.url
-        inter_dict = {'wd':self.wd}
+        self.ser_url  = self.ser_urlEntered.get()
+        self.ser_wd  = self.ser_wdEntered.get()
+        print(self.ser_url)
+        print(self.ser_wd)
+        url = self.ser_url
+        inter_dict = {'wd':self.ser_wd}
         data = urllib.parse.urlencode(inter_dict).encode('utf-8')
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
@@ -378,8 +385,8 @@ class Application(tk.Tk):
         
         print("################获取根地址#######################")
         urls = url.split('?')
-        self.baseurl = urls[0]
-        print(self.baseurl)
+        self.ser_baseurl = urls[0]
+        print(self.ser_baseurl)
 
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
@@ -409,29 +416,29 @@ class Application(tk.Tk):
         print("################保存登录地址#######################")
             
         #保存登录地址
-        self.loginurl = url
-        self.logindict = {}
+        self.ser_loginurl = url
+        self.ser_logindict = {}
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('input'):
             if row.has_attr("name") and row.has_attr("value"):
-                self.logindict[row["name"]] = row["value"]
+                self.ser_logindict[row["name"]] = row["value"]
         
         print("################进入网站成功#######################")
-        self.flushMe()
+        self.ser_flushMe()
         
-    def flushMe(self):
-        url = self.baseurl + "checknum.aspx"
+    def ser_flushMe(self):
+        url = self.ser_baseurl + "checknum.aspx"
         print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
-            self.image_bytes = response.read()
+            self.ser_image_bytes = response.read()
             # internal data file
-            self.data_stream = io.BytesIO(self.image_bytes)
+            self.ser_data_stream = io.BytesIO(self.ser_image_bytes)
             # open as a PIL image object
-            self.pil_image = Image.open(self.data_stream)
-            self.tk_image = ImageTk.PhotoImage(self.pil_image)
-            self.label["image"] = self.tk_image
+            self.ser_pil_image = Image.open(self.ser_data_stream)
+            self.ser_tk_image = ImageTk.PhotoImage(self.ser_pil_image)
+            self.ser_label["image"] = self.ser_tk_image
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
@@ -451,40 +458,40 @@ class Application(tk.Tk):
 
         
         
-    def clickMe(self):
-        text = self.btaction.config('text')
+    def ser_clickMe(self):
+        self.ser_save()
+        text = self.ser_btaction.config('text')
         if  text[4] == '关闭':
-            if self.thread.is_alive():
-                self.thread.stop()
-            self.thread = None
-            self.btaction.configure(text='开始')
+            if self.ser_thread.is_alive():
+                self.ser_thread.stop()
+            self.ser_thread = None
+            self.ser_btaction.configure(text='开始')
             return
-
-        
-        self.name  = self.nameEntered.get()
-        self.pwd   = self.pwdEntered.get()
-        self.check = self.checkEntered.get()
-        if self.name == "":
+            
+        self.ser_name  = self.ser_nameEntered.get()
+        self.ser_pwd   = self.ser_pwdEntered.get()
+        self.ser_check = self.ser_checkEntered.get()
+        if self.ser_name == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
 
-        if self.pwd == "":
+        if self.ser_pwd == "":
             messagebox.showinfo("提示","密码不能为空！")
             return
 
-        if self.check == "":
+        if self.ser_check == "":
             messagebox.showinfo("提示","验证码不能为空！")
             return
         
         print("############################账号登陆##############################")
-        print(self.loginurl)
-        print(self.logindict)
-        self.logindict["txt_U_name"]     = self.name
-        self.logindict["txt_U_Password"] = self.pwd 
-        self.logindict["txt_validate"]   = self.check
+        print(self.ser_loginurl)
+        print(self.ser_logindict)
+        self.ser_logindict["txt_U_name"]     = self.ser_name
+        self.ser_logindict["txt_U_Password"] = self.ser_pwd 
+        self.ser_logindict["txt_validate"]   = self.ser_check
         
-        data = urllib.parse.urlencode(self.logindict).encode('utf-8')
-        request = urllib.request.Request(url = self.loginurl, data = data, headers = headers, method = 'POST')
+        data = urllib.parse.urlencode(self.ser_logindict).encode('utf-8')
+        request = urllib.request.Request(url = self.ser_loginurl, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
@@ -524,7 +531,7 @@ class Application(tk.Tk):
         agreement_dict = {}
         agreement_dict["stype"] = "1"
         data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.baseurl + "ch/agreement.aspx/LocationUrl"
+        url = self.ser_baseurl + "ch/agreement.aspx/LocationUrl"
         print(url)
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
@@ -551,7 +558,7 @@ class Application(tk.Tk):
         agreement_dict = {}
         agreement_dict["stype"] = "1"
         data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.baseurl + "opadmin/main.aspx"
+        url = self.ser_baseurl + "opadmin/main.aspx"
         print(url)
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
@@ -583,7 +590,7 @@ class Application(tk.Tk):
         agreement_dict = {}
         agreement_dict["stype"] = "1"
         data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.baseurl + "opadmin/mreport_new.aspx"
+        url = self.ser_baseurl + "opadmin/mreport_new.aspx"
         print(url)
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
@@ -608,29 +615,29 @@ class Application(tk.Tk):
             return
         print(html)
         
-        self.btaction.configure(text='关闭')
-        self.thread = TestThread(self)
-        self.thread.start()
+        self.ser_btaction.configure(text='关闭')
+        self.ser_thread = ServerThread(self)
+        self.ser_thread.start()
             
-    def save(self):
+    def ser_save(self):
         #增加新的section
         #
-        self.agent  = self.agentEntered.get()
-        #self.jump  = self.textJump.get(1.0, END)
-        self.monery = self.textMonery.get(1.0, END)
+        self.ser_url  = self.ser_urlEntered.get()
+        self.ser_wd = self.ser_wdEntered.get()
         
-        self.conf.set("agent", "value", self.agentEntered.get())
-        #self.conf.set("jump", "value", self.textJump.get(1.0, END))
-        self.conf.set("monery", "value", self.textMonery.get(1.0, END))
+        self.ser_name  = self.ser_nameEntered.get()
+        self.ser_pwd = self.ser_pwdEntered.get()
+        
+        self.ser_conf.set("url", "value", self.ser_url)
+        self.ser_conf.set("wd", "value", self.ser_wd)
+        self.ser_conf.set("name", "value", self.ser_name)
+        self.ser_conf.set("pwd", "value", self.ser_pwd)
         #写回配置文件
-        self.conf.write(open("server.txt", "w"))
+        self.ser_conf.write(open("server.txt", "w"))
         messagebox.showinfo("提示","配置成功！")
         
-    def Chosen(self, *args):
-        messagebox.showinfo("提示", self.bookChosen.get())
-        
     def Close(self):
-        if self.thread != None:
+        if self.ser_thread != None:
             messagebox.showinfo("提示","请先关闭自动打码！")
             return
         self.destroy()    
@@ -640,8 +647,6 @@ def serve_forever():
     httpd.serve_forever()        
         
 def main():
-
-    httpd.serve_forever()
     subthread = threading.Thread(target = serve_forever, args=())
     subthread.setDaemon(True)
     subthread.start()
