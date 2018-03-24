@@ -1,0 +1,1281 @@
+http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new.aspx/GetReport
+
+{
+	memberno: "",
+	gamestring: "6;8;11;12;13;20;21;22;23;",
+	sdate: "2018-03-24",
+	edate: "2018-03-24",
+	beginroundno: "",
+	endroundno: "",
+	wagerroundno: "",
+	wagertypeno: "",
+	_isjs: false,
+	datetime: "2018-03-24"
+}
+
+{
+	memberno: "",
+	gamestring: "6;8;11;12;13;20;21;",
+	sdate: "2018-03-24",
+	edate: "2018-03-24",
+	beginroundno: "",
+	endroundno: "",
+	wagerroundno: "",
+	wagertypeno: "",
+	_isjs: false,
+	datetime: "2018-03-24"
+}
+
+{
+	memberno: "",
+	gamestring: "6;8;11;12;13;20;21;22;23;",
+	sdate: "2018-03-24",
+	edate: "2018-03-24",
+	beginroundno: "",
+	endroundno: "",
+	wagerroundno: "",
+	wagertypeno: "",
+	_isjs: true,
+	datetime: "2018-03-24"
+}
+
+{
+	memberno: "tbyy661",
+	gamestring: "6;8;11;12;13;20;21;22;23;",
+	sdate: "2018-03-24",
+	edate: "2018-03-24",
+	beginroundno: "",
+	endroundno: "",
+	wagerroundno: "",
+	wagertypeno: "",
+	_isjs: false,
+	datetime: "2018-03-24"
+}
+
+http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbf518&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521859752377
+
+<td width="100%" id="td_list_zz">
+	<div style="color:Blue; text-align:center;height:20px; font-weight:bold; line-height:20px;font-size:20px; ">
+		总账
+	</div>
+	<table width="100%" class="DTable1" cellpadding="0" cellspacing="1" border="0"
+	bordercolor="#cccccc" style="margin-top:5px;color:#5E5E5E;">
+		<tbody>
+			<tr style="height:25px; text-align:center;background-color:#CCFFFF;">
+				<td colspan="17" style="background-color:#CCFFFF ">
+					总代理列表
+				</td>
+			</tr>
+			<tr style="height: 20px;background-image:url(../../images/bbtitle_bg.png);">
+				<td colspan="2">
+					总代理列表
+				</td>
+				<td colspan="3">
+					总代理下线合计
+				</td>
+				<td colspan="12">
+					股东:tbxy661(又)
+				</td>
+			</tr>
+			<tr style="background-color:#CCFFFF;height: 20px;">
+				<td>
+					编号
+				</td>
+				<td style="width:60px;">
+					名称
+				</td>
+				<td style="width:80px;">
+					笔数
+				</td>
+				<td style="width:100px;">
+					有效金额
+				</td>
+				<td style="width:100px;">
+					会员输赢
+				</td>
+				<td style="width:100px;">
+					下级贡献
+				</td>
+				<td style="width:100px;">
+					应收下线
+				</td>
+				<td style="width:100px;">
+					占成%
+				</td>
+				<td style="width:100px;">
+					实占注额
+				</td>
+				<td style="width:100px;">
+					占货比%
+				</td>
+				<td style="width:100px;">
+					实占输赢
+				</td>
+				<td style="width:100px;">
+					实占退水
+				</td>
+				<td style="width:100px;">
+					实占结果
+				</td>
+				<td style="width:100px;">
+					赚取退水
+				</td>
+				<td style="width:100px;">
+					赚水后结果
+				</td>
+				<td style="width:100px;">
+					贡献上级
+				</td>
+				<td style="width:100px;">
+					应付上级
+				</td>
+			</tr>
+			<tr onmouseover="ModColor(this,'#FFFF66')" onmouseout="MoveColor(this)"
+			class="rp_tr_1">
+				<td align="left" style="">
+					<a class="rp_a_1" onclick="$1('txtmemberno').value='tbzl789';return GetList('tbzl789','6;8;11;12;13;20;21;22;23;','2018-03-24','2018-03-24','','','','','total',false,'');">
+						tbzl789
+					</a>
+				</td>
+				<td style="">
+					量
+				</td>
+				<td style="">
+					6
+				</td>
+				<td style="">
+					<span style="color:#000;">
+						240.0
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1" onmouseover="open_clew('应收tbzl789明細','&nbsp;输赢：0.0<br/>&nbsp;退水：0.0',this)"
+				onmouseout="close_clew();" style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					0.000
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					0.00
+				</td>
+				<td class="rp_bcolor_1" onmouseover="open_clew('明細','&nbsp;输赢：0.0<br/>&nbsp;赚赔：0.0',this)"
+				onmouseout="close_clew();" style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1" style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1" onmouseover="open_clew('应付上级明细','&nbsp;贡献成数：0.00%',this)"
+				onmouseout="close_clew();" style="">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+			</tr>
+			<tr style="height: 25px; text-align:right; background-color:#fff;">
+				<td colspan="2" align="center">
+					合计
+				</td>
+				<td>
+					6
+				</td>
+				<td>
+					<span style="color:#000;">
+						240.0
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1" onmouseover="open_clew('应收合计明細','&nbsp;输赢：0<br/>&nbsp;退水：0',this)"
+				onmouseout="close_clew();">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					0.000
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					0.00
+				</td>
+				<td class="rp_bcolor_1" onmouseover="open_clew('明細','&nbsp;输赢：0<br/>&nbsp;赚赔：0',this)"
+				onmouseout="close_clew();">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td class="rp_bcolor_1">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+			</tr>
+			<tr style="height: 25px; text-align:right; background-color:#CCFFFF">
+				<td colspan="2" align="center">
+					总计
+				</td>
+				<td>
+					6
+				</td>
+				<td>
+					<span style="color:#000;">
+						240.0
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td onmouseover="open_clew('应收总计明細','&nbsp;输赢：0<br/>&nbsp;退水：0',this)"
+				onmouseout="close_clew();">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					0.000
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					0.00
+				</td>
+				<td onmouseover="open_clew('明細','&nbsp;输赢：0<br/>&nbsp;赚赔：0',this)" onmouseout="close_clew();">
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+				<td>
+					<span style="color:#ff0000;">
+						&nbsp;
+						<span>
+						</span>
+					</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table style="color:Blue;margin-top:2px; text-align:center;height:20px; line-height:20px; font-weight:bold;font-size:20px; width:100%;">
+		<tbody>
+			<tr>
+				<td align="right" style="width:50%;">
+					明细账
+				</td>
+				<td align="left">
+					<span style="display:block; padding-left:50px; cursor:pointer;font-size:14px;"
+					id="divShow" onclick="Show()">
+						展开
+					</span>
+					<span style="display:none; padding-left:50px; cursor:pointer;font-size:14px;"
+					id="divColos" onclick="Colos()">
+						收起
+					</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="divmxz" style="display:none;">
+		<table width="100%" class="DTable1" cellpadding="0" cellspacing="1" border="0"
+		bordercolor="#cccccc" style="margin-top:5px; color:#5E5E5E;">
+			<tbody>
+				<tr style="height:25px; text-align:center;background-color:#CCFFFF;">
+					<td colspan="17">
+						<div style="color:Red; height:20px; line-height:20px; font-weight:bold;width:100px; float:left;">
+							北京赛车
+						</div>
+						<span>
+							总代理列表
+						</span>
+					</td>
+				</tr>
+				<tr style="height: 20px; style=" background-image:url(..="" ..="" images=""
+				bbtitle_bg.png); ''="">
+					<td colspan="2">
+						总代理列表
+					</td>
+					<td colspan="3">
+						总代理下线合计
+					</td>
+					<td colspan="12">
+						股东:tbxy661(又)/股东:tbxy661(又)
+					</td>
+				</tr>
+				<tr style="height: 20px; background-color:#CCFFFF;">
+					<td style="">
+						编号
+					</td>
+					<td style="width:60px;">
+						名称
+					</td>
+					<td style="width:80px;">
+						笔数
+					</td>
+					<td style="width:100px;">
+						有效金额
+					</td>
+					<td style="width:100px;">
+						会员输赢
+					</td>
+					<td style="width:100px;">
+						下级贡献
+					</td>
+					<td style="width:100px;">
+						应收下线
+					</td>
+					<td style="width:100px;">
+						占成%
+					</td>
+					<td style="width:100px;">
+						实占注额
+					</td>
+					<td style="width:100px;">
+						占货比%
+					</td>
+					<td style="width:100px;">
+						实占输赢
+					</td>
+					<td style="width:100px;">
+						实占退水
+					</td>
+					<td style="width:100px;">
+						实占结果
+					</td>
+					<td style="width:100px;">
+						赚取退水
+					</td>
+					<td style="width:100px;">
+						赚水后结果
+					</td>
+					<td style="width:100px;">
+						贡献上级
+					</td>
+					<td style="width:100px;">
+						应付上级
+					</td>
+				</tr>
+				<tr class="rp_tr_1" onmouseover="ModColor(this,'#FFFF66')" onmouseout="MoveColor(this)">
+					<td align="left">
+						<a class="rp_a_1" onclick="$1('txtmemberno').value='tbzl789';return GetList('tbzl789','6;8;11;12;13;20;21;22;23;','2018-03-24','2018-03-24','','','','','total',false,'');">
+							tbzl789
+						</a>
+					</td>
+					<td>
+						量
+					</td>
+					<td>
+						6
+					</td>
+					<td>
+						<span style="color:#000;">
+							240.0
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1" onmouseover="open_clew('应收tbzl789明細','&nbsp;输赢：0.0<br/>&nbsp;退水：0.0',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.000
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.00
+					</td>
+					<td class="rp_bcolor_1" onmouseover="open_clew('明細','&nbsp;输赢：0.0<br/>&nbsp;赚赔：0.0',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1" onmouseover="open_clew('应付上级明细','&nbsp;贡献成数：0.00%',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+				</tr>
+				<tr style="height: 25px; text-align:right; background-color:#fff;">
+					<td colspan="2" align="center">
+						合计
+					</td>
+					<td>
+						6
+					</td>
+					<td>
+						<span style="color:#000;">
+							240.0
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1" onmouseover="open_clew('应收合计明細','&nbsp;输赢：0<br/>&nbsp;退水：0',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.000
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.00
+					</td>
+					<td class="rp_bcolor_1" onmouseover="open_clew('明細','&nbsp;输赢：0<br/>&nbsp;赚赔：0',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td class="rp_bcolor_1">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+				</tr>
+				<tr style="height: 25px; text-align:right; background-color:#CCFFFF">
+					<td colspan="2" align="center">
+						总计
+					</td>
+					<td>
+						6
+					</td>
+					<td>
+						<span style="color:#000;">
+							240.0
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td onmouseover="open_clew('应收总计明細','&nbsp;输赢：0<br/>&nbsp;退水：0',this)"
+					onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.000
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						0.00
+					</td>
+					<td onmouseover="open_clew('明細','&nbsp;输赢：0<br/>&nbsp;赚赔：0',this)" onmouseout="close_clew();">
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+					<td>
+						<span style="color:#ff0000;">
+							&nbsp;
+							<span>
+							</span>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	报表 明細
+</title><link href="../css/css.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        /*CSS sabrosus style pagination*/
+        DIV.sabrosus
+        {
+            padding-right: 3px;
+            padding-left: 3px;
+            padding-bottom: 3px;
+            margin: 3px;
+            padding-top: 3px;
+            text-align: center;
+        }
+        DIV.sabrosus A
+        {
+            border-right: #9aafe5 1px solid;
+            padding-right: 5px;
+            border-top: #9aafe5 1px solid;
+            padding-left: 5px;
+            padding-bottom: 2px;
+            border-left: #9aafe5 1px solid;
+            color: #2e6ab1;
+            margin-right: 2px;
+            padding-top: 2px;
+            border-bottom: #9aafe5 1px solid;
+            text-decoration: none;
+        }
+        DIV.sabrosus A:hover
+        {
+            border-right: #2b66a5 1px solid;
+            border-top: #2b66a5 1px solid;
+            border-left: #2b66a5 1px solid;
+            color: #000;
+            border-bottom: #2b66a5 1px solid;
+            background-color: lightyellow;
+        }
+        DIV.pagination A:active
+        {
+            border-right: #2b66a5 1px solid;
+            border-top: #2b66a5 1px solid;
+            border-left: #2b66a5 1px solid;
+            color: #000;
+            border-bottom: #2b66a5 1px solid;
+            background-color: lightyellow;
+        }
+        DIV.sabrosus SPAN.current
+        {
+            border-right: navy 1px solid;
+            padding-right: 5px;
+            border-top: navy 1px solid;
+            padding-left: 5px;
+            font-weight: bold;
+            padding-bottom: 2px;
+            border-left: navy 1px solid;
+            color: #fff;
+            margin-right: 2px;
+            padding-top: 2px;
+            border-bottom: navy 1px solid;
+            background-color: #2e6ab1;
+        }
+        DIV.sabrosus SPAN.disabled
+        {
+            border-right: #929292 1px solid;
+            padding-right: 5px;
+            border-top: #929292 1px solid;
+            padding-left: 5px;
+            padding-bottom: 2px;
+            border-left: #929292 1px solid;
+            color: #929292;
+            margin-right: 2px;
+            padding-top: 2px;
+            border-bottom: #929292 1px solid;
+        }
+        .DTable2 {
+            border-width:1px 0px 0px 1px; border-style:solid; border-color:#0094ff; text-align:center;
+        }
+            .DTable2 td {
+                border-width:0px 1px 1px 0px; border-style:solid; border-color:#0094ff;
+            }
+    </style>
+    <script type="text/javascript">
+        var pagecurrent = Number("1"); //当前页
+        var pagesize = 20;
+        var memberno = "tbgd002", gamestring = "6;8;11;12;13;20;21;22;23;", sdate = "2018-03-24", edate = "2018-03-24",
+            beginroundno = "", endroundno = "", wagerroundno = "",
+            wagertypeno = "", onlyself = "0", isbupai = "", isjs = "0",
+            datetime = "2018-03-24";
+        function GetList() {
+            window.location.href = "mreport_new_detail.aspx?memberno=" + memberno + "&gameno=" + gamestring + "&sdate=" + sdate
+                + "&edate=" + edate + "&roundno1=" + beginroundno + "&roundno2=" + endroundno + "&wagerroundno=" + wagerroundno
+                + "&wagertypeno=" + wagertypeno + "&onlyself=" + onlyself + "&isbupai=" + isbupai + "&isjs=" + isjs
+                + "&datetime=" + datetime + "&curpage=" + pagecurrent + "&ts=" + new Date().getTime();
+        }
+
+        function Getpages(rcount) {
+            var recordcount = rcount;
+            var pagecount = 0;
+            if (recordcount > 0) {
+                if (recordcount % pagesize == 0)
+                    pagecount = recordcount / pagesize;
+                else
+                    pagecount = parseInt(recordcount / pagesize, 10) + 1;
+                var spage = "";
+                var first; //第一页
+                var pre;  //前一页
+                var next; //下一页
+                var end; //最后一页
+
+                var currentlever;
+                if (pagecurrent > 1) {
+                    pvalue = pagecurrent - 1;
+                    pre = "<a href=\"javascript:void(0);\" onclick=\"ShowOtherpage(" + pvalue + ")\"> < </a>";
+                    first = "<a href=\"javascript:void(0);\" onclick=\"ShowOtherpage(1)\"> << </a>";
+                } else {
+                    pre = "<span class=\"disabled\"> < </span>";
+                    first = "<span class=\"disabled\"> << </span>";
+                }
+                if (pagecurrent == pagecount) {
+                    next = "<span class=\"disabled\"> > </span>";
+                    end = "<span class=\"disabled\"> >> </span>";
+                } else {
+                    pvalue = pagecurrent + 1;
+                    next = "<a href=\"javascript:void(0);\" onclick=\"ShowOtherpage(" + pvalue + ")\"> > </a>";
+                    end = "<a href=\"javascript:void(0);\" onclick=\"ShowOtherpage(" + pagecount + ")\"> >> </a>";
+                }
+                if (Math.floor(pagecurrent / 10) == 0) {
+                    currentlever = Math.floor(pagecurrent / 10);
+                } else {
+                    if (pagecurrent % 10 == 0) {
+                        currentlever = Math.floor(pagecurrent / 10) - 1;
+                    } else {
+                        currentlever = Math.floor(pagecurrent / 10);
+                    }
+                }
+                spage = "";
+                if (pagecurrent <= pagecount) {
+                    for (var p = 1; p <= 10; p++) {
+                        value = p + currentlever * 10;
+                        if (value > pagecount)
+                            break;
+                        if (pagecurrent == value) {
+                            spage += "<span class=\"current\">" + value + "</span>"
+                        } else {
+                            spage += "<a href=\"javascript:void(0);\" onclick=\"ShowOtherpage(" + value + ")\">" + value + "</a>";
+                        }
+                    }
+                }
+                var countstr = "&nbsp;共&nbsp;" + recordcount + " 条&nbsp;&nbsp;第&nbsp;" + pagecurrent + "/" + pagecount + "&nbsp;页&nbsp;&nbsp;";
+                var pagestr = "<div class=\"sabrosus\"><span>" + countstr + "</span>" + first + pre + spage + next + end + "</div>";
+
+                document.getElementById("tdpage").innerHTML = pagestr;
+            }
+        }
+
+        function ShowOtherpage(pg) {
+            pagecurrent = pg;
+            GetList();
+        }
+         function ReData() {
+            pagecurrent = 1;
+            GetList();
+         }
+        function ShowGroup(idno) {//显示分组明细
+            parent.hwProwin.apply({ "idno": idno });
+            parent.hwProwin.win({ message: "../ch/showgroup.aspx", width: 800, height: 250, iframe: true, modal: false });
+        }
+    </script>
+</head>
+<body>
+    <table width="100%" class="DTable2" border="0" cellpadding="0" cellspacing="0" style=" margin-top: 5px; font-size: 12px; font-family: 細明體;">
+        <tr class='trH' style='height: 20px;'>
+            <td>编号</td>
+            <td>游戏名称</td>
+            <td>单号/时间</td>
+            <td>账号</td>
+            <td>退水率</td>
+            <td>投注内容</td>
+            <td>赔率</td>
+            <td>投注金额</td>
+            <td>退水</td>
+            <td>结果</td>
+            <td>净利</td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>1</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989724</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第十名</font> 01
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">4.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>2</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989723</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第九名</font> 02
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">128.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>3</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989722</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第八名</font> 08
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">8.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>4</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989721</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第七名</font> 03
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">4.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>5</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989720</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第六名</font> 06
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">16.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>6</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989719</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第五名</font> 04
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">8.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>7</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989718</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第四名</font> 09
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">32.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>8</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989717</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>第三名</font> 05
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">16.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>9</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989716</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>亚军</font> 07
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">16.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 18px; background-color: #FFFFFF;">
+            <td>10</td>
+            <td>极速赛车</td>
+            <td><font color='green'>528989715</font>   03-24 10:53:26</td>
+            <td>tbgd002</td>
+            <td>0.00</td>
+            <td>
+                30587356期 A盘/ <font color='red'>冠军</font> 10
+                
+            </td>
+            <td>9.936</td>
+            <td align='right'><span style="color:#000;">4.00<span></td>
+            <td align='right'>0.00</td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        
+        <tr style="height: 22px;">
+            <td colspan='7' align='right'><input type="button" value="刷新" onclick="ReData()" style="margin-right:20px;"/>合计</td>
+            <td align='right'><span style="color:#000;">236.00<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+            <td align='right'><span style="color:#ff0000;">&nbsp;<span></td>
+        </tr>
+        <tr class="trH">
+            <td id="tdpage" style="line-height: 22px; text-align: left; height: 12px; background-color: #ffffff;" colspan="14"></td>
+        </tr>
+        
+    </table>
+</body>
+</html>
+<script type="text/javascript">
+    Getpages(Number("10"));
+</script>
+<script type="text/javascript">
+        function ScriptPipeline(jsstr) { //脚本管道路径
+            try{
+                var curl = window.location.pathname;
+                if (curl.indexOf('main.aspx') != -1) {
+                    eval(jsstr);
+                } else {
+                    parent.ScriptPipeline(jsstr);
+                }               
+            } catch(err) { }
+        }
+        ScriptPipeline("MultiAccount('tbcs111')");
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
