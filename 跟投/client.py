@@ -188,7 +188,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("s3d4.txt")
+        self.conf.read("client.txt")
 
         if self.conf.has_section("name") == True:
             self.name = self.conf.get("name", "value")
@@ -330,10 +330,10 @@ class Application(tk.Tk):
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
 
-        self.urlEntered.insert(END, "http://77t.snk686.com/search.aspx")
-        self.wdEntered.insert(END, "64801")
+        self.urlEntered.insert(END, "http://93k.zsz585.com/search.aspx")
+        self.wdEntered.insert(END, "95712")
         
-        self.nameEntered.insert(END, "tbcs111")
+        self.nameEntered.insert(END, "vf01ha009")
         self.pwdEntered.insert(END, "5134abab")
 
         
@@ -464,6 +464,7 @@ class Application(tk.Tk):
         self.name  = self.nameEntered.get()
         self.pwd   = self.pwdEntered.get()
         self.check = self.checkEntered.get()
+        self.save()
         if self.name == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
@@ -506,12 +507,12 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        #print(html)
+        print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('title'):
-            if row.get_text().find("协议与规则") >= 0:
+        for row in soup.find_all('h2'):
+            if row.get_text().find("用户协议与规则") >= 0:
                 login = True;
         if login == False:
             print("错误 ==> 登陆错误！")
@@ -547,11 +548,11 @@ class Application(tk.Tk):
         print(html)
         '''
         print("############################管理界面##############################") 
-        #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/main.aspx
+        #http://54jndgw.ttx158.com/cp5-5-ag/ch/main.aspx
         agreement_dict = {}
         agreement_dict["stype"] = "1"
         data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.baseurl + "opadmin/main.aspx"
+        url = self.baseurl + "ch/main.aspx"
         print(url)
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
@@ -574,18 +575,31 @@ class Application(tk.Tk):
         except:
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
-            returnf
-        print(html)
+            return
+        #print(html)
 
-        print("############################报表查询##############################")
-        html = ""
-        #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new.aspx
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.baseurl + "opadmin/mreport_new.aspx"
+        print("############################下注订单##############################")
+
+        #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
+        #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
+        order_dict = {}
+        order_dict["wagerround"] = "D"
+        order_dict["transtring"] = "621,,1,,1.94,2;"
+        order_dict["arrstring"] = "621:1:2;"
+        order_dict["wagetype"] = 0
+        order_dict["allowcreditquota"] = 4013
+        order_dict["hasToken"] = True
+        order_dict["playgametype"] = 0
+        
+        #data = urllib.parse.urlencode(order_dict).encode('utf-8')
+        
+        url = self.baseurl + "ch/left.aspx/GetMemberMtran"
         print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
+        #headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
+        headers["Content-Type"] = "application/json; charset=UTF-8"
+        print(headers)
+        
+        request = urllib.request.Request(url = url, data = json.dumps(order_dict).encode(encoding='UTF8'), headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
@@ -602,12 +616,60 @@ class Application(tk.Tk):
             return
         except Exception as msg:
             print("Exception:%s" % msg)
+            return
+        except:
+            #print("error lineno:" + str(sys._getframe().f_lineno))
+            print("错误 ==> 网络连接错误！")
+            return
+        print(html)
+
+        text = json.loads(html)
+        spls = text["d"].split('$@')
+        token = spls[len(spls) - 1]
+        print(token)
+        #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
+        #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
+        order_dict = {}
+        order_dict["gameno"] = "11"
+        order_dict["wagerroundstring"] = "D"
+        order_dict["arrstring"] = "601:10:2;"
+        order_dict["roundno"] = "672724"
+        order_dict["lianma_transtrin"] = ""
+        order_dict["token"] = token
+        data = urllib.parse.urlencode(order_dict).encode('utf-8')
+        url = self.baseurl + "ch/left.aspx/mtran_XiaDan_New"
+        print(url)
+        
+        headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
+        headers["Content-Type"] = "application/json; charset=UTF-8"
+        request = urllib.request.Request(url = url, data = json.dumps(order_dict).encode(encoding='UTF8'), headers = headers, method = 'POST')
+        try:
+            response = opener.open(request, timeout = 5)
+            html = response.read().decode()
+        except urllib.error.HTTPError as e:
+            print('The server couldn\'t fulfill the request.')
+            print('Error code: ' + str(e.code))
+            print('Error reason: ' + e.reason)
+            print("错误 ==> 网络连接错误！")
+            return
+        except urllib.error.URLError as e:
+            print('We failed to reach a server.')
+            print('Reason: ' + e.reason)
+            print("错误 ==> 网络连接错误！")
+            return
+        except Exception as msg:
+            print("Exception:%s" % msg)
+            return
         except:
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
         print(html)
         
+        
+        
+        return
+    
         self.btaction.configure(text='关闭')
         self.thread = TestThread(self)
         self.thread.start()
@@ -615,16 +677,19 @@ class Application(tk.Tk):
     def save(self):
         #增加新的section
         #
-        self.agent  = self.agentEntered.get()
-        #self.jump  = self.textJump.get(1.0, END)
-        self.monery = self.textMonery.get(1.0, END)
+        self.url  = self.urlEntered.get()
+        self.wd = self.wdEntered.get()
         
-        self.conf.set("agent", "value", self.agentEntered.get())
-        #self.conf.set("jump", "value", self.textJump.get(1.0, END))
-        self.conf.set("monery", "value", self.textMonery.get(1.0, END))
+        self.name  = self.nameEntered.get()
+        self.pwd = self.pwdEntered.get()
+        
+        self.conf.set("url", "value", self.url)
+        self.conf.set("wd", "value", self.wd)
+        self.conf.set("name", "value", self.name)
+        self.conf.set("pwd", "value", self.pwd)
         #写回配置文件
-        self.conf.write(open("s3d4.txt", "w"))
-        messagebox.showinfo("提示","配置成功！")
+        self.conf.write(open("client.txt", "w"))
+        #messagebox.showinfo("提示","配置成功！")
         
     def Chosen(self, *args):
         messagebox.showinfo("提示", self.bookChosen.get())
@@ -640,8 +705,6 @@ def serve_forever():
     httpd.serve_forever()        
         
 def main():
-
-    httpd.serve_forever()
     subthread = threading.Thread(target = serve_forever, args=())
     subthread.setDaemon(True)
     subthread.start()
