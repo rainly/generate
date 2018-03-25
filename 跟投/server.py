@@ -39,16 +39,16 @@ import time
 from wsgiref.simple_server import make_server
 
 
+
+
 file_object = open('oc.js', encoding= 'utf8')
 try:
         all_the_text = file_object.read( )
 finally:
         file_object.close( )
-#print(all_the_text)
 if all_the_text.startswith(u'\ufeff'):
         all_the_text = all_the_text.encode('utf8')[3:].decode('utf8')
 all_the_oc = json.loads(all_the_text)
-#print(all_the_oc)
 
 
 def getgno(gname):
@@ -63,11 +63,6 @@ def getoddsgno(oddsgname):
         if item["oddsgname"] == oddsgname:
             return item["oddsgno"]
     return 0
-
-       
-print(getgno("福彩3D"))
-print(getoddsgno("第二球"))
-
 
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -115,12 +110,12 @@ user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like
 headers = { 'User-Agent' : user_agent }  
 
 #64801
+print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
-#1521852795404
-#1521853169130
-ticks = time.time()
-print ("当前时间戳为:" , ticks)
-print ("当前时间戳为:" , ticks * 1000)
+order_dict = {}
+order_dict["533357406"] = 1
+if "53335740611" in order_dict:
+    print("**********");
 
         
 class ServerThread(threading.Thread):
@@ -132,13 +127,6 @@ class ServerThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         print('Thread start\n')                   
-        #subthread = threading.Thread(target = self.target_func, args=())
-        #subthread.setDaemon(True)
-        #subthread.start()
-
-        #while not self.stopped:
-        #    #print("***subthread.join***")
-        #    subthread.join(self.timeout + 1)
         self.target_func()
         print('Thread stopped'+ "\n")
 
@@ -154,70 +142,83 @@ class ServerThread(threading.Thread):
     def target_func(self):
         print("target_func begin")
         while self.stopped == False:
-            time.sleep(5)
-            html = ""
-            print("############################查询详细##############################") 
-            #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
-            url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523"
-            print(url)
-            request = urllib.request.Request(url = url, headers = headers, method = 'GET')
-            try:
-                response = opener.open(request, timeout = 5)
-                html = response.read().decode()
-            except urllib.error.HTTPError as e:
-                print('The server couldn\'t fulfill the request.')
-                print('Error code: ' + str(e.code))
-                print('Error reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
-                continue
-            except urllib.error.URLError as e:
-                print('We failed to reach a server.')
-                print('Reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
-                continue
-            except Exception as msg:
-                print("Exception:%s" % msg)
-                continue
-            except:
-                #print("error lineno:" + str(sys._getframe().f_lineno))
-                print("错误 ==> 网络连接错误！")
-                continue
-            #print(html)
             g_mutex.acquire()
             g_datas.clear()
-            soup = BeautifulSoup(html, "lxml")
-            for tr in soup.find_all('tr'):
-                if tr.has_attr("class"):
-                    continue
-                if tr.has_attr("style") == False:
-                    continue
-                #print(row["style"])
-                if tr["style"] != "height: 18px; background-color: #FFFFFF;":
-                    continue;
-                
-                '''
-                编号
-                游戏名称
-                单号/时间
-                账号
-                退水率
-                投注内容
-                赔率
-                投注金额
-                退水
-                结果
-                净利
-                '''
-                
-                data = []
-                for td in tr.find_all('td'):
-                    #print(td.get_text())
-                    #print("**")
-                    data.append(td.get_text())
-                g_datas.append(data)
-                #print("##########################################################")
             g_mutex.release()
-            print(g_datas)
+            
+            searchTexts = self.target.searchText.split("\n")
+            for item in searchTexts:
+                if item  == "":
+                    continue
+                html = ""
+                item = item.replace("\n","")
+                items = item.split("*");
+                #print("############################查询详细##############################" + items[0]) 
+                #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
+                t = time.time()
+                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + items[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
+                #print(url)
+                request = urllib.request.Request(url = url, headers = headers, method = 'GET')
+                try:
+                    response = opener.open(request, timeout = 5)
+                    html = response.read().decode()
+                except urllib.error.HTTPError as e:
+                    print('The server couldn\'t fulfill the request.')
+                    print('Error code: ' + str(e.code))
+                    #print('Error reason: ' + e.reason)
+                    print("错误 ==> 网络连接错误！")
+                    continue
+                except urllib.error.URLError as e:
+                    print('We failed to reach a server.')
+                    #print('Reason: ' + e.reason)
+                    print("错误 ==> 网络连接错误！")
+                    continue
+                except Exception as msg:
+                    print("Exception:%s" % msg)
+                    continue
+                except:
+                    #print("error lineno:" + str(sys._getframe().f_lineno))
+                    print("错误 ==> 网络连接错误！")
+                    continue
+                #print(html)
+                g_mutex.acquire()
+                soup = BeautifulSoup(html, "lxml")
+                for tr in soup.find_all('tr'):
+                    if tr.has_attr("class"):
+                        continue
+                    if tr.has_attr("style") == False:
+                        continue
+                    #print(row["style"])
+                    if tr["style"] != "height: 18px; background-color: #FFFFFF;":
+                        continue;
+                    
+                    '''
+                    编号
+                    游戏名称
+                    单号/时间
+                    账号
+                    退水率
+                    投注内容
+                    赔率
+                    投注金额
+                    退水
+                    结果
+                    净利
+                    '''
+                    
+                    data = []
+                    for td in tr.find_all('td'):
+                        #print(td.get_text())
+                        #print("**")
+                        data.append(td.get_text())
+                    g_datas.append(data)
+                    #print("##########################################################")
+                g_mutex.release()
+				
+            print("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
+            for item in g_datas:
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())		
+            time.sleep(5)
         print("target_func end")
                 
                 
@@ -234,14 +235,6 @@ class ClientThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         print('Thread start\n')                   
-        #subthread = threading.Thread(target = self.target_func, args=())
-        #subthread.setDaemon(True)
-        #subthread.start()
-        #
-        #while not self.stopped:
-        #    #print("***subthread.join***")
-        #    subthread.join(self.timeout + 1)
-        #   
         self.target_func()
         print('Thread stopped'+ "\n")
 
@@ -253,34 +246,13 @@ class ClientThread(threading.Thread):
 
     def logprint(self, log):
         print(log)
-        
+
+
     def target_func(self):
+        g_order_dict = {}
         while self.stopped == False:
-            time.sleep(5)
             g_mutex.acquire()
             for item in g_datas:
-                print("############################下注订单##############################")
-                #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
-                #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
-                
-                #去左右空格
-                content = item[5].strip()
-                print(content)
-                
-                contents = content.split(' ')
-                print(contents)
-                #['30587881期', 'A盘/', '冠军', '08']
-
-                roundno = contents[0].replace("期", "")
-                gameno  = getgno(item[1])
-                oddsgno = getoddsgno(contents[2])
-                gameidx = getoddsgno(contents[3])
-                
-                print(roundno)                
-                print(gameno)
-                print(oddsgno)
-                print(gameidx)
-
                 '''
                 编号
                 游戏名称
@@ -293,41 +265,103 @@ class ClientThread(threading.Thread):
                 退水
                 结果
                 净利
-                '''                
+                '''
                 
+                bUser = False
+                for key in self.target.users:
+                    if item[3] == key:
+                        bUser = True;
+                    
+                if bUser == False:
+                    continue
+
+                monery = round(float(item[7]) * float(self.target.users[item[3]]))
+                #print(monery)
+                
+                #过滤每个订单
+                orders = item[2].split(' ')
+                
+                print("############################下注订单##############################" + orders[0])
+                
+                if orders[0] in g_order_dict:
+                    print("****订单已经处理*****" + orders[0])
+                    continue;
+                g_order_dict[orders[0]] = 1
+            
+                print("############################下注订单##############################")
+                #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
+                #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
+                
+                gameno  = getgno(item[1])
+                #['30587881期', 'A盘/', '冠军', '08']
+                #去左右空格
+                content = item[5].strip()
+                contents = content.split(' ')
+                #print(contents)
+                
+                roundno = contents[0].replace("期", "")
+                oddsgno = getoddsgno(contents[2])
+                gameidx = contents[3]
+                
+                if contents[3] == "大":
+                    gameidx = '1'
+                elif  contents[3] == "小":
+                    gameidx = '2'
+                elif  contents[3] == "单":
+                    gameidx = '1'
+                elif  contents[3] == "双":
+                    gameidx = '2'
+                elif  contents[3] == "龙":
+                    gameidx = '1'
+                elif  contents[3] == "虎":
+                    gameidx = '2'
+                elif  contents[3] == "和数大":
+                    gameidx = '1'
+                elif  contents[3] == "和数小":
+                    gameidx = '2'
+                elif  contents[3] == "和数单":
+                    gameidx = '1'
+                elif  contents[3] == "和数双":
+                    gameidx = '2'
+                    
+                #{gameno:11,wagerroundstring:"D",arrstring:"601:1:2;",roundno:"672878",lianma_transtrin:"",token:"3708E135BA0B96C54260620E3CE6E2CF"}
+                #print(roundno)                
+                #print(gameno)
+                #print(oddsgno)
+                #print(gameidx)
                 
                 order_dict = {}
                 order_dict["wagerround"] = "D"
                 #order_dict["transtring"] = "621,,1,,1.94,2;"
                 order_dict["transtring"] = ""
                 #order_dict["arrstring"] = "621:1:2;"
-                order_dict["arrstring"] = str(oddsgno) + ":" + str(gameidx) + ":2"# + item[1]
+                order_dict["arrstring"] = str(oddsgno) + ":" + str(gameidx) + ":" + str(monery)
                 order_dict["wagetype"] = 0
                 order_dict["allowcreditquota"] = 0
                 order_dict["hasToken"] = True
                 order_dict["playgametype"] = 0
                 
-                #data = urllib.parse.urlencode(order_dict).encode('utf-8')
+                data = json.dumps(order_dict).encode(encoding='UTF8')
+                #print(data)
                 
                 url = self.target.cli_baseurl + "ch/left.aspx/GetMemberMtran"
-                print(url)
-                #headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
-                headers["Content-Type"] = "application/json; charset=UTF-8"
-                print(headers)
+                #print(url)
                 
-                request = urllib.request.Request(url = url, data = json.dumps(order_dict).encode(encoding='UTF8'), headers = headers, method = 'POST')
+                headers["Content-Type"] = "application/json; charset=UTF-8"
+                
+                request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
                     print('The server couldn\'t fulfill the request.')
                     print('Error code: ' + str(e.code))
-                    print('Error reason: ' + e.reason)
+                    #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a server.')
-                    print('Reason: ' + e.reason)
+                    #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except Exception as msg:
@@ -338,39 +372,38 @@ class ClientThread(threading.Thread):
                     print("错误 ==> 网络连接错误！")
                     continue
                 
-                print(html)
+                #print(html)
                 text = json.loads(html)
                 spls = text["d"].split('$@')
                 token = spls[len(spls) - 1]
-                print(token)
+                print("获取token " + token)
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
                 #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
                 order_dict = {}
                 order_dict["gameno"] = gameno
                 order_dict["wagerroundstring"] = "D"
-                order_dict["arrstring"] = str(oddsgno) + ":" + str(gameidx) + ":2"# + item[1]
+                order_dict["arrstring"] = str(oddsgno) + ":" + gameidx + ":" + str(monery)
                 order_dict["roundno"] = roundno
                 order_dict["lianma_transtrin"] = ""
                 order_dict["token"] = token
-                data = urllib.parse.urlencode(order_dict).encode('utf-8')
+                data = json.dumps(order_dict).encode(encoding='UTF8')  
                 url = self.target.cli_baseurl + "ch/left.aspx/mtran_XiaDan_New"
-                print(url)
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-                request = urllib.request.Request(url = url, data = json.dumps(order_dict).encode(encoding='UTF8'), headers = headers, method = 'POST')
+                request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
                     print('The server couldn\'t fulfill the request.')
                     print('Error code: ' + str(e.code))
-                    print('Error reason: ' + e.reason)
+                    #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a server.')
-                    print('Reason: ' + e.reason)
+                    #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except Exception as msg:
@@ -381,16 +414,38 @@ class ClientThread(threading.Thread):
                     print("错误 ==> 网络连接错误！")
                     continue
                 print(html)
+            
+            ###############################
             g_mutex.release()
+            time.sleep(5)
    
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.protocol("WM_DELETE_WINDOW", self.Close)
         
+        #生成config对象
+        self.conf = configparser.ConfigParser()
+        #用config对象读取配置文件
+        self.conf.read("server.txt")    
+        
+        if self.conf.has_section("agent") == True:
+            self.agent = self.conf.get("agent", "value")
+        else:
+            self.agent = ""
+            self.conf.add_section("agent")
+            self.conf.set("agent", "value", "")
+
+        if self.conf.has_section("searchText") == True:
+            self.searchText = self.conf.get("searchText", "value")
+        else:
+            self.searchText = ""
+            self.conf.add_section("searchText")
+            self.conf.set("searchText", "value", "")
+            
+        
         self.ser_initdata()
         self.cli_initdata()
-        
         self.createWidgets()
         
     def createWidgets(self):
@@ -400,56 +455,71 @@ class Application(tk.Tk):
         self.tabControl.add(self.ser_tab, text='**采集**')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
         
-        self.cli_tab1 = ttk.Frame(self.tabControl)            # Create a tab
-        self.tabControl.add(self.cli_tab1, text='**下注**')      # Add the tab
+        self.cli_tab = ttk.Frame(self.tabControl)            # Create a tab
+        self.tabControl.add(self.cli_tab, text='**下注**')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
+        
+        self.conf_tab = ttk.Frame(self.tabControl)            # Create a tab
+        self.tabControl.add(self.conf_tab, text='**配置**')      # Add the tab
+        self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
+        
         # ~ Tab Control introduced here
         # -----------------------------------------
         self.ser_createTab()    
-        self.cli_createTab()            
+        self.cli_createTab()    
+        
+        #---------------ser_tab控件介绍------------------#
+        # Modified Button Click Function  
+        # We are creating a container tab3 to hold all other widgets
+        self.conf_MyFrame = ttk.LabelFrame(self.conf_tab, text='操作区(名字*赔率)')
+        self.conf_MyFrame.grid(column=0, row=0, padx=8, pady=4)
+        
+        # Using a scrolled Text control
+        self.scrolW = 65
+        self.scrolH = 20
+        #行
+        line = 0
+        # Changing our Label  
+        ttk.Label(self.conf_MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
+        # Adding a Textbox Entry widget  
+        # self.ser_url = tk.StringVar()  
+        self.searchScrolledText = scrolledtext.ScrolledText(self.conf_MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+        self.searchScrolledText.grid(column=0, row=line, sticky='WE', columnspan=3)    
+        self.searchScrolledText.insert(tk.INSERT, self.searchText)        
         
         
     def ser_initdata(self):
         self.ser_thread = None
-        #生成config对象
-        self.ser_conf = configparser.ConfigParser()
-        #用config对象读取配置文件
-        self.ser_conf.read("server.txt")
 
-        if self.ser_conf.has_section("name") == True:
-            self.ser_name = self.ser_conf.get("name", "value")
+        if self.conf.has_section("ser_name") == True:
+            self.ser_name = self.conf.get("ser_name", "value")
         else:
             self.ser_name = ""
-            self.ser_conf.add_section("name")
-            self.ser_conf.set("name", "value", "")
+            self.conf.add_section("ser_name")
+            self.conf.set("ser_name", "value", "")
 
-        if self.ser_conf.has_section("pwd") == True:
-            self.ser_pwd = self.ser_conf.get("pwd", "value")
+        if self.conf.has_section("ser_pwd") == True:
+            self.ser_pwd = self.conf.get("ser_pwd", "value")
         else:
             self.ser_pwd = ""
-            self.ser_conf.add_section("pwd")
-            self.ser_conf.set("pwd", "value", "")
-
-        if self.ser_conf.has_section("agent") == True:
-            self.ser_agent = self.ser_conf.get("agent", "value")
-        else:
-            self.ser_agent = ""
-            self.ser_conf.add_section("agent")
-            self.ser_conf.set("agent", "value", "")
- 
-        if self.ser_conf.has_section("url") == True:
-            self.ser_url = self.ser_conf.get("url", "value")
+            self.conf.add_section("ser_pwd")
+            self.conf.set("ser_pwd", "value", "")
+            
+        if self.conf.has_section("ser_url") == True:
+            self.ser_url = self.conf.get("ser_url", "value")
         else:
             self.ser_url = ""
-            self.ser_conf.add_section("url")
-            self.ser_conf.set("url", "value", "")
+            self.conf.add_section("ser_url")
+            self.conf.set("ser_url", "value", "")
 
-        if self.ser_conf.has_section("wd") == True:
-            self.ser_wd = self.ser_conf.get("wd", "value")
+        if self.conf.has_section("ser_wd") == True:
+            self.ser_wd = self.conf.get("ser_wd", "value")
         else:
             self.ser_wd = ""
-            self.ser_conf.add_section("wd")
-            self.ser_conf.set("wd", "value", "")    
+            self.conf.add_section("ser_wd")
+            self.conf.set("ser_wd", "value", "")    
+            
+
             
     def ser_createTab(self):
        
@@ -458,10 +528,6 @@ class Application(tk.Tk):
         # We are creating a container tab3 to hold all other widgets
         self.ser_MyFrame = ttk.LabelFrame(self.ser_tab, text='操作区')
         self.ser_MyFrame.grid(column=0, row=0, padx=8, pady=4)
-        
-        # Using a scrolled Text control
-        self.ser_scrolW = 80
-        self.ser_scrolH = 10
          #行
         line = 0
         # Changing our Label  
@@ -517,17 +583,8 @@ class Application(tk.Tk):
         self.ser_label = tk.Label(self.ser_MyFrame, bg='brown')
         self.ser_label.grid(column=0,row=line,sticky='W')
 
-        self.ser_btaction = ttk.Button(self.ser_MyFrame,text="刷新",width=10,command=self.ser_flushMe)
+        self.ser_btaction = ttk.Button(self.ser_MyFrame,text="刷新",width=10,command=self.ser_interMe)
         self.ser_btaction.grid(column=1,row=line,sticky='E')
-
-        #行
-        line = line + 1
-        # Changing our Label  
-        ttk.Label(self.ser_MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
-        # Adding a Textbox Entry widget  
-        # self.ser_url = tk.StringVar()  
-        self.ser_searchEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable="")  
-        self.ser_searchEntered.grid(column=1, row=line, sticky='W')
 
          # Adding a Button
         line = line + 1
@@ -546,14 +603,12 @@ class Application(tk.Tk):
         self.ser_wdEntered.insert(END, self.ser_wd)
         
         self.ser_nameEntered.insert(END, self.ser_name)
-        self.ser_pwdEntered.insert(END, self.ser_pwd)
+        #self.ser_pwdEntered.insert(END, self.ser_pwd)
    
     def ser_interMe(self):
         print("################进入网站#######################")
         self.ser_url  = self.ser_urlEntered.get()
         self.ser_wd  = self.ser_wdEntered.get()
-        print(self.ser_url)
-        print(self.ser_wd)
         url = self.ser_url
         inter_dict = {'wd':self.ser_wd}
         data = urllib.parse.urlencode(inter_dict).encode('utf-8')
@@ -564,12 +619,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -600,12 +655,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -645,11 +700,11 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
             print("Exception:%s" % msg)
@@ -663,6 +718,7 @@ class Application(tk.Tk):
         if  text[4] == '关闭':
             if self.ser_thread.is_alive():
                 self.ser_thread.stop()
+                self.ser_thread.join()
             self.ser_thread = None
             self.ser_btaction.configure(text='开始')
             return
@@ -670,6 +726,7 @@ class Application(tk.Tk):
         self.ser_name  = self.ser_nameEntered.get()
         self.ser_pwd   = self.ser_pwdEntered.get()
         self.ser_check = self.ser_checkEntered.get()
+        self.searchText = self.searchScrolledText.get(1.0, END)
         if self.ser_name == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
@@ -681,11 +738,25 @@ class Application(tk.Tk):
         if self.ser_check == "":
             messagebox.showinfo("提示","验证码不能为空！")
             return
-        
+            
+        if self.searchText == "":
+            messagebox.showinfo("提示","账号查询不能为空！")
+            return
+            
+        self.users = {}
+        searchTexts = self.searchText.split("\n")
+        for item in searchTexts:
+            if item  == "":
+                continue
+            item  = item.replace("\n", "")
+            user  = item.split("*");
+            if len(user) < 2:
+                messagebox.showinfo("提示","账号查询格式不正确！")
+                return                
+            self.users[user[0]] = user[1]
+
         self.ser_save()  
         print("############################账号登陆##############################")
-        print(self.ser_loginurl)
-        print(self.ser_logindict)
         self.ser_logindict["txt_U_name"]     = self.ser_name
         self.ser_logindict["txt_U_Password"] = self.ser_pwd 
         self.ser_logindict["txt_validate"]   = self.ser_check
@@ -698,12 +769,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -740,11 +811,11 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
             print("Exception:%s" % msg)
@@ -767,12 +838,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -799,12 +870,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -824,71 +895,56 @@ class Application(tk.Tk):
         #
         self.ser_url  = self.ser_urlEntered.get()
         self.ser_wd = self.ser_wdEntered.get()
-        
         self.ser_name  = self.ser_nameEntered.get()
         self.ser_pwd = self.ser_pwdEntered.get()
-        
-        self.ser_conf.set("url", "value", self.ser_url)
-        self.ser_conf.set("wd", "value", self.ser_wd)
-        self.ser_conf.set("name", "value", self.ser_name)
-        self.ser_conf.set("pwd", "value", self.ser_pwd)
+        self.searchText = self.searchScrolledText.get(1.0, END)
+        self.conf.set("searchText", "value", self.searchText)      
+        self.conf.set("ser_url", "value", self.ser_url)
+        self.conf.set("ser_wd", "value", self.ser_wd)
+        self.conf.set("ser_name", "value", self.ser_name)
+        self.conf.set("ser_pwd", "value", self.ser_pwd)
         #写回配置文件
-        self.ser_conf.write(open("server.txt", "w"))
+        self.conf.write(open("server.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
     
     ############################
     def cli_initdata(self):   
         self.cli_thread = None
-        #生成config对象
-        self.cli_conf = configparser.ConfigParser()
-        #用config对象读取配置文件
-        self.cli_conf.read("client.txt")
-
-        if self.cli_conf.has_section("name") == True:
-            self.cli_name = self.cli_conf.get("name", "value")
+        
+        if self.conf.has_section("cli_name") == True:
+            self.cli_name = self.conf.get("cli_name", "value")
         else:
             self.cli_name = ""
-            self.cli_conf.add_section("name")
-            self.cli_conf.set("name", "value", "")
+            self.conf.add_section("cli_name")
+            self.conf.set("cli_name", "value", "")
 
-        if self.cli_conf.has_section("pwd") == True:
-            self.cli_pwd = self.cli_conf.get("pwd", "value")
+        if self.conf.has_section("cli_pwd") == True:
+            self.cli_pwd = self.conf.get("cli_pwd", "value")
         else:
             self.cli_pwd = ""
-            self.cli_conf.add_section("pwd")
-            self.cli_conf.set("pwd", "value", "")
-
-        if self.cli_conf.has_section("agent") == True:
-            self.cli_agent = self.cli_conf.get("agent", "value")
-        else:
-            self.cli_agent = ""
-            self.cli_conf.add_section("agent")
-            self.cli_conf.set("agent", "value", "")
- 
-        if self.cli_conf.has_section("url") == True:
-            self.cli_url = self.cli_conf.get("url", "value")
+            self.conf.add_section("cli_pwd")
+            self.conf.set("cli_pwd", "value", "")
+            
+        if self.conf.has_section("cli_url") == True:
+            self.cli_url = self.conf.get("cli_url", "value")
         else:
             self.cli_url = ""
-            self.cli_conf.add_section("url")
-            self.cli_conf.set("url", "value", "")
+            self.conf.add_section("cli_url")
+            self.conf.set("cli_url", "value", "")
 
-        if self.cli_conf.has_section("wd") == True:
-            self.cli_wd = self.cli_conf.get("wd", "value")
+        if self.conf.has_section("cli_wd") == True:
+            self.cli_wd = self.conf.get("cli_wd", "value")
         else:
             self.cli_wd = ""
-            self.cli_conf.add_section("wd")
-            self.cli_conf.set("wd", "value", "")  
+            self.conf.add_section("cli_wd")
+            self.conf.set("cli_wd", "value", "")  
 
     def cli_createTab(self):
         #---------------Tab1控件介绍------------------#
         # Modified Button Click Function  
         # We are creating a container tab3 to hold all other widgets
-        self.cli_MyFrame = ttk.LabelFrame(self.cli_tab1, text='操作区')
+        self.cli_MyFrame = ttk.LabelFrame(self.cli_tab, text='操作区')
         self.cli_MyFrame.grid(column=0, row=0, padx=8, pady=4)
-        
-        # Using a scrolled Text control
-        self.cli_scrolW = 80
-        self.cli_scrolH = 10
          #行
         line = 0
         # Changing our Label  
@@ -944,18 +1000,9 @@ class Application(tk.Tk):
         self.cli_label = tk.Label(self.cli_MyFrame, bg='brown')
         self.cli_label.grid(column=0,row=line,sticky='W')
 
-        self.cli_btaction = ttk.Button(self.cli_MyFrame,text="刷新",width=10,command=self.cli_flushMe)
+        self.cli_btaction = ttk.Button(self.cli_MyFrame,text="刷新",width=10,command=self.ser_flushMe)
         self.cli_btaction.grid(column=1,row=line,sticky='E')
-
-        #行
-        line = line + 1
-        # Changing our Label  
-        ttk.Label(self.cli_MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
-        # Adding a Textbox Entry widget  
-        # self.cli_url = tk.StringVar()  
-        self.cli_searchEntered = ttk.Entry(self.cli_MyFrame, width=60, textvariable="")  
-        self.cli_searchEntered.grid(column=1, row=line, sticky='W')
-
+        
          # Adding a Button
         line = line + 1
         self.cli_btaction = ttk.Button(self.cli_MyFrame,text="开始",width=10,command=self.cli_clickMe)
@@ -971,7 +1018,6 @@ class Application(tk.Tk):
 
         self.cli_urlEntered.insert(END, self.cli_url)
         self.cli_wdEntered.insert(END, self.cli_wd)
-        
         self.cli_nameEntered.insert(END, self.cli_name)
         self.cli_pwdEntered.insert(END, self.cli_pwd)
             
@@ -991,12 +1037,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -1027,12 +1073,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -1072,11 +1118,11 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
             print("Exception:%s" % msg)
@@ -1089,6 +1135,7 @@ class Application(tk.Tk):
         if  text[4] == '关闭':
             if self.cli_thread.is_alive():
                 self.cli_thread.stop()
+                self.cli_thread.join()
             self.cli_thread = None
             self.cli_btaction.configure(text='开始')
             return
@@ -1112,8 +1159,6 @@ class Application(tk.Tk):
             
         self.cli_save()        
         print("############################账号登陆##############################")
-        print(self.cli_loginurl)
-        print(self.cli_logindict)
         self.cli_logindict["txt_U_name"]     = self.cli_name
         self.cli_logindict["txt_U_Password"] = self.cli_pwd 
         self.cli_logindict["txt_validate"]   = self.cli_check
@@ -1126,12 +1171,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -1168,11 +1213,11 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
             print("Exception:%s" % msg)
@@ -1195,12 +1240,12 @@ class Application(tk.Tk):
         except urllib.error.HTTPError as e:
             print('The server couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
-            print('Error reason: ' + e.reason)
+            #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
             print('We failed to reach a server.')
-            print('Reason: ' + e.reason)
+            #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except Exception as msg:
@@ -1224,12 +1269,12 @@ class Application(tk.Tk):
         self.cli_name  = self.cli_nameEntered.get()
         self.cli_pwd = self.cli_pwdEntered.get()
         
-        self.cli_conf.set("url", "value", self.cli_url)
-        self.cli_conf.set("wd", "value", self.cli_wd)
-        self.cli_conf.set("name", "value", self.cli_name)
-        self.cli_conf.set("pwd", "value", self.cli_pwd)
+        self.conf.set("cli_url", "value", self.cli_url)
+        self.conf.set("cli_wd", "value", self.cli_wd)
+        self.conf.set("cli_name", "value", self.cli_name)
+        self.conf.set("cli_pwd", "value", self.cli_pwd)
         #写回配置文件
-        self.cli_conf.write(open("client.txt", "w"))
+        self.conf.write(open("server.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):

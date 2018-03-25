@@ -1,15 +1,34 @@
-[name]
+[ser_name]
 value = tbcs111
 
-[pwd]
+[ser_pwd]
 value = 5134abab
+
+[ser_url]
+value = http://77t.snk686.com/search.aspx
+
+[ser_wd]
+value = 64801
+
+[cli_name]
+value = vfhs886
+
+[cli_pwd]
+value = 5134abab
+
+[cli_url]
+value = http://93k.zsz585.com/search.aspx
+
+[cli_wd]
+value = 95712
 
 [agent]
 value = 
 
-[url]
-value = http://77t.snk686.com/search.aspx
-
-[wd]
-value = 64801
+[searchText]
+value = tbgd001*0.1
+	tbgd002*0.2
+	tbfx5858*0.3
+	tbysx888*0.4
+	
 
