@@ -36,11 +36,12 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
-from wsgiref.simple_Betting import make_Betting
+
+#from wsgiref.simple_Betting import make_Betting
 
 
 
-
+'''
 file_object = open('oc.js', encoding= 'utf8')
 try:
         all_the_text = file_object.read( )
@@ -63,7 +64,7 @@ def getoddsgno(oddsgname):
         if item["oddsgname"] == oddsgname:
             return item["oddsgno"]
     return 0
-
+'''
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -88,8 +89,8 @@ def application(environ, start_response):
 
 
 # 创建一个服务器，IP地址为空，端口是8000，处理函数是application:
-httpd = make_Betting('', 8000, application)
-print ("Serving HTTP on port 8000...")
+#httpd = make_Betting('', 8000, application)
+#print ("Serving HTTP on port 8000...")
 
 
 g_mutex = threading.Lock()
@@ -459,8 +460,7 @@ class Application(tk.Tk):
         self.searchScrolledText = scrolledtext.ScrolledText(self.conf_MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.searchScrolledText.grid(column=0, row=line, sticky='WE', columnspan=3)    
         self.searchScrolledText.insert(tk.INSERT, self.searchText)        
-        
-        
+          
     def ser_initdata(self):
         self.ser_thread = None
 
@@ -491,8 +491,6 @@ class Application(tk.Tk):
             self.ser_wd = ""
             self.conf.add_section("ser_wd")
             self.conf.set("ser_wd", "value", "")    
-            
-
             
     def ser_createTab(self):
        
@@ -866,45 +864,7 @@ class Application(tk.Tk):
         print("################进入网站#######################")
         self.cli_url  = self.cli_urlEntered.get()
         self.cli_wd  = self.cli_wdEntered.get()
-        print(self.cli_url)
-        print(self.cli_wd)
         url = self.cli_url
-        inter_dict = {'wd':self.cli_wd}
-        data = urllib.parse.urlencode(inter_dict).encode('utf-8')
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        #print(html)
-        print("################获取框架地址#######################")
-        soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('iframe'):
-            url = row["src"]
-        print(url)
-        
-        print("################获取根地址#######################")
-        urls = url.split('?')
-        self.cli_baseurl = urls[0]
-        print(self.cli_baseurl)
-
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
         request = urllib.request.Request(url, headers = headers)
@@ -929,22 +889,12 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        
-        print("################保存登录地址#######################")
-            
-        #保存登录地址
-        self.cli_loginurl = url
-        self.cli_logindict = {}
-        soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('input'):
-            if row.has_attr("name") and row.has_attr("value"):
-                self.cli_logindict[row["name"]] = row["value"]
-        
         print("################进入网站成功#######################")
+
         self.cli_flushMe()
         
     def cli_flushMe(self):
-        url = self.cli_baseurl + "checknum.aspx"
+        url = self.cli_url + "code"
         print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
@@ -980,12 +930,11 @@ class Application(tk.Tk):
             self.cli_thread = None
             self.cli_btaction.configure(text='开始')
             return
-
-        
+                     
         self.cli_name  = self.cli_nameEntered.get()
         self.cli_pwd   = self.cli_pwdEntered.get()
         self.cli_check = self.cli_checkEntered.get()
-        
+        self.searchText = self.searchScrolledText.get(1.0, END)
         if self.cli_name == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
@@ -998,14 +947,35 @@ class Application(tk.Tk):
             messagebox.showinfo("提示","验证码不能为空！")
             return
             
-        self.cli_save()        
+        if self.searchText == "":
+            messagebox.showinfo("提示","账号查询不能为空！")
+            return
+            
+        self.users = {}
+        searchTexts = self.searchText.split("\n")
+        for item in searchTexts:
+            if item  == "":
+                continue
+            item  = item.replace("\n", "")
+            user  = item.split("*");
+            if len(user) < 2:
+                messagebox.showinfo("提示","账号查询格式不正确！")
+                return                
+            self.users[user[0]] = user[1]
+
+        self.cli_save()  
         print("############################账号登陆##############################")
-        self.cli_logindict["txt_U_name"]     = self.cli_name
-        self.cli_logindict["txt_U_Password"] = self.cli_pwd 
-        self.cli_logindict["txt_validate"]   = self.cli_check
+        ser_logindict = {}
+        ser_logindict["type"]     = 2
+        ser_logindict["account"]     = self.cli_name
+        ser_logindict["password"] = self.cli_pwd 
+        ser_logindict["code"]   = self.cli_check
         
-        data = urllib.parse.urlencode(self.cli_logindict).encode('utf-8')
-        request = urllib.request.Request(url = self.cli_loginurl, data = data, headers = headers, method = 'POST')
+        data = urllib.parse.urlencode(ser_logindict).encode('utf-8')
+
+        url = self.cli_url + "login"
+        
+        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
@@ -1027,78 +997,19 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        #print(html)
+        print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('h2'):
-            if row.get_text().find("用户协议与规则") >= 0:
+        for row in soup.find_all('title'):
+            if row.get_text().find("") >= 0:
                 login = True;
         if login == False:
             print("错误 ==> 登陆错误！")
             return
         
-        print("############################同意登陆##############################")            
-        #http://61xudgw.ttx158.com/cp5-5-ag/ch/agreement.aspx/LocationUrl
-        ##########################################################
-        '''
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.cli_baseurl + "ch/agreement.aspx/LocationUrl"
-        print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except Exception as msg:
-            print("Exception:%s" % msg)
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-        #print(html)
-        '''
-        print("############################管理界面##############################") 
-        #http://54jndgw.ttx158.com/cp5-5-ag/ch/main.aspx
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.cli_baseurl + "ch/main.aspx"
-        print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        ##print(html)
         self.cli_btaction.configure(text='关闭')
-        self.cli_thread = ClientThread(self)
+        self.cli_thread = BettingThread(self)
         self.cli_thread.start()
             
     def cli_save(self):
@@ -1127,17 +1038,13 @@ class Application(tk.Tk):
             return
         self.destroy()    
     
-def serve_forever():
-    # 开始监听HTTP请求:
-    httpd.serve_forever()        
+    
         
 def main():
-    subthread = threading.Thread(target = serve_forever, args=())
-    subthread.setDaemon(True)
-    subthread.start()
+
     
     app = Application()
-    app.title("梯子游戏 自动打码神器")
+    app.title("跟投 自动打码神器")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()

@@ -11,13 +11,13 @@ value = https://00271596-xsj.cp168.ws/
 value = 64801
 
 [cli_name]
-value = vfhs886
+value = cs0990
 
 [cli_pwd]
-value = 5134abab
+value = abab5134
 
 [cli_url]
-value = http://93k.zsz585.com/search.aspx
+value = https://3309279593-xsj.cp168.ws/
 
 [cli_wd]
 value = 95712
@@ -32,6 +32,5 @@ value = sq9996*0.1
 	zhw999*0.4
 	aa9992*0.5
 	aa9994*0.5
-	
 	
 

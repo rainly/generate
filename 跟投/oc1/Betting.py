@@ -36,7 +36,7 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
-from wsgiref.simple_Betting import make_Betting
+#from wsgiref.simple_Betting import make_Betting
 
 
 
@@ -88,8 +88,8 @@ def application(environ, start_response):
 
 
 # 创建一个服务器，IP地址为空，端口是8000，处理函数是application:
-httpd = make_Betting('', 8000, application)
-print ("Serving HTTP on port 8000...")
+#httpd = make_Betting('', 8000, application)
+#print ("Serving HTTP on port 8000...")
 
 
 g_mutex = threading.Lock()
@@ -1286,17 +1286,17 @@ class Application(tk.Tk):
             return
         self.destroy()    
     
-def serve_forever():
-    # 开始监听HTTP请求:
-    httpd.serve_forever()        
+#def serve_forever():
+#    # 开始监听HTTP请求:
+#    httpd.serve_forever()        
         
 def main():
-    subthread = threading.Thread(target = serve_forever, args=())
-    subthread.setDaemon(True)
-    subthread.start()
+    #subthread = threading.Thread(target = serve_forever, args=())
+    #subthread.setDaemon(True)
+    #subthread.start()
     
     app = Application()
-    app.title("梯子游戏 自动打码神器")
+    app.title("跟投 自动打码神器")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
