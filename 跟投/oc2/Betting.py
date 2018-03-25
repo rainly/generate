@@ -36,7 +36,7 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
-from wsgiref.simple_server import make_server
+from wsgiref.simple_Betting import make_Betting
 
 
 
@@ -88,7 +88,7 @@ def application(environ, start_response):
 
 
 # 创建一个服务器，IP地址为空，端口是8000，处理函数是application:
-httpd = make_server('', 8000, application)
+httpd = make_Betting('', 8000, application)
 print ("Serving HTTP on port 8000...")
 
 
@@ -112,15 +112,12 @@ headers = { 'User-Agent' : user_agent }
 #64801
 print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
-order_dict = {}
-order_dict["533357406"] = 1
-if "53335740611" in order_dict:
-    print("**********");
+
 
         
-class ServerThread(threading.Thread):
+class BettingThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
-        super(ServerThread, self).__init__()
+        super(BettingThread, self).__init__()
         self.target = target
         self.thread_num = thread_num
         self.stopped = False
@@ -154,22 +151,22 @@ class ServerThread(threading.Thread):
                 item = item.replace("\n","")
                 items = item.split("*");
                 #print("############################查询详细##############################" + items[0]) 
-                #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
+                #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
-                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + items[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
-                #print(url)
+                url = self.target.ser_url + "agent/report/bets?username=" + items[0] + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
+                print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The server couldn\'t fulfill the request.')
+                    print('The Betting couldn\'t fulfill the request.')
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a server.')
+                    print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
@@ -180,44 +177,20 @@ class ServerThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                #print(html)
+                print(html)
                 g_mutex.acquire()
                 soup = BeautifulSoup(html, "lxml")
-                for tr in soup.find_all('tr'):
-                    if tr.has_attr("class"):
-                        continue
-                    if tr.has_attr("style") == False:
-                        continue
-                    #print(row["style"])
-                    if tr["style"] != "height: 18px; background-color: #FFFFFF;":
-                        continue;
-                    
-                    '''
-                    编号
-                    游戏名称
-                    单号/时间
-                    账号
-                    退水率
-                    投注内容
-                    赔率
-                    投注金额
-                    退水
-                    结果
-                    净利
-                    '''
-                    
-                    data = []
-                    for td in tr.find_all('td'):
-                        #print(td.get_text())
-                        #print("**")
-                        data.append(td.get_text())
-                    g_datas.append(data)
-                    #print("##########################################################")
+                for tbody in soup.find_all('tbody'):
+                    for tr in tbody.find_all('tr'):
+                        data = []
+                        for td in tr.find_all('td'):
+                            data.append(td.get_text())
+                        g_datas.append(data)
                 g_mutex.release()
-				
-            print("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
+                
+            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
             for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())		
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
             time.sleep(5)
         print("target_func end")
                 
@@ -354,13 +327,13 @@ class ClientThread(threading.Thread):
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The server couldn\'t fulfill the request.')
+                    print('The Betting couldn\'t fulfill the request.')
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a server.')
+                    print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
@@ -396,13 +369,13 @@ class ClientThread(threading.Thread):
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The server couldn\'t fulfill the request.')
+                    print('The Betting couldn\'t fulfill the request.')
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a server.')
+                    print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
                     continue
@@ -427,7 +400,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("server.txt")    
+        self.conf.read("Betting.txt")    
         
         if self.conf.has_section("agent") == True:
             self.agent = self.conf.get("agent", "value")
@@ -603,49 +576,13 @@ class Application(tk.Tk):
         self.ser_wdEntered.insert(END, self.ser_wd)
         
         self.ser_nameEntered.insert(END, self.ser_name)
-        #self.ser_pwdEntered.insert(END, self.ser_pwd)
+        self.ser_pwdEntered.insert(END, self.ser_pwd)
    
     def ser_interMe(self):
         print("################进入网站#######################")
         self.ser_url  = self.ser_urlEntered.get()
         self.ser_wd  = self.ser_wdEntered.get()
         url = self.ser_url
-        inter_dict = {'wd':self.ser_wd}
-        data = urllib.parse.urlencode(inter_dict).encode('utf-8')
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            print('We failed to reach a server.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        #print(html)
-        print("################获取框架地址#######################")
-        soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('iframe'):
-            url = row["src"]
-        print(url)
-        
-        print("################获取根地址#######################")
-        urls = url.split('?')
-        self.ser_baseurl = urls[0]
-        print(self.ser_baseurl)
-
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
         request = urllib.request.Request(url, headers = headers)
@@ -653,13 +590,13 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -670,22 +607,12 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        
-        print("################保存登录地址#######################")
-            
-        #保存登录地址
-        self.ser_loginurl = url
-        self.ser_logindict = {}
-        soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('input'):
-            if row.has_attr("name") and row.has_attr("value"):
-                self.ser_logindict[row["name"]] = row["value"]
-        
         print("################进入网站成功#######################")
+
         self.ser_flushMe()
         
     def ser_flushMe(self):
-        url = self.ser_baseurl + "checknum.aspx"
+        url = self.ser_url + "code"
         print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
@@ -698,12 +625,12 @@ class Application(tk.Tk):
             self.ser_tk_image = ImageTk.PhotoImage(self.ser_pil_image)
             self.ser_label["image"] = self.ser_tk_image
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
@@ -757,23 +684,28 @@ class Application(tk.Tk):
 
         self.ser_save()  
         print("############################账号登陆##############################")
-        self.ser_logindict["txt_U_name"]     = self.ser_name
-        self.ser_logindict["txt_U_Password"] = self.ser_pwd 
-        self.ser_logindict["txt_validate"]   = self.ser_check
+        ser_logindict = {}
+        ser_logindict["type"]     = 2
+        ser_logindict["account"]     = self.ser_name
+        ser_logindict["password"] = self.ser_pwd 
+        ser_logindict["code"]   = self.ser_check
         
-        data = urllib.parse.urlencode(self.ser_logindict).encode('utf-8')
-        request = urllib.request.Request(url = self.ser_loginurl, data = data, headers = headers, method = 'POST')
+        data = urllib.parse.urlencode(ser_logindict).encode('utf-8')
+
+        url = self.ser_url + "login"
+        
+        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -784,110 +716,19 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        ##print(html)
+        print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('title'):
-            if row.get_text().find("协议与规则") >= 0:
+            if row.get_text().find("") >= 0:
                 login = True;
         if login == False:
             print("错误 ==> 登陆错误！")
             return
         
-        print("############################同意登陆##############################")            
-        #http://61xudgw.ttx158.com/cp5-5-ag/ch/agreement.aspx/LocationUrl
-        ##########################################################
-        '''
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.ser_baseurl + "ch/agreement.aspx/LocationUrl"
-        print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except urllib.error.URLError as e:
-            print('We failed to reach a server.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except Exception as msg:
-            print("Exception:%s" % msg)
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-        #print(html)
-        '''
-        print("############################管理界面##############################") 
-        #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/main.aspx
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.ser_baseurl + "opadmin/main.aspx"
-        print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            print('We failed to reach a server.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            returnf
-        #print(html)
-
-        print("############################报表查询##############################")
-        html = ""
-        #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new.aspx
-        agreement_dict = {}
-        agreement_dict["stype"] = "1"
-        data = urllib.parse.urlencode(agreement_dict).encode('utf-8')
-        url = self.ser_baseurl + "opadmin/mreport_new.aspx"
-        print(url)
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            print('We failed to reach a server.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        #print(html)
-        
         self.ser_btaction.configure(text='关闭')
-        self.ser_thread = ServerThread(self)
+        self.ser_thread = BettingThread(self)
         self.ser_thread.start()
             
     def ser_save(self):
@@ -904,7 +745,7 @@ class Application(tk.Tk):
         self.conf.set("ser_name", "value", self.ser_name)
         self.conf.set("ser_pwd", "value", self.ser_pwd)
         #写回配置文件
-        self.conf.write(open("server.txt", "w"))
+        self.conf.write(open("Betting.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
     
     ############################
@@ -1035,13 +876,13 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -1071,13 +912,13 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -1116,12 +957,12 @@ class Application(tk.Tk):
             self.cli_tk_image = ImageTk.PhotoImage(self.cli_pil_image)
             self.cli_label["image"] = self.cli_tk_image
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
@@ -1169,13 +1010,13 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -1211,12 +1052,12 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
         except Exception as msg:
@@ -1238,13 +1079,13 @@ class Application(tk.Tk):
             response = opener.open(request, timeout = 5)
             html = response.read().decode()
         except urllib.error.HTTPError as e:
-            print('The server couldn\'t fulfill the request.')
+            print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
             #print('Error reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
         except urllib.error.URLError as e:
-            print('We failed to reach a server.')
+            print('We failed to reach a Betting.')
             #print('Reason: ' + e.reason)
             print("错误 ==> 网络连接错误！")
             return
@@ -1274,7 +1115,7 @@ class Application(tk.Tk):
         self.conf.set("cli_name", "value", self.cli_name)
         self.conf.set("cli_pwd", "value", self.cli_pwd)
         #写回配置文件
-        self.conf.write(open("server.txt", "w"))
+        self.conf.write(open("Betting.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):

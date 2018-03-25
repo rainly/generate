@@ -1,0 +1,37 @@
+[ser_name]
+value = cb99998
+
+[ser_pwd]
+value = qaqa1313
+
+[ser_url]
+value = https://00271596-xsj.cp168.ws/
+
+[ser_wd]
+value = 64801
+
+[cli_name]
+value = vfhs886
+
+[cli_pwd]
+value = 5134abab
+
+[cli_url]
+value = http://93k.zsz585.com/search.aspx
+
+[cli_wd]
+value = 95712
+
+[agent]
+value = 
+
+[searchText]
+value = sq9996*0.1
+	syj8899*0.2
+	zh9996*0.3
+	zhw999*0.4
+	aa9992*0.5
+	aa9994*0.5
+	
+	
+

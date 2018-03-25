@@ -2,4 +2,4 @@
 from distutils.core import setup
 from Cython.Build import cythonize
 
-setup(ext_modules = cythonize("server.py"))
+setup(ext_modules = cythonize("Betting.py"))
