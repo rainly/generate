@@ -139,12 +139,12 @@ class BettingThread(threading.Thread):
         
     def target_func(self):
         print("target_func begin")
-        sleepnum = 0;
+        sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
             if sleepnum < 5:
                 time.sleep(1)
-                continue;
+                continue
             sleepnum = 0
             
             g_mutex.acquire()
@@ -152,10 +152,10 @@ class BettingThread(threading.Thread):
             g_mutex.release()
             
             for user in self.target.users:
-                #print("############################查询详细##############################" + user[0]) 
+                #print("############################查询详细##############################" + user) 
                 #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
-                url = self.target.ser_url + "agent/report/bets?username=" + user[0] + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
+                url = self.target.ser_url + "agent/report/bets?username=" + user + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
                 print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
@@ -221,12 +221,12 @@ class ClientThread(threading.Thread):
 
     def target_func(self):
         g_order_dict = {}
-        sleepnum = 0
+        sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
             if sleepnum < 5:
                 time.sleep(1)
-                continue;
+                continue
             sleepnum = 0        
         
         
@@ -249,7 +249,7 @@ class ClientThread(threading.Thread):
                 bUser = False
                 for key in self.target.users:
                     if item[3] == key:
-                        bUser = True;
+                        bUser = True
                     
                 if bUser == False:
                     continue
@@ -264,7 +264,7 @@ class ClientThread(threading.Thread):
                 
                 if orders[0] in g_order_dict:
                     print("****订单已经处理*****" + orders[0])
-                    continue;
+                    continue
                 g_order_dict[orders[0]] = 1
             
                 print("############################下注订单##############################")
@@ -680,11 +680,12 @@ class Application(tk.Tk):
             if item  == "":
                 continue
             item  = item.replace("\n", "")
-            user  = item.split("*");
+            user  = item.split("*")
             if len(user) < 2:
                 messagebox.showinfo("提示","账号查询格式不正确！")
                 return                
             self.users[user[0]] = user[1]
+        print(self.users)
 
         self.ser_save()  
         print("############################账号登陆##############################")
@@ -726,7 +727,7 @@ class Application(tk.Tk):
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('title'):
             if row.get_text().find("") >= 0:
-                login = True;
+                login = True
         if login == False:
             print("错误 ==> 登陆错误！")
             return
@@ -963,7 +964,7 @@ class Application(tk.Tk):
             if item  == "":
                 continue
             item  = item.replace("\n", "")
-            user  = item.split("*");
+            user  = item.split("*")
             if len(user) < 2:
                 messagebox.showinfo("提示","账号查询格式不正确！")
                 return                
@@ -1009,7 +1010,7 @@ class Application(tk.Tk):
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('title'):
             if row.get_text().find("") >= 0:
-                login = True;
+                login = True
         if login == False:
             print("错误 ==> 登陆错误！")
             return

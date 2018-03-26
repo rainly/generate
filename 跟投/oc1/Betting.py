@@ -110,12 +110,8 @@ user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like
 headers = { 'User-Agent' : user_agent }  
 
 #64801
-print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
+#print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
-order_dict = {}
-order_dict["533357406"] = 1
-if "53335740611" in order_dict:
-    print("**********");
 
         
 class BettingThread(threading.Thread):
@@ -141,12 +137,12 @@ class BettingThread(threading.Thread):
         
     def target_func(self):
         print("target_func begin")
-        sleepnum = 0
+        sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
             if sleepnum < 5:
                 time.sleep(1)
-                continue;
+                continue
             sleepnum = 0        
         
             g_mutex.acquire()
@@ -191,7 +187,7 @@ class BettingThread(threading.Thread):
                         continue
                     #print(row["style"])
                     if tr["style"] != "height: 18px; background-color: #FFFFFF;":
-                        continue;
+                        continue
                     '''
                     编号
                     游戏名称
@@ -243,12 +239,12 @@ class ClientThread(threading.Thread):
 
     def target_func(self):
         g_order_dict = {}
-        sleepnum = 0
+        sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
             if sleepnum < 5:
                 time.sleep(1)
-                continue;
+                continue
             sleepnum = 0        
         
             g_mutex.acquire()
@@ -270,7 +266,7 @@ class ClientThread(threading.Thread):
                 bUser = False
                 for key in self.target.users:
                     if item[3] == key:
-                        bUser = True;
+                        bUser = True
                     
                 if bUser == False:
                     continue
@@ -285,7 +281,7 @@ class ClientThread(threading.Thread):
                 
                 if orders[0] in g_order_dict:
                     print("****订单已经处理*****" + orders[0])
-                    continue;
+                    continue
                 g_order_dict[orders[0]] = 1
             
                 print("############################下注订单##############################")
@@ -750,7 +746,7 @@ class Application(tk.Tk):
             if item  == "":
                 continue
             item  = item.replace("\n", "")
-            user  = item.split("*");
+            user  = item.split("*")
             if len(user) < 2:
                 messagebox.showinfo("提示","账号查询格式不正确！")
                 return                
@@ -791,7 +787,7 @@ class Application(tk.Tk):
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('title'):
             if row.get_text().find("协议与规则") >= 0:
-                login = True;
+                login = True
         if login == False:
             print("错误 ==> 登陆错误！")
             return
@@ -1193,7 +1189,7 @@ class Application(tk.Tk):
         soup = BeautifulSoup(html, "lxml")
         for row in soup.find_all('h2'):
             if row.get_text().find("用户协议与规则") >= 0:
-                login = True;
+                login = True
         if login == False:
             print("错误 ==> 登陆错误！")
             return
