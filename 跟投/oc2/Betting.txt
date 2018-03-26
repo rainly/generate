@@ -14,7 +14,7 @@ value = 64801
 value = cs0990
 
 [cli_pwd]
-value = abab5134
+value = 5134abab
 
 [cli_url]
 value = https://3309279593-xsj.cp168.ws/

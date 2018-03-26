@@ -41,7 +41,7 @@ import time
 
 
 
-'''
+
 file_object = open('oc.js', encoding= 'utf8')
 try:
         all_the_text = file_object.read( )
@@ -51,20 +51,14 @@ if all_the_text.startswith(u'\ufeff'):
         all_the_text = all_the_text.encode('utf8')[3:].decode('utf8')
 all_the_oc = json.loads(all_the_text)
 
+def gettype(gname, glv):
+    for key in all_the_oc["game_type"]:
+        if all_the_oc["game_type"][key] == gname and all_the_oc["game_lv"][key] == glv:
+            return key
+    return ""
+    
+print(gettype("庄家", 2))
 
-def getgno(gname):
-    for item in all_the_oc["game"]:
-        if item["gname"] == gname:
-            return item["gno"]
-    return 0
-
-
-def getoddsgno(oddsgname):
-    for item in all_the_oc["oddsgroup"]:
-        if item["oddsgname"] == oddsgname:
-            return item["oddsgno"]
-    return 0
-'''
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -113,6 +107,9 @@ headers = { 'User-Agent' : user_agent }
 #64801
 print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
+t = time.time()
+print(str(int(round(t))))
+
 
 
         
@@ -155,7 +152,7 @@ class BettingThread(threading.Thread):
                 #print("############################查询详细##############################" + user) 
                 #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
-                url = self.target.ser_url + "agent/report/bets?username=" + user + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
+                url = self.target.ser_url + "agent/report/bets?username=" + user + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=true"
                 print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
@@ -179,7 +176,7 @@ class BettingThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                print(html)
+                #print(html)
                 g_mutex.acquire()
                 soup = BeautifulSoup(html, "lxml")
                 for tbody in soup.find_all('tbody'):
@@ -190,9 +187,9 @@ class BettingThread(threading.Thread):
                         g_datas.append(data)
                 g_mutex.release()
                 
-            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
-            for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
+            #print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
+            #for item in g_datas:
+            #    print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
         print("target_func end")
                 
                 
@@ -227,149 +224,127 @@ class ClientThread(threading.Thread):
             if sleepnum < 5:
                 time.sleep(1)
                 continue
-            sleepnum = 0        
-        
-        
+            sleepnum = 0     
+
+            print("############################查询倍率##############################")
+            t = time.time()
+            #https://3661032706-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522070776784
+            #{"DX_D":1.5,"DX_X":2.5,"LB_X_4":7,"LB_X_6":31,"LB_X":2,"LB_Z_3":5,"LB_X_3":5,"LB_Z_2":3,"LB_Z_4":7,"LB_Z_5":11,"LB_Z_6":31,"LB_Z_1":2,"LB_X_1":2,"LB_Z":2,"LB_X_5":11,"LB_X_2":3,"T_T":8,"XD_XD":12,"ZD_ZD":12,"ZX_Z":1.95,"ZX_X":2,"ZX1_Z":2,"ZX1_X":2}
+           
+            url = self.target.cli_url + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t)))
+            print(url)    
+            request = urllib.request.Request(url = url, headers = headers, method = 'GET')
+            try:
+                response = opener.open(request, timeout = 5)
+                html = response.read().decode()
+            except urllib.error.HTTPError as e:
+                print('The Betting couldn\'t fulfill the request.')
+                print('Error code: ' + str(e.code))
+                #print('Error reason: ' + e.reason)
+                print("错误 ==> 网络连接错误！")
+                continue
+            except urllib.error.URLError as e:
+                print('We failed to reach a Betting.')
+                #print('Reason: ' + e.reason)
+                print("错误 ==> 网络连接错误！")
+                continue
+            except Exception as msg:
+                print("Exception:%s" % msg)
+                continue
+            except:
+                #print("error lineno:" + str(sys._getframe().f_lineno))
+                print("错误 ==> 网络连接错误！")
+                continue          
+                print(html)
+            try:
+                game_lv = json.loads(html)  
+                all_the_oc["game_lv"] = game_lv                
+            except:
+                pass
+                
             g_mutex.acquire()
             for item in g_datas:
+                '''    
+                注单号    
+                投注时间    
+                投注种类    "彩票百家乐673155-1期"
+                账号    
+                投注内容    
+                下注金额    
+                退水(%)    
+                下注结果    
+                本级占成    
+                本级结果    
+                占成明细
                 '''
-                编号
-                游戏名称
-                单号/时间
-                账号
-                退水率
-                投注内容
-                赔率
-                投注金额
-                退水
-                结果
-                净利
-                '''
+                print(item)
+                #['4399421039# ', '2018-03-26 21:28:06 星期一', '彩票百家乐673156-1期', 'qqww110A盘', '小 @ 2.5\n', '2200', '0.5%', '-2189.0', '0%', '11.0', '明细']
+                print("############################下注订单##############################" + item[0])
+
+                username = item[3]
+                username = username.replace("A盘", "")
+                username = username.replace("B盘", "")
+                username = username.replace("C盘", "")
+                username = username.replace("D盘", "")
+                username = username.replace("E盘", "")
+                username = username.replace("F盘", "")
+                username = username.replace("G盘", "")
                 
                 bUser = False
                 for key in self.target.users:
-                    if item[3] == key:
+                    if username == key:
                         bUser = True
                     
                 if bUser == False:
+                    print("账号没有找到" + username)
                     continue
+    
+                if item[0] in g_order_dict:
+                    print("****订单已经处理*****" + item[0])
+                    continue
+                g_order_dict[item[0]] = 1
 
-                monery = round(float(item[7]) * float(self.target.users[item[3]]))
-                #print(monery)
+                amount = round(float(item[5]) * float(self.target.users[username]))
                 
-                #过滤每个订单
-                orders = item[2].split(' ')
-                
-                print("############################下注订单##############################" + orders[0])
-                
-                if orders[0] in g_order_dict:
-                    print("****订单已经处理*****" + orders[0])
-                    continue
-                g_order_dict[orders[0]] = 1
-            
-                print("############################下注订单##############################")
-                #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
-                #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
-                
-                gameno  = getgno(item[1])
-                #['30587881期', 'A盘/', '冠军', '08']
-                #去左右空格
-                content = item[5].strip()
-                contents = content.split(' ')
-                #print(contents)
-                
-                roundno = contents[0].replace("期", "")
-                oddsgno = getoddsgno(contents[2])
-                gameidx = contents[3]
-                
-                if contents[3] == "大":
-                    gameidx = '1'
-                elif  contents[3] == "小":
-                    gameidx = '2'
-                elif  contents[3] == "单":
-                    gameidx = '1'
-                elif  contents[3] == "双":
-                    gameidx = '2'
-                elif  contents[3] == "龙":
-                    gameidx = '1'
-                elif  contents[3] == "虎":
-                    gameidx = '2'
-                elif  contents[3] == "和数大":
-                    gameidx = '1'
-                elif  contents[3] == "和数小":
-                    gameidx = '2'
-                elif  contents[3] == "和数单":
-                    gameidx = '1'
-                elif  contents[3] == "和数双":
-                    gameidx = '2'
-                    
-                #{gameno:11,wagerroundstring:"D",arrstring:"601:1:2;",roundno:"672878",lianma_transtrin:"",token:"3708E135BA0B96C54260620E3CE6E2CF"}
-                #print(roundno)                
-                #print(gameno)
-                #print(oddsgno)
-                #print(gameidx)
-                
+                drawNumber = item[2]
+                drawNumber = drawNumber.replace("彩票百家乐", "")
+                drawNumber = drawNumber.replace("期", "")
                 order_dict = {}
-                order_dict["wagerround"] = "D"
-                #order_dict["transtring"] = "621,,1,,1.94,2;"
-                order_dict["transtring"] = ""
-                #order_dict["arrstring"] = "621:1:2;"
-                order_dict["arrstring"] = str(oddsgno) + ":" + str(gameidx) + ":" + str(monery)
-                order_dict["wagetype"] = 0
-                order_dict["allowcreditquota"] = 0
-                order_dict["hasToken"] = True
-                order_dict["playgametype"] = 0
+                order_dict["lottery"] = "BJPK10BJL"
+                order_dict["ignore"] = False
+                order_dict["drawNumber"] = drawNumber
+                order_dict["bets"] = []
+
+                #小 @ 2.5\n
+                _split  = item[4].split("@")
+                print(_split)
+                _odds           = _split[1]
+                _odds           = _odds.replace("\n", "")
+                _odds           = _odds.strip()
+                _odds            = float(_odds)
+                #小
+                _type = gettype(_split[0].strip(), _odds)
+                print(_type)
+                #DX_D
+                _split2 = _type.split("_")
                 
-                data = json.dumps(order_dict).encode(encoding='UTF8')
-                #print(data)
+
                 
-                url = self.target.cli_baseurl + "ch/left.aspx/GetMemberMtran"
-                #print(url)
+                bet = {}
+                bet["game"]     = _split2[0]
+                bet["contents"] = _split2[1]
+                bet["amount"]   = amount
+                bet["odds"]     = _odds
+                order_dict["bets"].append(bet)
+                print(order_dict)
+                return;
                 
-                headers["Content-Type"] = "application/json; charset=UTF-8"
-                
-                request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-                try:
-                    response = opener.open(request, timeout = 5)
-                    html = response.read().decode()
-                except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
-                    continue
-                except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
-                    continue
-                except Exception as msg:
-                    print("Exception:%s" % msg)
-                    continue
-                except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
-                    continue
-                
-                #print(html)
-                text = json.loads(html)
-                spls = text["d"].split('$@')
-                token = spls[len(spls) - 1]
-                print("获取token " + token)
-                #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
-                #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
-                order_dict = {}
-                order_dict["gameno"] = gameno
-                order_dict["wagerroundstring"] = "D"
-                order_dict["arrstring"] = str(oddsgno) + ":" + gameidx + ":" + str(monery)
-                order_dict["roundno"] = roundno
-                order_dict["lianma_transtrin"] = ""
-                order_dict["token"] = token
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
-                url = self.target.cli_baseurl + "ch/left.aspx/mtran_XiaDan_New"
+                url = self.target.cli_url + "ch/left.aspx/mtran_XiaDan_New"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
+                print(url)
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -392,7 +367,7 @@ class ClientThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                print(html)
+                #print(html)
             
             ###############################
             g_mutex.release()
@@ -583,12 +558,13 @@ class Application(tk.Tk):
         self.ser_pwdEntered.insert(END, self.ser_pwd)
    
     def ser_interMe(self):
-        print("################进入网站#######################")
+        print("################进入代理网站#######################")
         self.ser_url  = self.ser_urlEntered.get()
         self.ser_wd  = self.ser_wdEntered.get()
         url = self.ser_url
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
+        print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -611,7 +587,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print("################进入网站成功#######################")
+        print("################进入代理网站成功#######################")
 
         self.ser_flushMe()
         
@@ -689,16 +665,16 @@ class Application(tk.Tk):
 
         self.ser_save()  
         print("############################账号登陆##############################")
-        ser_logindict = {}
-        ser_logindict["type"]     = 2
-        ser_logindict["account"]     = self.ser_name
-        ser_logindict["password"] = self.ser_pwd 
-        ser_logindict["code"]   = self.ser_check
+        logindict = {}
+        logindict["type"]     = 2
+        logindict["account"]     = self.ser_name
+        logindict["password"] = self.ser_pwd 
+        logindict["code"]   = self.ser_check
         
-        data = urllib.parse.urlencode(ser_logindict).encode('utf-8')
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
 
         url = self.ser_url + "login"
-        
+        print(url)       
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
@@ -721,7 +697,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
+        #print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
@@ -846,7 +822,7 @@ class Application(tk.Tk):
         self.cli_label = tk.Label(self.cli_MyFrame, bg='brown')
         self.cli_label.grid(column=0,row=line,sticky='W')
 
-        self.cli_btaction = ttk.Button(self.cli_MyFrame,text="刷新",width=10,command=self.ser_flushMe)
+        self.cli_btaction = ttk.Button(self.cli_MyFrame,text="刷新",width=10,command=self.cli_interMe)
         self.cli_btaction.grid(column=1,row=line,sticky='E')
         
          # Adding a Button
@@ -868,12 +844,13 @@ class Application(tk.Tk):
         self.cli_pwdEntered.insert(END, self.cli_pwd)
             
     def cli_interMe(self):
-        print("################进入网站#######################")
+        print("################进入会员网站#######################")
         self.cli_url  = self.cli_urlEntered.get()
         self.cli_wd  = self.cli_wdEntered.get()
         url = self.cli_url
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
+        print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -896,7 +873,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print("################进入网站成功#######################")
+        print("################进入会员网站成功#######################")
 
         self.cli_flushMe()
         
@@ -972,16 +949,17 @@ class Application(tk.Tk):
 
         self.cli_save()  
         print("############################账号登陆##############################")
-        ser_logindict = {}
-        ser_logindict["type"]     = 2
-        ser_logindict["account"]     = self.cli_name
-        ser_logindict["password"] = self.cli_pwd 
-        ser_logindict["code"]   = self.cli_check
+        logindict = {}
+        logindict["type"]     = 2
+        logindict["account"]     = self.cli_name
+        logindict["password"] = self.cli_pwd 
+        logindict["code"]   = self.cli_check
         
-        data = urllib.parse.urlencode(ser_logindict).encode('utf-8')
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
+        print(data)
 
         url = self.cli_url + "login"
-        
+        print(url)        
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
@@ -1004,19 +982,48 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
+        #print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('title'):
-            if row.get_text().find("") >= 0:
+        for row in soup.find_all('li'):
+            if row.get_text().find("用户协议") >= 0:
                 login = True
         if login == False:
             print("错误 ==> 登陆错误！")
             return
+        print("登录 ==> 登陆成功！")
+        
+        print("############################同意登录##############################")
+        #https://3661032706-xsj.cp168.ws/member/index
+        url = self.cli_url + "member/index"
+        print(url)   
+        request = urllib.request.Request(url = url, headers = headers, method = 'GET')
+        try:
+            response = opener.open(request, timeout = 5)
+            html = response.read().decode()
+        except urllib.error.HTTPError as e:
+            print('The Betting couldn\'t fulfill the request.')
+            print('Error code: ' + str(e.code))
+            #print('Error reason: ' + e.reason)
+            print("错误 ==> 网络连接错误！")
+            return
+        except urllib.error.URLError as e:
+            print('We failed to reach a Betting.')
+            #print('Reason: ' + e.reason)
+            print("错误 ==> 网络连接错误！")
+            return
+        except Exception as msg:
+            print("Exception:%s" % msg)
+            return
+        except:
+            #print("error lineno:" + str(sys._getframe().f_lineno))
+            print("错误 ==> 网络连接错误！")
+            return
+        #print(html)
         
         self.cli_btaction.configure(text='关闭')
-        self.cli_thread = BettingThread(self)
+        self.cli_thread = ClientThread(self)
         self.cli_thread.start()
             
     def cli_save(self):
