@@ -141,22 +141,23 @@ class BettingThread(threading.Thread):
         
     def target_func(self):
         print("target_func begin")
+        sleepnum = 0
         while self.stopped == False:
+            sleepnum = sleepnum + 1
+            if sleepnum < 5:
+                time.sleep(1)
+                continue;
+            sleepnum = 0        
+        
             g_mutex.acquire()
             g_datas.clear()
             g_mutex.release()
             
             searchTexts = self.target.searchText.split("\n")
-            for item in searchTexts:
-                if item  == "":
-                    continue
-                html = ""
-                item = item.replace("\n","")
-                items = item.split("*");
-                #print("############################查询详细##############################" + items[0]) 
+            for user in self.target.users:
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
-                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + items[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
+                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
                 #print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
@@ -191,7 +192,6 @@ class BettingThread(threading.Thread):
                     #print(row["style"])
                     if tr["style"] != "height: 18px; background-color: #FFFFFF;":
                         continue;
-                    
                     '''
                     编号
                     游戏名称
@@ -205,27 +205,20 @@ class BettingThread(threading.Thread):
                     结果
                     净利
                     '''
-                    
                     data = []
                     for td in tr.find_all('td'):
                         #print(td.get_text())
-                        #print("**")
                         data.append(td.get_text())
                     g_datas.append(data)
                     #print("##########################################################")
                 g_mutex.release()
-				
+                
             print("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
             for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())		
-            time.sleep(5)
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
         print("target_func end")
-                
-                
-            
         
         
-         
 class ClientThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
         super(ClientThread, self).__init__()
@@ -250,7 +243,14 @@ class ClientThread(threading.Thread):
 
     def target_func(self):
         g_order_dict = {}
+        sleepnum = 0
         while self.stopped == False:
+            sleepnum = sleepnum + 1
+            if sleepnum < 5:
+                time.sleep(1)
+                continue;
+            sleepnum = 0        
+        
             g_mutex.acquire()
             for item in g_datas:
                 '''
@@ -417,8 +417,9 @@ class ClientThread(threading.Thread):
             
             ###############################
             g_mutex.release()
-            time.sleep(5)
-   
+            
+            
+            
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -1278,12 +1279,16 @@ class Application(tk.Tk):
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):
-        if self.ser_thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
-        if self.cli_thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
+        if self.ser_thread != None and self.ser_thread.is_alive():
+            self.ser_thread.stop()
+            self.ser_thread.join()
+            self.ser_thread = None
+    
+        if self.cli_thread != None and self.cli_thread.is_alive():
+            self.cli_thread.stop()
+            self.cli_thread.join()
+            self.cli_thread = None
+        
         self.destroy()    
     
 #def serve_forever():

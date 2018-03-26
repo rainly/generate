@@ -139,22 +139,23 @@ class BettingThread(threading.Thread):
         
     def target_func(self):
         print("target_func begin")
+        sleepnum = 0;
         while self.stopped == False:
+            sleepnum = sleepnum + 1
+            if sleepnum < 5:
+                time.sleep(1)
+                continue;
+            sleepnum = 0
+            
             g_mutex.acquire()
             g_datas.clear()
             g_mutex.release()
             
-            searchTexts = self.target.searchText.split("\n")
-            for item in searchTexts:
-                if item  == "":
-                    continue
-                html = ""
-                item = item.replace("\n","")
-                items = item.split("*");
-                #print("############################查询详细##############################" + items[0]) 
+            for user in self.target.users:
+                #print("############################查询详细##############################" + user[0]) 
                 #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
-                url = self.target.ser_url + "agent/report/bets?username=" + items[0] + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
+                url = self.target.ser_url + "agent/report/bets?username=" + user[0] + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
                 print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
@@ -192,14 +193,10 @@ class BettingThread(threading.Thread):
             print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
             for item in g_datas:
                 print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
-            time.sleep(5)
         print("target_func end")
                 
                 
-            
-        
-        
-         
+       
 class ClientThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
         super(ClientThread, self).__init__()
@@ -224,7 +221,15 @@ class ClientThread(threading.Thread):
 
     def target_func(self):
         g_order_dict = {}
+        sleepnum = 0
         while self.stopped == False:
+            sleepnum = sleepnum + 1
+            if sleepnum < 5:
+                time.sleep(1)
+                continue;
+            sleepnum = 0        
+        
+        
             g_mutex.acquire()
             for item in g_datas:
                 '''
@@ -391,8 +396,9 @@ class ClientThread(threading.Thread):
             
             ###############################
             g_mutex.release()
-            time.sleep(5)
-   
+ 
+
+ 
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -1030,12 +1036,16 @@ class Application(tk.Tk):
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):
-        if self.ser_thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
-        if self.cli_thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
+        if self.ser_thread != None and self.ser_thread.is_alive():
+            self.ser_thread.stop()
+            self.ser_thread.join()
+            self.ser_thread = None
+    
+        if self.cli_thread != None and self.cli_thread.is_alive():
+            self.cli_thread.stop()
+            self.cli_thread.join()
+            self.cli_thread = None
+        
         self.destroy()    
     
     
