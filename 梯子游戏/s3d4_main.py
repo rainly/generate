@@ -13,13 +13,13 @@ import time
 import datetime
 import http.cookiejar
 import json
-import pymysql.cursors
+#import pymysql.cursors
 import ssl
 #import sqlite3
 import configparser
 import random
 
-from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
+#from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
 from selenium import webdriver
 from selenium.common.exceptions import *

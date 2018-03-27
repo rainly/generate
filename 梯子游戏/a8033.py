@@ -13,8 +13,8 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-import sqlite3
-import threading  
+#import sqlite3
+#import threading  
 import time
 
 import urllib
@@ -23,7 +23,7 @@ import urllib.response
 import urllib.error
 import http.cookiejar
 import configparser
-import re
+#import re
 import ssl
 
 
