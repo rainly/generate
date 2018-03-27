@@ -37,7 +37,11 @@ import tkinter as tk
 import threading
 import time
 
-#from wsgiref.simple_Betting import make_Betting
+import io
+# allows for image formats other than gif
+from PIL import Image, ImageTk
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
@@ -60,12 +64,9 @@ def gettype(gname, glv):
 print(gettype("庄家", 2))
 
 
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
-import io
-# allows for image formats other than gif
-from PIL import Image, ImageTk
+
 try:
     # Python2
     import Tkinter as tk
@@ -105,10 +106,10 @@ user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like
 headers = { 'User-Agent' : user_agent }  
 
 #64801
-print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
+#print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
-t = time.time()
-print(str(int(round(t))))
+#t = time.time()
+#print(str(int(round(t))))
 
 
 
@@ -149,11 +150,14 @@ class BettingThread(threading.Thread):
             g_mutex.release()
             
             for user in self.target.users:
-                #print("############################查询详细##############################" + user) 
+                if self.stopped:
+                    break
+                print("############################查询详细##############################" + user) 
                 #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
-                url = self.target.ser_url + "agent/report/bets?username=" + user + "&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=true"
-                print(url)
+                url = self.target.ser_url + "agent/report/bets?username=" + user + "&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
+                #url = self.target.ser_url + "agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=true"
+                #print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -187,9 +191,9 @@ class BettingThread(threading.Thread):
                         g_datas.append(data)
                 g_mutex.release()
                 
-            #print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
-            #for item in g_datas:
-            #    print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
+            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
+            for item in g_datas:
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
         print("target_func end")
                 
                 
@@ -231,8 +235,8 @@ class ClientThread(threading.Thread):
             #https://3661032706-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522070776784
             #{"DX_D":1.5,"DX_X":2.5,"LB_X_4":7,"LB_X_6":31,"LB_X":2,"LB_Z_3":5,"LB_X_3":5,"LB_Z_2":3,"LB_Z_4":7,"LB_Z_5":11,"LB_Z_6":31,"LB_Z_1":2,"LB_X_1":2,"LB_Z":2,"LB_X_5":11,"LB_X_2":3,"T_T":8,"XD_XD":12,"ZD_ZD":12,"ZX_Z":1.95,"ZX_X":2,"ZX1_Z":2,"ZX1_X":2}
            
-            url = self.target.cli_url + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t)))
-            print(url)    
+            url = self.target.cli_url + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
+            #print(url)    
             request = urllib.request.Request(url = url, headers = headers, method = 'GET')
             try:
                 response = opener.open(request, timeout = 5)
@@ -255,15 +259,18 @@ class ClientThread(threading.Thread):
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
                 continue          
-                print(html)
             try:
+                #print(html)
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
                 pass
                 
+            print("############################查询倍率成功##############################")
             g_mutex.acquire()
             for item in g_datas:
+                if self.stopped:
+                    break
                 '''    
                 注单号    
                 投注时间    
@@ -277,10 +284,11 @@ class ClientThread(threading.Thread):
                 本级结果    
                 占成明细
                 '''
-                print(item)
+                #print(item)
                 #['4399421039# ', '2018-03-26 21:28:06 星期一', '彩票百家乐673156-1期', 'qqww110A盘', '小 @ 2.5\n', '2200', '0.5%', '-2189.0', '0%', '11.0', '明细']
-                print("############################下注订单##############################" + item[0])
-
+                print("############################下注订单##############################")
+                print(item)
+                
                 username = item[3]
                 username = username.replace("A盘", "")
                 username = username.replace("B盘", "")
@@ -296,7 +304,7 @@ class ClientThread(threading.Thread):
                         bUser = True
                     
                 if bUser == False:
-                    print("账号没有找到" + username)
+                    print("****账号没有找到****" + username)
                     continue
     
                 if item[0] in g_order_dict:
@@ -305,8 +313,12 @@ class ClientThread(threading.Thread):
                 g_order_dict[item[0]] = 1
 
                 amount = round(float(item[5]) * float(self.target.users[username]))
+                #amount =10
                 
                 drawNumber = item[2]
+                if drawNumber.find("彩票百家乐") == -1:
+                    print("****不是彩票百家乐订单*****")
+                    continue
                 drawNumber = drawNumber.replace("彩票百家乐", "")
                 drawNumber = drawNumber.replace("期", "")
                 order_dict = {}
@@ -317,18 +329,16 @@ class ClientThread(threading.Thread):
 
                 #小 @ 2.5\n
                 _split  = item[4].split("@")
-                print(_split)
+                #print(_split)
                 _odds           = _split[1]
                 _odds           = _odds.replace("\n", "")
                 _odds           = _odds.strip()
                 _odds            = float(_odds)
                 #小
                 _type = gettype(_split[0].strip(), _odds)
-                print(_type)
+                #print(_type)
                 #DX_D
                 _split2 = _type.split("_")
-                
-
                 
                 bet = {}
                 bet["game"]     = _split2[0]
@@ -337,10 +347,9 @@ class ClientThread(threading.Thread):
                 bet["odds"]     = _odds
                 order_dict["bets"].append(bet)
                 print(order_dict)
-                return;
                 
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
-                url = self.target.cli_url + "ch/left.aspx/mtran_XiaDan_New"
+                url = self.target.cli_url + "member/bet"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
@@ -367,7 +376,16 @@ class ClientThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                #print(html)
+                print(html)
+                #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
+                try:
+                    result = json.loads(html)  
+                    if result["status"] == 0:
+                        print("****跟单成功****")
+                    else:
+                        print("****跟单失败****")
+                except:
+                    print("****跟单失败****")
             
             ###############################
             g_mutex.release()
@@ -490,13 +508,13 @@ class Application(tk.Tk):
         self.ser_urlEntered.grid(column=1, row=line, sticky='W')    
 
         #行
-        line = line + 1
+        #line = line + 1
         # Changing our Label  
-        ttk.Label(self.ser_MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
+        #ttk.Label(self.ser_MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
         # self.ser_url = tk.StringVar()  
-        self.ser_wdEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_wd)  
-        self.ser_wdEntered.grid(column=1, row=line, sticky='W')
+        #self.ser_wdEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_wd)  
+        #self.ser_wdEntered.grid(column=1, row=line, sticky='W')
 
          # Adding a Button
         line = line + 1
@@ -552,7 +570,7 @@ class Application(tk.Tk):
         #---------------ser_tab控件介绍------------------#
 
         self.ser_urlEntered.insert(END, self.ser_url)
-        self.ser_wdEntered.insert(END, self.ser_wd)
+        #self.ser_wdEntered.insert(END, self.ser_wd)
         
         self.ser_nameEntered.insert(END, self.ser_name)
         self.ser_pwdEntered.insert(END, self.ser_pwd)
@@ -560,11 +578,11 @@ class Application(tk.Tk):
     def ser_interMe(self):
         print("################进入代理网站#######################")
         self.ser_url  = self.ser_urlEntered.get()
-        self.ser_wd  = self.ser_wdEntered.get()
+        #self.ser_wd  = self.ser_wdEntered.get()
         url = self.ser_url
         print("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
-        print(url)
+        #print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -593,7 +611,7 @@ class Application(tk.Tk):
         
     def ser_flushMe(self):
         url = self.ser_url + "code"
-        print(url)
+        #print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -674,7 +692,7 @@ class Application(tk.Tk):
         data = urllib.parse.urlencode(logindict).encode('utf-8')
 
         url = self.ser_url + "login"
-        print(url)       
+        #print(url)       
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
@@ -716,7 +734,7 @@ class Application(tk.Tk):
         #增加新的section
         #
         self.ser_url  = self.ser_urlEntered.get()
-        self.ser_wd = self.ser_wdEntered.get()
+        #self.ser_wd = self.ser_wdEntered.get()
         self.ser_name  = self.ser_nameEntered.get()
         self.ser_pwd = self.ser_pwdEntered.get()
         self.searchText = self.searchScrolledText.get(1.0, END)
@@ -777,13 +795,13 @@ class Application(tk.Tk):
         self.cli_urlEntered.grid(column=1, row=line, sticky='W')    
 
         #行
-        line = line + 1
+        #line = line + 1
         # Changing our Label  
-        ttk.Label(self.cli_MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
+        #ttk.Label(self.cli_MyFrame, text="登录码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
         # self.cli_url = tk.StringVar()  
-        self.cli_wdEntered = ttk.Entry(self.cli_MyFrame, width=60, textvariable=self.cli_wd)  
-        self.cli_wdEntered.grid(column=1, row=line, sticky='W')
+        #self.cli_wdEntered = ttk.Entry(self.cli_MyFrame, width=60, textvariable=self.cli_wd)  
+        #self.cli_wdEntered.grid(column=1, row=line, sticky='W')
 
          # Adding a Button
         line = line + 1
@@ -839,18 +857,17 @@ class Application(tk.Tk):
         #---------------Tab1控件介绍------------------#
 
         self.cli_urlEntered.insert(END, self.cli_url)
-        self.cli_wdEntered.insert(END, self.cli_wd)
+        #self.cli_wdEntered.insert(END, self.cli_wd)
         self.cli_nameEntered.insert(END, self.cli_name)
         self.cli_pwdEntered.insert(END, self.cli_pwd)
             
     def cli_interMe(self):
         print("################进入会员网站#######################")
         self.cli_url  = self.cli_urlEntered.get()
-        self.cli_wd  = self.cli_wdEntered.get()
+        #self.cli_wd  = self.cli_wdEntered.get()
         url = self.cli_url
-        print("################进入登陆页面#######################")
-        #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
-        print(url)
+        print("################进入会员登陆页面#######################")
+        #print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -879,7 +896,7 @@ class Application(tk.Tk):
         
     def cli_flushMe(self):
         url = self.cli_url + "code"
-        print(url)
+        #print(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -959,7 +976,7 @@ class Application(tk.Tk):
         print(data)
 
         url = self.cli_url + "login"
-        print(url)        
+        #print(url)        
         request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
         try:
             response = opener.open(request, timeout = 5)
@@ -997,7 +1014,7 @@ class Application(tk.Tk):
         print("############################同意登录##############################")
         #https://3661032706-xsj.cp168.ws/member/index
         url = self.cli_url + "member/index"
-        print(url)   
+        #print(url)   
         request = urllib.request.Request(url = url, headers = headers, method = 'GET')
         try:
             response = opener.open(request, timeout = 5)
@@ -1030,7 +1047,7 @@ class Application(tk.Tk):
         #增加新的section
         #
         self.cli_url  = self.cli_urlEntered.get()
-        self.cli_wd = self.cli_wdEntered.get()
+        #self.cli_wd = self.cli_wdEntered.get()
         
         self.cli_name  = self.cli_nameEntered.get()
         self.cli_pwd = self.cli_pwdEntered.get()

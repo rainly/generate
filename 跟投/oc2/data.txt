@@ -26,6 +26,36 @@ https://00271596-xsj.cp168.ws/agent/report/bets??username=zhw999&lottery=lottery
 
 
 
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114017475
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522113874
+
+Thread stopped
+
+################进入会员网站#######################
+################进入登陆页面#######################
+https://3309279593-xsj.cp168.ws/
+################进入会员网站成功#######################
+https://3309279593-xsj.cp168.ws/code
+############################账号登陆##############################
+b'type=2&account=cs0990&password=5134abab&code=7023'
+https://3309279593-xsj.cp168.ws/login
+登录 ==> 登陆成功！
+############################同意登录##############################
+https://3309279593-xsj.cp168.ws/member/index
+Thread start
+
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114148
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114152
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114157
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114161
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114166
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114170
 
 
 
@@ -57,6 +87,8 @@ gou1122*0.1
 mm9966*0.1
 ss9993*0.1
 
+https://3309279593-xsj.cp168.ws/member/bet
+
 {
     "bets": [{
         "game": "ZX",
@@ -68,6 +100,23 @@ ss9993*0.1
     "ignore": false,
     "lottery": "BJPK10BJL"
 }
+
+{lottery: "BJPK10BJL", drawNumber: "673195-1",…}
+bets
+:
+[{game: "LB", contents: "X", amount: 10, odds: 2}]
+0
+:
+{game: "LB", contents: "X", amount: 10, odds: 2}
+drawNumber
+:
+"673195-1"
+ignore
+:
+false
+lottery
+:
+"BJPK10BJL"
 
 {
 "DX_D":"大",

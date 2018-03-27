@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#跟投 自动打码神器
     
 import re
 import urllib
@@ -13,7 +13,7 @@ import time
 import datetime
 import http.cookiejar
 import json
-import pymysql.cursors
+#import pymysql.cursors
 import ssl
 #import sqlite3
 import configparser
@@ -36,7 +36,17 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
-#from wsgiref.simple_Betting import make_Betting
+import io
+# allows for image formats other than gif
+from PIL import Image, ImageTk
+try:
+    # Python2
+    import Tkinter as tk
+    from urllib2 import urlopen
+except ImportError:
+    # Python3
+    import tkinter as tk
+    from urllib.request import urlopen
 
 
 
@@ -68,17 +78,7 @@ def getoddsgno(oddsgname):
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-import io
-# allows for image formats other than gif
-from PIL import Image, ImageTk
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
+
 
 
 def application(environ, start_response):
