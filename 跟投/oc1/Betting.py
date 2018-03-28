@@ -146,7 +146,7 @@ class ServerThread(threading.Thread):
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
                 url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user + "&gameno=" + self.target.searchType + ";&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
-                print(url)
+                #print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -268,8 +268,8 @@ class ClientThread(threading.Thread):
                     print("############################账号不存在##############################" + item[3])
                     continue
 
-                #monery = round(float(item[7]) * float(self.target.users[item[3]]))
-                monery = 10
+                monery = round(float(item[7]) * float(self.target.users[item[3]]))
+                #monery = 10
                 #print(monery)
                 
                 #过滤每个订单
@@ -357,7 +357,7 @@ class ClientThread(threading.Thread):
                     print("错误 ==> 网络连接错误！")
                     continue
                 
-                print(html)
+                #print(html)
                 text = json.loads(html)
                 spls = text["d"].split('$@')
                 token = spls[len(spls) - 1]
@@ -399,7 +399,7 @@ class ClientThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                print(html)
+                #print(html)
                 print("############################结束发送订单##############################" + orders[0])
             ###############################
             g_mutex.release()
@@ -519,6 +519,7 @@ class Application(tk.Tk):
             messagebox.showinfo("提示","彩票类型未设置！")
             return False           
         #print(self.searchType)
+        self.users = {}
         self.searchUser = self.searchUserScrolledText.get(1.0, END)    
         searchUsers = self.searchUser.split("\n")
         for item in searchUsers:
@@ -825,7 +826,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
+        #print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
