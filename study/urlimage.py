@@ -23,7 +23,7 @@ root = tk.Tk()
 # or use image previously downloaded to tinypic.com
 #url = "http://i48.tinypic.com/w6sjn6.jpg"
 url = "http://i50.tinypic.com/34g8vo5.jpg"
-url = "http://31nudgw.ttx158.com/cp5-5-ag/checknum.aspx?ts=1521814645944"
+url = "https://cas.baidu.com/?action=image&key=1521015913"
 
  
 image_bytes = urlopen(url).read()
