@@ -126,7 +126,7 @@ class ServerThread(threading.Thread):
         print(log)
         
     def target_func(self):
-        print("target_func begin")
+        print("############################代理启动线程##############################")
         sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
@@ -139,8 +139,8 @@ class ServerThread(threading.Thread):
             g_datas.clear()
             g_mutex.release()
             
-            searchTexts = self.target.searchText.split("\n")
             for user in self.target.users:
+                print("############################代理查询账户订单############################## ：" + user[0])
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
                 url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
@@ -201,8 +201,9 @@ class ServerThread(threading.Thread):
                 
             print("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
             for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
-        print("target_func end")
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " + \
+                      item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
+        print("############################代理结束线程##############################")
         
         
 class ClientThread(threading.Thread):
@@ -252,6 +253,7 @@ class ClientThread(threading.Thread):
                 结果
                 净利
                 '''
+                print(item)
                 
                 bUser = False
                 for key in self.target.users:
@@ -259,6 +261,7 @@ class ClientThread(threading.Thread):
                         bUser = True
                     
                 if bUser == False:
+                    print("############################账号不存在##############################" + item[3])
                     continue
 
                 monery = round(float(item[7]) * float(self.target.users[item[3]]))
@@ -267,14 +270,13 @@ class ClientThread(threading.Thread):
                 #过滤每个订单
                 orders = item[2].split(' ')
                 
-                print("############################下注订单##############################" + orders[0])
-                
+                print("############################查询订单是否处理##############################" + orders[0])
                 if orders[0] in g_order_dict:
                     print("****订单已经处理*****" + orders[0])
                     continue
                 g_order_dict[orders[0]] = 1
             
-                print("############################下注订单##############################")
+                print("############################开始处理下注订单##############################")
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
                 #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
                 
@@ -334,7 +336,9 @@ class ClientThread(threading.Thread):
                 #print(url)
                 
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-                
+                          
+                print("############################开始获取订单token##############################")
+                          
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -362,7 +366,9 @@ class ClientThread(threading.Thread):
                 text = json.loads(html)
                 spls = text["d"].split('$@')
                 token = spls[len(spls) - 1]
-                print("获取token " + token)
+   
+                print("############################订单token##############################" + token)
+                          
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
                 #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
                 order_dict = {}
@@ -377,6 +383,8 @@ class ClientThread(threading.Thread):
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
+
+                print("############################开始发送订单##############################" + orders[0])
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -400,7 +408,7 @@ class ClientThread(threading.Thread):
                     print("错误 ==> 网络连接错误！")
                     continue
                 print(html)
-            
+                print("############################结束发送订单##############################" + orders[0])
             ###############################
             g_mutex.release()
             
@@ -411,26 +419,28 @@ class Application(tk.Tk):
         super().__init__()
         self.protocol("WM_DELETE_WINDOW", self.Close)
         
+        self.users = {}
+        self.searchType = ""       
+        
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
         self.conf.read("Betting.txt")    
-        
-        if self.conf.has_section("agent") == True:
-            self.agent = self.conf.get("agent", "value")
-        else:
-            self.agent = ""
-            self.conf.add_section("agent")
-            self.conf.set("agent", "value", "")
 
-        if self.conf.has_section("searchText") == True:
-            self.searchText = self.conf.get("searchText", "value")
+        if self.conf.has_section("searchUser") == True:
+            self.searchUser = self.conf.get("searchUser", "value")
         else:
-            self.searchText = ""
-            self.conf.add_section("searchText")
-            self.conf.set("searchText", "value", "")
+            self.searchUser = ""
+            self.conf.add_section("searchUser")
+            self.conf.set("searchUser", "value", "")
             
-        
+        if self.conf.has_section("searchType") == True:
+            self.searchType = self.conf.get("searchType", "value")
+        else:
+            self.searchType = ""
+            self.conf.add_section("searchType")
+            self.conf.set("searchType", "value", "")            
+            
         self.ser_initdata()
         self.cli_initdata()
         self.createWidgets()
@@ -438,6 +448,11 @@ class Application(tk.Tk):
     def createWidgets(self):
         # Tab Control introduced here --------------------------------------
         self.tabControl = ttk.Notebook(self)          # Create Tab Control
+        
+        self.conf_tab = ttk.Frame(self.tabControl)            # Create a tab
+        self.tabControl.add(self.conf_tab, text='**配置**')      # Add the tab
+        self.tabControl.pack(expand=1, fill="both")  # Pack to make visible        
+        
         self.ser_tab  = ttk.Frame(self.tabControl)            # Create a tab
         self.tabControl.add(self.ser_tab, text='**采集**')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
@@ -446,9 +461,7 @@ class Application(tk.Tk):
         self.tabControl.add(self.cli_tab, text='**下注**')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
         
-        self.conf_tab = ttk.Frame(self.tabControl)            # Create a tab
-        self.tabControl.add(self.conf_tab, text='**配置**')      # Add the tab
-        self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
+
         
         # ~ Tab Control introduced here
         # -----------------------------------------
@@ -463,17 +476,78 @@ class Application(tk.Tk):
         
         # Using a scrolled Text control
         self.scrolW = 65
-        self.scrolH = 20
+        self.scrolH = 10
         #行
         line = 0
         # Changing our Label  
         ttk.Label(self.conf_MyFrame, text="查询账号:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
         # self.ser_url = tk.StringVar()  
-        self.searchScrolledText = scrolledtext.ScrolledText(self.conf_MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
-        self.searchScrolledText.grid(column=0, row=line, sticky='WE', columnspan=3)    
-        self.searchScrolledText.insert(tk.INSERT, self.searchText)        
+        self.searchUserScrolledText = scrolledtext.ScrolledText(self.conf_MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
+        self.searchUserScrolledText.grid(column=0, row=line, sticky='WE', columnspan=4)    
+        self.searchUserScrolledText.insert(tk.INSERT, self.searchUser) 
+        ############################
+        num = 0
+        self.CheckVars = {}
+        self.CheckButtons = {}
+        for item in all_the_oc["game"]:
+            if num % 4 == 0:
+                line = line + 1
+            CheckVar = IntVar()
+            C = Checkbutton(self.conf_MyFrame, text = item["gname"], variable = CheckVar, onvalue = item["gno"], offvalue = 0)
+            C.grid(column=num % 4, row=line, sticky='W')
+            self.CheckVars[item["gno"]]    = CheckVar
+            self.CheckButtons[item["gno"]] = C
+            num = num + 1
+        #print(self.CheckVars)
+            
+        # Adding a Button
+        line = line + 1
+        self.conf_btaction = ttk.Button(self.conf_MyFrame,text="确定",width=10,command=self.conf_clickMe)
+        self.conf_btaction.grid(column=1,row=line,sticky='E')      
+
+        #print(len(self.CheckVars))
+        if self.searchType != "":
+            searchTypes = self.searchType.split(',')
+            #print(searchTypes)
+            for item in searchTypes:
+                #print(item)
+                self.CheckVars[int(item)].set(int(item))
+
         
+    def conf_clickMe(self):
+        temp = ""
+        self.searchType = ""
+        for key in self.CheckVars:
+            if self.CheckVars[key].get() != 0:
+                self.searchType = self.searchType + temp
+                self.searchType = self.searchType + str(self.CheckVars[key].get())
+                temp = ","
+        if self.searchType == "":
+            messagebox.showinfo("提示","彩票类型未设置！")
+            return False           
+        #print(self.searchType)
+        self.searchUser = self.searchUserScrolledText.get(1.0, END)    
+        searchUsers = self.searchUser.split("\n")
+        for item in searchUsers:
+            if item  == "":
+                continue
+            item  = item.replace("\n", "")
+            user  = item.split("*")
+            if len(user) < 2:
+                messagebox.showinfo("提示","账号查询格式不正确！")
+                return False            
+            self.users[user[0]] = user[1]
+        if len(self.users) == 0:
+            messagebox.showinfo("提示","用户未设置！")
+            return False   
+            
+        self.searchUser = self.searchUserScrolledText.get(1.0, END)
+        self.conf.set("searchUser", "value", self.searchUser)   
+        self.conf.set("searchType", "value", self.searchType)            
+        #写回配置文件
+        self.conf.write(open("Betting.txt", "w"))        
+        return True
         
     def ser_initdata(self):
         self.ser_thread = None
@@ -700,6 +774,8 @@ class Application(tk.Tk):
             print("错误 ==> 网络连接错误！")
 
     def ser_clickMe(self):
+        if self.conf_clickMe() == False:
+            return;
 
         text = self.ser_btaction.config('text')
         if  text[4] == '关闭':
@@ -713,7 +789,6 @@ class Application(tk.Tk):
         self.ser_name  = self.ser_nameEntered.get()
         self.ser_pwd   = self.ser_pwdEntered.get()
         self.ser_check = self.ser_checkEntered.get()
-        self.searchText = self.searchScrolledText.get(1.0, END)
         if self.ser_name == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
@@ -726,24 +801,11 @@ class Application(tk.Tk):
             messagebox.showinfo("提示","验证码不能为空！")
             return
             
-        if self.searchText == "":
+        if self.searchUser == "":
             messagebox.showinfo("提示","账号查询不能为空！")
             return
-            
-        self.users = {}
-        searchTexts = self.searchText.split("\n")
-        for item in searchTexts:
-            if item  == "":
-                continue
-            item  = item.replace("\n", "")
-            user  = item.split("*")
-            if len(user) < 2:
-                messagebox.showinfo("提示","账号查询格式不正确！")
-                return                
-            self.users[user[0]] = user[1]
-
         self.ser_save()  
-        print("############################账号登陆##############################")
+        print("############################代理账号登陆##############################")
         self.ser_logindict["txt_U_name"]     = self.ser_name
         self.ser_logindict["txt_U_Password"] = self.ser_pwd 
         self.ser_logindict["txt_validate"]   = self.ser_check
@@ -771,7 +833,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        ##print(html)
+        print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
@@ -782,7 +844,8 @@ class Application(tk.Tk):
             print("错误 ==> 登陆错误！")
             return
         
-        print("############################同意登陆##############################")            
+        print("##########################代理账号登陆成功############################")
+        print("############################代理同意登陆##############################")            
         #http://61xudgw.ttx158.com/cp5-5-ag/ch/agreement.aspx/LocationUrl
         ##########################################################
         '''
@@ -811,7 +874,7 @@ class Application(tk.Tk):
             print("错误 ==> 网络连接错误！")
         #print(html)
         '''
-        print("############################管理界面##############################") 
+        print("############################代理管理界面##############################") 
         #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/main.aspx
         agreement_dict = {}
         agreement_dict["stype"] = "1"
@@ -842,7 +905,7 @@ class Application(tk.Tk):
             returnf
         #print(html)
 
-        print("############################报表查询##############################")
+        print("############################代理报表查询##############################")
         html = ""
         #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new.aspx
         agreement_dict = {}
@@ -872,6 +935,7 @@ class Application(tk.Tk):
             print("错误 ==> 网络连接错误！")
             return
         #print(html)
+        print("############################代理报表查询成功##############################")
         
         self.ser_btaction.configure(text='关闭')
         self.ser_thread = ServerThread(self)
@@ -883,9 +947,7 @@ class Application(tk.Tk):
         self.ser_url  = self.ser_urlEntered.get()
         self.ser_wd = self.ser_wdEntered.get()
         self.ser_name  = self.ser_nameEntered.get()
-        self.ser_pwd = self.ser_pwdEntered.get()
-        self.searchText = self.searchScrolledText.get(1.0, END)
-        self.conf.set("searchText", "value", self.searchText)      
+        self.ser_pwd = self.ser_pwdEntered.get()  
         self.conf.set("ser_url", "value", self.ser_url)
         self.conf.set("ser_wd", "value", self.ser_wd)
         self.conf.set("ser_name", "value", self.ser_name)
@@ -1118,6 +1180,8 @@ class Application(tk.Tk):
             print("错误 ==> 网络连接错误！")
    
     def cli_clickMe(self):
+        if self.conf_clickMe() == False:
+            return;
         text = self.cli_btaction.config('text')
         if  text[4] == '关闭':
             if self.cli_thread.is_alive():

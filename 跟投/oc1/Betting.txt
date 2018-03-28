@@ -2,13 +2,13 @@
 value = tbcs111
 
 [ser_pwd]
-value = 5134abab
+value = abab5134
 
 [ser_url]
 value = http://77t.snk686.com/search.aspx
 
 [ser_wd]
-value = 64801
+value = 78635
 
 [cli_name]
 value = vfhs886
@@ -22,13 +22,13 @@ value = http://93k.zsz585.com/search.aspx
 [cli_wd]
 value = 95712
 
-[agent]
-value = 
-
-[searchText]
+[searchUser]
 value = tbgd001*0.1
 	tbgd002*0.2
 	tbfx5858*0.3
 	tbysx888*0.4
 	
+
+[searchType]
+value = 1,2,5,6,27
 
