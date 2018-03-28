@@ -140,11 +140,13 @@ class ServerThread(threading.Thread):
             g_mutex.release()
             
             for user in self.target.users:
-                print("############################代理查询账户订单############################## ：" + user[0])
+                if self.stopped:
+                    break
+                print("############################代理查询账户订单############################## ：" + user)
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
-                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user[0] + "&gameno=6;8;11;12;13;20;21;22;23;&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
-                #print(url)
+                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user + "&gameno=" + self.target.searchType + ";&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
+                print(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -240,6 +242,8 @@ class ClientThread(threading.Thread):
         
             g_mutex.acquire()
             for item in g_datas:
+                if self.stopped:
+                    break
                 '''
                 编号
                 游戏名称
@@ -254,7 +258,7 @@ class ClientThread(threading.Thread):
                 净利
                 '''
                 print(item)
-                
+                    
                 bUser = False
                 for key in self.target.users:
                     if item[3] == key:
@@ -264,7 +268,8 @@ class ClientThread(threading.Thread):
                     print("############################账号不存在##############################" + item[3])
                     continue
 
-                monery = round(float(item[7]) * float(self.target.users[item[3]]))
+                #monery = round(float(item[7]) * float(self.target.users[item[3]]))
+                monery = 10
                 #print(monery)
                 
                 #过滤每个订单
@@ -278,8 +283,6 @@ class ClientThread(threading.Thread):
             
                 print("############################开始处理下注订单##############################")
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
-                #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
-                
                 gameno  = getgno(item[1])
                 #['30587881期', 'A盘/', '冠军', '08']
                 #去左右空格
@@ -287,9 +290,11 @@ class ClientThread(threading.Thread):
                 contents = content.split(' ')
                 #print(contents)
                 
-                roundno = contents[0].replace("期", "")
-                oddsgno = getoddsgno(contents[2])
-                gameidx = contents[3]
+                roundno     = contents[0].replace("期", "")
+                wagerround  = contents[1].replace("盘", "")
+                wagerround  = wagerround.replace("/", "")
+                oddsgno     = getoddsgno(contents[2])
+                gameidx     = contents[3]
                 
                 if contents[3] == "大":
                     gameidx = '1'
@@ -311,34 +316,24 @@ class ClientThread(threading.Thread):
                     gameidx = '1'
                 elif  contents[3] == "和数双":
                     gameidx = '2'
-                    
-                #{gameno:11,wagerroundstring:"D",arrstring:"601:1:2;",roundno:"672878",lianma_transtrin:"",token:"3708E135BA0B96C54260620E3CE6E2CF"}
-                #print(roundno)                
-                #print(gameno)
-                #print(oddsgno)
-                #print(gameidx)
                 
+                #{wagerround:"D",transtring:"621,,1,,1.94,2;",arrstring:"621:1:2;",wagetype:0,allowcreditquota:4013,hasToken:true,playgametype:0}
                 order_dict = {}
-                order_dict["wagerround"] = "D"
-                #order_dict["transtring"] = "621,,1,,1.94,2;"
-                order_dict["transtring"] = ""
-                #order_dict["arrstring"] = "621:1:2;"
-                order_dict["arrstring"] = str(oddsgno) + ":" + str(gameidx) + ":" + str(monery)
-                order_dict["wagetype"] = 0
-                order_dict["allowcreditquota"] = 0
-                order_dict["hasToken"] = True
-                order_dict["playgametype"] = 0
-                
+                order_dict["wagerround"]        = self.target.cli_wagerround
+                #order_dict["transtring"]       = "621,,1,,1.94,2;"
+                order_dict["transtring"]        = ""
+                #order_dict["arrstring"]        = "621:1:2;"
+                order_dict["arrstring"]         = str(oddsgno) + ":" + str(gameidx) + ":" + str(monery)
+                order_dict["wagetype"]          = 0
+                order_dict["allowcreditquota"]  = 0
+                order_dict["hasToken"]          = True
+                order_dict["playgametype"]      = 0
                 data = json.dumps(order_dict).encode(encoding='UTF8')
                 #print(data)
-                
                 url = self.target.cli_baseurl + "ch/left.aspx/GetMemberMtran"
                 #print(url)
-                
-                headers["Content-Type"] = "application/json; charset=UTF-8"
-                          
-                print("############################开始获取订单token##############################")
-                          
+                headers["Content-Type"] = "application/json; charset=UTF-8"     
+                print("############################开始获取订单token##############################")  
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
@@ -362,28 +357,25 @@ class ClientThread(threading.Thread):
                     print("错误 ==> 网络连接错误！")
                     continue
                 
-                #print(html)
+                print(html)
                 text = json.loads(html)
                 spls = text["d"].split('$@')
                 token = spls[len(spls) - 1]
    
-                print("############################订单token##############################" + token)
-                          
+                print("############################订单token##############################" + token)  
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
                 #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
                 order_dict = {}
-                order_dict["gameno"] = gameno
-                order_dict["wagerroundstring"] = "D"
-                order_dict["arrstring"] = str(oddsgno) + ":" + gameidx + ":" + str(monery)
-                order_dict["roundno"] = roundno
-                order_dict["lianma_transtrin"] = ""
-                order_dict["token"] = token
+                order_dict["gameno"]                = gameno
+                order_dict["wagerroundstring"]      = self.target.cli_wagerround
+                order_dict["arrstring"]             = str(oddsgno) + ":" + gameidx + ":" + str(monery)
+                order_dict["roundno"]               = roundno
+                order_dict["lianma_transtrin"]      = ""
+                order_dict["token"]                 = token
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
                 url = self.target.cli_baseurl + "ch/left.aspx/mtran_XiaDan_New"
-                
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-
                 print("############################开始发送订单##############################" + orders[0])
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
@@ -508,7 +500,7 @@ class Application(tk.Tk):
 
         #print(len(self.CheckVars))
         if self.searchType != "":
-            searchTypes = self.searchType.split(',')
+            searchTypes = self.searchType.split(';')
             #print(searchTypes)
             for item in searchTypes:
                 #print(item)
@@ -522,7 +514,7 @@ class Application(tk.Tk):
             if self.CheckVars[key].get() != 0:
                 self.searchType = self.searchType + temp
                 self.searchType = self.searchType + str(self.CheckVars[key].get())
-                temp = ","
+                temp = ";"
         if self.searchType == "":
             messagebox.showinfo("提示","彩票类型未设置！")
             return False           
@@ -973,6 +965,13 @@ class Application(tk.Tk):
             self.cli_pwd = ""
             self.conf.add_section("cli_pwd")
             self.conf.set("cli_pwd", "value", "")
+
+        if self.conf.has_section("cli_wagerround") == True:
+            self.cli_wagerround = self.conf.get("cli_wagerround", "value")
+        else:
+            self.cli_wagerround = ""
+            self.conf.add_section("cli_wagerround")
+            self.conf.set("cli_wagerround", "value", "")            
             
         if self.conf.has_section("cli_url") == True:
             self.cli_url = self.conf.get("cli_url", "value")
@@ -1038,6 +1037,15 @@ class Application(tk.Tk):
         #行
         line = line + 1
         # Changing our Label  
+        ttk.Label(self.cli_MyFrame, text="盘号(ABCD):").grid(column=0, row=line, sticky='W')  
+        # Adding a Textbox Entry widget  
+        # self.cli_url = tk.StringVar()  
+        self.cli_wagerroundEntered = ttk.Entry(self.cli_MyFrame, width=60, textvariable=self.cli_wagerround)  
+        self.cli_wagerroundEntered.grid(column=1, row=line, sticky='W')          
+        
+        #行
+        line = line + 1
+        # Changing our Label  
         ttk.Label(self.cli_MyFrame, text="验证码:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
         # self.cli_url = tk.StringVar()  
@@ -1069,6 +1077,8 @@ class Application(tk.Tk):
         self.cli_wdEntered.insert(END, self.cli_wd)
         self.cli_nameEntered.insert(END, self.cli_name)
         self.cli_pwdEntered.insert(END, self.cli_pwd)
+        self.cli_wagerroundEntered.insert(END, self.cli_wagerround)        
+        
             
     def cli_interMe(self):
         print("################进入网站#######################")
@@ -1192,9 +1202,11 @@ class Application(tk.Tk):
             return
 
         
-        self.cli_name  = self.cli_nameEntered.get()
-        self.cli_pwd   = self.cli_pwdEntered.get()
-        self.cli_check = self.cli_checkEntered.get()
+        self.cli_name          = self.cli_nameEntered.get()
+        self.cli_pwd           = self.cli_pwdEntered.get()
+        self.cli_wagerround = self.cli_wagerroundEntered.get()
+        self.cli_check         = self.cli_checkEntered.get()        
+        
         
         if self.cli_name == "":
             messagebox.showinfo("提示","账号不能为空！")
@@ -1203,7 +1215,9 @@ class Application(tk.Tk):
         if self.cli_pwd == "":
             messagebox.showinfo("提示","密码不能为空！")
             return
-
+        if self.cli_wagerround == "":
+            messagebox.showinfo("提示","盘号不能为空！")
+            return
         if self.cli_check == "":
             messagebox.showinfo("提示","验证码不能为空！")
             return
@@ -1319,11 +1333,13 @@ class Application(tk.Tk):
         
         self.cli_name  = self.cli_nameEntered.get()
         self.cli_pwd = self.cli_pwdEntered.get()
+        self.cli_wagerround = self.cli_wagerroundEntered.get()
         
         self.conf.set("cli_url", "value", self.cli_url)
         self.conf.set("cli_wd", "value", self.cli_wd)
         self.conf.set("cli_name", "value", self.cli_name)
         self.conf.set("cli_pwd", "value", self.cli_pwd)
+        self.conf.set("cli_wagerround", "value", self.cli_wagerround)
         #写回配置文件
         self.conf.write(open("Betting.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
