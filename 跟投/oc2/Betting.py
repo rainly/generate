@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#跟投 自动打码神器
     
 import re
 import urllib
@@ -37,6 +37,15 @@ import tkinter as tk
 import threading
 import time
 
+try:
+    # Python2
+    import Tkinter as tk
+    from urllib2 import urlopen
+except ImportError:
+    # Python3
+    import tkinter as tk
+    from urllib.request import urlopen
+
 import io
 # allows for image formats other than gif
 from PIL import Image, ImageTk
@@ -45,16 +54,17 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
-
+##加载配置文件
 file_object = open('oc.js', encoding= 'utf8')
 try:
-        all_the_text = file_object.read( )
+    all_the_text = file_object.read( )
 finally:
-        file_object.close( )
+    file_object.close( )
 if all_the_text.startswith(u'\ufeff'):
-        all_the_text = all_the_text.encode('utf8')[3:].decode('utf8')
+    all_the_text = all_the_text.encode('utf8')[3:].decode('utf8')
 all_the_oc = json.loads(all_the_text)
 
+##获取游戏类型
 def gettype(gname, glv):
     for key in all_the_oc["game_type"]:
         if all_the_oc["game_type"][key] == gname and all_the_oc["game_lv"][key] == glv:
@@ -67,22 +77,12 @@ print(gettype("庄家", 2))
 
 
 
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
-
-
-def application(environ, start_response):
-    start_response('200 OK', [('Content-Type', 'text/html')])
-    return [u"hello".encode('utf8')]
 
 
 
+#def application(environ, start_response):
+#    start_response('200 OK', [('Content-Type', 'text/html')])
+#    return [u"hello".encode('utf8')]
 # 创建一个服务器，IP地址为空，端口是8000，处理函数是application:
 #httpd = make_Betting('', 8000, application)
 #print ("Serving HTTP on port 8000...")
@@ -114,9 +114,9 @@ headers = { 'User-Agent' : user_agent }
 
 
         
-class BettingThread(threading.Thread):
+class ServerThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
-        super(BettingThread, self).__init__()
+        super(ServerThread, self).__init__()
         self.target = target
         self.thread_num = thread_num
         self.stopped = False
@@ -727,7 +727,7 @@ class Application(tk.Tk):
             return
         
         self.ser_btaction.configure(text='关闭')
-        self.ser_thread = BettingThread(self)
+        self.ser_thread = ServerThread(self)
         self.ser_thread.start()
             
     def ser_save(self):
