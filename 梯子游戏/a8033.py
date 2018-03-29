@@ -58,7 +58,7 @@ def main():
     url = conf.get("url", "value")
     print("地址:" + url)
 
-    if conf.has_section("url") == False:
+    if conf.has_section("jump") == False:
         print("配置出错")
         time.sleep(3600)
         return
