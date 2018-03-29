@@ -296,7 +296,7 @@ class TestThread(threading.Thread):
                     
                             if Win == 1:
                                 #检测赢是否回第一位置上
-                                #BaLL_Idx = 1
+                                BaLL_Idx = 1
                                 #只要有赢，这个坑的失败次数就归0
                                 FaildNum = 0;
                                 self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "中奖\n")
