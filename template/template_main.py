@@ -35,7 +35,7 @@ from tkinter import messagebox as mBox
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading  
-from client import *
+from template import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
