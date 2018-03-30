@@ -215,12 +215,12 @@ class BettingThread(threading.Thread):
                 #处理中奖结果
                 if Last_Award_Issue_Have:        
                     if int(Ball01) == 3 or int(Ball04) == 3 or int(Ball07) == 3:
+                        Stop_num    = 1
+                        print("***未中奖***")
+                    else:
                         Jump_Idx    = 0
                         Stop_num    = 0
                         print("***中奖***")
-                    else:
-                        Stop_num    = 1
-                        print("***未中奖***")
                 else:
                     print("***未下注***")
                     
