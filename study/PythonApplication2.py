@@ -13,10 +13,10 @@
 #import time  
 
 
-#class TestThread(threading.Thread):
+#class BettingThread(threading.Thread):
 
 #    def __init__(self, target, thread_num=0, timeout=1.0):
-#        super(TestThread, self).__init__()
+#        super(BettingThread, self).__init__()
 #        self.target = target
 #        self.thread_num = thread_num
 #        self.stopped = False
@@ -121,7 +121,7 @@
 #            else:
 #                self.btaction.configure(text='关闭' + self.name.get())
 #                #btaction.configure(state='disabled') # Disable the Button Widget
-#                self.thread = TestThread(self.scr)
+#                self.thread = BettingThread(self.scr)
 #                self.thread.start()
 
 #        # Spinbox callback

@@ -26,9 +26,21 @@ from ajjkk6779 import *
 
 
 
-if __name__ == "__main__":
-    url_agent = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + "tingziji"
-    #print(url_agent)
+#声明一个CookieJar对象实例来保存cookie
+cookiejar = cookiejar = http.cookiejar.CookieJar()
+#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
+handler = urllib.request.HTTPCookieProcessor(cookiejar)
+#通过handler来构建opener
+opener = urllib.request.build_opener(handler)
+
+#此处的open方法同urllib2的urlopen方法，也可以传入request
+#response = opener.open('http://www.baidu.com')
+user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
+headers = { 'User-Agent' : user_agent }  
+
+
+def RegKey():
+    url_agent = "http://duboren.com/ccskey/query?regkey=ajjkk6779"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)
@@ -39,23 +51,31 @@ if __name__ == "__main__":
         #print('Error code: ' + str(e.code))
         #print('Error reason: ' + e.reason)
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     except urllib.error.URLError as e:
         #print('We failed to reach a server.')
         #print('Reason: ' + e.reason)
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     except Exception as msg:
         print("Exception:%s" % msg)
-        exit(0)
+        return False
     except:
         #print("error lineno:" + str(sys._getframe().f_lineno))
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     html = html.strip()
-    print(html)
-    if html != "1":
+    #print(html)
+    json_data = json.loads(html)
+    if json_data["success"] != True:
         print("错误","账号未注册！")
-        exit(0)
-    main()
+        if "datas" in json_data:  
+            print("错误", json_data["datas"]["notice"])
+        return False
+    else:
+        return True
+
+if __name__ == "__main__":
+    if RegKey():
+        main()
     

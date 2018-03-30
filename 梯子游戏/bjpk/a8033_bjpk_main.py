@@ -44,7 +44,7 @@ user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like
 headers = { 'User-Agent' : user_agent }  
 
 
-if __name__ == "__main__":
+def RegKey():
     url_agent = "http://duboren.com/ccskey/query?regkey=a8033"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
@@ -56,19 +56,19 @@ if __name__ == "__main__":
         #print('Error code: ' + str(e.code))
         #print('Error reason: ' + e.reason)
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     except urllib.error.URLError as e:
         #print('We failed to reach a server.')
         #print('Reason: ' + e.reason)
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     except Exception as msg:
         print("Exception:%s" % msg)
-        exit(0)
+        return False
     except:
         #print("error lineno:" + str(sys._getframe().f_lineno))
         print("错误","网络连接错误！")
-        exit(0)
+        return False
     html = html.strip()
     #print(html)
     json_data = json.loads(html)
@@ -76,8 +76,12 @@ if __name__ == "__main__":
         print("错误","账号未注册！")
         if "datas" in json_data:  
             print("错误", json_data["datas"]["notice"])
-        exit(0)
+        return False
     else:
+        return True
+
+if __name__ == "__main__":
+    if RegKey():
         main()
         
 

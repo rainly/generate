@@ -62,23 +62,16 @@ headers = { 'User-Agent' : user_agent }
 #1=3=6=4
 
 
-class TestThread(threading.Thread):
+class BettingThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
-        super(TestThread, self).__init__()
+        super(BettingThread, self).__init__()
         self.target = target
         self.thread_num = thread_num
         self.stopped = False
         self.timeout = timeout
     def run(self):
         self.target.textlog.insert(tk.INSERT,'Thread start\n')                   
-        subthread = threading.Thread(target = self.target_func, args=())
-        subthread.setDaemon(True)
-        subthread.start()
-
-        while not self.stopped:
-            #print("***subthread.join***")
-            subthread.join(self.timeout + 1)
-
+		self.target_func()
         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
     def stop(self):
@@ -101,40 +94,6 @@ class TestThread(threading.Thread):
 
         monery = self.target.monery
         self.logprint("下注金额:" + monery)
-        
-        agent = self.target.agent
-        self.logprint("代理:" + agent)    
-        
-        url_agent = "http://121.40.206.168/soft_net/SBDL_NSkt.php?NS=" + agent
-        #self.logprint(url_agent)
-        request = urllib.request.Request(url_agent, headers = headers)
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            self.logprint('The server couldn\'t fulfill the request.')
-            self.logprint('Error code: ' + str(e.code))
-            self.logprint('Error reason: ' + e.reason)
-            self.logprint("错误 ==> 网络连接错误！")
-            return
-        except urllib.error.URLError as e:
-            self.logprint('We failed to reach a server.')
-            self.logprint('Reason: ' + e.reason)
-            self.logprint("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            self.logprint("Exception:%s" % msg)
-            return
-        except:
-            #self.logprint("error lineno:" + str(sys._getframe().f_lineno))
-            self.logprint("错误 ==> 网络连接错误！")
-            return
-        html = html.strip()
-        if html != "1":
-            self.logprint("错误 ==> 账号未注册！")
-            return
-        
-        self.logprint("账号登录成功！")
         
         #jumps   = jump.split("+")
         monerys = monery.split("+")
@@ -434,15 +393,6 @@ class Application(tk.Tk):
             self.monery = ""
             self.conf.add_section("monery")
             self.conf.set("monery", "value", "")
-
-
-        if self.conf.has_section("agent") == True:
-            self.agent = self.conf.get("agent", "value")
-        else:
-            self.agent = ""
-            self.conf.add_section("agent")
-            self.conf.set("agent", "value", "")
-        
         self.createWidgets()
         
 
@@ -466,17 +416,6 @@ class Application(tk.Tk):
         self.scrolW = 80
         self.scrolH = 10
         
-    
-        #行
-        line = 0
-        # Changing our Label  
-        ttk.Label(self.MyFrame, text="代理:").grid(column=0, row=line, sticky='W')  
-  
-        # Adding a Textbox Entry widget  
-        # self.url = tk.StringVar()  
-        self.agentEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.agent)  
-        self.agentEntered.grid(column=1, row=line, sticky='W')  
-
         #行
         #line = line + 1
         #ttk.Label(self.MyFrame, text="请选择:").grid(column=0, row=line,sticky='W')
@@ -526,42 +465,35 @@ class Application(tk.Tk):
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
         
-        self.agentEntered.insert(END, self.agent)
+
         #self.textJump.insert(tk.INSERT, self.jump)
         self.textMonery.insert(tk.INSERT, self.monery)
             
     def clickMe(self):
-        self.agent  = self.agentEntered.get()
+        if  self.thread != None:
+            self.btaction.configure(text='开始')
+            if self.thread.is_alive():
+                self.thread.stop()
+			    self.thread.join()
+            self.thread = None
+			return
         #self.jump  = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
-        if self.agent == "":
-            messagebox.showinfo("提示","代理不能为空！")
-            return
 
         if self.monery == "":
             messagebox.showinfo("提示","金额不能为空！")
             return
-            
-        text = self.btaction.config('text')
-        if  text[4] == '关闭':
-            self.btaction.configure(text='开始')
-            if self.thread.is_alive():
-                self.thread.stop()
-            self.thread = None
-            #self.thread.join()
-        else:
-            self.btaction.configure(text='关闭')
-            self.thread = TestThread(self)
-            self.thread.start()
+			
+		self.btaction.configure(text='关闭')
+		self.thread = BettingThread(self)
+		self.thread.start()
             
     def save(self):
         #增加新的section
         #
-        self.agent  = self.agentEntered.get()
         #self.jump  = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
         
-        self.conf.set("agent", "value", self.agentEntered.get())
         #self.conf.set("jump", "value", self.textJump.get(1.0, END))
         self.conf.set("monery", "value", self.textMonery.get(1.0, END))
         #写回配置文件

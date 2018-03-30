@@ -98,14 +98,9 @@ class TemplateThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')                   
-        subthread = threading.Thread(target = self.target_func, args=())
-        subthread.setDaemon(True)
-        subthread.start()
-
-        while not self.stopped:
-            #print("***subthread.join***")
-            subthread.join(self.timeout + 1)
+        print('Thread start\n')   
+		
+		self.target_func()
 
         print('Thread stopped'+ "\n")
 
