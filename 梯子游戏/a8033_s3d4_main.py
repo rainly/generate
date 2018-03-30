@@ -35,7 +35,7 @@ import json
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading  
-from s3d4 import *
+from a8033_s3d4 import *
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -54,7 +54,7 @@ headers = { 'User-Agent' : user_agent }
 
 
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=a8033"
+    url_agent = "http://duboren.com/ccskey/query?regkey=092900e95ba9ae923b26238c24621df7"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

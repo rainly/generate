@@ -71,7 +71,7 @@ def main():
         return
     monery = conf.get("monery", "value")
     print("下注金额:" + monery)
-	
+    
     jumps   = jump.split("+")
     monerys = monery.split("+")
     if len(jumps) + 1 != len(monerys):

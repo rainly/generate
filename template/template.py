@@ -99,8 +99,8 @@ class TemplateThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         print('Thread start\n')   
-		
-		self.target_func()
+        
+        self.target_func()
 
         print('Thread stopped'+ "\n")
 
@@ -449,7 +449,7 @@ class Application(tk.Tk):
             self.thread = None
             self.btaction.configure(text='开始')
             return
-			
+            
         self.name  = self.nameEntered.get()
         self.pwd   = self.pwdEntered.get()
         self.check = self.checkEntered.get()

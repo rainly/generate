@@ -61,7 +61,7 @@ class BettingThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         self.target.textlog.insert(tk.INSERT,'Thread start\n')                   
-		self.target_func()
+        self.target_func()
         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
     def stop(self):
@@ -88,7 +88,7 @@ class BettingThread(threading.Thread):
         agent = self.target.agent
         self.logprint("代理:" + agent)    
        
-	   
+       
         monerys = monery.split("+")
         if len(monerys) == 0:
             self.logprint("错误 ==> 金额配置出错")
@@ -444,20 +444,20 @@ class Application(tk.Tk):
             self.btaction.configure(text='开始')
             if self.thread.is_alive():
                 self.thread.stop()
-			    self.thread.join()
+                self.thread.join()
             self.thread = None
-			return
-	
+            return
+    
         #self.jump  = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
 
         if self.monery == "":
             messagebox.showinfo("提示","金额不能为空！")
             return
-			
-		self.btaction.configure(text='关闭')
-		self.thread = BettingThread(self)
-		self.thread.start()
+            
+        self.btaction.configure(text='关闭')
+        self.thread = BettingThread(self)
+        self.thread.start()
             
     def save(self):
         #增加新的section

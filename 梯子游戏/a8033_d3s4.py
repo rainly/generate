@@ -71,8 +71,8 @@ class BettingThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         self.target.textlog.insert(tk.INSERT,'Thread start\n')   
-		
-		self.target_func();
+        
+        self.target_func();
 
         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
@@ -216,7 +216,7 @@ class BettingThread(threading.Thread):
                         else:
                             self.logprint("***检测是否下注*** 上轮：3单/4双 ==> 本轮：4单 ==>购买3双")
                             Last_Award_Issue_Buy = "3双" 
-			'''
+            '''
                     elif  MyKey2[tclass2] == "4双":#4双
                         ##############################################
                         if MyKey2[tclass3] == "3单":
@@ -440,7 +440,7 @@ class Application(tk.Tk):
         if self.monery == "":
             messagebox.showinfo("提示","金额不能为空！")
             return
-			
+            
         if  text[4] == '关闭':
             self.btaction.configure(text='开始')
             if self.thread.is_alive():

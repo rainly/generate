@@ -62,9 +62,9 @@ opener = urllib.request.build_opener(handler)
 user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
 headers = { 'User-Agent' : user_agent }  
 
-
+    
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=cp_001"
+    url_agent = "http://duboren.com/ccskey/query?regkey=1ff4dc386e7bdaedb35b6bb41fbac207"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

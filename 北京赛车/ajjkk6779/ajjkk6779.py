@@ -513,7 +513,7 @@ class Application(tk.Tk):
         self.cursor.execute('delete from global')
         self.cursor.execute("replace into \"global\" (faildnum) values  ( ? )", (self.faildnumEntered.get(), ))
         self.conn.commit()
-		
+        
         text = self.text.get(1.0, END)
         lines = text.split("\n") 
         for line1 in lines:

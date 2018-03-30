@@ -47,8 +47,8 @@ class BettingThread(threading.Thread):
         self.timeout = timeout
 
     def run(self):
-		self.target.textlog.insert(tk.INSERT,'Thread start'+ "\n")
-		self.target_func()
+        self.target.textlog.insert(tk.INSERT,'Thread start'+ "\n")
+        self.target_func()
         self.target.textlog.insert(tk.INSERT,'Thread stopped'+ "\n")
 
     def stop(self):
@@ -56,255 +56,255 @@ class BettingThread(threading.Thread):
 
     def isStopped(self):
         return self.stopped
-	
-	def target_func():
-		self.target.textlog.insert(tk.INSERT,'线程执行目录函数\n')
-		conn = sqlite3.connect('cpa700.db')
-		cursor = conn.cursor()
-		cursor.execute("delete from data")
-		conn.commit() 
-		cursor.execute("select * from monery")
-		monerys = cursor.fetchall()
-		if len(monerys) == 0:
-			cursor.close()
-			conn.close()
-			self.target.textlog.insert(tk.INSERT,'策略未配置\n')
-			return
+    
+    def target_func():
+        self.target.textlog.insert(tk.INSERT,'线程执行目录函数\n')
+        conn = sqlite3.connect('cpa700.db')
+        cursor = conn.cursor()
+        cursor.execute("delete from data")
+        conn.commit() 
+        cursor.execute("select * from monery")
+        monerys = cursor.fetchall()
+        if len(monerys) == 0:
+            cursor.close()
+            conn.close()
+            self.target.textlog.insert(tk.INSERT,'策略未配置\n')
+            return
 
-		driver = webdriver.Chrome()
-		#driver = webdriver.Firefox()
-		while self.stopped != True:
-			PostUrl = "http://bw1.htd188.com/"
+        driver = webdriver.Chrome()
+        #driver = webdriver.Firefox()
+        while self.stopped != True:
+            PostUrl = "http://bw1.htd188.com/"
 
-			driver.get(PostUrl)
+            driver.get(PostUrl)
 
-			driver.implicitly_wait(5)
-			while self.stopped != True:
-				time.sleep(1)
-				try:
-					driver.find_element_by_id("menu_1")
-					driver.find_element_by_id("menu_1")
-					jump = False
-					handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
-					#print(handles) # 输出句柄集合
-					for handle in handles:# 切换窗口
-						if handle != driver.current_window_handle:
-							#print('switch to ',handle)
-							driver.switch_to_window(handle)
-							#print(driver.current_window_handle)
-							jump = True
-							break
-					if jump:
-						break
-				except Exception as msg:
-					#print("Exception:%s" % msg)
-					pass
-				except:
-					#print("error lineno:" + str(sys._getframe().f_lineno))
-					pass
+            driver.implicitly_wait(5)
+            while self.stopped != True:
+                time.sleep(1)
+                try:
+                    driver.find_element_by_id("menu_1")
+                    driver.find_element_by_id("menu_1")
+                    jump = False
+                    handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
+                    #print(handles) # 输出句柄集合
+                    for handle in handles:# 切换窗口
+                        if handle != driver.current_window_handle:
+                            #print('switch to ',handle)
+                            driver.switch_to_window(handle)
+                            #print(driver.current_window_handle)
+                            jump = True
+                            break
+                    if jump:
+                        break
+                except Exception as msg:
+                    #print("Exception:%s" % msg)
+                    pass
+                except:
+                    #print("error lineno:" + str(sys._getframe().f_lineno))
+                    pass
 
-			FaildNum = 0 #统计在同一个坑中失败几镒
-			while self.stopped != True:
-				time.sleep(5)
-				try:    
-					driver.switch_to.default_content()
-					#print("default current_url:" + driver.current_url)
-					#print("default title:" + driver.title)
+            FaildNum = 0 #统计在同一个坑中失败几镒
+            while self.stopped != True:
+                time.sleep(5)
+                try:    
+                    driver.switch_to.default_content()
+                    #print("default current_url:" + driver.current_url)
+                    #print("default title:" + driver.title)
 
 
-					frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
-					driver.switch_to.frame(frame2)
-					#print("//*[@id=\"fset1\"]/frame[2] current_url:" +
-					#driver.current_url)
-					#print("//*[@id=\"fset1\"]/frame[2] title:" +
-					#driver.title)
+                    frame2 = driver.find_element_by_xpath("//*[@id=\"fset1\"]/frame[2]")
+                    driver.switch_to.frame(frame2)
+                    #print("//*[@id=\"fset1\"]/frame[2] current_url:" +
+                    #driver.current_url)
+                    #print("//*[@id=\"fset1\"]/frame[2] title:" +
+                    #driver.title)
 
-					mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")
-					driver.switch_to.frame(mainFrame)
-					#print("/html/frameset/frameset/frame[2] current_url:"
-					#+ driver.current_url)
-					#print("/html/frameset/frameset/frame[2] title:" +
-					#driver.title)
+                    mainFrame = driver.find_element_by_xpath("/html/frameset/frameset/frame[2]")
+                    driver.switch_to.frame(mainFrame)
+                    #print("/html/frameset/frameset/frame[2] current_url:"
+                    #+ driver.current_url)
+                    #print("/html/frameset/frameset/frame[2] title:" +
+                    #driver.title)
 
-					#<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
-					Cur_Award_Issue = driver.find_element_by_xpath("//*[@id=\"Cur_Award_Issue\"]").text
-					BaLL_No1 = driver.find_element_by_xpath("//*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
-					BaLL_No2 = driver.find_element_by_xpath("//*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
-					BaLL_No3 = driver.find_element_by_xpath("//*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
-					BaLL_No4 = driver.find_element_by_xpath("//*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
-					BaLL_No5 = driver.find_element_by_xpath("//*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
-					BaLL_No6 = driver.find_element_by_xpath("//*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
-					BaLL_No7 = driver.find_element_by_xpath("//*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
-					BaLL_No8 = driver.find_element_by_xpath("//*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
-					BaLL_No9 = driver.find_element_by_xpath("//*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
-					BaLL_No10 = driver.find_element_by_xpath("//*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
-					Cur_Issue = driver.find_element_by_xpath("//*[@id=\"Cur_Issue\"]").text
-					
-					##用于保证数据可以下注
-					for BaLL_Idx in range(0, 10):
-						xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "1.money\"]"
-						driver.find_element_by_xpath(xpath)
-						
-					##指定数据不差1，跳过
-					if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
-						continue
+                    #<td id="BaLL_No7" width="26" class="No_3">&nbsp</td>
+                    Cur_Award_Issue = driver.find_element_by_xpath("//*[@id=\"Cur_Award_Issue\"]").text
+                    BaLL_No1 = driver.find_element_by_xpath("//*[@id=\"BaLL_No1\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No2 = driver.find_element_by_xpath("//*[@id=\"BaLL_No2\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No3 = driver.find_element_by_xpath("//*[@id=\"BaLL_No3\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No4 = driver.find_element_by_xpath("//*[@id=\"BaLL_No4\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No5 = driver.find_element_by_xpath("//*[@id=\"BaLL_No5\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No6 = driver.find_element_by_xpath("//*[@id=\"BaLL_No6\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No7 = driver.find_element_by_xpath("//*[@id=\"BaLL_No7\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No8 = driver.find_element_by_xpath("//*[@id=\"BaLL_No8\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No9 = driver.find_element_by_xpath("//*[@id=\"BaLL_No9\"]").get_attribute("class").replace("No_", "")
+                    BaLL_No10 = driver.find_element_by_xpath("//*[@id=\"BaLL_No10\"]").get_attribute("class").replace("No_", "")
+                    Cur_Issue = driver.find_element_by_xpath("//*[@id=\"Cur_Issue\"]").text
+                    
+                    ##用于保证数据可以下注
+                    for BaLL_Idx in range(0, 10):
+                        xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx) + "1.money\"]"
+                        driver.find_element_by_xpath(xpath)
+                        
+                    ##指定数据不差1，跳过
+                    if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
+                        continue
 
-					
-					sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
-					cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
-					conn.commit()                                                                                        
-					#self.target.textlog.insert(tk.INSERT,"获取期号:" + Cur_Award_Issue + "数据\n")
-					
+                    
+                    sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
+                    cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
+                    conn.commit()                                                                                        
+                    #self.target.textlog.insert(tk.INSERT,"获取期号:" + Cur_Award_Issue + "数据\n")
+                    
 
-					BaLL_Idx = 1
-					Win = 0
-					Monery_Idx = monerys[0][0]
-					Have_Cur_Award_Issue = False
-					Deal_Cur_Award_Issue = False
-					cursor.execute("select * from data where issue = ? and win is NULL", (Cur_Award_Issue,))
-					datas = cursor.fetchall()
-					for data in datas:# 切换窗口
-						self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue+ "开奖数据\n")
-						#处理未开奖数据
-						Have_Cur_Award_Issue = True
-						if data[11] != None:
-							Deal_Cur_Award_Issue = True
-							items = data[11].split("=")
-							if len(items) != 3:
-								break
-							BaLL_No = 1
-							BaLL_Idx = int(items[0])
-							if BaLL_Idx == 1:
-								BaLL_No = int(BaLL_No1)
-							elif BaLL_Idx == 2:
-								BaLL_No = int(BaLL_No2)
-							elif BaLL_Idx == 3:
-								BaLL_No = int(BaLL_No3)
-							elif BaLL_Idx == 4:
-								BaLL_No = int(BaLL_No4)
-							elif BaLL_Idx == 5:
-								BaLL_No = int(BaLL_No5)
-							elif BaLL_Idx == 6:
-								BaLL_No = int(BaLL_No6)
-							elif BaLL_Idx == 7:
-								BaLL_No = int(BaLL_No7)
-							elif BaLL_Idx == 8:
-								BaLL_No = int(BaLL_No8)
-							elif BaLL_Idx == 9:
-								BaLL_No = int(BaLL_No9)
-							elif BaLL_Idx == 10:
-								BaLL_No = int(BaLL_No10)                                    
-							##########################
-							#('大', '小','单','双')
-							if items[1] == "大":
-								if BaLL_No > 5:
-									Win = 1
-							elif items[1] == "小":
-								if BaLL_No <= 5:
-									Win = 1
-							elif items[1] == "单":
-								if BaLL_No / 2 == 1:
-									Win = 1
-							elif items[1] == "双":
-								if BaLL_No / 2 == 0:
-									Win = 1
-							Monery_Idx = int(items[2])
+                    BaLL_Idx = 1
+                    Win = 0
+                    Monery_Idx = monerys[0][0]
+                    Have_Cur_Award_Issue = False
+                    Deal_Cur_Award_Issue = False
+                    cursor.execute("select * from data where issue = ? and win is NULL", (Cur_Award_Issue,))
+                    datas = cursor.fetchall()
+                    for data in datas:# 切换窗口
+                        self.target.textlog.insert(tk.INSERT,"处理期号: " + Cur_Award_Issue+ "开奖数据\n")
+                        #处理未开奖数据
+                        Have_Cur_Award_Issue = True
+                        if data[11] != None:
+                            Deal_Cur_Award_Issue = True
+                            items = data[11].split("=")
+                            if len(items) != 3:
+                                break
+                            BaLL_No = 1
+                            BaLL_Idx = int(items[0])
+                            if BaLL_Idx == 1:
+                                BaLL_No = int(BaLL_No1)
+                            elif BaLL_Idx == 2:
+                                BaLL_No = int(BaLL_No2)
+                            elif BaLL_Idx == 3:
+                                BaLL_No = int(BaLL_No3)
+                            elif BaLL_Idx == 4:
+                                BaLL_No = int(BaLL_No4)
+                            elif BaLL_Idx == 5:
+                                BaLL_No = int(BaLL_No5)
+                            elif BaLL_Idx == 6:
+                                BaLL_No = int(BaLL_No6)
+                            elif BaLL_Idx == 7:
+                                BaLL_No = int(BaLL_No7)
+                            elif BaLL_Idx == 8:
+                                BaLL_No = int(BaLL_No8)
+                            elif BaLL_Idx == 9:
+                                BaLL_No = int(BaLL_No9)
+                            elif BaLL_Idx == 10:
+                                BaLL_No = int(BaLL_No10)                                    
+                            ##########################
+                            #('大', '小','单','双')
+                            if items[1] == "大":
+                                if BaLL_No > 5:
+                                    Win = 1
+                            elif items[1] == "小":
+                                if BaLL_No <= 5:
+                                    Win = 1
+                            elif items[1] == "单":
+                                if BaLL_No / 2 == 1:
+                                    Win = 1
+                            elif items[1] == "双":
+                                if BaLL_No / 2 == 0:
+                                    Win = 1
+                            Monery_Idx = int(items[2])
 
-							cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
-							conn.commit()
-					
-							if Win == 1:
-								#检测赢是否回第一位置上
-								#BaLL_Idx = 1
-								#只要有赢，这个坑的失败次数就归0
-								FaildNum = 0;
-								self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "中奖\n")
-							else:
-								#累计失败次数
-								FaildNum = FaildNum + 1
-								#失败超过2次，跳转下一个，重置失败次数
-								if FaildNum >= 2:
-									FaildNum = 0;
-									BaLL_Idx = BaLL_Idx + 1
-								self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "未中奖\n")
-							if BaLL_Idx > 10:
-								BaLL_Idx = 1
-					#处理新订单，如果没有找到的话
-					if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True): 
-						if Have_Cur_Award_Issue == False:
-							#print("程序第一次开始执行")
-							pass
-						else:
-							#print("打到旧订单，并已经处理开奖结果")
-							pass
-						cursor.execute("select * from data where issue = ?", (Cur_Issue,))
-						datas = cursor.fetchall()
-						if len(datas) == 0:
-							##################################################
-							Temp_Monery = None
-							if Have_Cur_Award_Issue:
-								for monery in monerys:
-									if  monery[0] == Monery_Idx:
-										Temp_Monery = monery
-										break
-								for monery in monerys:
-									if  Win == 1 and monery[0] == Temp_Monery[2]:
-										Temp_Monery = monery
-										break
-									if  Win == 0 and monery[0] == Temp_Monery[3]:
-										Temp_Monery = monery
-										break
-							else:
-								 Temp_Monery = monerys[0] 
-								 
-							self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Temp_Monery[1]) + "\n")                                     
-							##################################################
-							#print("deal new BaLL_Idx:" + str(BaLL_Idx))
-							#print("deal new Monery_Idx:" + str(Temp_Monery[0]))
-							BaLL_Idx_Temp = BaLL_Idx
-							if BaLL_Idx_Temp == 10:
-								BaLL_Idx_Temp = 0
-							if self.target.bookChosen.get() == "大":
-								xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "1.money\"]"
-								driver.find_element_by_xpath(xpath).clear()
-								driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
-							elif self.target.bookChosen.get() == "小":
-								xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "0.money\"]"
-								driver.find_element_by_xpath(xpath).clear()
-								driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
-							elif self.target.bookChosen.get() == "单":
-								xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "1.money\"]"
-								driver.find_element_by_xpath(xpath).clear()
-								driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
-							elif self.target.bookChosen.get() == "双":
-								xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "2.money\"]"
-								driver.find_element_by_xpath(xpath).clear()
-								driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
-		
-							time.sleep(1)
-							driver.find_element_by_xpath("//*[@id=\"btn_order_2\"]").click()
-							time.sleep(1)
-							alert = driver.switch_to_alert()
-							time.sleep(1)
-							alert.accept()
-							tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Temp_Monery[0]) 
-							cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
-							conn.commit()
-					############################################################3
-					driver.switch_to.parent_frame()
-					#print("end")
-					#print("**************************************************")
-				except Exception as msg:
-					#print("Exception:%s" % msg)
-					pass
-				except:
-					#print("error lineno:" + str(sys._getframe().f_lineno))
-					#print("end")
-					#print("**************************************************")
-					pass
-		driver.quit()
-		cursor.close()
-		conn.close()
+                            cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
+                            conn.commit()
+                    
+                            if Win == 1:
+                                #检测赢是否回第一位置上
+                                #BaLL_Idx = 1
+                                #只要有赢，这个坑的失败次数就归0
+                                FaildNum = 0;
+                                self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "中奖\n")
+                            else:
+                                #累计失败次数
+                                FaildNum = FaildNum + 1
+                                #失败超过2次，跳转下一个，重置失败次数
+                                if FaildNum >= 2:
+                                    FaildNum = 0;
+                                    BaLL_Idx = BaLL_Idx + 1
+                                self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "未中奖\n")
+                            if BaLL_Idx > 10:
+                                BaLL_Idx = 1
+                    #处理新订单，如果没有找到的话
+                    if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True): 
+                        if Have_Cur_Award_Issue == False:
+                            #print("程序第一次开始执行")
+                            pass
+                        else:
+                            #print("打到旧订单，并已经处理开奖结果")
+                            pass
+                        cursor.execute("select * from data where issue = ?", (Cur_Issue,))
+                        datas = cursor.fetchall()
+                        if len(datas) == 0:
+                            ##################################################
+                            Temp_Monery = None
+                            if Have_Cur_Award_Issue:
+                                for monery in monerys:
+                                    if  monery[0] == Monery_Idx:
+                                        Temp_Monery = monery
+                                        break
+                                for monery in monerys:
+                                    if  Win == 1 and monery[0] == Temp_Monery[2]:
+                                        Temp_Monery = monery
+                                        break
+                                    if  Win == 0 and monery[0] == Temp_Monery[3]:
+                                        Temp_Monery = monery
+                                        break
+                            else:
+                                 Temp_Monery = monerys[0] 
+                                 
+                            self.target.textlog.insert(tk.INSERT,"处理新订单期号:" + Cur_Issue + " BaLL_Idx:" + str(BaLL_Idx) + " Monery:" + str(Temp_Monery[1]) + "\n")                                     
+                            ##################################################
+                            #print("deal new BaLL_Idx:" + str(BaLL_Idx))
+                            #print("deal new Monery_Idx:" + str(Temp_Monery[0]))
+                            BaLL_Idx_Temp = BaLL_Idx
+                            if BaLL_Idx_Temp == 10:
+                                BaLL_Idx_Temp = 0
+                            if self.target.bookChosen.get() == "大":
+                                xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "1.money\"]"
+                                driver.find_element_by_xpath(xpath).clear()
+                                driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
+                            elif self.target.bookChosen.get() == "小":
+                                xpath = "//*[@id=\"B-DX-" + str(BaLL_Idx_Temp) + "0.money\"]"
+                                driver.find_element_by_xpath(xpath).clear()
+                                driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
+                            elif self.target.bookChosen.get() == "单":
+                                xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "1.money\"]"
+                                driver.find_element_by_xpath(xpath).clear()
+                                driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
+                            elif self.target.bookChosen.get() == "双":
+                                xpath = "//*[@id=\"B-DS-" + str(BaLL_Idx_Temp) + "2.money\"]"
+                                driver.find_element_by_xpath(xpath).clear()
+                                driver.find_element_by_xpath(xpath).send_keys(str(Temp_Monery[1]))
+        
+                            time.sleep(1)
+                            driver.find_element_by_xpath("//*[@id=\"btn_order_2\"]").click()
+                            time.sleep(1)
+                            alert = driver.switch_to_alert()
+                            time.sleep(1)
+                            alert.accept()
+                            tt = str(BaLL_Idx) + "=" + self.target.bookChosen.get() + "=" + str(Temp_Monery[0]) 
+                            cursor.execute("insert into data(\"issue\", \"order\") VALUES (?, ?)", (Cur_Issue, tt))
+                            conn.commit()
+                    ############################################################3
+                    driver.switch_to.parent_frame()
+                    #print("end")
+                    #print("**************************************************")
+                except Exception as msg:
+                    #print("Exception:%s" % msg)
+                    pass
+                except:
+                    #print("error lineno:" + str(sys._getframe().f_lineno))
+                    #print("end")
+                    #print("**************************************************")
+                    pass
+        driver.quit()
+        cursor.close()
+        conn.close()
 
 
 
@@ -397,13 +397,13 @@ class Application(tk.Tk):
             self.nameEntered.insert(END, str(data[0]))
             
     def clickMe(self):
-	    if  self.thread != None:
+        if  self.thread != None:
             self.btaction.configure(text='开始')
             if self.thread.is_alive():
                 self.thread.stop()
-			    self.thread.join()
+                self.thread.join()
             self.thread = None
-			return
+            return
         self.cursor.execute('delete from users')
         self.cursor.execute("replace into \"users\" (username) values  ( ? )", (self.nameEntered.get(), ))
         self.conn.commit()
@@ -413,10 +413,10 @@ class Application(tk.Tk):
         if len(monerys) == 0:
             messagebox.showerror("错误","策略未配置")
             return        
-			
-		self.btaction.configure(text='关闭')
-		self.thread = BettingThread(self)
-		self.thread.start()
+            
+        self.btaction.configure(text='关闭')
+        self.thread = BettingThread(self)
+        self.thread.start()
 
     def save(self):
         text = self.text.get(1.0, END)
