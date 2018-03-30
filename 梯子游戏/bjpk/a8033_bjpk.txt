@@ -1,5 +1,3 @@
-[agent]
-value = tingziji
 
 [url]
 value = http://a8033.com/

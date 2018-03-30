@@ -1,0 +1,12 @@
+
+[url]
+value = http://a8033.com/
+
+[jump]
+value = 1+2+1+2
+	
+
+[monery]
+value = 2+3+4+5+6
+	
+

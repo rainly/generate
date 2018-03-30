@@ -48,8 +48,7 @@ opener = urllib.request.build_opener(handler)
 user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
 headers = { 'User-Agent' : user_agent }  
 
-#10=20=30=40
-#1=3=6=4
+
 
 
 class TestThread(threading.Thread):
@@ -308,7 +307,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("a8033ex.txt")
+        self.conf.read("a8033_bjpk.txt")
 
         if self.conf.has_section("url") == True:
             self.url = self.conf.get("url", "value")
@@ -351,7 +350,7 @@ class Application(tk.Tk):
         self.MyFrame = ttk.LabelFrame(self.tab1, text='操作区')
         self.MyFrame.grid(column=0, row=0, padx=8, pady=4)
         # Using a scrolled Text control
-        self.scrolW = 80
+        self.scrolW = 60
         self.scrolH = 5
         
     
@@ -369,14 +368,14 @@ class Application(tk.Tk):
 
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="停次数(2+3+4+8+...)").grid(column=0, row=line,sticky='W')
+        ttk.Label(self.MyFrame, text="停次数(2+3+4+8+...)").grid(column=0, row=line,sticky='W',columnspan=3)
         #行
         line = line + 1
         self.textJump = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
         self.textJump.grid(column=0, row=line, sticky='WE', columnspan=3)
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="金额配置(10+20+40+80+...)特注:第一位置为默认开始金额，总个数应该比停个数多1").grid(column=0, row=line,sticky='W')
+        ttk.Label(self.MyFrame, text="金额配置(10+20+40+80+...)特注:第一位置为默认开始金额，总个数应该比停个数多1").grid(column=0, row=line,sticky='W', columnspan=3)
         #行
         line = line + 1
         self.textMonery = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
@@ -384,7 +383,7 @@ class Application(tk.Tk):
         #行
         # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame,text="保存",width=10,command=self.save).grid(column=1,row=line,sticky='E')   
+        self.btaction = ttk.Button(self.MyFrame,text="保存",width=10,command=self.save).grid(column=2,row=line,sticky='E')   
         #行
         line = line + 1
         ttk.Label(self.MyFrame, text="日志信息:").grid(column=0, row=line,sticky='W')
@@ -396,7 +395,7 @@ class Application(tk.Tk):
         # Adding a Button
         line = line + 1
         self.btaction = ttk.Button(self.MyFrame,text="开始",width=10,command=self.clickMe)
-        self.btaction.grid(column=1,row=line,sticky='E')  
+        self.btaction.grid(column=2,row=line,sticky='E')  
         
         # 一次性控制各控件之间的距离
         for child in self.MyFrame.winfo_children(): 
@@ -458,7 +457,7 @@ class Application(tk.Tk):
         self.conf.set("jump", "value", self.jump)
         self.conf.set("monery", "value", self.monery)
         #写回配置文件
-        self.conf.write(open("a8033ex.txt", "w"))
+        self.conf.write(open("a8033_bjpk.txt", "w"))
         messagebox.showinfo("提示","配置成功！")
         
     def Chosen(self, *args):

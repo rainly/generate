@@ -2,4 +2,4 @@
 from distutils.core import setup
 from Cython.Build import cythonize
 
-setup(ext_modules = cythonize("a8033ex.py"))
+setup(ext_modules = cythonize("a8033_bjpk.py"))

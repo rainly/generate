@@ -12,7 +12,6 @@ import json
 import time
 import datetime
 import http.cookiejar
-import json
 #import pymysql.cursors
 import ssl
 #import sqlite3
