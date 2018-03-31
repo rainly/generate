@@ -13,7 +13,7 @@ from tkinter import messagebox as mBox
 import tkinter.messagebox as messagebox
 import tkinter as tk
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import *
 #import sqlite3
 import threading  
 import time
@@ -472,7 +472,7 @@ class Application(tk.Tk):
     
 def main():
     app = Application()
-    app.title("梯子游戏 自动打码神器")
+    app.title("梯子游戏 自动打码神器(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()

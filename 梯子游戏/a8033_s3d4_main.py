@@ -23,7 +23,6 @@ import random
 from collections import deque
 from selenium import webdriver
 from selenium.common.exceptions import *
-from selenium.common.exceptions import NoSuchElementException
 from tkinter import *
 from tkinter import *
 from tkinter import ttk

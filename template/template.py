@@ -23,7 +23,6 @@ from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
 from selenium import webdriver
 from selenium.common.exceptions import *
-from selenium.common.exceptions import NoSuchElementException
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
@@ -696,7 +695,7 @@ def main():
     #subthread.start()
     
     app = Application()
-    app.title("梯子游戏 自动打码神器")
+    app.title("梯子游戏 自动打码神器(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()

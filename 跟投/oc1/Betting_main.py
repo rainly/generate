@@ -23,7 +23,7 @@ from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
 from selenium import webdriver
 from selenium.common.exceptions import *
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import *
 from tkinter import *
 from tkinter import *
 from tkinter import ttk

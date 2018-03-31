@@ -12,7 +12,7 @@ from tkinter import messagebox as mBox
 import tkinter.messagebox as messagebox
 import tkinter as tk
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import *
 import sqlite3
 import threading  
 import time
