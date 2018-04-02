@@ -77,24 +77,30 @@ class BettingThread(threading.Thread):
         #self.logprint("输停:" + jump)
 
         print("**********target_func begin***********")
-
+        
+        buyno = int(self.target.buyno)
+        self.logprint("位置:" + self.target.buyno)
+        if buyno < 1 or buyno > 10:
+            self.logprint("错误 ==> 购买位置配置出错")
+            return            
+        
         monery = self.target.monery
         self.logprint("金额:" + monery)
-        
-        jump = self.target.jump
-        self.logprint("输停:" + jump)    
-        
         monerys = monery.split("+")
         if len(monerys) == 0:
             self.logprint("错误 ==> 金额配置出错")
             return
             
-        #jump  = "0+" + jump
+        jump = self.target.jump
+        self.logprint("输停:" + jump)               
         jumps = jump.split("+")
         if len(jumps) == 0:
             self.logprint("错误 ==> 输停配置出错")
             return
-        jumps.append("0")  
+        jumps.append("0") 
+        
+        
+        
         driver.implicitly_wait(5)           
         while self.stopped == False:
             print("**********find title***********")
@@ -214,7 +220,7 @@ class BettingThread(threading.Thread):
 
                 #处理中奖结果
                 if Last_Award_Issue_Have:        
-                    if int(Ball01) == 3 or int(Ball04) == 3 or int(Ball07) == 3:
+                    if int(Ball01) == buyno or int(Ball04) == buyno or int(Ball07) == buyno:
                         Stop_num    = 1
                         print("***未中奖***")
                     else:
@@ -315,6 +321,14 @@ class Application(tk.Tk):
             self.url = ""
             self.conf.add_section("url")
             self.conf.set("url", "value", "")
+            
+        if self.conf.has_section("buyno") == True:
+            self.buyno = self.conf.get("buyno", "value")
+        else:
+            self.buyno = ""
+            self.conf.add_section("buyno")
+            self.conf.set("buyno", "value", "")            
+            
 
         if self.conf.has_section("jump") == True:
             self.jump = self.conf.get("jump", "value")
@@ -365,7 +379,16 @@ class Application(tk.Tk):
 
         self.btaction = ttk.Button(self.MyFrame,text="进入",width=10,command=self.enterMe)
         self.btaction.grid(column=2,row=line,sticky='E')  
-
+        
+        #行
+        line = line + 1
+        # Changing our Label  
+        ttk.Label(self.MyFrame, text="购买位置:").grid(column=0, row=line, sticky='W')  
+  
+        # Adding a Textbox Entry widget  
+        self.buynoEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.buyno)  
+        self.buynoEntered.grid(column=1, row=line, sticky='W')
+        
         #行
         line = line + 1
         ttk.Label(self.MyFrame, text="停次数(2+3+4+8+...)").grid(column=0, row=line,sticky='W',columnspan=3)
@@ -405,6 +428,7 @@ class Application(tk.Tk):
         #---------------Tab1控件介绍------------------#
         
         self.urlEntered.insert(END, self.url)
+        self.buynoEntered.insert(END, self.buyno)
         self.textJump.insert(tk.INSERT, self.jump)
         self.textMonery.insert(tk.INSERT, self.monery)
 
@@ -420,16 +444,22 @@ class Application(tk.Tk):
             self.thread.join()
             self.thread = None
             return
-        self.url  = self.urlEntered.get()
+        self.url      = self.urlEntered.get()
+        self.buyno  = self.buynoEntered.get()
         self.jump   = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
         if self.url == "":
             messagebox.showinfo("提示","地址不能为空")
             return
-
+            
+        if self.buyno == "":
+            messagebox.showinfo("提示","地址不能为空")
+            return
+            
         if self.monery == "":
             messagebox.showinfo("提示","金额不能为空！")
             return
+            
         if self.jump == "":
             messagebox.showinfo("提示","停次数不能为空！")
             return        
@@ -450,10 +480,12 @@ class Application(tk.Tk):
         #增加新的section
         #
         self.url  = self.urlEntered.get()
+        self.buyno  = self.buynoEntered.get()
         self.jump  = self.textJump.get(1.0, END)
         self.monery = self.textMonery.get(1.0, END)
         
         self.conf.set("url", "value", self.url)
+        self.conf.set("buyno", "value", self.buyno)
         self.conf.set("jump", "value", self.jump)
         self.conf.set("monery", "value", self.monery)
         #写回配置文件
