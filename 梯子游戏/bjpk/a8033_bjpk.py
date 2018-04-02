@@ -183,11 +183,13 @@ class BettingThread(threading.Thread):
                     #self.logprint("***等待开奖***")   
                     continue
 
-                self.logprint("*****************")   
+                self.logprint("*****************")
+                '''
                 print("***Stop_num:" + str(Stop_num))
                 print("***Jump_Idx:" + str(Jump_Idx))
                 print("***jumps[Jump_Idx]:" + jumps[Jump_Idx])
                 print("***monerys[Jump_Idx]:" + monerys[Jump_Idx])
+                '''
                 
                 Ball01 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[1]").text
                 Ball02 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[2]").text
@@ -199,7 +201,7 @@ class BettingThread(threading.Thread):
                 Ball08 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[8]").text
                 Ball09 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[9]").text
                 Ball10 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[10]").text
-                
+                '''
                 print(Ball01)
                 print(Ball01)
                 print(Ball02)
@@ -211,7 +213,7 @@ class BettingThread(threading.Thread):
                 print(Ball08)
                 print(Ball09)
                 print(Ball10)
-                
+                '''
                 if Ball01 == "" or Ball02 == "" or Ball03 == "" or Ball04 == "" or Ball05 == "" or Ball06 == "" or Ball07 == "" or Ball08 == "" or Ball09 == "" or Ball10 == "":
                     self.logprint("***数据还在加载中***")   
                     continue;
@@ -244,25 +246,31 @@ class BettingThread(threading.Thread):
                 Last_Award_Issue_Have = True                               
                 Stop_num    = 0   
                 print("***开始下注***" + Cur_Award_Issue1)
-                print("***Stop_num:" + str(Stop_num))
-                print("***Jump_Idx:" + str(Jump_Idx))
-                print("***jumps[Jump_Idx]:" + jumps[Jump_Idx])
-                print("***monerys[Jump_Idx]:" + monerys[Jump_Idx])
+                print("***停止次数:" + str(Stop_num))
+                print("***当前位置:" + str(Jump_Idx))
+                print("***当前位置停次数:" + jumps[Jump_Idx])
+                print("***当前位置金额:" + monerys[Jump_Idx])
+
+                #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[1]/div/div[2]/div[1]/button
+                #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[1]/button
+                
+                #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[1]/div/div[2]/div[2]/button
+                #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[2]/button
 
                 #
                 #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[3]/button
                 #//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[3]/div[10]/div/div[2]/div[3]/button
 
-                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[1]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[3]/div/div[2]/div[3]/button").click()
-                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[4]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[5]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[6]/div/div[2]/div[3]/button").click()
-                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[7]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[8]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[9]/div/div[2]/div[3]/button").click()
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[10]/div/div[2]/div[3]/button").click()
+                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[1]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[3]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[4]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[5]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[6]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                #driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[7]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[8]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[9]/div/div[2]/div[" + str(buyno) + "]/button").click()
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[10]/div/div[2]/div[" + str(buyno) + "]/button").click()
                 time.sleep(1)
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(monerys[Jump_Idx])

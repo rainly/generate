@@ -72,6 +72,8 @@ class BettingThread(threading.Thread):
                 #print(handles) # 输出句柄集合
                 for handle in handles:# 切换窗口
                     print(driver.title)
+                    print(driver.current_url)
+                    #http://pxiagme1.lot5562.net/member/m5ngj8qrmj99ji203gpbraupnp/Home/Index.action
                     if handle != driver.current_window_handle:
                         driver.switch_to_window(handle)
                         print(driver.title)
@@ -191,6 +193,8 @@ class BettingThread(threading.Thread):
                     #//*[@id="201202"]/div[2]
                     #//*[@id="201301"]/div[2]
                     #//*[@id="201302"]/div[2]
+
+                    #//*[@id="201301"]/div[2]
                     
                     ##指定数据不差1，跳过
                     if int(Cur_Award_Issue) + 1 != int(Cur_Issue):
