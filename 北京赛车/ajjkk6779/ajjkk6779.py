@@ -284,10 +284,10 @@ class BettingThread(threading.Thread):
                                 if BaLL_No <= 5:
                                     Win = 1
                             elif items[1] == "单":
-                                if BaLL_No / 2 == 1:
+                                if BaLL_No % 2 == 1:
                                     Win = 1
                             elif items[1] == "双":
-                                if BaLL_No / 2 == 0:
+                                if BaLL_No % 2 == 0:
                                     Win = 1
                             Monery_Idx = int(items[2])
 

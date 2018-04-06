@@ -278,7 +278,7 @@ class ClientThread(threading.Thread):
                 if orders[0] in g_order_dict:
                     print("****订单已经处理*****" + orders[0])
                     continue
-                g_order_dict[orders[0]] = 1
+
             
                 print("############################开始处理下注订单##############################")
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
@@ -400,11 +400,12 @@ class ClientThread(threading.Thread):
                     continue
                 print(html)
                 print("############################结束发送订单##############################" + orders[0])
+                g_order_dict[orders[0]] = 1
             ###############################
             g_mutex.release()
             
             
-            
+                
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()

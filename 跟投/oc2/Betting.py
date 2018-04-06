@@ -309,7 +309,7 @@ class ClientThread(threading.Thread):
                 if item[0] in g_order_dict:
                     print("****订单已经处理*****" + item[0])
                     continue
-                g_order_dict[item[0]] = 1
+
 
                 amount = round(float(item[5]) * float(self.target.users[username]))
                 #amount =10
@@ -385,7 +385,7 @@ class ClientThread(threading.Thread):
                         print("****跟单失败****")
                 except:
                     print("****跟单失败****")
-            
+                g_order_dict[item[0]] = 1            
             ###############################
             g_mutex.release()
  
