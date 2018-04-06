@@ -8,7 +8,7 @@ value = 5134abab
 value = http://77t.snk686.com/search.aspx
 
 [ser_wd]
-value = 58369
+value = 65189
 
 [cli_name]
 value = vfcs111
@@ -17,36 +17,18 @@ value = vfcs111
 value = 5134abab
 
 [cli_url]
-value = http://93k.zsz585.com/
+value = http://93k.91cid.com/
 
 [cli_wd]
 value = 95712
 
 [searchUser]
-value = tb5456*0.1
-	tbcf888*0.1
-	tbfx5858*0.1
-	tbysx888*0.1
-	tbzjy888*0.1
-	tbf118*0.1
-	tbf513*0.1
-	tbw518*0.1
-	tbf118*0.1
-	tbf513*0.1
-	tbw518*0.1
-	tby5638*0.1
-	tbmh03*0.1
-	tbzcm123*0.1
-	tbxt01*0.1
-	tbxt03*0.1
-	tbxt05*0.1
-	tbyz777*0.1
-	tbyz999*0.1
+value = tbfx5858*0.1
 	
 
 [searchType]
-value = 11
+value = 7;11;18;20;23
 
 [cli_wagerround]
-value = A
+value = D
 

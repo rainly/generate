@@ -398,7 +398,7 @@ class ClientThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                #print(html)
+                print(html)
                 print("############################结束发送订单##############################" + orders[0])
             ###############################
             g_mutex.release()

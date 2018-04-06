@@ -203,7 +203,7 @@ class BettingThread(threading.Thread):
     
                     
                     sql = "update data set data1 = ? , data2= ?, data3= ?, data4= ?, data5= ?, data6= ? ,data7= ?, data8= ?, data9= ?, data10= ? where issue = ?"
-                    cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, 10, Cur_Award_Issue))
+                    cursor.execute(sql, (BaLL_No1, BaLL_No2, BaLL_No3, BaLL_No4, BaLL_No5, BaLL_No6, BaLL_No7, BaLL_No8, BaLL_No9, BaLL_No10, Cur_Award_Issue))
                     conn.commit()                                                                                        
                     #self.target.textlog.insert(tk.INSERT,"获取期号:" + Cur_Award_Issue + "数据\n")
                     
@@ -245,7 +245,9 @@ class BettingThread(threading.Thread):
                             elif BaLL_Idx == 9:
                                 BaLL_No = int(BaLL_No9)
                             elif BaLL_Idx == 10:
-                                BaLL_No = int(BaLL_No10)                                    
+                                BaLL_No = int(BaLL_No10)     
+    
+                            print("##############" + str(BaLL_No))
                             ##########################
                             #('大', '小','单','双')
                             if items[1] == "大":
@@ -255,11 +257,14 @@ class BettingThread(threading.Thread):
                                 if BaLL_No <= 5:
                                     Win = 1
                             elif items[1] == "单":
-                                if BaLL_No / 2 == 1:
+                                if BaLL_No % 2 == 1:
                                     Win = 1
                             elif items[1] == "双":
-                                if BaLL_No / 2 == 0:
+                                if BaLL_No % 2 == 0:
                                     Win = 1
+                                    
+                            print("##############" + str(Win))
+                            
                             Monery_Idx = int(items[2])
 
                             cursor.execute("update data set win = ? where issue = ?", (Win, Cur_Award_Issue))
@@ -274,15 +279,15 @@ class BettingThread(threading.Thread):
                             else:
                                 #累计失败次数
                                 FaildNum = FaildNum + 1
-                                self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "未中奖 当前未中奖次数：" + str(FaildNum))
+                                self.target.textlog.insert(tk.INSERT,"开奖期号: " + Cur_Award_Issue+ "未中奖 当前未中奖次数：" + str(FaildNum) + "\n")
                                 #失败超过2次，跳转下一个，重置失败次数
                                 if FaildNum >= self.target.faildnum.get():
                                     FaildNum = 0;
                                     BaLL_Idx = BaLL_Idx + 1
-                                    self.target.textlog.insert(tk.INSERT,"未中奖次数超出设置的值，递增一个球：" + str(BaLL_Idx))
+                                    self.target.textlog.insert(tk.INSERT,"未中奖次数超出设置的值，递增一个球：" + str(BaLL_Idx) + "\n")
                             if BaLL_Idx > 10:
                                 BaLL_Idx = 1
-                                self.target.textlog.insert(tk.INSERT,"所有球全部打完，回归到第一球")
+                                self.target.textlog.insert(tk.INSERT,"所有球全部打完，回归到第一球" + "\n")
                     #处理新订单，如果没有找到的话
                     if Have_Cur_Award_Issue == False or (Have_Cur_Award_Issue == True and Deal_Cur_Award_Issue == True): 
                         if Have_Cur_Award_Issue == False:

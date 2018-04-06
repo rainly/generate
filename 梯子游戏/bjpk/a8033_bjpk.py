@@ -242,7 +242,7 @@ class BettingThread(threading.Thread):
                     
                 if  Jump_Idx >= len(jumps):
                     print("***自动停止***")
-                    continue
+                    return
                 Last_Award_Issue_Have = True                               
                 Stop_num    = 0   
                 print("***开始下注***" + Cur_Award_Issue1)
