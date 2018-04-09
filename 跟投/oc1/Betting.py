@@ -35,6 +35,7 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
+#import logging
 
 try:
     # Python2
@@ -111,9 +112,9 @@ class ServerThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')                   
+        self.logprint('Thread start\n')                   
         self.target_func()
-        print('Thread stopped'+ "\n")
+        self.logprint('Thread stopped'+ "\n")
 
     def stop(self):
         self.stopped = True
@@ -123,9 +124,10 @@ class ServerThread(threading.Thread):
 
     def logprint(self, log):
         print(log)
+        #logging.debug(log)
         
     def target_func(self):
-        print("############################代理启动线程##############################")
+        self.logprint("############################代理启动线程##############################")
         sleepnum = 5
         while self.stopped == False:
             sleepnum = sleepnum + 1
@@ -141,34 +143,34 @@ class ServerThread(threading.Thread):
             for user in self.target.users:
                 if self.stopped:
                     break
-                print("############################代理查询账户订单############################## ：" + user)
+                self.logprint("############################代理查询账户订单############################## ：" + user)
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
                 url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user + "&gameno=" + self.target.searchType + ";&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
-                #print(url)
+                self.logprint(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('The Betting couldn\'t fulfill the request.')
+                    self.logprint('Error code: ' + str(e.code))
+                    #self.logprint('Error reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('We failed to reach a Betting.')
+                    #self.logprint('Reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except Exception as msg:
-                    print("Exception:%s" % msg)
+                    self.logprint("Exception:%s" % msg)
                     continue
                 except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
+                    #self.logprint("error lineno:" + str(sys._getframe().f_lineno))
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
-                #print(html)
+                self.logprint(html)
                 g_mutex.acquire()
                 soup = BeautifulSoup(html, "lxml")
                 for tr in soup.find_all('tr'):
@@ -176,7 +178,7 @@ class ServerThread(threading.Thread):
                         continue
                     if tr.has_attr("style") == False:
                         continue
-                    #print(row["style"])
+                    #self.logprint(tr["style"])
                     if tr["style"] != "height: 18px; background-color: #FFFFFF;":
                         continue
                     '''
@@ -194,17 +196,16 @@ class ServerThread(threading.Thread):
                     '''
                     data = []
                     for td in tr.find_all('td'):
-                        #print(td.get_text())
+                        #self.logprint(td.get_text())
                         data.append(td.get_text())
                     g_datas.append(data)
-                    #print("##########################################################")
                 g_mutex.release()
                 
-            print("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
+            self.logprint("编号 游戏名称 单号/时间 账号 退水率 投注内容 赔率 投注金额 退水 结果 净利")
             for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " + \
+                self.logprint(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " + \
                       item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())        
-        print("############################代理结束线程##############################")
+        self.logprint("############################代理结束线程##############################")
         
         
 class ClientThread(threading.Thread):
@@ -215,9 +216,9 @@ class ClientThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')                   
+        self.logprint('Thread start\n')                   
         self.target_func()
-        print('Thread stopped'+ "\n")
+        self.logprint('Thread stopped'+ "\n")
 
     def stop(self):
         self.stopped = True
@@ -227,6 +228,7 @@ class ClientThread(threading.Thread):
 
     def logprint(self, log):
         print(log)
+        #logging.debug(log)
 
 
     def target_func(self):
@@ -256,7 +258,7 @@ class ClientThread(threading.Thread):
                 结果
                 净利
                 '''
-                print(item)
+                self.logprint(item)
                     
                 bUser = False
                 for key in self.target.users:
@@ -264,30 +266,30 @@ class ClientThread(threading.Thread):
                         bUser = True
                     
                 if bUser == False:
-                    print("############################账号不存在##############################" + item[3])
+                    self.logprint("############################账号不存在##############################" + item[3])
                     continue
 
                 monery = round(float(item[7]) * float(self.target.users[item[3]]))
                 #monery = 10
-                #print(monery)
+                #self.logprint(monery)
                 
                 #过滤每个订单
                 orders = item[2].split(' ')
                 
-                print("############################查询订单是否处理##############################" + orders[0])
+                self.logprint("############################查询订单是否处理##############################" + orders[0])
                 if orders[0] in g_order_dict:
-                    print("****订单已经处理*****" + orders[0])
+                    self.logprint("****订单已经处理*****" + orders[0])
                     continue
 
             
-                print("############################开始处理下注订单##############################")
+                self.logprint("############################开始处理下注订单##############################")
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/GetMemberMtran
                 gameno  = getgno(item[1])
                 #['30587881期', 'A盘/', '冠军', '08']
                 #去左右空格
                 content = item[5].strip()
                 contents = content.split(' ')
-                #print(contents)
+                #self.logprint(contents)
                 
                 roundno     = contents[0].replace("期", "")
                 wagerround  = contents[1].replace("盘", "")
@@ -328,40 +330,40 @@ class ClientThread(threading.Thread):
                 order_dict["hasToken"]          = True
                 order_dict["playgametype"]      = 0
                 data = json.dumps(order_dict).encode(encoding='UTF8')
-                #print(data)
+                self.logprint(data)
                 url = self.target.cli_baseurl + "ch/left.aspx/GetMemberMtran"
-                #print(url)
+                self.logprint(url)
                 headers["Content-Type"] = "application/json; charset=UTF-8"     
-                print("############################开始获取订单token##############################")  
+                self.logprint("############################开始获取订单token##############################")  
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('The Betting couldn\'t fulfill the request.')
+                    self.logprint('Error code: ' + str(e.code))
+                    #self.logprint('Error reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('We failed to reach a Betting.')
+                    #self.logprint('Reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except Exception as msg:
-                    print("Exception:%s" % msg)
+                    self.logprint("Exception:%s" % msg)
                     continue
                 except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
+                    #self.logprint("error lineno:" + str(sys._getframe().f_lineno))
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 
-                #print(html)
-                text = json.loads(html)
-                spls = text["d"].split('$@')
+                self.logprint(html)
+                text  = json.loads(html)
+                spls  = text["d"].split('$@')
                 token = spls[len(spls) - 1]
    
-                print("############################订单token##############################" + token)  
+                self.logprint("############################订单token##############################" + token)  
                 #http://60xxdgw.ttx158.com/cp7-5-mb/ch/left.aspx/mtran_XiaDan_New
                 #{gameno:11,wagerroundstring:"D",arrstring:"601:10:2;",roundno:"672724",lianma_transtrin:"",token:"DB046C224A703C88BC5A7AC551C0938C"}
                 order_dict = {}
@@ -375,31 +377,31 @@ class ClientThread(threading.Thread):
                 url = self.target.cli_baseurl + "ch/left.aspx/mtran_XiaDan_New"
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-                print("############################开始发送订单##############################" + orders[0])
+                self.logprint("############################开始发送订单##############################" + orders[0])
                 request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
                 try:
                     response = opener.open(request, timeout = 5)
                     html = response.read().decode()
                 except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('The Betting couldn\'t fulfill the request.')
+                    self.logprint('Error code: ' + str(e.code))
+                    #self.logprint('Error reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                    self.logprint('We failed to reach a Betting.')
+                    #self.logprint('Reason: ' + e.reason)
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
                 except Exception as msg:
-                    print("Exception:%s" % msg)
+                    self.logprint("Exception:%s" % msg)
                     continue
                 except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
+                    #self.logprint("error lineno:" + str(sys._getframe().f_lineno))
+                    self.logprint("错误 ==> 网络连接错误！")
                     continue
-                print(html)
-                print("############################结束发送订单##############################" + orders[0])
+                self.logprint(html)
+                self.logprint("############################结束发送订单##############################" + orders[0])
                 g_order_dict[orders[0]] = 1
             ###############################
             g_mutex.release()
@@ -1366,7 +1368,7 @@ def main():
     #subthread = threading.Thread(target = serve_forever, args=())
     #subthread.setDaemon(True)
     #subthread.start()
-    
+    #logging.basicConfig(filename='example.log', filemode="w", level=logging.DEBUG)
     app = Application()
     app.title("跟投 自动打码神器(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
