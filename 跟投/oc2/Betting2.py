@@ -399,7 +399,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("Betting.txt")    
+        self.conf.read("Betting2.txt")    
         
         if self.conf.has_section("agent") == True:
             self.agent = self.conf.get("agent", "value")
@@ -743,7 +743,7 @@ class Application(tk.Tk):
         self.conf.set("ser_name", "value", self.ser_name)
         self.conf.set("ser_pwd", "value", self.ser_pwd)
         #写回配置文件
-        self.conf.write(open("Betting.txt", "w"))
+        self.conf.write(open("Betting2.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
     
     ############################
@@ -1056,7 +1056,7 @@ class Application(tk.Tk):
         self.conf.set("cli_name", "value", self.cli_name)
         self.conf.set("cli_pwd", "value", self.cli_pwd)
         #写回配置文件
-        self.conf.write(open("Betting.txt", "w"))
+        self.conf.write(open("Betting2.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):

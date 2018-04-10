@@ -1,0 +1,151 @@
+http://1232tt.com/
+
+56789
+
+https://00271596-xsj.cp168.ws
+
+
+https://00271596-xsj.cp168.ws/login
+
+type: 2
+account: cb99998
+password: qaqa1313
+code: 2784
+
+https://00271596-xsj.cp168.ws/agent/report/list?lottery=BJPK10,CQSSC,PK10JSC,LUCKYSB,SSCJSC,GDKLSF,GXK3,XYNC,KL8,XJSSC,TJSSC,BJPK10BJL,GXKLSF,GD11X5,PCEGG,AULUCKY20,AULUCKY10,AULUCKY5,AULUCKY8,HK6&begin=2018-03-25&end=2018-03-25&settle=false&period=&amount=&dividend=
+
+
+username: zhw999
+lottery: BJPK10,CQSSC,PK10JSC,LUCKYSB,SSCJSC,GDKLSF,GXK3,XYNC,KL8,XJSSC,TJSSC,BJPK10BJL,GXKLSF,GD11X5,PCEGG,AULUCKY20,AULUCKY10,AULUCKY5,AULUCKY8,HK6
+begin: 2018-03-25
+end: 2018-03-25
+settle: false
+
+https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
+https://00271596-xsj.cp168.ws/agent/report/bets??username=zhw999&lottery=lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
+
+
+
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114017475
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522113874
+
+Thread stopped
+
+################进入会员网站#######################
+################进入登陆页面#######################
+https://3309279593-xsj.cp168.ws/
+################进入会员网站成功#######################
+https://3309279593-xsj.cp168.ws/code
+############################账号登陆##############################
+b'type=2&account=cs0990&password=5134abab&code=7023'
+https://3309279593-xsj.cp168.ws/login
+登录 ==> 登陆成功！
+############################同意登录##############################
+https://3309279593-xsj.cp168.ws/member/index
+Thread start
+
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114148
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114152
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114157
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114161
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114166
+############################查询倍率##############################
+https://3309279593-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522114170
+
+
+
+
+
+
+qqww110*0.1
+qqww112*0.1
+qqww113*0.1
+qqww114*0.1
+qqww116*0.1
+qqww117*0.1
+qqww118*0.1
+qqww119*0.1
+qqww220*0.1    
+qqww223*0.1    
+sq9996*0.1    
+syj8899*0.1
+zh9996*0.1
+zhw999*0.1
+aa9991*0.1
+aa9992*0.1
+aa9994*0.1
+aa9995*0.1    
+aa9996*0.1
+dangs888*0.1
+dngs999*0.1
+gou1122*0.1
+mm9966*0.1
+ss9993*0.1
+
+https://3309279593-xsj.cp168.ws/member/bet
+
+{
+    "bets": [{
+        "game": "ZX",
+        "contents": "X",
+        "amount": 10,
+        "odds": 2
+    }],
+    "drawNumber": "673166-2",
+    "ignore": false,
+    "lottery": "BJPK10BJL"
+}
+
+{lottery: "BJPK10BJL", drawNumber: "673195-1",…}
+bets
+:
+[{game: "LB", contents: "X", amount: 10, odds: 2}]
+0
+:
+{game: "LB", contents: "X", amount: 10, odds: 2}
+drawNumber
+:
+"673195-1"
+ignore
+:
+false
+lottery
+:
+"BJPK10BJL"
+
+{
+"DX_D":"大",
+"DX_X":"小",
+"LB_X":"闲龙宝",
+"LB_X_1":"闲龙宝2",
+"LB_X_2":"闲龙宝3",
+"LB_X_3":"闲龙宝5",
+"LB_X_4":"闲龙宝4",
+"LB_X_5":"闲龙宝",
+"LB_X_6":"闲龙宝6",
+"LB_Z":"庄龙宝",
+"LB_Z_1":"庄龙宝1",
+"LB_Z_2":"庄龙宝2",
+"LB_Z_3":"庄龙宝3",
+"LB_Z_4":"庄龙宝4",
+"LB_Z_5":"庄龙宝5",
+"LB_Z_6":"庄龙宝6",
+"T_T":"和",
+"XD_XD":"闲对",
+"ZD_ZD":"庄对",
+"ZX_Z":"庄家",
+"ZX_X":"闲家",
+"ZX1_Z":"庄家",
+"ZX1_X":"闲家"
+}
+
+
+
+    
+    
+

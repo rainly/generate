@@ -42,7 +42,7 @@ import io
 from PIL import Image, ImageTk
 
 ssl._create_default_https_context = ssl._create_unverified_context
-from Betting import *
+from Betting2 import *
 
 
 

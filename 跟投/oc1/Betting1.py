@@ -83,6 +83,17 @@ def getoddsgno(oddsgname):
 #httpd = make_Betting('', 8000, application)
 #print ("Serving HTTP on port 8000...")
 
+def get_days_before_today(n=0):
+    '''
+    date format = "YYYY-MM-DD HH:MM:SS"
+    '''
+    now = datetime.datetime.now()  
+    if(n<0):  
+        return datetime.datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)  
+    else:  
+        n_days_before = now - datetime.timedelta(days=n)  
+    return datetime.datetime(n_days_before.year, n_days_before.month, n_days_before.day, n_days_before.hour, n_days_before.minute, n_days_before.second)
+
 
 g_mutex = threading.Lock()
 g_datas = []
@@ -146,7 +157,7 @@ class ServerThread(threading.Thread):
                 self.logprint("############################代理查询账户订单############################## ：" + user)
                 #http://54jndgw.ttx158.com/cp5-5-ag/opadmin/mreport_new_detail.aspx?memberno=tbgd002&gameno=6;8;11;12;13;20;21;22;23;&sdate=2018-03-24&edate=2018-03-24&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=2018-03-24&curpage=1&ts=1521858951523
                 t = time.time()
-                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user + "&gameno=" + self.target.searchType + ";&sdate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
+                url = self.target.ser_baseurl + "opadmin/mreport_new_detail.aspx?memberno=" + user + "&gameno=" + self.target.searchType + ";&sdate=" + get_days_before_today(1).strftime('%Y-%m-%d') + "&edate=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&roundno1=&roundno2=&wagerroundno=&wagertypeno=&onlyself=0&isbupai=&isjs=0&datetime=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&curpage=1&ts=" + str(int(round(t * 1000)))
                 self.logprint(url)
                 request = urllib.request.Request(url = url, headers = headers, method = 'GET')
                 try:
@@ -170,7 +181,7 @@ class ServerThread(threading.Thread):
                     #self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                     self.logprint("错误 ==> 网络连接错误！")
                     continue
-                self.logprint(html)
+                #self.logprint(html)
                 g_mutex.acquire()
                 soup = BeautifulSoup(html, "lxml")
                 for tr in soup.find_all('tr'):
@@ -419,7 +430,7 @@ class Application(tk.Tk):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("Betting.txt")    
+        self.conf.read("Betting1.txt")    
 
         if self.conf.has_section("searchUser") == True:
             self.searchUser = self.conf.get("searchUser", "value")
@@ -541,7 +552,7 @@ class Application(tk.Tk):
         self.conf.set("searchUser", "value", self.searchUser)   
         self.conf.set("searchType", "value", self.searchType)            
         #写回配置文件
-        self.conf.write(open("Betting.txt", "w"))        
+        self.conf.write(open("Betting1.txt", "w"))        
         return True
         
     def ser_initdata(self):
@@ -948,7 +959,7 @@ class Application(tk.Tk):
         self.conf.set("ser_name", "value", self.ser_name)
         self.conf.set("ser_pwd", "value", self.ser_pwd)
         #写回配置文件
-        self.conf.write(open("Betting.txt", "w"))
+        self.conf.write(open("Betting1.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
     
     ############################
@@ -1344,7 +1355,7 @@ class Application(tk.Tk):
         self.conf.set("cli_pwd", "value", self.cli_pwd)
         self.conf.set("cli_wagerround", "value", self.cli_wagerround)
         #写回配置文件
-        self.conf.write(open("Betting.txt", "w"))
+        self.conf.write(open("Betting1.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):

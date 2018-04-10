@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#跟投 自动打码神器
+#梯子游戏
     
 import re
 import urllib
@@ -13,7 +13,7 @@ import time
 import datetime
 import http.cookiejar
 import json
-#import pymysql.cursors
+import pymysql.cursors
 import ssl
 #import sqlite3
 import configparser
@@ -36,35 +36,19 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
+
 import io
 # allows for image formats other than gif
 from PIL import Image, ImageTk
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
-from Betting import *
+
 ssl._create_default_https_context = ssl._create_unverified_context
+from Betting3 import *
 
-#声明一个CookieJar对象实例来保存cookie
-cookiejar = cookiejar = http.cookiejar.CookieJar()
-#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
-handler = urllib.request.HTTPCookieProcessor(cookiejar)
-#通过handler来构建opener
-opener = urllib.request.build_opener(handler)
 
-#此处的open方法同urllib2的urlopen方法，也可以传入request
-#response = opener.open('http://www.baidu.com')
-user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
-headers = { 'User-Agent' : user_agent }  
 
-    
+
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=1ff4dc386e7bdaedb35b6bb41fbac207"
+    url_agent = "http://duboren.com/ccskey/query?regkey=2286738abd0e8e12c8feb3327cc5aad8"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)
@@ -102,8 +86,7 @@ def RegKey():
 if __name__ == "__main__":
     if RegKey():
         main()
-    
-    
+
 
 
 
