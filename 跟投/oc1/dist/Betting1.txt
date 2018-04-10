@@ -17,7 +17,7 @@ value = vfcs111
 value = 5134abab
 
 [cli_url]
-value = http://93k.91cid.com/
+value = http://93k.zsz585.com/
 
 [cli_wd]
 value = 95712
@@ -25,10 +25,11 @@ value = 95712
 [searchUser]
 value = tbfx5858*0.1
 	
+	
 
 [searchType]
-value = 7;11;18;20;23
+value = 11
 
 [cli_wagerround]
-value = D
+value = A
 

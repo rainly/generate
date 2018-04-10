@@ -1078,7 +1078,7 @@ def main():
 
     
     app = Application()
-    app.title("跟投 自动打码神器(开发者QQ：87954657)")
+    app.title("彩票百家乐 自动跟单系统(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
