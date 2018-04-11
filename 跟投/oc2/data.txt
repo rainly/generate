@@ -1,3 +1,602 @@
+﻿
+
+https://00271596-xsj.cp168.ws/agent/user/list?lv=0&type=2
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Welcome</title> <link href="/js/jquery/new/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="/default/css/agent/red/master.css" rel="stylesheet" type="text/css" />
+<link href="/default/css/agent/red/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/js/libs.js"></script>
+<script type="text/javascript" src="/js/json2.js"></script>
+
+<link href="/default/css/agent/user.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/default/js/user.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="top_info">
+            <span class="title">cb9999 -> 直属会员</span>
+            <div class="center">
+                <div class="query_panel">
+                    <span class="input_panel">
+                    <label>模式：<select id="" name="resetType" >
+        <option value="" selected="selected">全部</option>
+        <option value="0">信用</option>
+        <option value="1">现金</option>
+</select>
+</label>
+                    <label>状态：<select id="" name="status" >
+        <option value="" selected="selected">全部</option>
+        <option value="0">启用</option>
+        <option value="1">冻结</option>
+        <option value="2">停用</option>
+</select>
+</label> <label>搜索：</label> 账号或名称：<input name="name" class="input" />
+                    </span>
+                    <input type="button" value="查找" class="query" />
+                    
+                </div>
+                 <a class="add" href="edit?parent=cb9999&type=2">新增五级代理</a>  <a class="add" href="edit?parent=cb9999&type=1">新增会员</a> 
+            </div>
+            <div class="right">
+                <a class="back" onclick="history.back()">返回</a>
+            </div>
+        </div>
+        <div class="contents">
+            <ul class="left_panel">
+                <li class="title">[cb9999] 下线管理</li>
+
+                <li><a href="list?parent=cb9999&lv=0&type=2">直属代理</a><span>2</span></li>
+                <li><a href="list?parent=cb9999&lv=0&type=1">直属会员</a><span>0</span></li> 
+                <li><a href="list?parent=cb9999&type=2">全部代理</a><span id="t2All">0</span></li> 
+                <li class="t2"><a href="list?parent=cb9999&type=2&lv=5">五级代理</a><span>2</span></li>
+                <li class="t1"><a href="list?parent=cb9999&type=1&lv=">全部会员</a><span>30</span></li>
+            </ul>
+            <div class="user_list">
+                <table class="data_table list">
+                    <thead>
+                        <tr>
+                            <th class="online">在线</th>
+                            <th class="parent">上级账号</th>
+                            <th class="type">用户类型</th>
+                            <th class="username">账号</th> 
+                            <th class="account">快开彩额度</th> 
+                            <th class="account">香港彩额度</th> 
+                            <th class="share">占成</th> 
+                            <th class="range">盘口</th> 
+                            <th class="created">新增日期</th>
+                            <th class="status">状态</th>
+                            <th class="op">功能</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                 <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('wu9999')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">wu9999<span> [wu]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="wu9999" type="0">104,841</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="wu9999" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="wu9999" username="wu9999">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'wu9999',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=wu9999" class="modify">修改</a> <a href="param?username=wu9999" class="commission">退水</a>
+                                <a href="../loginLogs?id=wu9999" class="login_log info">日志</a> <a href="../logs?id=wu9999" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('zhou987')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">zhou987<span> [zhou]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="zhou987" type="0">134,282</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="zhou987" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="zhou987" username="zhou987">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'zhou987',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=zhou987" class="modify">修改</a> <a href="param?username=zhou987" class="commission">退水</a>
+                                <a href="../loginLogs?id=zhou987" class="login_log info">日志</a> <a href="../logs?id=zhou987" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('li7899')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">li7899<span> [li]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="li7899" type="0">102,955</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="li7899" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="li7899" username="li7899">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'li7899',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=li7899" class="modify">修改</a> <a href="param?username=li7899" class="commission">退水</a>
+                                <a href="../loginLogs?id=li7899" class="login_log info">日志</a> <a href="../logs?id=li7899" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('sun77')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">sun77<span> [sun]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="sun77" type="0">121,799</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="sun77" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="sun77" username="sun77">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'sun77',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=sun77" class="modify">修改</a> <a href="param?username=sun77" class="commission">退水</a>
+                                <a href="../loginLogs?id=sun77" class="login_log info">日志</a> <a href="../logs?id=sun77" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qian8899')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qian8899<span> [qian]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qian8899" type="0">105,237</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qian8899" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qian8899" username="qian8899">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qian8899',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qian8899" class="modify">修改</a> <a href="param?username=qian8899" class="commission">退水</a>
+                                <a href="../loginLogs?id=qian8899" class="login_log info">日志</a> <a href="../logs?id=qian8899" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('zhao789')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">zhao789<span> [zhao]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="zhao789" type="0">104,425</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="zhao789" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="zhao789" username="zhao789">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-04-11</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'zhao789',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=zhao789" class="modify">修改</a> <a href="param?username=zhao789" class="commission">退水</a>
+                                <a href="../loginLogs?id=zhao789" class="login_log info">日志</a> <a href="../logs?id=zhao789" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('gou1122')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">gou1122<span> [asd]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="gou1122" type="0">204,229</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="gou1122" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="gou1122" username="gou1122">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'gou1122',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=gou1122" class="modify">修改</a> <a href="param?username=gou1122" class="commission">退水</a>
+                                <a href="../loginLogs?id=gou1122" class="login_log info">日志</a> <a href="../logs?id=gou1122" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww223')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww223
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww223" type="0">209,974</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww223" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww223" username="qqww223">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww223',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww223" class="modify">修改</a> <a href="param?username=qqww223" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww223" class="login_log info">日志</a> <a href="../logs?id=qqww223" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww220')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww220
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww220" type="0">214,136</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww220" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww220" username="qqww220">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww220',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww220" class="modify">修改</a> <a href="param?username=qqww220" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww220" class="login_log info">日志</a> <a href="../logs?id=qqww220" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww119')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww119
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww119" type="0">109,881</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww119" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww119" username="qqww119">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww119',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww119" class="modify">修改</a> <a href="param?username=qqww119" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww119" class="login_log info">日志</a> <a href="../logs?id=qqww119" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww118')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww118<span> [191191]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww118" type="0">134,167</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww118" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww118" username="qqww118">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww118',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww118" class="modify">修改</a> <a href="param?username=qqww118" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww118" class="login_log info">日志</a> <a href="../logs?id=qqww118" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww117')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww117<span> [qwqeqw]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww117" type="0">118,116</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww117" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww117" username="qqww117">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww117',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww117" class="modify">修改</a> <a href="param?username=qqww117" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww117" class="login_log info">日志</a> <a href="../logs?id=qqww117" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww116')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww116<span> [asdasd]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww116" type="0">136,274</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww116" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww116" username="qqww116">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww116',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww116" class="modify">修改</a> <a href="param?username=qqww116" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww116" class="login_log info">日志</a> <a href="../logs?id=qqww116" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww114')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww114<span> [aadd4488]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww114" type="0">120,819</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww114" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww114" username="qqww114">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww114',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww114" class="modify">修改</a> <a href="param?username=qqww114" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww114" class="login_log info">日志</a> <a href="../logs?id=qqww114" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww113')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww113<span> [156156]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww113" type="0">125,000</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww113" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww113" username="qqww113">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww113',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww113" class="modify">修改</a> <a href="param?username=qqww113" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww113" class="login_log info">日志</a> <a href="../logs?id=qqww113" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww112')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww112<span> [6688]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww112" type="0">124,881</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww112" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww112" username="qqww112">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-26</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww112',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww112" class="modify">修改</a> <a href="param?username=qqww112" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww112" class="login_log info">日志</a> <a href="../logs?id=qqww112" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('qqww110')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9998&lv=0">cm9998</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">qqww110<span> [笨小孩]</span>
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww110" type="0">128,100</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="qqww110" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="qqww110" username="qqww110">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-25</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'qqww110',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=qqww110" class="modify">修改</a> <a href="param?username=qqww110" class="commission">退水</a>
+                                <a href="../loginLogs?id=qqww110" class="login_log info">日志</a> <a href="../logs?id=qqww110" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><span class="s0"></span>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">aa9991
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="aa9991" type="0">0</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="aa9991" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="aa9991" username="aa9991">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-14</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'aa9991',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=aa9991" class="modify">修改</a> <a href="param?username=aa9991" class="commission">退水</a>
+                                <a href="../loginLogs?id=aa9991" class="login_log info">日志</a> <a href="../logs?id=aa9991" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('aa9992')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">aa9992
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="aa9992" type="0">232,011</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="aa9992" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="aa9992" username="aa9992">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-14</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'aa9992',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=aa9992" class="modify">修改</a> <a href="param?username=aa9992" class="commission">退水</a>
+                                <a href="../loginLogs?id=aa9992" class="login_log info">日志</a> <a href="../logs?id=aa9992" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="online"><a href="javascript:void(0)" onclick="kick('ss9993')" title="注销"><span
+                                    class="s1"></span></a>
+                            </td>
+                            <td class="parent"><a href="list?parent=cm9999&lv=0">cm9999</a>
+                            </td>
+                            <td class="type">现金<br/>会员</td>
+                            <td class="username">ss9993
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="ss9993" type="0">141,210</a></span> 
+                            </td> 
+                            <td class="account">
+                                <span class="max_limit"><a userid="ss9993" type="2">0</a></span> 
+                            </td> 
+                            <td class="share"><a userid="ss9993" username="ss9993">明细</a></td> 
+                            <td class="range">A盘</td> 
+                            <td class="created">2018-03-14</td>
+                            <td class="status"><input type="button" class="s0" onclick="showChangeStatusPanel(this,'ss9993',0)" value="启用" /></td>
+                            <td class="op"><a
+                                href="edit?username=ss9993" class="modify">修改</a> <a href="param?username=ss9993" class="commission">退水</a>
+                                <a href="../loginLogs?id=ss9993" class="login_log info">日志</a> <a href="../logs?id=ss9993" class="op_log">记录</a>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="page"><div class="page_info">
+<span class="record">共 30 条记录</span>
+<span class="page_count">共 2 页</span>
+<span class="page_control">
+<a class="previous">前一页</a>『
+<span class="current">1</span>
+<a href="?
+parent=cb9999&
+
+type=1&
+
+lv=&
+page=2
+">2</a>
+』<a class="next" href="?
+parent=cb9999&
+
+type=1&
+
+lv=&
+page=2
+">后一页</a>
+</span>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
 http://1232tt.com/
 
 56789
