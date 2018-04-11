@@ -137,17 +137,21 @@ class ServerThread(threading.Thread):
     def target_func(self):
         print("target_func begin")
         sleepnum = 5
+        syncUserNum   = 3600
         while self.stopped == False:
             sleepnum = sleepnum + 1
+            syncUserNum = syncUserNum + 1
             if sleepnum < 5:
                 time.sleep(1)
                 continue
             sleepnum = 0
-            
+            print(syncUserNum)
+            if syncUserNum >= 3600:
+                syncUserNum = 0;
+                self.target.syncUser();
+
             g_mutex.acquire()
-            g_datas.clear()
-            g_mutex.release()
-            
+            g_datas.clear()      
             for user in self.target.users:
                 if self.stopped:
                     break
@@ -179,8 +183,7 @@ class ServerThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                print(html)
-                g_mutex.acquire()
+                #print(html)
                 soup = BeautifulSoup(html, "lxml")
                 for tbody in soup.find_all('tbody'):
                     for tr in tbody.find_all('tr'):
@@ -188,11 +191,12 @@ class ServerThread(threading.Thread):
                         for td in tr.find_all('td'):
                             data.append(td.get_text())
                         g_datas.append(data)
-                g_mutex.release()
+                
                 
             print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
             for item in g_datas:
                 print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
+            g_mutex.release()
         print("target_func end")
                 
                 
@@ -259,7 +263,7 @@ class ClientThread(threading.Thread):
                 print("错误 ==> 网络连接错误！")
                 continue          
             try:
-                print(html)
+                #print(html)
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
@@ -375,7 +379,7 @@ class ClientThread(threading.Thread):
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
                     continue
-                print(html)
+                #print(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
                     result = json.loads(html)  
@@ -424,6 +428,7 @@ class Application(tk.Tk):
         self.packUser();
         
     def parseUser(self):
+        g_mutex.acquire()
         self.users = {}
         self.searchText = self.searchScrolledText.get(1.0, END)
         searchTexts = self.searchText.split("\n")
@@ -436,14 +441,17 @@ class Application(tk.Tk):
                 continue                
             self.users[user[0]] = user[1]
         print(self.users)
+        g_mutex.release()
         
     def packUser(self):
         searchText = ""
+        g_mutex.acquire()
         for user in self.users:
             searchText = searchText + user;
             searchText = searchText + "*";
             searchText = searchText + self.users[user];
             searchText = searchText + "\n";
+        g_mutex.release()
         print(searchText)
         self.searchText = searchText
         self.searchScrolledText.delete(1.0, END)
@@ -497,14 +505,14 @@ class Application(tk.Tk):
         # Adding a Button
         line = line + 1
         self.conf_btaction = ttk.Button(self.conf_MyFrame,text="保存",width=10,command=self.conf_save)
-        self.conf_btaction.grid(column=1,row=line,sticky='E')
+        self.conf_btaction.grid(column=0,row=line,sticky='E')
         
         # Adding a Button
-        line = line + 1
+        #line = line + 1
         self.conf_btaction = ttk.Button(self.conf_MyFrame,text="获取账号数据",width=10,command=self.conf_clickMe)
         self.conf_btaction.grid(column=1,row=line,sticky='E')
         self.searchScrolledText.insert(tk.INSERT, self.searchText)
-        
+            
     def conf_save(self):
         self.searchText = self.searchScrolledText.get(1.0, END)
         #增加新的section
@@ -513,14 +521,19 @@ class Application(tk.Tk):
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")        
-        
-        
     def conf_clickMe(self):
+        if  self.ser_thread != None:
+            messagebox.showinfo("提示","请先关闭采集功能！") 
+            return
+        self.syncUser()
+        
+    def syncUser(self):
         page_count = 1
         current    = 0
+        g_mutex.acquire()
         while current < page_count:
-            #https://00271596-xsj.cp168.ws/agent/user/list?parent=cb9999&type=1&lv=
-            url = self.ser_url.get() + "agent/user/list?parent=cb9999&type=1&lv="
+            #https://00271596-xsj.cp168.ws/agent/user/list?parent=cb9999&type=1&lv=&page=2
+            url = self.ser_url.get() + "agent/user/list?parent=" + self.ser_nick.get() + "&type=1&lv=&page=" + str(current + 1)
             print(url)
             request = urllib.request.Request(url = url, headers = headers, method = 'GET')
             try:
@@ -544,31 +557,41 @@ class Application(tk.Tk):
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
                 return
-            print(html)
+            #print(html)
             soup = BeautifulSoup(html, "lxml")
             for tbody in soup.find_all('tbody'):
                 for tr in tbody.find_all('tr'):
                     username = tr.find_all('td')[3].get_text()
-                    print(username)
+                    #print(username)
                     _split      = username.split(" ")
                     _split[0]   = _split[0].replace("\n", "")
                     _split[0]   = _split[0].strip()
+                    if _split[0] == "":
+                        continue
+                    #print(_split)
                     if _split[0] in self.users:
                         continue
-                    self.users[_split[0]] = "1.0"
+                    self.users[_split[0]] = self.conf_pl.get()
                         
-            html_page_count = soup.find_all("a", class_="page_count") #共 2 页
+            html_page_count = soup.find_all("span", class_="page_count") #共 2 页
             if len(html_page_count) > 0:
-                html_page_count = html_page_count.get_text()
-                html_page_count.replace("共 ", "")
-                html_page_count.replace(" 页", "")
+                html_page_count = html_page_count[0].get_text()
+                print(html_page_count)
+                html_page_count = html_page_count.replace("共 ", "")
+                html_page_count = html_page_count.replace(" 页", "")
                 page_count = int(html_page_count)
+            else:
+                break
             
-            html_current = soup.find_all("a", class_="current") #1
+            
+            html_current = soup.find_all("span", class_="current") #1
             if len(html_current) > 0:
-                html_current = html_current.get_text()
+                html_current = html_current[0].get_text()
+                print(html_page_count)
                 current = int(html_current)
-                
+            else:
+                break
+        g_mutex.release()        
         self.packUser()
         self.parseUser()
         self.conf_save()
@@ -583,6 +606,14 @@ class Application(tk.Tk):
             self.conf.add_section("ser_name")
             self.conf.set("ser_name", "value", "")
 
+        self.ser_nick = tk.StringVar()    
+        if self.conf.has_section("ser_nick") == True:
+            self.ser_nick.set(self.conf.get("ser_nick", "value"))
+        else:
+            self.ser_nick.set("")
+            self.conf.add_section("ser_nick")
+            self.conf.set("ser_nick", "value", "")
+            
         self.ser_pwd = tk.StringVar()    
         if self.conf.has_section("ser_pwd") == True:
             self.ser_pwd.set(self.conf.get("ser_pwd", "value"))
@@ -636,9 +667,16 @@ class Application(tk.Tk):
         # Changing our Label  
         ttk.Label(self.ser_MyFrame, text="账号:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
-        
         self.ser_nameEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_name)  
         self.ser_nameEntered.grid(column=1, row=line, sticky='W')
+         
+        #行
+        line = line + 1
+        # Changing our Label  
+        ttk.Label(self.ser_MyFrame, text="昵称:").grid(column=0, row=line, sticky='W')  
+        # Adding a Textbox Entry widget  
+        self.ser_nickEntered = ttk.Entry(self.ser_MyFrame, width=60, textvariable=self.ser_nick)  
+        self.ser_nickEntered.grid(column=1, row=line, sticky='W')
         
         #行
         line = line + 1
@@ -678,8 +716,6 @@ class Application(tk.Tk):
         # 单独控制个别控件之间的距离
         #self.ser_btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------ser_tab控件介绍------------------#
-        #self.ser_nameEntered.insert(END, self.ser_name)
-        #self.ser_pwdEntered.insert(END, self.ser_pwd)
    
     def ser_interMe(self):
         print("################进入代理网站#######################")
@@ -754,7 +790,9 @@ class Application(tk.Tk):
         if self.ser_name.get() == "":
             messagebox.showinfo("提示","账号不能为空！")
             return
-
+        if self.ser_nick.get() == "":
+            messagebox.showinfo("提示","昵称不能为空！")
+            return
         if self.ser_pwd.get() == "":
             messagebox.showinfo("提示","密码不能为空！")
             return
@@ -802,28 +840,33 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
-
-        login = False
-        soup = BeautifulSoup(html, "lxml")
-        for row in soup.find_all('title'):
-            if row.get_text().find("") >= 0:
-                login = True
-        if login == False:
-            print("错误 ==> 登陆错误！")
-            return
+               
+        if html.find("新世纪") == -1:
+            print(html)
+            messagebox.showinfo("提示","登陆失败！")
+            return;
+               
+        #login = False
+        #soup = BeautifulSoup(html, "lxml")
+        #for row in soup.find_all('title'):
+        #    if row.get_text().find("") >= 0:
+        #        login = True
+        #if login == False:
+        #    print("错误 ==> 登陆错误！")
+        #    return
             
         messagebox.showinfo("提示","登陆成功！")     
         
         self.ser_btaction.configure(text='关闭')
         self.ser_thread = ServerThread(self)
         self.ser_thread.start()
-            
+                
     def ser_save(self):
         #增加新的section   
         self.conf.set("ser_url", "value", self.ser_url.get())
         self.conf.set("ser_wd", "value", self.ser_wd.get())
         self.conf.set("ser_name", "value", self.ser_name.get())
+        self.conf.set("ser_nick", "value", self.ser_nick.get())        
         self.conf.set("ser_pwd", "value", self.ser_pwd.get())
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
@@ -1056,7 +1099,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
+        #print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
@@ -1096,7 +1139,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        print(html)
+        #print(html)
         
         messagebox.showinfo("提示","登陆成功！")
         

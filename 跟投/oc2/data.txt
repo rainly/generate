@@ -1,4 +1,33 @@
-﻿
+﻿qqww110*0.1
+wu9999*1.0
+zhou987*1.0
+li7899*1.0
+sun77*1.0
+qian8899*1.0
+zhao789*1.0
+gou1122*1.0
+qqww118*1.0
+qqww117*1.0
+qqww116*1.0
+qqww114*1.0
+qqww113*1.0
+qqww112*1.0
+qqww223*1.0
+qqww220*1.0
+qqww119*1.0
+aa9991*1.0
+aa9992*1.0
+ss9993*1.0
+aa9994*1.0
+aa9995*1.0
+aa9996*1.0
+mm9966*1.0
+sq9996*1.0
+zh9996*1.0
+syj8899*1.0
+zhw999*1.0
+dngs999*1.0
+dangs888*1.0
 
 https://00271596-xsj.cp168.ws/agent/user/list?lv=0&type=2
 
@@ -743,6 +772,277 @@ lottery
 "ZX1_X":"闲家"
 }
 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Welcome</title>
+<link href="/js/jquery/new/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="/default/css/agent/red/master.css" rel="stylesheet" type="text/css" />
+<link href="/default/css/agent/red/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/js/libs.js"></script>
+<script type="text/javascript" src="/js/json2.js"></script>
+<script type="text/javascript" src="/default/js/agent.js"></script>
+<script type="text/javascript" src="/default/js/notices.js"></script>
+<script type="text/javascript">
+
+alert('全网最快,最准,彩种最全面的开奖网址：1122kai.net 敬请各位采用！');alert('系统公告:各彩种如有官方因延迟至凌晨4点后开奖或未开奖，系统将在4点后将属于此类情况注单予于取消。');</script>
+</head>
+<body id="topbody">
+     <div class="header">
+     <div class="top">
+          <div class="logo"><span>新世纪</span></div>
+        <div class="menu">
+        <div class="expire_info"></div>
+         <ul class="menu_title">
+             <li>
+                 <a href="javascript:;" class="control">即时注单</a>
+                <a href="javascript:;">自动补货</a>
+                <a href="javascript:;">用户管理</a>
+                <a href="javascript:;">个人管理</a>
+                <a href="report/main" target="frame">报表查询</a>
+                    <a href="dresult?lottery={lottery}" target="frame">开奖结果</a>
+                <!-- <a href="notices" target="frame">站内消息</a> -->
+                <a href="/logout?id=7ab4e6a10d0256da245ce724102910c04e7a1115">退出</a>
+            </li>
+        </ul>
+    </div>
+        
+        
+        <ul class="tools">
+            <!--  <li class="tools_skin"><a href="javascript:;"><span>皮&nbsp;肤</span></a></li>-->
+            <li class="tools_user"><span class="ico"></span></li>
+            <li class="tools_user">在线会员：<span id="online"></span><br/>四级代理：xy99996</li>
+        </ul>
+    </div>
+    
+    <div class="lottery nav" id="lotterys">
+     <a id="PK10-BJPK10">北京赛车(PK10)</a>
+     <a id="SSC-CQSSC">重庆时时彩</a>
+     <a id="PK10-PK10JSC">极速赛车</a>
+     <a id="PK10-LUCKYSB">极速飞艇</a>
+     <a id="SSC-SSCJSC">极速时时彩</a>
+     <a id="KLSF-GDKLSF">广东快乐十分</a>
+     <a id="K3-GXK3">广西快3</a>
+     <a id="KLSF-XYNC">重庆幸运农场</a>
+     <a id="KL8-KL8">北京快乐8</a>
+     <a id="SSC-XJSSC">新疆时时彩</a>
+     <a id="SSC-TJSSC">天津时时彩</a>
+     <a id="HK6-HK6">香港六合彩</a>
+     <a id="PK10BJL-BJPK10BJL">彩票百家乐</a>
+     <a id="GXKLSF-GXKLSF">广西快乐十分</a>
+     <a id="11X5-GD11X5">广东11选5</a>
+     <a id="PCEGG-PCEGG">PC蛋蛋</a>
+     <a id="KL8-AULUCKY20">澳洲幸运20</a>
+     <a id="PK10-AULUCKY10">澳洲幸运10</a>
+     <a id="SSC-AULUCKY5">澳洲幸运5</a>
+     <a id="KLSF-AULUCKY8">澳洲幸运8</a>
+        </div>
+    
+    
+        <ul class="menu_sub">
+             <li class="menu_sub_title">当前选中：<span id="lotteryType"></span></li>
+               <li id="BJPK10" class="menu_sub_links">
+<a href="load?lottery=BJPK10&page=12" target="frame">冠、亚军 组合</a> | 
+<a href="load?lottery=BJPK10&page=3456" target="frame">三、四、五、六名</a> |
+<a href="load?lottery=BJPK10&page=78910" target="frame">七、八、九、十名</a>                </li>
+               <li id="CQSSC" class="menu_sub_links">
+<a href="load?lottery=CQSSC&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=CQSSC&page=dh" target="frame">单号</a> |
+<a href="load?lottery=CQSSC&page=ts" target="frame">前中后三</a> |
+<a href="load?lottery=CQSSC&page=1z" target="frame">一字组合</a> |
+<a href="load?lottery=CQSSC&page=2z" target="frame">二字组合</a> |
+<a href="load?lottery=CQSSC&page=3z" target="frame">三字组合</a> |
+<a href="load?lottery=CQSSC&page=dw2" target="frame">二字定位</a> |
+<a href="load?lottery=CQSSC&page=dw3" target="frame">三字定位</a> |
+<a href="load?lottery=CQSSC&page=2zhs" target="frame">二字和数、和尾数</a> |
+<a href="load?lottery=CQSSC&page=3zhs" target="frame">三字和数、和尾数</a> |
+<a href="load?lottery=CQSSC&page=zx3" target="frame">组选三</a> |
+<a href="load?lottery=CQSSC&page=zx6" target="frame">组选六</a> |
+<a href="load?lottery=CQSSC&page=kd" target="frame">跨度</a>               </li>
+               <li id="PK10JSC" class="menu_sub_links">
+<a href="load?lottery=PK10JSC&page=12" target="frame">冠、亚军 组合</a> | 
+<a href="load?lottery=PK10JSC&page=3456" target="frame">三、四、五、六名</a> |
+<a href="load?lottery=PK10JSC&page=78910" target="frame">七、八、九、十名</a>                </li>
+               <li id="LUCKYSB" class="menu_sub_links">
+<a href="load?lottery=LUCKYSB&page=12" target="frame">冠、亚军 组合</a> | 
+<a href="load?lottery=LUCKYSB&page=3456" target="frame">三、四、五、六名</a> |
+<a href="load?lottery=LUCKYSB&page=78910" target="frame">七、八、九、十名</a>                </li>
+               <li id="SSCJSC" class="menu_sub_links">
+<a href="load?lottery=SSCJSC&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=SSCJSC&page=dh" target="frame">单号</a> |
+<a href="load?lottery=SSCJSC&page=ts" target="frame">前中后三</a> |
+<a href="load?lottery=SSCJSC&page=1z" target="frame">一字组合</a> |
+<a href="load?lottery=SSCJSC&page=2z" target="frame">二字组合</a> |
+<a href="load?lottery=SSCJSC&page=3z" target="frame">三字组合</a> |
+<a href="load?lottery=SSCJSC&page=dw2" target="frame">二字定位</a> |
+<a href="load?lottery=SSCJSC&page=dw3" target="frame">三字定位</a> |
+<a href="load?lottery=SSCJSC&page=2zhs" target="frame">二字和数、和尾数</a> |
+<a href="load?lottery=SSCJSC&page=3zhs" target="frame">三字和数、和尾数</a> |
+<a href="load?lottery=SSCJSC&page=zx3" target="frame">组选三</a> |
+<a href="load?lottery=SSCJSC&page=zx6" target="frame">组选六</a> |
+<a href="load?lottery=SSCJSC&page=kd" target="frame">跨度</a>               </li>
+               <li id="GDKLSF" class="menu_sub_links">
+<a href="load?lottery=GDKLSF&page=ball&index=1" target="frame">第一球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=2" target="frame">第二球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=3" target="frame">第三球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=4" target="frame">第四球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=5" target="frame">第五球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=6" target="frame">第六球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=7" target="frame">第七球</a> | 
+<a href="load?lottery=GDKLSF&page=ball&index=8" target="frame">第八球</a> | 
+<a href="load?lottery=GDKLSF&page=zh" target="frame">总和、正码</a> | 
+<a href="load?lottery=GDKLSF&page=mp" target="frame">连码</a>               </li>
+               <li id="GXK3" class="menu_sub_links">
+<a href="load?lottery=GXK3&page=all" target="frame">总项盘口</a>               </li>
+               <li id="XYNC" class="menu_sub_links">
+<a href="load?lottery=XYNC&page=ball&index=1" target="frame">第一球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=2" target="frame">第二球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=3" target="frame">第三球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=4" target="frame">第四球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=5" target="frame">第五球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=6" target="frame">第六球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=7" target="frame">第七球</a> | 
+<a href="load?lottery=XYNC&page=ball&index=8" target="frame">第八球</a> | 
+<a href="load?lottery=XYNC&page=zh" target="frame">总和、正码</a> | 
+<a href="load?lottery=XYNC&page=mp" target="frame">连码</a>               </li>
+               <li id="KL8" class="menu_sub_links">
+<a href="load?lottery=KL8&page=all" target="frame">总项盘口</a> | 
+<a href="load?lottery=KL8&page=ball" target="frame">正码</a>               </li>
+               <li id="XJSSC" class="menu_sub_links">
+<a href="load?lottery=XJSSC&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=XJSSC&page=dh" target="frame">单号</a> |
+<a href="load?lottery=XJSSC&page=ts" target="frame">前中后三</a> |
+<a href="load?lottery=XJSSC&page=1z" target="frame">一字组合</a> |
+<a href="load?lottery=XJSSC&page=2z" target="frame">二字组合</a> |
+<a href="load?lottery=XJSSC&page=3z" target="frame">三字组合</a> |
+<a href="load?lottery=XJSSC&page=dw2" target="frame">二字定位</a> |
+<a href="load?lottery=XJSSC&page=dw3" target="frame">三字定位</a> |
+<a href="load?lottery=XJSSC&page=2zhs" target="frame">二字和数、和尾数</a> |
+<a href="load?lottery=XJSSC&page=3zhs" target="frame">三字和数、和尾数</a> |
+<a href="load?lottery=XJSSC&page=zx3" target="frame">组选三</a> |
+<a href="load?lottery=XJSSC&page=zx6" target="frame">组选六</a> |
+<a href="load?lottery=XJSSC&page=kd" target="frame">跨度</a>               </li>
+               <li id="TJSSC" class="menu_sub_links">
+<a href="load?lottery=TJSSC&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=TJSSC&page=dh" target="frame">单号</a> |
+<a href="load?lottery=TJSSC&page=ts" target="frame">前中后三</a> |
+<a href="load?lottery=TJSSC&page=1z" target="frame">一字组合</a> |
+<a href="load?lottery=TJSSC&page=2z" target="frame">二字组合</a> |
+<a href="load?lottery=TJSSC&page=3z" target="frame">三字组合</a> |
+<a href="load?lottery=TJSSC&page=dw2" target="frame">二字定位</a> |
+<a href="load?lottery=TJSSC&page=dw3" target="frame">三字定位</a> |
+<a href="load?lottery=TJSSC&page=2zhs" target="frame">二字和数、和尾数</a> |
+<a href="load?lottery=TJSSC&page=3zhs" target="frame">三字和数、和尾数</a> |
+<a href="load?lottery=TJSSC&page=zx3" target="frame">组选三</a> |
+<a href="load?lottery=TJSSC&page=zx6" target="frame">组选六</a> |
+<a href="load?lottery=TJSSC&page=kd" target="frame">跨度</a>               </li>
+               <li id="HK6" class="menu_sub_links">
+<a href="load?lottery=HK6&page=tm" target="frame">特码</a> |
+<a href="load?lottery=HK6&page=lm" target="frame">两面</a> |
+<a href="load?lottery=HK6&page=sb" target="frame">色波</a> |
+<a href="load?lottery=HK6&page=zm" target="frame">正码</a> |
+<a href="load?lottery=HK6&page=zm16" target="frame">正码1-6</a> |
+<a href="load?lottery=HK6&page=zmt&index=1" target="frame">正码特</a> |
+<a href="load?lottery=HK6&page=sx" target="frame">特肖、正肖、总肖</a> |
+<a href="load?lottery=HK6&page=tws" target="frame">特头尾数、五行</a> |
+<a href="load?lottery=HK6&page=yxws" target="frame">一肖尾数</a> |
+<a href="load?lottery=HK6&page=hx" target="frame">合肖</a> |
+<a href="load?lottery=HK6&page=lx" target="frame">连肖</a> |
+<a href="load?lottery=HK6&page=lw" target="frame">连尾</a> |
+<a href="load?lottery=HK6&page=mp" target="frame">连码</a> |
+<a href="load?lottery=HK6&page=zxbz" target="frame">自选不中</a>               </li>
+               <li id="BJPK10BJL" class="menu_sub_links">
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=1" target="frame">第 1 桌</a> | 
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=2" target="frame">第 2 桌</a> | 
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=3" target="frame">第 3 桌</a> | 
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=4" target="frame">第 4 桌</a> | 
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=5" target="frame">第 5 桌</a> | 
+<a href="load?lottery=BJPK10BJL&page=bjl&tableId=6" target="frame">第 6 桌</a> | 
+               </li>
+               <li id="GXKLSF" class="menu_sub_links">
+<a href="load?lottery=GXKLSF&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=GXKLSF&page=15ball" target="frame">1-5球</a>               </li>
+               <li id="GD11X5" class="menu_sub_links">
+<a href="load?lottery=GD11X5&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=GD11X5&page=dh" target="frame">单号</a> | 
+<a href="load?lottery=GD11X5&page=mp" target="frame">连码、直选</a>               </li>
+               <li id="PCEGG" class="menu_sub_links">
+<a href="load?lottery=PCEGG&page=lm" target="frame">两面</a> |
+<a href="load?lottery=PCEGG&page=dw" target="frame">和值</a>                </li>
+               <li id="AULUCKY20" class="menu_sub_links">
+<a href="load?lottery=AULUCKY20&page=all" target="frame">总项盘口</a> | 
+<a href="load?lottery=AULUCKY20&page=ball" target="frame">正码</a>               </li>
+               <li id="AULUCKY10" class="menu_sub_links">
+<a href="load?lottery=AULUCKY10&page=12" target="frame">冠、亚军 组合</a> | 
+<a href="load?lottery=AULUCKY10&page=3456" target="frame">三、四、五、六名</a> |
+<a href="load?lottery=AULUCKY10&page=78910" target="frame">七、八、九、十名</a>                </li>
+               <li id="AULUCKY5" class="menu_sub_links">
+<a href="load?lottery=AULUCKY5&page=lm" target="frame">两面</a> | 
+<a href="load?lottery=AULUCKY5&page=dh" target="frame">单号</a> |
+<a href="load?lottery=AULUCKY5&page=ts" target="frame">前中后三</a> |
+<a href="load?lottery=AULUCKY5&page=1z" target="frame">一字组合</a> |
+<a href="load?lottery=AULUCKY5&page=2z" target="frame">二字组合</a> |
+<a href="load?lottery=AULUCKY5&page=3z" target="frame">三字组合</a> |
+<a href="load?lottery=AULUCKY5&page=dw2" target="frame">二字定位</a> |
+<a href="load?lottery=AULUCKY5&page=dw3" target="frame">三字定位</a> |
+<a href="load?lottery=AULUCKY5&page=2zhs" target="frame">二字和数、和尾数</a> |
+<a href="load?lottery=AULUCKY5&page=3zhs" target="frame">三字和数、和尾数</a> |
+<a href="load?lottery=AULUCKY5&page=zx3" target="frame">组选三</a> |
+<a href="load?lottery=AULUCKY5&page=zx6" target="frame">组选六</a> |
+<a href="load?lottery=AULUCKY5&page=kd" target="frame">跨度</a>               </li>
+               <li id="AULUCKY8" class="menu_sub_links">
+<a href="load?lottery=AULUCKY8&page=ball&index=1" target="frame">第一球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=2" target="frame">第二球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=3" target="frame">第三球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=4" target="frame">第四球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=5" target="frame">第五球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=6" target="frame">第六球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=7" target="frame">第七球</a> | 
+<a href="load?lottery=AULUCKY8&page=ball&index=8" target="frame">第八球</a> | 
+<a href="load?lottery=AULUCKY8&page=zh" target="frame">总和、正码</a> | 
+<a href="load?lottery=AULUCKY8&page=mp" target="frame">连码</a>               </li>
+        </ul>
+        <ul class="menu_sub">
+             <li class="menu_sub_title">当前选中：<span>自动补货</span></li>
+            <li class="menu_sub_link">
+            <a href="user/backshare" target="frame">自动补货设定</a> |
+               <a href="logs?type=autoback" target="frame">自动补货变更记录</a>
+               </li>
+        </ul>
+        <ul class="menu_sub">
+             <li class="menu_sub_title">当前选中：<span>用户管理</span></li>
+            <li class="menu_sub_link">
+               <a href="user/list?lv=0&type=2" target="frame">直属代理</a> | 
+               <a href="user/list?lv=0&type=1" target="frame">直属会员</a> | 
+               <a href="user/list?type=2" target="frame">全部代理</a> | 
+               <a href="user/list?type=1" target="frame">全部会员</a> 
+               </li>
+        </ul>
+        <ul class="menu_sub">
+             <li class="menu_sub_title">当前选中：<span>个人管理</span></li>
+            <li class="menu_sub_link">
+               <a href="info?lottery={lottery}" target="frame">信用资料</a> | 
+               <a href="loginLogs" target="frame">登录日志</a> | 
+               <a href="password" target="frame">变更密码</a> 
+               </li>
+        </ul>
+        <ul class="menu_sub" id="ordersub">
+             <li class="menu_sub_title">当前选中：<span id="lotteryTypes"></span></li>
+        </ul>
+    
+
+   </div> 
+    <div id="contents">
+          <iframe id="frame" name="frame" src="notices" frameborder="0"></iframe>
+     </div>
+    <div id="footer" class="footer"><div class="notice"><marquee scrolldelay="90" scrollamount="4"><a id="notices" href="notices" target="frame"></a></marquee></div><a href="notices" target="frame" class="more">更多</a></div>
+</body>
+</html>
 
 
     
