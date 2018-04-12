@@ -35,6 +35,7 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
+from copy import deepcopy
 
 try:
     # Python2
@@ -149,10 +150,13 @@ class ServerThread(threading.Thread):
             if self.target.conf_ck.get() == 1 and syncUserNum >= 3600:
                 syncUserNum = 0;
                 self.target.syncUser();
-
-            g_mutex.acquire()
-            g_datas.clear()      
-            for user in self.target.users:
+                
+            g_mutex.acquire()    
+            t_users = deepcopy(self.target.users)
+            g_mutex.release()
+            
+            t_datas = []
+            for user in t_users:
                 if self.stopped:
                     break
                 print("############################查询详细##############################" + user) 
@@ -190,12 +194,15 @@ class ServerThread(threading.Thread):
                         data = []
                         for td in tr.find_all('td'):
                             data.append(td.get_text())
-                        g_datas.append(data)
+                        t_datas.append(data)
                 
                 
             print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
-            for item in g_datas:
+            for item in t_datas:
                 print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
+            
+            g_mutex.acquire() 
+            g_datas = t_datas            
             g_mutex.release()
         print("target_func end")
                 
@@ -238,7 +245,7 @@ class ClientThread(threading.Thread):
             #https://3661032706-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522070776784
             #{"DX_D":1.5,"DX_X":2.5,"LB_X_4":7,"LB_X_6":31,"LB_X":2,"LB_Z_3":5,"LB_X_3":5,"LB_Z_2":3,"LB_Z_4":7,"LB_Z_5":11,"LB_Z_6":31,"LB_Z_1":2,"LB_X_1":2,"LB_Z":2,"LB_X_5":11,"LB_X_2":3,"T_T":8,"XD_XD":12,"ZD_ZD":12,"ZX_Z":1.95,"ZX_X":2,"ZX1_Z":2,"ZX1_X":2}
            
-            url = self.target.cli_url + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
+            url = self.target.cli_url.get() + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
             print(url)    
             request = urllib.request.Request(url = url, headers = headers, method = 'GET')
             try:
@@ -271,7 +278,11 @@ class ClientThread(threading.Thread):
                 
             print("############################查询倍率成功##############################")
             g_mutex.acquire()
-            for item in g_datas:
+            t_datas = deepcopy(g_datas)
+            t_users = deepcopy(self.target.users)
+            g_mutex.release()            
+            
+            for item in t_datas:
                 if self.stopped:
                     break
                 '''    
@@ -302,7 +313,7 @@ class ClientThread(threading.Thread):
                 username = username.replace("G盘", "")
                 
                 bUser = False
-                for key in self.target.users:
+                for key in t_users:
                     if username == key:
                         bUser = True
                     
@@ -315,7 +326,7 @@ class ClientThread(threading.Thread):
                     continue
 
     
-                amount = round(float(item[5]) * float(self.target.users[username]))
+                amount = round(float(item[5]) * float(t_users[username]))
                 #amount =10
                 
                 drawNumber = item[2]
@@ -352,7 +363,7 @@ class ClientThread(threading.Thread):
                 print(order_dict)
                 
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
-                url = self.target.cli_url + "member/bet"
+                url = self.target.cli_url.get() + "member/bet"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
@@ -391,7 +402,6 @@ class ClientThread(threading.Thread):
                     print("****跟单失败****")
                 g_order_dict[item[0]] = 1            
             ###############################
-            g_mutex.release()
  
 
  
@@ -429,10 +439,7 @@ class Application(tk.Tk):
             self.searchText = ""
             self.conf.add_section("searchText")
             self.conf.set("searchText", "value", "")
-            
-            
-            
-            
+        
         self.ser_initdata()
         self.cli_initdata()
         self.createWidgets()
@@ -538,11 +545,10 @@ class Application(tk.Tk):
         self.conf.set("ck", "value", str(self.conf_ck.get()))     
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
-        #messagebox.showinfo("提示","配置成功！")        
+        self.parseUser()
+        #messagebox.showinfo("提示","配置成功！")    
+        
     def conf_clickMe(self):
-        if  self.ser_thread != None:
-            messagebox.showinfo("提示","请先关闭采集功能！") 
-            return
         self.syncUser()
         
     def syncUser(self):
@@ -613,7 +619,7 @@ class Application(tk.Tk):
         self.packUser()
         self.parseUser()
         self.conf_save()
-          
+            
     def ser_initdata(self):
         self.ser_thread = None
         self.ser_name = tk.StringVar()    
@@ -822,7 +828,7 @@ class Application(tk.Tk):
         if self.searchText == "":
             messagebox.showinfo("提示","账号查询不能为空！")
             return
-        
+            
         self.parseUser()
         self.ser_save()  
         print("############################账号登陆##############################")
