@@ -146,7 +146,7 @@ class ServerThread(threading.Thread):
                 continue
             sleepnum = 0
             print(syncUserNum)
-            if syncUserNum >= 3600:
+            if self.target.conf_ck.get() == 1 and syncUserNum >= 3600:
                 syncUserNum = 0;
                 self.target.syncUser();
 
@@ -413,6 +413,15 @@ class Application(tk.Tk):
             self.conf.add_section("pl")
             self.conf.set("pl", "value", "")
             
+        # 复选框
+        self.conf_ck = tk.IntVar()   # 用来获取复选框是否被勾选，通过chVarDis.get()来获取其的状态,其状态值为int类型 勾选为1  未勾选为0 
+        if self.conf.has_section("ck") == True:
+            self.conf_ck.set(int(self.conf.get("ck", "value")))
+        else:
+            self.conf_ck.set(0)
+            self.conf.add_section("ck")
+            self.conf.set("ck", "value", "")
+            
         self.searchText = ""   
         if self.conf.has_section("searchText") == True:
             self.searchText = self.conf.get("searchText", "value")
@@ -420,6 +429,9 @@ class Application(tk.Tk):
             self.searchText = ""
             self.conf.add_section("searchText")
             self.conf.set("searchText", "value", "")
+            
+            
+            
             
         self.ser_initdata()
         self.cli_initdata()
@@ -500,7 +512,12 @@ class Application(tk.Tk):
         ttk.Label(self.conf_MyFrame, text="默认赔率:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget  
         self.conf_plEntered = ttk.Entry(self.conf_MyFrame, width=60, textvariable=self.conf_pl)  
-        self.conf_plEntered.grid(column=1, row=line, sticky='W')          
+        self.conf_plEntered.grid(column=1, row=line, sticky='W')   
+    
+        line = line + 1
+        self.conf_check = tk.Checkbutton(self.conf_MyFrame, text="自动获取账号", variable=self.conf_ck)        # text为该复选框后面显示的名称, variable将该复选框的状态赋值给一个变量，当state='disabled'时，该复选框为灰色，不能点的状态
+        #check1.select()                                                                             # 该复选框是否勾选,select为勾选, deselect为不勾选
+        self.conf_check.grid(column=0, row=line, sticky=tk.W)                                                   # sticky=tk.W  当该列中其他行或该行中的其他列的某一个功能拉长这列的宽度或高度时，设定该值可以保证本行保持左对齐，N：北/上对齐  S：南/下对齐  W：西/左对齐  E：东/右对齐
 
         # Adding a Button
         line = line + 1
@@ -517,7 +534,8 @@ class Application(tk.Tk):
         self.searchText = self.searchScrolledText.get(1.0, END)
         #增加新的section
         self.conf.set("searchText", "value", self.searchText) 
-        self.conf.set("pl", "value", self.conf_pl.get())        
+        self.conf.set("pl", "value", self.conf_pl.get())   
+        self.conf.set("ck", "value", str(self.conf_ck.get()))     
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
         #messagebox.showinfo("提示","配置成功！")        
@@ -1173,8 +1191,6 @@ class Application(tk.Tk):
     
         
 def main():
-
-    
     app = Application()
     app.title("彩票百家乐 自动跟单系统(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整

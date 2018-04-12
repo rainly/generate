@@ -65,3 +65,6 @@ value = 2.0
 [ser_nick]
 value = cb9999
 
+[ck]
+value = 1
+
