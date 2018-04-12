@@ -238,7 +238,7 @@ class ClientThread(threading.Thread):
             #https://3661032706-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522070776784
             #{"DX_D":1.5,"DX_X":2.5,"LB_X_4":7,"LB_X_6":31,"LB_X":2,"LB_Z_3":5,"LB_X_3":5,"LB_Z_2":3,"LB_Z_4":7,"LB_Z_5":11,"LB_Z_6":31,"LB_Z_1":2,"LB_X_1":2,"LB_Z":2,"LB_X_5":11,"LB_X_2":3,"T_T":8,"XD_XD":12,"ZD_ZD":12,"ZX_Z":1.95,"ZX_X":2,"ZX1_Z":2,"ZX1_X":2}
            
-            url = self.target.cli_url + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
+            url = self.target.cli_url.get() + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
             print(url)    
             request = urllib.request.Request(url = url, headers = headers, method = 'GET')
             try:
@@ -352,7 +352,7 @@ class ClientThread(threading.Thread):
                 print(order_dict)
                 
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
-                url = self.target.cli_url + "member/bet"
+                url = self.target.cli_url.get() + "member/bet"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
