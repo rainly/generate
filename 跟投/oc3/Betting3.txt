@@ -11,10 +11,10 @@ value = https://00271596-xsj.cp168.ws/
 value = 64801
 
 [cli_name]
-value = cs0990
+value = ky67890
 
 [cli_pwd]
-value = 5134abab
+value = abab5139
 
 [cli_url]
 value = https://3309279593-xsj.cp168.ws/
@@ -51,4 +51,14 @@ value = qqww110*0.1
 	mm9966*0.1
 	ss9993*0.1
 	
+	
+
+[pl]
+value = 0.1
+
+[ck]
+value = 1
+
+[ser_nick]
+value = cb9999
 

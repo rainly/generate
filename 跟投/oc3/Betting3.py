@@ -197,13 +197,16 @@ class ServerThread(threading.Thread):
                         t_datas.append(data)
                 
                 
-            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
-            for item in t_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
-            
+
             g_mutex.acquire() 
+            global g_datas
             g_datas = t_datas            
             g_mutex.release()
+                
+            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
+            for item in g_datas:
+                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
+            
         print("target_func end")
                 
                 
@@ -278,6 +281,8 @@ class ClientThread(threading.Thread):
                 
             print("############################查询倍率成功##############################")
             g_mutex.acquire()
+                
+            global g_datas                 
             t_datas = deepcopy(g_datas)
             t_users = deepcopy(self.target.users)
             g_mutex.release()            
