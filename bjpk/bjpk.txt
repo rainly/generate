@@ -1,0 +1,18 @@
+[url]
+value = http://0190022.com
+
+
+
+[monery]
+value = 1=1=2=2
+	2=2=1=1
+	
+
+[buyno]
+value = 1
+
+[Jump]
+value = 大大=小小
+	小小=大大
+	
+
