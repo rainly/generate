@@ -26,13 +26,30 @@ import http.cookiejar
 import configparser
 import re
 import ssl
+import random
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-driver = webdriver.Chrome()
-driver.get("http://0190022.com")
+#driver = webdriver.Chrome()
+##driver.get("http://0190022.com")
 #driver.get("http://baidu.com")
+
+
+
+
+
+
+#本方案累计赢[1000]元跳转到方案[1]
+#本方案累计输[1000]元跳转到方案[1]
+
+import re  #python的正则表达式模块
+#input = '1:3.125 false,hello'
+input = '本方案累计赢[1000]元跳转到方案[1]'
+#(a, b, c, d) = re.search('^(\d+):([\d.]+) (\w+),(\w+)$',input).groups()
+(a, b) = re.search('^本方案累计赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input).groups()
+print(a)
+print(b)
 
 
 
@@ -68,52 +85,136 @@ class BettingThread(threading.Thread):
     def logprint(self, log):
         print(log)
         self.target.textlog.insert(tk.INSERT, log + "\n")
-    
+
+    def delBallNo(self, road, buyno, BALL_DATA):
+        #Temp_Strategy         = BALL_DATA["Temp_Strategy"]
+        #Temp_Monery           = BALL_DATA["Temp_Monery"]
+        #Temp_Win              = BALL_DATA["Temp_Win"]
+        #Temp_Strategy_Win     = BALL_DATA["Temp_Strategy_Win"]
+        #Temp_Rule             = BALL_DATA["Temp_Rule"]
+        #Temp_Rule_Idx         = BALL_DATA["Temp_Rule_Idx"]
+        #处理中奖结果
+        Win = 0
+        if BALL_DATA["Temp_Rule"] != None:
+            if road[buyno - 1] == BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]]:
+                Win = 1
+                BALL_DATA["Temp_Win"]              = BALL_DATA["Temp_Win"] + int(BALL_DATA["Temp_Monery"][1]);
+                BALL_DATA["Temp_Strategy_Win"]     = BALL_DATA["Temp_Strategy_Win"] + int(BALL_DATA["Temp_Monery"][1])    
+                self.logprint("位置" + str(buyno) + "***中奖***金额:" + BALL_DATA["Temp_Monery"][1])
+            else:
+                Win = 0
+                BALL_DATA["Temp_Win"]              = BALL_DATA["Temp_Win"] - int(BALL_DATA["Temp_Monery"][1]);
+                BALL_DATA["Temp_Strategy_Win"]     = BALL_DATA["Temp_Strategy_Win"] - int(BALL_DATA["Temp_Monery"][1])    
+                self.logprint("位置" + str(buyno) + "***未中奖***")
+            ##[1, 10, 2, 2]    
+            for monery in BALL_DATA["Temp_Strategy"]["monerys"]:
+                if  Win == 1 and monery[0] == BALL_DATA["Temp_Monery"][2]:
+                    BALL_DATA["Temp_Monery"] = monery
+                    break
+                if  Win == 0 and monery[0] == BALL_DATA["Temp_Monery"][3]:
+                    BALL_DATA["Temp_Monery"] = monery
+                    break
+            self.logprint("位置" + str(buyno) + "***当前方案输赢:" + str(BALL_DATA["Temp_Strategy_Win"]))
+            #Win = [1000, 1]    
+            if BALL_DATA["Temp_Strategy_Win"] > int(BALL_DATA["Temp_Strategy"]["jumps"]["Win"][0]):
+                BALL_DATA["Temp_Strategy_Win"] = 0
+                BALL_DATA["Temp_Strategy"] = self.target.Strategys[int(BALL_DATA["Temp_Strategy"]["jumps"]["Win"][1])]
+                BALL_DATA["Temp_Rule"]     = None
+                BALL_DATA["Temp_Rule_Idx"] = 0
+                BALL_DATA["Temp_Monery"]   = BALL_DATA["Temp_Strategy"]["monerys"][0]
+                self.logprint("位置" + str(buyno) + "***本方案累计赢跳转***")
+                        
+            #Faild = [1000, 1]    
+            if BALL_DATA["Temp_Strategy_Win"] < -int(BALL_DATA["Temp_Strategy"]["jumps"]["Faild"][0]):
+                BALL_DATA["Temp_Strategy_Win"] = 0
+                BALL_DATA["Temp_Strategy"] = self.target.Strategys[int(BALL_DATA["Temp_Strategy"]["jumps"]["Faild"][1])]
+                BALL_DATA["Temp_Rule"]     = None
+                BALL_DATA["Temp_Rule_Idx"] = 0
+                BALL_DATA["Temp_Monery"]   = BALL_DATA["Temp_Strategy"]["monerys"][0]
+                self.logprint("位置" + str(buyno) + "***本方案累计输跳转***")
+        else:
+            self.logprint("位置" + str(buyno) + "***未下注***")
+
+
+                    
+
+        self.logprint("位置" + str(buyno) + "***检测规则是否下注***")
+        if BALL_DATA["Temp_Rule"] != None:
+            BALL_DATA["Temp_Rule_Idx"] = BALL_DATA["Temp_Rule_Idx"] + 1
+            if len(BALL_DATA["Temp_Rule"][1]) <= BALL_DATA["Temp_Rule_Idx"]:
+                BALL_DATA["Temp_Rule"] = None
+                BALL_DATA["Temp_Rule_Idx"] = 0
+                
+        if BALL_DATA["Temp_Rule"] == None:
+            keys = sorted(self.roads)
+            tmp  = ""
+            for key in keys:
+                tmp = tmp + self.roads[key][buyno - 1]
+
+            for rule in BALL_DATA["Temp_Strategy"]["rules"]:
+                #[大大， 小小]
+                tmp1 = rule[0]
+                tmp2 = ""
+                self.logprint("位置" + str(buyno) + "***查找规则***" + tmp1)
+                if len(tmp) > len(tmp1):
+                    tmp2 = tmp[len(tmp) - len(tmp1):]
+                else:
+                    tmp2 = tmp
+                self.logprint("位置" + str(buyno) + "***路单规则***" + tmp)
+
+                if tmp1 == tmp2:
+                    BALL_DATA["Temp_Rule"] = rule
+                    BALL_DATA["Temp_Rule_Idx"] = 0
+                    self.logprint("位置" + str(buyno) + "***规则符合条件***" + str(rule[0]) + "=" + str(rule[1]))
+                    break
+                else:
+                    self.logprint("位置" + str(buyno) + "***规则不符合条件***" + str(rule[0]) + "=" + str(rule[1]))    
+                            
+        #双面玩法
+        if BALL_DATA["Temp_Rule"] != None:
+            '''
+            if BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]] == "大":
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[1]")
+            if BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]] == "小":
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[2]")
+            if BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]] == "单":
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[3]")
+            if BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]] == "双":
+                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[4]")
+            '''
+
+            self.logprint("位置" + str(buyno) + "***购买:" + BALL_DATA["Temp_Rule"][1][BALL_DATA["Temp_Rule_Idx"]] + "金额：" + str(BALL_DATA["Temp_Monery"][1]))
+
+            '''
+            time.sleep(1)
+            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
+            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(BALL_DATA["Temp_Monery"][1])
+            time.sleep(1)
+            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/button").click()
+            time.sleep(1)
+            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[2]/button[3]").click()
+            '''    
     def target_func(self):
     
-        '''
-        =================================
-
-        庄庄=闲庄
-        闲闲=庄闲
-
-        1=10=1=1
-
-        本方案累计赢[1000]元跳转到方案[1]
-        本方案累计输[1000]元跳转到方案[1]
-
-        ==============================
-        '''
-        
         print("**********target_func begin***********")
         
-        buyno = int(self.target.buyno)
-        self.logprint("位置:" + self.target.buyno)
-        if buyno < 1 or buyno > 10:
+        #buyno = int(self.target.buyno)
+        #self.logprint("位置:" + self.target.buyno)
+        #if buyno < 1 or buyno > 10:
+        #    self.logprint("错误 ==> 购买位置配置出错")
+        #    return  
+
+        if len(self.target.Strategys) <= 0:
             self.logprint("错误 ==> 购买位置配置出错")
-            return            
-        
-        monery = self.target.monery
-        self.logprint("金额:" + monery)
-            
-        monerys = []
-        line = self.target.monery.split("\r\n")
-        for item in line:
-            monery = re.split('=',item)
-            monerys.append(monery)  
-            
-        Jumps = []
-        line = self.target.Jump.split("\r\n")
-        for item in line:
-            Jump = re.split('=',item)
-            Jumps.append(Jump)  
-        
-        
-        
+            return   
+
+        print(self.target.Strategys)  
+                 
+        '''
         driver.implicitly_wait(5)           
         while self.stopped == False:
             print("**********find title***********")
-            isJump = False
+            isStrategy = False
             try:
                 handles = driver.window_handles # 获取当前窗口句柄集合（列表类型）
                 #print(handles) # 输出句柄集合
@@ -122,9 +223,9 @@ class BettingThread(threading.Thread):
                         driver.switch_to_window(handle)
                         print(driver.title)
                         if driver.title == "彩票游戏官方版":
-                            isJump = True
+                            isStrategy = True
                             break
-                if isJump:
+                if isStrategy:
                     break
                 time.sleep(5)
             except NoSuchElementException as msg:
@@ -160,31 +261,47 @@ class BettingThread(threading.Thread):
                 #self.target.textlog.insert(tk.INSERT,"error lineno:" +
                 #str(sys._getframe().f_lineno))
                 pass
-        
+        '''
         Last_Award_Issue = ""
-        Last_Award_Issue_Have   = False
+        Last_Award_Issue_Have = False
+        self.roads = {}
+        SleepTime             = 1
 
-        roads       = {}
-        SleepTime   = 10
-        Temp_Monery = monerys[0]     
-        Temp_Jump   = None
-        Temp_Jump_Idx = 0
+        BALL_DATAS = {}
+        items = self.target.buyno.split(",")
+        for item in items:
+            BALL_DATA = {
+                "Temp_Strategy": self.target.Strategys[1],
+                "Temp_Monery": self.target.Strategys[1]["monerys"][0],    
+                "Temp_Win": 0,
+                "Temp_Strategy_Win": 0,
+                "Temp_Rule": None,
+                "Temp_Rule_Idx": 0,
+            }
+            BALL_DATAS[item] = BALL_DATA;
+        Test_no               = 0
         while self.stopped == False:
             try:
                 SleepTime = SleepTime + 1
-                if SleepTime < 10:
+                if SleepTime < 2:
                     time.sleep(1)
                     continue
-                
+                    
                 SleepTime = 0  
-                self.logprint("***新的轮开始***")   
-                Cur_Award_Issue1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[2]/div[2]").text
-                Cur_Award_Issue2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[1]").text
+                self.logprint("**********************************************")   
+                
+                #Cur_Award_Issue1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[2]/div[2]").text
+                #Cur_Award_Issue2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[1]").text
+                Cur_Award_Issue1  = "No. " + str(1001 + Test_no)
+                Cur_Award_Issue2  = "No. " + str(1000 + Test_no)
+                Test_no = Test_no + 1
+
                 if Cur_Award_Issue1 == "" or Cur_Award_Issue2 == "":
                     continue
-                
+
                 Cur_Award_Issue1 = Cur_Award_Issue1.replace("No. ", "")
                 Cur_Award_Issue2 = Cur_Award_Issue2.replace("No. ", "")
+                
                 if int(Cur_Award_Issue2) + 1 != int(Cur_Award_Issue1):
                     self.logprint("***期号不相等***")   
                     continue
@@ -195,6 +312,7 @@ class BettingThread(threading.Thread):
 
                 self.logprint("*******获取开奖结果**********")
 
+                '''
                 Ball01 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[1]").text
                 Ball02 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[2]").text
                 Ball03 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[3]").text
@@ -205,7 +323,19 @@ class BettingThread(threading.Thread):
                 Ball08 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[8]").text
                 Ball09 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[9]").text
                 Ball10 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[10]").text
-                
+                '''
+
+                Ball01 = str(random.randint(1,10))
+                Ball02 = str(random.randint(1,10))
+                Ball03 = str(random.randint(1,10))
+                Ball04 = str(random.randint(1,10))
+                Ball05 = str(random.randint(1,10))
+                Ball06 = str(random.randint(1,10))
+                Ball07 = str(random.randint(1,10))
+                Ball08 = str(random.randint(1,10))
+                Ball09 = str(random.randint(1,10))
+                Ball10 = str(random.randint(1,10))
+
                 if Ball01 == "" or Ball02 == "" or Ball03 == "" or Ball04 == "" or Ball05 == "" or Ball06 == "" or Ball07 == "" or Ball08 == "" or Ball09 == "" or Ball10 == "":
                     self.logprint("***数据还在加载中***")   
                     continue
@@ -214,91 +344,34 @@ class BettingThread(threading.Thread):
                     if int(BallNo) > 5:
                         return '大'
                     else:
-                        return '小'     
-                road     = [GetType(Ball01), GetType(Ball02), GetType(Ball03), GetType(Ball04), GetType(Ball05), GetType(Ball06), GetType(Ball07), GetType(Ball08), GetType(Ball09), GetType(Ball10)]
-                roads[Cur_Award_Issue2]     = road
+                        return '小'   
+                
+                
+                road = [GetType(Ball01), GetType(Ball02), GetType(Ball03), GetType(Ball04), GetType(Ball05), GetType(Ball06), GetType(Ball07), GetType(Ball08), GetType(Ball09), GetType(Ball10)]
+                self.roads[Cur_Award_Issue2] = road
 
-                Last_Award_Issue = Cur_Award_Issue1
-
-                #处理中奖结果
-                Win = 0
-                if Temp_Jump != None:
-                    if road[buyno - 1] == Temp_Jump[1][Temp_Jump_Idx]:
-                        Win = 1
-                        print("***中奖***")
-                    else:
-                        Win = 0
-                        print("***未中奖***")
-                        
-                    for monery in monerys:
-                        if  Win == 1 and monery[0] == Temp_Monery[2]:
-                            Temp_Monery = monery
-                            break
-                        if  Win == 0 and monery[0] == Temp_Monery[3]:
-                            Temp_Monery = monery
-                            break
-                else:
-                    print("***未下注***")
-
+                '''
                 for idx  in range(1,5):
-                    Award_Issue = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[1]").text
-                    Ball01 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[1]").text
-                    Ball02 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[2]").text
-                    Ball03 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[3]").text
-                    Ball04 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[4]").text
-                    Ball05 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[5]").text
-                    Ball06 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[6]").text
-                    Ball07 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[7]").text
-                    Ball08 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[8]").text
-                    Ball09 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[9]").text
-                    Ball10 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) +"]/div[2]/span[10]").text
-                    road   = [GetType(Ball01), GetType(Ball02), GetType(Ball03), GetType(Ball04), GetType(Ball05), GetType(Ball06), GetType(Ball07), GetType(Ball08), GetType(Ball09), GetType(Ball10)]
-                    roads[Award_Issue]     = road   
-                        
-                print(roads)
-                    
+                    Award_Issue = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[1]").text
+                    Ball01 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[1]").text
+                    Ball02 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[2]").text
+                    Ball03 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[3]").text
+                    Ball04 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[4]").text
+                    Ball05 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[5]").text
+                    Ball06 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[6]").text
+                    Ball07 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[7]").text
+                    Ball08 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[8]").text
+                    Ball09 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[9]").text
+                    Ball10 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[" + str(idx) + "]/div[2]/span[10]").text
+                    road = [GetType(Ball01), GetType(Ball02), GetType(Ball03), GetType(Ball04), GetType(Ball05), GetType(Ball06), GetType(Ball07), GetType(Ball08), GetType(Ball09), GetType(Ball10)]
+                    self.roads[Award_Issue] = road   
+                '''
+    
+                Last_Award_Issue = Cur_Award_Issue1
+                items = self.target.buyno.split(",")
+                for item in items:
+                    self.delBallNo(road, int(item), BALL_DATAS[item])
 
-                self.logprint("***检测规则是否下注***")
-                if Temp_Jump != None and len(Temp_Jump[Temp_Jump_Idx]) >= Temp_Jump_Idx:
-                    Temp_Jump = None
-                    Temp_Jump_Idx = 0
-                
-                if Temp_Jump == None:
-                    for Jump in Jumps:
-                        tmp1 = Jump[0]
-                        tmp2 = ""
-                        keys = roads.keys() 
-                        keys = keys.sort()
-                        for key in keys:
-                            tmp2 = tmp2 + roads[key][0]
-                        if tmp1==tmp2[:-len(tmp1)]:
-                            Temp_Jump = Jump
-                            self.logprint("***规则符合条件***" + str(Jump[0]) + "= " + str(Jump[1]))
-                            break
-                        else:
-                            self.logprint("***规则不符合条件***" + str(Jump[0]) + "= " + str(Jump[1]))    
-                            
-                    
-                #双面玩法
-                if Temp_Jump != None:
-                    if Temp_Jump[1][Temp_Jump_Idx] == "大":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[1]")
-                    if Temp_Jump[1][Temp_Jump_Idx] == "小":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[2]")
-                    if Temp_Jump[1][Temp_Jump_Idx] == "单":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[3]")
-                    if Temp_Jump[1][Temp_Jump_Idx] == "双":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[3]")
-                    Temp_Jump_Idx = Temp_Jump_Idx + 1
-                    time.sleep(1)
-                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
-                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(Temp_Monery[1])
-                    time.sleep(1)
-                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/button").click()
-                    time.sleep(1)
-                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[2]/button[3]").click()
-
-                
             except NoSuchElementException as msg:
                 self.logprint("NoSuchElementException:%s" % msg)
                 pass
@@ -360,19 +433,12 @@ class Application(tk.Tk):
             self.conf.set("buyno", "value", "")            
             
 
-        if self.conf.has_section("Jump") == True:
-            self.Jump = self.conf.get("Jump", "value")
+        if self.conf.has_section("Strategy") == True:
+            self.Strategy = self.conf.get("Strategy", "value")
         else:
-            self.Jump = ""
-            self.conf.add_section("Jump")
-            self.conf.set("Jump", "value", "")
-        
-        if self.conf.has_section("monery") == True:
-            self.monery = self.conf.get("monery", "value")
-        else:
-            self.monery = ""
-            self.conf.add_section("monery")
-            self.conf.set("monery", "value", "")
+            self.Strategy = ""
+            self.conf.add_section("Strategy")
+            self.conf.set("Strategy", "value", "")
             
         self.createWidgets()
         
@@ -384,26 +450,26 @@ class Application(tk.Tk):
         self.tabControl.add(self.tab1, text='第一页')      # Add the tab
         self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
         # ~ Tab Control introduced here
-        # -----------------------------------------
+                                                           # -----------------------------------------
         self.createTab1()
         
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
-        # Modified Button Click Function  
+        # Modified Button Click Function
         # We are creating a container tab3 to hold all other widgets
         self.MyFrame = ttk.LabelFrame(self.tab1, text='操作区')
         self.MyFrame.grid(column=0, row=0, padx=8, pady=4)
         # Using a scrolled Text control
         self.scrolW = 60
-        self.scrolH = 5
+        self.scrolH = 10
         
     
         #行
         line = 0
-        # Changing our Label  
+        # Changing our Label
         ttk.Label(self.MyFrame, text="地址:").grid(column=0, row=line, sticky='W')  
   
-        # Adding a Textbox Entry widget  
+        # Adding a Textbox Entry widget
         self.urlEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.url)  
         self.urlEntered.grid(column=1, row=line, sticky='W')
 
@@ -412,38 +478,46 @@ class Application(tk.Tk):
         
         #行
         line = line + 1
-        # Changing our Label  
+        # Changing our Label
         ttk.Label(self.MyFrame, text="购买位置:").grid(column=0, row=line, sticky='W')  
   
-        # Adding a Textbox Entry widget  
+        # Adding a Textbox Entry widget
         self.buynoEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.buyno)  
         self.buynoEntered.grid(column=1, row=line, sticky='W')
-        
+
+        '''
+        ==============================
+
+        庄庄=闲庄
+        闲闲=庄闲
+
+        1=10=1=1
+
+        本方案累计赢[1000]元跳转到方案[1]
+        本方案累计输[1000]元跳转到方案[1]
+
+        ==============================
+        '''   
+             
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="大大=小小##小小=大大").grid(column=0, row=line,sticky='W',columnspan=3)
+        ttk.Label(self.MyFrame, text="配置信息").grid(column=0,row=line,sticky='W',columnspan=3)
         #行
         line = line + 1
-        self.textJump = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
-        self.textJump.grid(column=0, row=line, sticky='WE', columnspan=3)
-        #行
-        line = line + 1
-        ttk.Label(self.MyFrame, text="序号=金额=赢跳转=输跳转").grid(column=0, row=line,sticky='W', columnspan=3)
-        #行
-        line = line + 1
-        self.textMonery = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
-        self.textMonery.grid(column=0, row=line, sticky='WE', columnspan=3)        
+        self.textStrategy = scrolledtext.ScrolledText(self.MyFrame,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
+        self.textStrategy.grid(column=0,row=line,sticky='WE',columnspan=3)
+            
         #行
         # Adding a Button
         line = line + 1
         self.btaction = ttk.Button(self.MyFrame,text="保存",width=10,command=self.save).grid(column=2,row=line,sticky='E')   
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="日志信息:").grid(column=0, row=line,sticky='W')
+        ttk.Label(self.MyFrame,text="日志信息:").grid(column=0,row=line,sticky='W')
         #行
         line = line + 1
-        self.textlog = scrolledtext.ScrolledText(self.MyFrame, width=self.scrolW, height=self.scrolH, wrap=tk.WORD)
-        self.textlog.grid(column=0, row=line, sticky='WE', columnspan=3)
+        self.textlog = scrolledtext.ScrolledText(self.MyFrame,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
+        self.textlog.grid(column=0,row=line,sticky='WE',columnspan=3)
         #行
         # Adding a Button
         line = line + 1
@@ -457,13 +531,12 @@ class Application(tk.Tk):
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
         
-        self.urlEntered.insert(END, self.url)
-        self.buynoEntered.insert(END, self.buyno)
-        self.textJump.insert(tk.INSERT, self.Jump)
-        self.textMonery.insert(tk.INSERT, self.monery)
+        self.urlEntered.insert(END,self.url)
+        self.buynoEntered.insert(END,self.buyno)
+        self.textStrategy.insert(tk.INSERT,self.Strategy)
 
     def enterMe(self):
-        self.url  = self.urlEntered.get()
+        self.url = self.urlEntered.get()
         driver.get(self.url)
             
     def clickMe(self):
@@ -475,9 +548,8 @@ class Application(tk.Tk):
             self.thread = None
             return
         self.url      = self.urlEntered.get()
-        self.buyno  = self.buynoEntered.get()
-        self.Jump   = self.textJump.get(1.0, END)
-        self.monery = self.textMonery.get(1.0, END)
+        self.buyno    = self.buynoEntered.get()
+        self.Strategy = self.textStrategy.get(1.0,END)
         if self.url == "":
             messagebox.showinfo("提示","地址不能为空")
             return
@@ -486,41 +558,80 @@ class Application(tk.Tk):
             messagebox.showinfo("提示","地址不能为空")
             return
             
-        if self.monery == "":
-            messagebox.showinfo("提示","金额不能为空！")
-            return
-            
-        if self.Jump == "":
+        if self.Strategy == "":
             messagebox.showinfo("提示","停次数不能为空！")
             return
-            
+        self.Paser();   
         self.btaction.configure(text='关闭')
         self.thread = BettingThread(self)
         self.thread.start()
-            
+
+    def Paser(self):
+        Jump_idx = 0
+        self.Strategys = {}
+        blocks = self.Strategy.split("==============================")
+        for block in blocks:
+            if block == "" or block == "\n":
+                continue
+            Strategy = {}
+            inblocks = re.split('\n\n', block)
+            for inblock in inblocks:
+                if inblock == "" or block == "\n":
+                    continue
+                if "rules" not in Strategy:
+                    rules = []
+                    line = inblock.split("\n")
+                    for item in line:
+                        rule = re.split('=', item)
+                        rules.append(rule) 
+                    Strategy["rules"] = rules
+                elif "monerys" not in Strategy:
+                    monerys = []
+                    line = inblock.split("\n")
+                    for item in line:
+                        monery = re.split('=',item)
+                        monerys.append(monery) 
+                    Strategy["monerys"] = monerys
+                elif "jumps" not in Strategy:
+                    Jumps = {}
+                    #本方案累计赢[1000]元跳转到方案[1]
+                    #本方案累计输[1000]元跳转到方案[1]
+                    line = inblock.split("\n")
+                    for input in line:
+                        searchObj  = re.search('^本方案累计赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input)
+                        if searchObj:
+                            (a, b) = searchObj .groups()
+                            Jumps["Win"] = [a, b]
+                        searchObj  = re.search('^本方案累计输\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input)
+                        if searchObj:
+                            (a, b) = searchObj .groups()
+                            Jumps["Faild"] = [a, b]
+                    Strategy["jumps"] = Jumps
+            Jump_idx = Jump_idx + 1
+            self.Strategys[Jump_idx] = Strategy           
     def save(self):
         #增加新的section
-        #
-        self.url  = self.urlEntered.get()
-        self.buyno  = self.buynoEntered.get()
-        self.Jump  = self.textJump.get(1.0, END)
-        self.monery = self.textMonery.get(1.0, END)
-        
-        self.conf.set("url", "value", self.url)
-        self.conf.set("buyno", "value", self.buyno)
-        self.conf.set("Jump", "value", self.Jump)
-        self.conf.set("monery", "value", self.monery)
+        self.Strategy = self.textStrategy.get(1.0,END)
+        self.url = self.urlEntered.get()
+        self.buyno = self.buynoEntered.get()
+        self.conf.set("url","value",self.url)
+        self.conf.set("buyno","value",self.buyno)
+        self.conf.set("Strategy","value",self.Strategy)
         #写回配置文件
-        self.conf.write(open("bjpk.txt", "w"))
+        self.conf.write(open("bjpk.txt","w"))
+        self.Paser();
         messagebox.showinfo("提示","配置成功！")
         
-    def Chosen(self, *args):
-        messagebox.showinfo("提示", self.bookChosen.get())
+    def Chosen(self,*args):
+        messagebox.showinfo("提示",self.bookChosen.get())
         
     def Close(self):
-        if self.thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
+        if  self.thread != None:
+            self.btaction.configure(text='开始')
+            if self.thread.is_alive():
+                self.thread.stop()
+            self.thread.join()
+            self.thread = None
         self.destroy()    
     
     
@@ -530,8 +641,7 @@ def main():
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
-    driver.close()
-    driver.quit()
-
+    #driver.close()
+    #driver.quit()
 if __name__ == "__main__":
     main()
