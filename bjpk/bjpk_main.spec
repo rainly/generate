@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['bjpk_main.py'],
-             pathex=['D:\\github\\generate1\\ÌÝ×ÓÓÎÏ·\\bjpk'],
+             pathex=['F:\\generate\\bjpk'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -26,4 +26,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=True )
+          console=True , icon='DDR.ico')
