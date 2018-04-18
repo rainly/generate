@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#北京赛车
 
 from tkinter import *
 from tkinter import *
@@ -17,7 +17,7 @@ from selenium.common.exceptions import *
 #import sqlite3
 import threading  
 import time
-import json
+
 import urllib
 import urllib.request
 import urllib.response
@@ -26,9 +26,18 @@ import http.cookiejar
 import configparser
 import re
 import ssl
-import sys
-from bjpk import *
+import random
+import copy
+import re  #python的正则表达式模块
+import os, sys
+import time
+import wmi,zlib
+import hashlib
+import json
 ssl._create_default_https_context = ssl._create_unverified_context
+
+from bjpk import *
+
 
 
 #声明一个CookieJar对象实例来保存cookie

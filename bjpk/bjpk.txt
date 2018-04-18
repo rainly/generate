@@ -2,7 +2,7 @@
 value = http://0190022.com
 
 [buyno]
-value = 2,3,4,5
+value = 1
 
 [Strategy]
 value = ==============================

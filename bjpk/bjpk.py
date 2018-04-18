@@ -28,21 +28,20 @@ import re
 import ssl
 import random
 import copy
+import re  #python的正则表达式模块
+import os, sys
+import time
+import wmi,zlib
+import hashlib
+import json
 
 ssl._create_default_https_context = ssl._create_unverified_context
-
-
-
-
-
-
-
-
 
 #本方案累计赢[1000]元跳转到方案[1]
 #本方案累计输[1000]元跳转到方案[1]
 
-import re  #python的正则表达式模块
+
+
 #input = '1:3.125 false,hello'
 #input = '本方案累计赢[1000]元跳转到方案[1]'
 #(a, b, c, d) = re.search('^(\d+):([\d.]+) (\w+),(\w+)$',input).groups()
@@ -50,8 +49,6 @@ import re  #python的正则表达式模块
 #print(a)
 #print(b)
 
-tmp = "601212"
-print(tmp[0:2])
 
 
 test_flag = False
@@ -75,6 +72,35 @@ if test_flag == False:
     #driver.get("http://baidu.com")
 else:
     pass;
+
+
+
+def get_phydriverserial_info():
+    tmplist = []
+    encrypt_str = ""
+    c = wmi.WMI ()
+    for cpu in c.Win32_Processor():
+        #cpu 序列号
+        encrypt_str = encrypt_str+cpu.ProcessorId.strip()
+        print ("cpu id:", cpu.ProcessorId.strip())
+    for physical_disk in c.Win32_DiskDrive():
+        encrypt_str = encrypt_str+physical_disk.SerialNumber.strip()
+        #硬盘序列号
+        print ('disk id:', physical_disk.SerialNumber.strip())
+    for board_id in c.Win32_BaseBoard():
+        #主板序列号
+        encrypt_str = encrypt_str+board_id.SerialNumber.strip()
+        print ("main board id:",board_id.SerialNumber.strip())
+    for bios_id in c.Win32_BIOS():
+        #bios 序列号
+        encrypt_str = encrypt_str+bios_id.SerialNumber.strip()
+        print ("bios number:", bios_id.SerialNumber.strip())
+    print(encrypt_str)
+    m = hashlib.md5()
+    m.update(encrypt_str.encode(encoding='UTF-8'))
+    encrypt_str = m.hexdigest()
+    print(encrypt_str)
+    return encrypt_str
 
 
 class BettingThread(threading.Thread):
@@ -180,29 +206,37 @@ class BettingThread(threading.Thread):
             keys = sorted(self.roads)
             tmp  = ""
             for key in keys:
-                tmp = tmp + self.roads[key][buyno - 1]
+                tmp = tmp + str(self.roads[key][buyno - 1])
+
+            self.logprint("位置" + str(buyno) + "***当前路单***" + tmp)
 
             for rule in BALL_NO_DATA["Temp_Strategy"]["rules"]:
                 #[大大， 小小]
-                tmp1 = rule[0]
-                tmp2 = ""
-
-                #self.logprint("位置" + str(buyno) + "***查找规则***" + tmp1)
-
-                if len(tmp) > len(tmp1):
-                    tmp2 = tmp[len(tmp) - len(tmp1):]
-                else:
-                    tmp2 = tmp
-
-                #self.logprint("位置" + str(buyno) + "***路单规则***" + tmp)
-
-                if tmp1 == tmp2:
-                    BALL_NO_DATA["Temp_Rule"] = rule
+                rule0 = rule[0]
+                self.logprint("位置" + str(buyno) + "***查找规则***" + rule0)
+                len_keys  = len(keys)
+                len_rule0 = len(rule0)
+                isEqual   = False
+                if len_keys >= len_rule0:
+                    isEqual = True
+                    start   = len_keys - len_rule0
+                    for idx in range(0, len_rule0):
+                        #[大， 双]
+                        _isEqual = False
+                        roadKey  = keys[start + idx]
+                        for item in self.roads[roadKey][buyno - 1]:
+                            if item == rule0[idx]:
+                                _isEqual = True
+                        if _isEqual == False:
+                            isEqual = False
+                            break
+                if isEqual:
+                    BALL_NO_DATA["Temp_Rule"]     = rule
                     BALL_NO_DATA["Temp_Rule_Idx"] = 0
                     self.logprint("位置" + str(buyno) + "***规则符合条件***" + str(rule[0]) + "=" + str(rule[1]))
                     break
                 else:
-                    #self.logprint("位置" + str(buyno) + "***规则不符合条件***" + str(rule[0]) + "=" + str(rule[1]))  
+                    self.logprint("位置" + str(buyno) + "***规则不符合条件***" + str(rule[0]) + "=" + str(rule[1]))  
                     pass 
         else: 
             self.logprint("位置" + str(buyno) + "***回揽未结束***")
@@ -309,28 +343,28 @@ class BettingThread(threading.Thread):
         Last_Award_Issue = ""
         Last_Award_Issue_Have = False
         self.roads = {}
-        SleepTime             = 1
 
         BALL_NO_DATAS = {}
         for buyno in buynos:
             BALL_NO_DATA = {}
-            BALL_NO_DATA["Temp_Strategy"]=self.Strategys[1]
-            BALL_NO_DATA["Temp_Monery"]=self.Strategys[1]["monerys"][0]
-            BALL_NO_DATA["Temp_Win"]=0
-            BALL_NO_DATA["Temp_Strategy_Win"]= 0
-            BALL_NO_DATA["Temp_Rule"]=None
-            BALL_NO_DATA["Temp_Rule_Idx"]=0
-            BALL_NO_DATAS[buyno] = BALL_NO_DATA
+            BALL_NO_DATA["Temp_Strategy"]        =    self.Strategys[1]
+            BALL_NO_DATA["Temp_Monery"]            =    self.Strategys[1]["monerys"][0]
+            BALL_NO_DATA["Temp_Win"]            =    0
+            BALL_NO_DATA["Temp_Strategy_Win"]    =     0
+            BALL_NO_DATA["Temp_Rule"]            =    None
+            BALL_NO_DATA["Temp_Rule_Idx"]        =    0
+            BALL_NO_DATAS[buyno]                 =     BALL_NO_DATA
 
         if test_flag == False:
             pass
         else:
             Test_no = 0
-        
+
+        SleepTime  = 5        
         while self.stopped == False:
             try:
                 SleepTime = SleepTime + 1
-                if SleepTime < 2:
+                if SleepTime < 5:
                     time.sleep(1)
                     continue
                 SleepTime = 0  
@@ -387,10 +421,19 @@ class BettingThread(threading.Thread):
                     continue
                     
                 def GetType(BallNo):
+                    type1 = "大"
                     if int(BallNo) > 5:
-                        return '大'
+                        type1 = '大'
                     else:
-                        return '小'   
+                        type1 = '小'
+                        
+                    type2 = "单"        
+                    if int(BallNo) % 2 == 1:
+                        type2 = '单'
+                    else:
+                        type2 = '双'
+                    return [type1, type2]
+                        
                             
                 Cur_Award_Issue_Road = [GetType(Ball01), GetType(Ball02), GetType(Ball03), GetType(Ball04), GetType(Ball05), GetType(Ball06), GetType(Ball07), GetType(Ball08), GetType(Ball09), GetType(Ball10)]
                 self.roads[Cur_Award_Issue2] = Cur_Award_Issue_Road
@@ -520,20 +563,63 @@ class Application(tk.Tk):
             self.cutin.set(1000)
             self.conf.add_section("cutin")
             self.conf.set("cutin", "value", "1000")  
-            
+
+        ##############
+        self.phydriverserial = tk.StringVar()    
+        self.regcode = tk.StringVar()    
+           
         self.createWidgets()
         
 
     def createWidgets(self):
         # Tab Control introduced here --------------------------------------
         self.tabControl = ttk.Notebook(self)          # Create Tab Control
-        self.tab1 = ttk.Frame(self.tabControl)            # Create a tab
-        self.tabControl.add(self.tab1, text='第一页')      # Add the tab
-        self.tabControl.pack(expand=1, fill="both")  # Pack to make visible
+        self.tab1 = ttk.Frame(self.tabControl)        # Create a tab
+        self.tab2 = ttk.Frame(self.tabControl)        # Create a tab
+        self.tabControl.add(self.tab1, text='操作区')  # Add the tab
+        self.tabControl.add(self.tab2, text='注册')  # Add the tab
+        self.tabControl.pack(expand=1, fill="both")   # Pack to make visible
         # ~ Tab Control introduced here
-                                                           # -----------------------------------------
+        # -----------------------------------------
         self.createTab1()
+        self.createTab2()
+
+    def createTab2(self):   
+        #---------------Tab2控件介绍------------------#
+        # Modified Button Click Function
+        # We are creating a container tab3 to hold all other widgets
+        self.MyFrame2 = ttk.LabelFrame(self.tab2, text='操作区')
+        self.MyFrame2.grid(column=0, row=0, padx=8, pady=4)
+        #行
+        line = 0
+        # Changing our Label
+        ttk.Label(self.MyFrame2, text="机器码:").grid(column=0, row=line, sticky='W')  
+
+        # Adding a Textbox Entry widget
+        self.phydriverserialEntered = ttk.Entry(self.MyFrame2, width=60, textvariable=self.phydriverserial)  
+        self.phydriverserialEntered.grid(column=1, row=line, sticky='W', columnspan=2)
+
+        line = line + 1
+        # Changing our Label
+        ttk.Label(self.MyFrame2, text="").grid(column=0, row=line, sticky='W')  
+
+        line = line + 1
+        # Changing our Label
+        ttk.Label(self.MyFrame2, text="注册码:").grid(column=0, row=line, sticky='W')  
+
+        # Adding a Textbox Entry widget
+        self.regcodeEntered = ttk.Entry(self.MyFrame2, width=60, textvariable=self.regcode)  
+        self.regcodeEntered.grid(column=1, row=line, sticky='W', columnspan=2)
+
+        line = line + 1
+        # Changing our Label
+        ttk.Label(self.MyFrame2, text="").grid(column=0, row=line, sticky='W') 
+
+        line = line + 1
+        self.btaction = ttk.Button(self.MyFrame2,text="注册",width=10,command=self.enterMe)
+        self.btaction.grid(column=2,row=line,sticky='E')   
         
+          
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
         # Modified Button Click Function
@@ -543,13 +629,11 @@ class Application(tk.Tk):
         # Using a scrolled Text control
         self.scrolW = 60
         self.scrolH = 15
-        
-    
         #行
         line = 0
         # Changing our Label
         ttk.Label(self.MyFrame, text="地址:").grid(column=0, row=line, sticky='W')  
-  
+
         # Adding a Textbox Entry widget
         self.urlEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.url)  
         self.urlEntered.grid(column=1, row=line, sticky='W')
@@ -567,7 +651,7 @@ class Application(tk.Tk):
         self.buynoEntered.grid(column=1, row=line, sticky='W')             
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="配置信息").grid(column=0,row=line,sticky='W',columnspan=3)
+        ttk.Label(self.MyFrame, text="配置信息(大小单双)").grid(column=0,row=line,sticky='W',columnspan=3)
         #行
         line = line + 1
         self.textStrategy = scrolledtext.ScrolledText(self.MyFrame,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
