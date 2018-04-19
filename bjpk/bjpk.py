@@ -37,22 +37,28 @@ import json
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-#本方案累计赢[1000]元跳转到方案[1]
-#本方案累计输[1000]元跳转到方案[1]
+#本方案累积赢[1000]元跳转到方案[1]
+#本方案累积输[1000]元跳转到方案[1]
 
 
 
 #input = '1:3.125 false,hello'
-#input = '本方案累计赢[1000]元跳转到方案[1]'
+#input = '本方案累积赢[1000]元跳转到方案[1]'
 #(a, b, c, d) = re.search('^(\d+):([\d.]+) (\w+),(\w+)$',input).groups()
-#(a, b) = re.search('^本方案累计赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input).groups()
+#(a, b) = re.search('^本方案累积赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input).groups()
 #print(a)
 #print(b)
 
 
 
-test_flag = False
+import os
+import time
+import webbrowser
+m=hashlib.md5()
 
+test_flag = False
+softname  = "bjpk"
+version   = "1.0.0.0"
 
 #声明一个CookieJar对象实例来保存cookie
 cookiejar = cookiejar = http.cookiejar.CookieJar()
@@ -75,31 +81,95 @@ else:
 
 
 
-def get_phydriverserial_info():
+def reg(softname, version, phydriverserial, regkey):
+    signkey = '&key=0z#z#b#094kls#040jkas892#z#z#b#0' 
+    data= {}
+    data["softname"]            = softname
+    data["version"]             = version
+    data["phydriverserial"]     = phydriverserial
+    data["regkey"]              = regkey
+    keys = sorted(data)
+    src  = ""
+    for key in keys:
+        if len(src):
+            src = src + "&"
+        src = src + key
+        src = src + "="
+        src = src + data[key]
+    str = src + signkey
+    str = str.encode("utf8")
+    #phydriverserial=123&regkey=456&softname=bjpk&version=1.0.0.0&key=0z#z#b#094kls#040jkas892#z#z#b#0
+    #phydriverserial=123&regkey=456&softname=bjpk&version=1.0.0.0&key=0z#z#b#094kls#040jkas892#z#z#b#0
+    m.update( str )
+    result = m.hexdigest()
+    data   = src.encode("utf8")
+    url    = "http://duboren.com/share/share_registdeviceid?sign=%s"%(result)
+    request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
+    try:
+        #response = urllib.request.urlopen(request)
+        response = opener.open(request, timeout = 5)
+        html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        #print('The server couldn\'t fulfill the request.')
+        #print('Error code: ' + str(e.code))
+        #print('Error reason: ' + e.reason)
+        print("错误","网络连接错误！")
+        return False
+    except urllib.error.URLError as e:
+        #print('We failed to reach a server.')
+        #print('Reason: ' + e.reason)
+        print("错误","网络连接错误！")
+        return False
+    except Exception as msg:
+        print("Exception:%s" % msg)
+        return False
+    except:
+        #print("error lineno:" + str(sys._getframe().f_lineno))
+        print("错误","网络连接错误！")
+        return False
+    html = html.strip()
+    #print(html)
+    json_data = json.loads(html)
+    #{"msg":"登录成功.","success":true,"datas":{"ckregkey":false,"topics":[],"userid":175}}
+    if json_data["success"] != True:
+        print("错误","账号未注册！")
+        if "datas" in json_data:  
+            print("错误", json_data["datas"]["notice"])
+        return False
+    else:
+        if "datas" in json_data:
+            datas = json_data["datas"]
+            if "ckregkey" in datas:
+                if datas["ckregkey"] == True:
+                    return True
+        return False
+
+def get_phydriverserial_info(softname):
     tmplist = []
     encrypt_str = ""
     c = wmi.WMI ()
     for cpu in c.Win32_Processor():
         #cpu 序列号
         encrypt_str = encrypt_str+cpu.ProcessorId.strip()
-        print ("cpu id:", cpu.ProcessorId.strip())
+        #print ("cpu id:", cpu.ProcessorId.strip())
     for physical_disk in c.Win32_DiskDrive():
         encrypt_str = encrypt_str+physical_disk.SerialNumber.strip()
         #硬盘序列号
-        print ('disk id:', physical_disk.SerialNumber.strip())
+        #print ('disk id:', physical_disk.SerialNumber.strip())
     for board_id in c.Win32_BaseBoard():
         #主板序列号
         encrypt_str = encrypt_str+board_id.SerialNumber.strip()
-        print ("main board id:",board_id.SerialNumber.strip())
+        #print ("main board id:",board_id.SerialNumber.strip())
     for bios_id in c.Win32_BIOS():
         #bios 序列号
         encrypt_str = encrypt_str+bios_id.SerialNumber.strip()
-        print ("bios number:", bios_id.SerialNumber.strip())
-    print(encrypt_str)
+        #print ("bios number:", bios_id.SerialNumber.strip())
+    #print(encrypt_str)
+    encrypt_str = softname + encrypt_str
     m = hashlib.md5()
     m.update(encrypt_str.encode(encoding='UTF-8'))
     encrypt_str = m.hexdigest()
-    print(encrypt_str)
+    #print(encrypt_str)
     return encrypt_str
 
 
@@ -164,7 +234,7 @@ class BettingThread(threading.Thread):
                 BALL_NO_DATA["Temp_Rule_Idx"] = 0
                 BALL_NO_DATA["Temp_Monery"]   = BALL_NO_DATA["Temp_Strategy"]["monerys"][0]
 
-                self.logprint("位置" + str(buyno) + "***本方案累计赢跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
+                self.logprint("位置" + str(buyno) + "***本方案累积赢跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
                         
             #Faild = [1000, 1]    
             if BALL_NO_DATA["Temp_Strategy_Win"] < -int(BALL_NO_DATA["Temp_Strategy"]["jumps"]["Faild"][0]):
@@ -173,7 +243,7 @@ class BettingThread(threading.Thread):
                 BALL_NO_DATA["Temp_Rule"]     = None
                 BALL_NO_DATA["Temp_Rule_Idx"] = 0
                 BALL_NO_DATA["Temp_Monery"]   = BALL_NO_DATA["Temp_Strategy"]["monerys"][0]
-                self.logprint("位置" + str(buyno) + "***本方案累计输跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
+                self.logprint("位置" + str(buyno) + "***本方案累积输跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
         else:
             self.logprint("位置" + str(buyno) + "***未下注***")
 
@@ -566,10 +636,20 @@ class Application(tk.Tk):
 
         ##############
         self.phydriverserial = tk.StringVar()    
-        self.regcode = tk.StringVar()    
-           
+        self.phydriverserial.set(get_phydriverserial_info(softname))
+
+        self.regcode = tk.StringVar()  
+        if self.conf.has_section("regcode") == True:
+            self.regcode.set(self.conf.get("regcode", "value"))
+        else:
+            self.regcode.set(self.phydriverserial.get())
+            self.conf.add_section("regcode")
+            self.conf.set("regcode", "value", self.phydriverserial.get())  
+        self.tips = tk.StringVar()  
+        ##############
         self.createWidgets()
-        
+        self.btreg();
+
 
     def createWidgets(self):
         # Tab Control introduced here --------------------------------------
@@ -581,24 +661,36 @@ class Application(tk.Tk):
         self.tabControl.pack(expand=1, fill="both")   # Pack to make visible
         # ~ Tab Control introduced here
         # -----------------------------------------
+        # Using a scrolled Text control
+        self.scrolW = 60
+        self.scrolH = 15
         self.createTab1()
         self.createTab2()
+
+    def btreg(self):
+        self.reg = False;
+        if reg(softname, version, self.phydriverserial.get(), self.regcode.get()):
+            self.reg = True
+            self.tips.set("登录成功")
+        else:
+            self.tips.set("注册码已经过期")
 
     def createTab2(self):   
         #---------------Tab2控件介绍------------------#
         # Modified Button Click Function
         # We are creating a container tab3 to hold all other widgets
         self.MyFrame2 = ttk.LabelFrame(self.tab2, text='操作区')
-        self.MyFrame2.grid(column=0, row=0, padx=8, pady=4)
+        self.MyFrame2.grid(column=0, row=0, padx=8, pady=4, sticky=E+W)
+        
         #行
         line = 0
         # Changing our Label
         ttk.Label(self.MyFrame2, text="机器码:").grid(column=0, row=line, sticky='W')  
-
+        
         # Adding a Textbox Entry widget
-        self.phydriverserialEntered = ttk.Entry(self.MyFrame2, width=60, textvariable=self.phydriverserial)  
-        self.phydriverserialEntered.grid(column=1, row=line, sticky='W', columnspan=2)
-
+        self.phydriverserialEntered = ttk.Entry(self.MyFrame2, width=75, state='readonly', textvariable=self.phydriverserial)  
+        self.phydriverserialEntered.grid(column=1, row=line, sticky='W', columnspan=3)
+        
         line = line + 1
         # Changing our Label
         ttk.Label(self.MyFrame2, text="").grid(column=0, row=line, sticky='W')  
@@ -608,64 +700,64 @@ class Application(tk.Tk):
         ttk.Label(self.MyFrame2, text="注册码:").grid(column=0, row=line, sticky='W')  
 
         # Adding a Textbox Entry widget
-        self.regcodeEntered = ttk.Entry(self.MyFrame2, width=60, textvariable=self.regcode)  
-        self.regcodeEntered.grid(column=1, row=line, sticky='W', columnspan=2)
+        self.regcodeEntered = ttk.Entry(self.MyFrame2, width=75, textvariable=self.regcode)  
+        self.regcodeEntered.grid(column=1, row=line, sticky='W', columnspan=3)
 
         line = line + 1
         # Changing our Label
-        ttk.Label(self.MyFrame2, text="").grid(column=0, row=line, sticky='W') 
+        ttk.Label(self.MyFrame2, text="").grid(column=0, row=line, sticky='W', columnspan=3) 
 
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame2,text="注册",width=10,command=self.enterMe)
-        self.btaction.grid(column=2,row=line,sticky='E')   
-        
-          
+        # Changing our Label
+        ttk.Label(self.MyFrame2, text="", textvariable=self.tips, background='red', compound = 'right').grid(column=0, row=line, sticky='W', columnspan=3) 
+
+        line = line + 1
+        self.btaction = ttk.Button(self.MyFrame2,text="注册",width=10,command=self.btreg)
+        self.btaction.grid(column=3, row=line, sticky='E')   
+  
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
         # Modified Button Click Function
         # We are creating a container tab3 to hold all other widgets
-        self.MyFrame = ttk.LabelFrame(self.tab1, text='操作区')
-        self.MyFrame.grid(column=0, row=0, padx=8, pady=4)
-        # Using a scrolled Text control
-        self.scrolW = 60
-        self.scrolH = 15
+        self.MyFrame1 = ttk.LabelFrame(self.tab1, text='操作区')
+        self.MyFrame1.grid(column=0, row=0, padx=8, pady=4, sticky=W)
         #行
         line = 0
         # Changing our Label
-        ttk.Label(self.MyFrame, text="地址:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.MyFrame1, text="地址:").grid(column=0, row=line, sticky='W')  
 
         # Adding a Textbox Entry widget
-        self.urlEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.url)  
+        self.urlEntered = ttk.Entry(self.MyFrame1, width=60, textvariable=self.url)  
         self.urlEntered.grid(column=1, row=line, sticky='W')
 
-        self.btaction = ttk.Button(self.MyFrame,text="进入",width=10,command=self.enterMe)
+        self.btaction = ttk.Button(self.MyFrame1,text="进入",width=10,command=self.enterMe)
         self.btaction.grid(column=2,row=line,sticky='E')  
         
         #行
         line = line + 1
         # Changing our Label
-        ttk.Label(self.MyFrame, text="购买位置:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.MyFrame1, text="购买位置:").grid(column=0, row=line, sticky='W')  
   
         # Adding a Textbox Entry widget
-        self.buynoEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.buyno)  
+        self.buynoEntered = ttk.Entry(self.MyFrame1, width=60, textvariable=self.buyno)  
         self.buynoEntered.grid(column=1, row=line, sticky='W')             
         #行
         line = line + 1
-        ttk.Label(self.MyFrame, text="配置信息(大小单双)").grid(column=0,row=line,sticky='W',columnspan=3)
+        ttk.Label(self.MyFrame1, text="配置信息(大小单双)").grid(column=0,row=line,sticky='W',columnspan=3)
         #行
         line = line + 1
-        self.textStrategy = scrolledtext.ScrolledText(self.MyFrame,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
+        self.textStrategy = scrolledtext.ScrolledText(self.MyFrame1,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
         self.textStrategy.grid(column=0,row=line,sticky='WE',columnspan=3)
         
         #行
         line = line + 1
-        cbtpump = Checkbutton(self.MyFrame, text = "抽水", variable = self.pump, command = self.processCheckbutton)
+        cbtpump = Checkbutton(self.MyFrame1, text = "抽水", variable = self.pump, command = self.processCheckbutton)
         cbtpump.grid(row = line, column = 0)  
         #行
         line = line + 1
-        backUp0 = Radiobutton(self.MyFrame, text = "不回揽", bg = "red", variable = self.backup, value = 0, command = self.processRaidobutton)
-        backUp1 = Radiobutton(self.MyFrame, text = "中回揽", bg = "yellow", variable=self.backup, value = 1, command = self.processRaidobutton)
-        backUp2 = Radiobutton(self.MyFrame, text = "错回揽", bg = "blue", variable=self.backup, value = 2, command = self.processRaidobutton)
+        backUp0 = Radiobutton(self.MyFrame1, text = "不回揽", bg = "red", variable = self.backup, value = 0, command = self.processRaidobutton)
+        backUp1 = Radiobutton(self.MyFrame1, text = "中回揽", bg = "yellow", variable=self.backup, value = 1, command = self.processRaidobutton)
+        backUp2 = Radiobutton(self.MyFrame1, text = "错回揽", bg = "blue", variable=self.backup, value = 2, command = self.processRaidobutton)
         backUp0.grid(row=line, column=0)
         backUp1.grid(row=line, column=1)
         backUp2.grid(row=line, column=2)
@@ -673,37 +765,37 @@ class Application(tk.Tk):
         #行
         line = line + 1
         # Changing our Label
-        ttk.Label(self.MyFrame, text="赢切出:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.MyFrame1, text="赢切出:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget
-        self.cutoutEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.cutout)  
+        self.cutoutEntered = ttk.Entry(self.MyFrame1, width=60, textvariable=self.cutout)  
         self.cutoutEntered.grid(column=1, row=line, sticky='W')
 
         #行
         line = line + 1
         # Changing our Label
-        ttk.Label(self.MyFrame, text="输切入:").grid(column=0, row=line, sticky='W')  
+        ttk.Label(self.MyFrame1, text="输切入:").grid(column=0, row=line, sticky='W')  
         # Adding a Textbox Entry widget
-        self.cutinEntered = ttk.Entry(self.MyFrame, width=60, textvariable=self.cutin)  
+        self.cutinEntered = ttk.Entry(self.MyFrame1, width=60, textvariable=self.cutin)  
         self.cutinEntered.grid(column=1, row=line, sticky='W')           
         #行
         # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame,text="保存",width=10,command=self.save).grid(column=2,row=line,sticky='E')   
+        self.btaction = ttk.Button(self.MyFrame1,text="保存",width=10,command=self.save).grid(column=2,row=line,sticky='E')   
         #行
         line = line + 1
-        ttk.Label(self.MyFrame,text="日志信息:").grid(column=0,row=line,sticky='W')
+        ttk.Label(self.MyFrame1,text="日志信息:").grid(column=0,row=line,sticky='W')
         #行
         line = line + 1
-        self.textlog = scrolledtext.ScrolledText(self.MyFrame,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
+        self.textlog = scrolledtext.ScrolledText(self.MyFrame1,width=self.scrolW,height=self.scrolH,wrap=tk.WORD)
         self.textlog.grid(column=0,row=line,sticky='WE',columnspan=3)
         #行
         # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame,text="开始",width=10,command=self.clickMe)
+        self.btaction = ttk.Button(self.MyFrame1,text="开始",width=10,command=self.clickMe)
         self.btaction.grid(column=2,row=line,sticky='E')  
         
         # 一次性控制各控件之间的距离
-        for child in self.MyFrame.winfo_children(): 
+        for child in self.MyFrame1.winfo_children(): 
             child.grid_configure(padx=3,pady=1)
         # 单独控制个别控件之间的距离
         #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
@@ -744,7 +836,9 @@ class Application(tk.Tk):
         if self.Strategy == "":
             messagebox.showinfo("提示","停次数不能为空！")
             return
-        self.Paser()   
+        if self.Paser() == False:
+            messagebox.showinfo("提示","方案配置有问题！")
+            return     
         self.btaction.configure(text='关闭')
         self.thread = BettingThread(self)
         self.thread.start()
@@ -763,29 +857,35 @@ class Application(tk.Tk):
                     continue
                 if "rules" not in Strategy:
                     rules = []
-                    line = inblock.split("\n")
-                    for item in line:
-                        rule = re.split('=', item)
+                    lines = inblock.split("\n")
+                    if len(lines)==0:
+                        return False
+                    for line in lines:
+                        rule = re.split('=', line)
                         rules.append(rule) 
                     Strategy["rules"] = rules
                 elif "monerys" not in Strategy:
                     monerys = []
-                    line = inblock.split("\n")
-                    for item in line:
-                        monery = re.split('=',item)
+                    lines = inblock.split("\n")
+                    if len(lines)==0:
+                        return False
+                    for line in lines:
+                        monery = re.split('=',line)
                         monerys.append(monery) 
                     Strategy["monerys"] = monerys
                 elif "jumps" not in Strategy:
                     Jumps = {}
-                    #本方案累计赢[1000]元跳转到方案[1]
-                    #本方案累计输[1000]元跳转到方案[1]
-                    line = inblock.split("\n")
-                    for input in line:
-                        searchObj  = re.search('^本方案累计赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input)
+                    #本方案累积赢[1000]元跳转到方案[1]
+                    #本方案累积输[1000]元跳转到方案[1]
+                    lines = inblock.split("\n")
+                    if len(lines)==0:
+                        return False
+                    for line in lines:
+                        searchObj  = re.search('^本方案累积赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',line)
                         if searchObj:
                             (a, b) = searchObj .groups()
                             Jumps["Win"] = [a, b]
-                        searchObj  = re.search('^本方案累计输\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input)
+                        searchObj  = re.search('^本方案累积输\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',line)
                         if searchObj:
                             (a, b) = searchObj .groups()
                             Jumps["Faild"] = [a, b]
@@ -797,8 +897,8 @@ class Application(tk.Tk):
     def save(self):
         #增加新的section
         self.Strategy = self.textStrategy.get(1.0,END)
-        self.url = self.urlEntered.get()
-        self.buyno = self.buynoEntered.get()
+        self.url      = self.urlEntered.get()
+        self.buyno    = self.buynoEntered.get()
         self.conf.set("url","value",self.url)
         self.conf.set("buyno","value",self.buyno)
         self.conf.set("Strategy","value",self.Strategy)
@@ -810,7 +910,9 @@ class Application(tk.Tk):
         
         #写回配置文件
         self.conf.write(open("bjpk.txt","w"))
-        self.Paser()
+        if self.Paser() == False:
+            messagebox.showinfo("提示","方案配置有问题！")
+            return  
         messagebox.showinfo("提示","配置成功！")
         
     def Chosen(self,*args):
@@ -828,7 +930,7 @@ class Application(tk.Tk):
     
 def main():
     app = Application()
-    app.title("北京赛车 自动打码神器(开发者QQ：87954657)")
+    app.title("BBIN-北京赛车(双面玩法)(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
