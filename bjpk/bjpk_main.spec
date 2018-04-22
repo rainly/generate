@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['bjpk_main.py'],
-             pathex=['F:\\generate\\bjpk'],
+             pathex=['D:\\github\\generate1\\bjpk'],
              binaries=[],
              datas=[],
              hiddenimports=[],
