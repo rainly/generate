@@ -49,7 +49,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #print(a)
 #print(b)
 
-print(datetime.datetime.now().strftime('%Y-%m-%d'))
+#print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 import os
 import time
@@ -81,7 +81,7 @@ else:
 
 
 
-def reg(softname, version, phydriverserial, regkey):
+def httpreg(softname, version, phydriverserial, regkey):
     signkey = '&key=0z#z#b#094kls#040jkas892#z#z#b#0' 
     data= {}
     data["softname"]            = softname
@@ -190,8 +190,9 @@ class BettingThread(threading.Thread):
         return self.stopped
 
     def logprint(self, log):
-        print(log)
-        self.target.textlog.insert(tk.INSERT, log + "\n")
+        tf = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print(tf + log)
+        self.target.textlog.insert(tk.INSERT, tf + log + "\n")
 
     def delBallNo(self, road, buyno, BALL_NO_DATA):
         #Temp_Strategy         = BALL_NO_DATA["Temp_Strategy"]
@@ -200,6 +201,10 @@ class BettingThread(threading.Thread):
         #Temp_Strategy_Win     = BALL_NO_DATA["Temp_Strategy_Win"]
         #Temp_Rule             = BALL_NO_DATA["Temp_Rule"]
         #Temp_Rule_Idx         = BALL_NO_DATA["Temp_Rule_Idx"]
+        #BALL_NO_DATA["Temp_Cut"]             =  0
+        #BALL_NO_DATA["Temp_Cut_Flag"]        =  0
+        #self.cutin  = self.target.cutin.get()
+        #self.cutout = self.target.cutout.get()
 
         self.logprint("位置" + str(buyno) + "***当前方案***:" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
 
@@ -207,22 +212,38 @@ class BettingThread(threading.Thread):
     
         #处理中奖结果
         if BALL_NO_DATA["Temp_Rule"] != None:
-            if road[buyno - 1] == BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]]:
+            if  BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] in road[buyno - 1]:
                 Win = 1
                 BALL_NO_DATA["Temp_Win"]              = BALL_NO_DATA["Temp_Win"] + int(BALL_NO_DATA["Temp_Monery"][1])
-                BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] + int(BALL_NO_DATA["Temp_Monery"][1])    
+                BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] + int(BALL_NO_DATA["Temp_Monery"][1])
+                BALL_NO_DATA["Temp_Cut"]              = BALL_NO_DATA["Temp_Cut"] + int(BALL_NO_DATA["Temp_Monery"][1])
+
+                if BALL_NO_DATA["Temp_Cut"] == 1:
+                    BALL_NO_DATA["Temp_CutIn"]              = BALL_NO_DATA["Temp_CutIn"] + int(BALL_NO_DATA["Temp_Monery"][1])
+
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + BALL_NO_DATA["Temp_Monery"][1])
             else:
                 Win = 0
                 BALL_NO_DATA["Temp_Win"]              = BALL_NO_DATA["Temp_Win"] - int(BALL_NO_DATA["Temp_Monery"][1])
-                BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] - int(BALL_NO_DATA["Temp_Monery"][1])    
+                BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] - int(BALL_NO_DATA["Temp_Monery"][1])
+                BALL_NO_DATA["Temp_Cut"]              = BALL_NO_DATA["Temp_Cut"] - int(BALL_NO_DATA["Temp_Monery"][1])
+                
+                if BALL_NO_DATA["Temp_Cut"] == 1:
+                    BALL_NO_DATA["Temp_CutIn"]              = BALL_NO_DATA["Temp_CutIn"] - int(BALL_NO_DATA["Temp_Monery"][1])
+
                 self.logprint("位置" + str(buyno) + "***未中奖***")
+            
+            self.logprint("位置" + str(buyno) + "***当前输赢:" + str(BALL_NO_DATA["Temp_Win"]))
+            self.logprint("位置" + str(buyno) + "***当前方案输赢:" + str(BALL_NO_DATA["Temp_Strategy_Win"]))
+            self.logprint("位置" + str(buyno) + "***当前切入切出输赢:" + str(BALL_NO_DATA["Temp_Cut"]))
+            self.logprint("位置" + str(buyno) + "***当前切入输赢:" + str(BALL_NO_DATA["Temp_CutIn"]))
+            
             ##[1, 10, 2, 2]    
             for monery in BALL_NO_DATA["Temp_Strategy"]["monerys"]:
                 if  Win == 1 and monery[0] == BALL_NO_DATA["Temp_Monery"][2]:
                     BALL_NO_DATA["Temp_Monery"] = monery
                     break
-                if  Win == 0 and monery[0] == BALL_NO_DATA["Temp_Monery"][3]:
+                elif  Win == 0 and monery[0] == BALL_NO_DATA["Temp_Monery"][3]:
                     BALL_NO_DATA["Temp_Monery"] = monery
                     break
             self.logprint("位置" + str(buyno) + "***当前方案输赢:" + str(BALL_NO_DATA["Temp_Strategy_Win"]))
@@ -237,13 +258,25 @@ class BettingThread(threading.Thread):
                 self.logprint("位置" + str(buyno) + "***本方案累积赢跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
                         
             #Faild = [1000, 1]    
-            if BALL_NO_DATA["Temp_Strategy_Win"] < -int(BALL_NO_DATA["Temp_Strategy"]["jumps"]["Faild"][0]):
+            elif BALL_NO_DATA["Temp_Strategy_Win"] < -int(BALL_NO_DATA["Temp_Strategy"]["jumps"]["Faild"][0]):
                 BALL_NO_DATA["Temp_Strategy_Win"] = 0
                 BALL_NO_DATA["Temp_Strategy"] = self.Strategys[int(BALL_NO_DATA["Temp_Strategy"]["jumps"]["Faild"][1])]
                 BALL_NO_DATA["Temp_Rule"]     = None
                 BALL_NO_DATA["Temp_Rule_Idx"] = 0
                 BALL_NO_DATA["Temp_Monery"]   = BALL_NO_DATA["Temp_Strategy"]["monerys"][0]
+                
                 self.logprint("位置" + str(buyno) + "***本方案累积输跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
+
+            #切入切出
+            if BALL_NO_DATA["Temp_Cut"] > 0 and BALL_NO_DATA["Temp_Cut"] > self.cutout:
+                self.logprint("位置" + str(buyno) + "***切出***" + str(BALL_NO_DATA["Temp_Cut"]))
+                BALL_NO_DATA["Temp_Cut"] = 0
+                BALL_NO_DATA["Temp_Cut_Flag"] = 0
+            elif  BALL_NO_DATA["Temp_Cut"] < 0 and BALL_NO_DATA["Temp_Cut"] < -self.cutout:
+                self.logprint("位置" + str(buyno) + "***切入***" + str(BALL_NO_DATA["Temp_Cut"]))
+                BALL_NO_DATA["Temp_Cut"] = 0
+                BALL_NO_DATA["Temp_Cut_Flag"] = 1
+
         else:
             self.logprint("位置" + str(buyno) + "***未下注***")
 
@@ -315,8 +348,7 @@ class BettingThread(threading.Thread):
         #双面玩法
 
         if BALL_NO_DATA["Temp_Rule"] != None:
-            if test_flag == False:
-                #" + str(buyno) + "
+            if test_flag == False and BALL_NO_DATA["Temp_Cut_Flag"] == 1:
                 if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
                     driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[1]").click()
                 elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
@@ -332,9 +364,10 @@ class BettingThread(threading.Thread):
 
             self.logprint("位置" + str(buyno) + "***购买:" + BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] + "金额：" + str(BALL_NO_DATA["Temp_Monery"][1]))
 
-            if test_flag == False:
+            if test_flag == False and BALL_NO_DATA["Temp_Cut_Flag"] == 1:
                 time.sleep(1)
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
+                time.sleep(1)
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(BALL_NO_DATA["Temp_Monery"][1])
                 time.sleep(1)
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/button").click()
@@ -358,7 +391,11 @@ class BettingThread(threading.Thread):
 
         if len(self.Strategys) <= 0:
             self.logprint("错误 ==> 方案配置出错")
-            return   
+            return
+
+        self.cutin = self.target.cutin.get()
+        self.cutout = self.target.cutout.get()
+
 
         print(self.Strategys)  
                  
@@ -420,13 +457,17 @@ class BettingThread(threading.Thread):
         BALL_NO_DATAS = {}
         for buyno in buynos:
             BALL_NO_DATA = {}
-            BALL_NO_DATA["Temp_Strategy"]        =    self.Strategys[1]
-            BALL_NO_DATA["Temp_Monery"]          =    self.Strategys[1]["monerys"][0]
-            BALL_NO_DATA["Temp_Win"]             =    0
-            BALL_NO_DATA["Temp_Strategy_Win"]    =     0
-            BALL_NO_DATA["Temp_Rule"]            =    None
-            BALL_NO_DATA["Temp_Rule_Idx"]        =    0
-            BALL_NO_DATAS[buyno]                 =     BALL_NO_DATA
+            BALL_NO_DATA["Temp_Strategy"]        =  self.Strategys[1]
+            BALL_NO_DATA["Temp_Monery"]          =  self.Strategys[1]["monerys"][0]
+            BALL_NO_DATA["Temp_Win"]             =  0
+            BALL_NO_DATA["Temp_Strategy_Win"]    =  0
+            BALL_NO_DATA["Temp_Rule"]            =  None
+            BALL_NO_DATA["Temp_Rule_Idx"]        =  0
+
+            BALL_NO_DATA["Temp_Cut"]             =  0
+            BALL_NO_DATA["Temp_Cut_Flag"]        =  0
+            BALL_NO_DATA["Temp_CutIn"]           =  0
+            BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
 
         if test_flag == False:
             pass
@@ -455,11 +496,10 @@ class BettingThread(threading.Thread):
                 if Cur_Award_Issue1 == "" or Cur_Award_Issue2 == "":
                     continue
 
-                #No. 20180422-
+
                 Cur_Award_Issue1 = Cur_Award_Issue1.replace(headflag, "")
                 Cur_Award_Issue2 = Cur_Award_Issue2.replace(headflag, "")
-                #print(Cur_Award_Issue1)
-                #print(Cur_Award_Issue2)
+
                 
                 if int(Cur_Award_Issue2) + 1 != int(Cur_Award_Issue1):
                     self.logprint("***等待开奖***")   
@@ -643,7 +683,7 @@ class Application(tk.Tk):
         self.tips = tk.StringVar()  
         ##############
         self.createWidgets()
-        self.btreg();
+        self.regMe();
 
 
     def createWidgets(self):
@@ -662,9 +702,9 @@ class Application(tk.Tk):
         self.createTab1()
         self.createTab2()
 
-    def btreg(self):
+    def regMe(self):
         self.reg = False;
-        if reg(softname, version, self.phydriverserial.get(), self.regcode.get()):
+        if httpreg(softname, version, self.phydriverserial.get(), self.regcode.get()):
             self.reg = True
             self.tips.set("登录成功")
         else:
@@ -707,8 +747,8 @@ class Application(tk.Tk):
         ttk.Label(self.MyFrame2, text="", textvariable=self.tips, background='red', compound = 'right').grid(column=0, row=line, sticky='W', columnspan=3) 
 
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame2,text="注册",width=10,command=self.btreg)
-        self.btaction.grid(column=3, row=line, sticky='E')   
+        self.btreg = ttk.Button(self.MyFrame2,text="注册",width=10,command=self.regMe)
+        self.btreg.grid(column=3, row=line, sticky='E')   
   
     def createTab1(self):
         #---------------Tab1控件介绍------------------#
@@ -725,8 +765,8 @@ class Application(tk.Tk):
         self.urlEntered = ttk.Entry(self.MyFrame1, width=60, textvariable=self.url)  
         self.urlEntered.grid(column=1, row=line, sticky='W')
 
-        self.btaction = ttk.Button(self.MyFrame1,text="进入",width=10,command=self.enterMe)
-        self.btaction.grid(column=2,row=line,sticky='E')  
+        self.btenter = ttk.Button(self.MyFrame1,text="进入",width=10,command=self.enterMe)
+        self.btenter.grid(column=2,row=line,sticky='E')  
         
         #行
         line = line + 1
@@ -775,7 +815,8 @@ class Application(tk.Tk):
         #行
         # Adding a Button
         line = line + 1
-        self.btaction = ttk.Button(self.MyFrame1,text="保存",width=10,command=self.save).grid(column=2,row=line,sticky='E')   
+        self.btsave = ttk.Button(self.MyFrame1,text="保存",width=10,command=self.saveMe)
+        self.btsave.grid(column=2,row=line,sticky='E')   
         #行
         line = line + 1
         ttk.Label(self.MyFrame1,text="日志信息:").grid(column=0,row=line,sticky='W')
@@ -793,7 +834,6 @@ class Application(tk.Tk):
         for child in self.MyFrame1.winfo_children(): 
             child.grid_configure(padx=3,pady=1)
         # 单独控制个别控件之间的距离
-        #self.btaction.grid(column=2,row=1,rowspan=2,padx=6)
         #---------------Tab1控件介绍------------------#
         
         self.urlEntered.insert(END,self.url)
@@ -831,9 +871,15 @@ class Application(tk.Tk):
         if self.Strategy == "":
             messagebox.showinfo("提示","停次数不能为空！")
             return
+        
         if self.Paser() == False:
             messagebox.showinfo("提示","方案配置有问题！")
-            return     
+            return  
+
+        if self.reg == False:
+            messagebox.showinfo("提示","注册码已经过期!")
+            return
+            
         self.btaction.configure(text='关闭')
         self.thread = BettingThread(self)
         self.thread.start()
@@ -841,6 +887,7 @@ class Application(tk.Tk):
     def Paser(self):
         Jump_idx = 0
         self.Strategys = {}
+        self.Strategy = self.textStrategy.get(1.0,END)
         blocks = self.Strategy.split("==============================")
         for block in blocks:
             if block == "" or block == "\n":
@@ -888,8 +935,9 @@ class Application(tk.Tk):
             Jump_idx = Jump_idx + 1
             Strategy["Jump_idx"]     = Jump_idx
             self.Strategys[Jump_idx] = Strategy
-        return True        
-    def save(self):
+        return True    
+        
+    def saveMe(self):
         #增加新的section
         self.Strategy = self.textStrategy.get(1.0,END)
         self.url      = self.urlEntered.get()

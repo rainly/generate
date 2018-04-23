@@ -33,7 +33,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #重庆时时彩
 #http://kaijiang.500.com/static/public/ssc/xml/qihaoxml/20180322.xml?_A=PEQZSKNM1521729618019
 
-ssc_con = {
+ssc_dict = {
         "北京11选5":{ "type":1, "head":"http://kaijiang.500.com/static/info/kaijiang/xml/bjsyxw/", "end":".xml?_A=LVJPOEQK1521729306270"},
         "北京PK拾":{ "type":2, "head":"http://kaijiang.500.com/static/info/kaijiang/xml/bjpkshi/", "end":".xml?_A=FGDQZMKT1521729519875"},
         "江苏快3":{ "type":3, "head":"http://kaijiang.500.com/static/info/kaijiang/xml/jsk3/", "end":".xml?_A=PUZYNSBT1521729576222"},
@@ -51,7 +51,7 @@ def main():
 
     # 连接数据库
     connect = pymysql.Connect(
-        host='115.126.47.35',
+        host='127.0.0.1',
         port=3306,
         user='root',
         passwd='zaq!@#$1234rfv',
@@ -91,13 +91,16 @@ def main():
     #################################################
     day = 0
     while True:#无限循环
-        #time.sleep(1)
+        time.sleep(30)
+        if day > 2:
+            day = 0;
         print('获取数据')
         print(get_days_before_today(day).strftime('%Y-%m-%d'))
+        
     
-        for key in ssc_con:
+        for key in ssc_dict:
             print(key)
-            url = ssc_con[key]["head"] + get_days_before_today(day).strftime('%Y%m%d') + ssc_con[key]["end"]   
+            url = ssc_dict[key]["head"] + get_days_before_today(day).strftime('%Y%m%d') + ssc_dict[key]["end"]   
             try:
                 html = ""
                 sql = ""
@@ -116,7 +119,7 @@ def main():
                     num  = num + 1
                     
                     sql  = sql + "(%d, '%s', '%s', '%s')"
-                    data = (ssc_con[key]["type"], row["expect"], row["opencode"], row["opentime"])
+                    data = (ssc_dict[key]["type"], row["expect"], row["opencode"], row["opentime"])
                     sql  = sql % data
                 if num > 0:
                     sql = sql + "on duplicate key update ssc_data.opencode = values(ssc_data.opencode)"
