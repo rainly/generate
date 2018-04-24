@@ -1,0 +1,28 @@
+
+676707
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[2]/div[2]
+
+676706
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[1]
+
+Ball01 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[1]").text
+Ball02 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[2]").text
+Ball03 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[3]").text
+Ball04 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[4]").text
+Ball05 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[5]").text
+Ball06 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[6]").text
+Ball07 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[7]").text
+Ball08 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[8]").text
+Ball09 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[9]").text
+Ball10 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[2]/span[10]").text
+
+
+6705
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[1]/div[1]
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[1]/div[2]/span[1]
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[1]/div[2]/span[2]
+
+6704
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[2]/div[1]
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[2]/div[2]/span[1]
+//*[@id="app"]/div[1]/div/main/div[2]/div[2]/div[1]/div[4]/div[2]/div[2]/span[2]
