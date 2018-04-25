@@ -108,11 +108,53 @@ headers = { 'User-Agent' : user_agent }
 #64801
 #print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
-#t = time.time()
-#print(str(int(round(t))))
+t = time.time()
+print(str(int(round(t))))
+time.sleep(2)
+t = time.time()
+int(round(t))
 
+lastSMS = 0
+def sendSMS(phone, msg):
+    global lastSMS
+    now = time.time()
+    now = int(round(now))
+    if now - lastSMS < 60 * 5:
+        print("不发送")
+        return
+    
+    lastSMS = now;
+    phone = phone.encode(encoding='UTF8')  
+    msg   = msg.encode(encoding='UTF8')  
+    url_agent = "http://duboren.com/ttsms.php??phone=%s&msg=%s"%(phone, msg)
+    request = urllib.request.Request(url_agent, headers = headers)
+    try:
+        #response = urllib.request.urlopen(request)
+        response = opener.open(request, timeout = 5)
+        html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        #print('The server couldn\'t fulfill the request.')
+        #print('Error code: ' + str(e.code))
+        #print('Error reason: ' + e.reason)
+        print("错误","网络连接错误！")
+        return False
+    except urllib.error.URLError as e:
+        #print('We failed to reach a server.')
+        #print('Reason: ' + e.reason)
+        print("错误","网络连接错误！")
+        return False
+    except Exception as msg:
+        print("Exception:%s" % msg)
+        return False
+    except:
+        #print("error lineno:" + str(sys._getframe().f_lineno))
+        print("错误","网络连接错误！")
+        return False
+    html = html.strip()
+    print(html)
 
-
+sendSMS('18150155123', '网络连接错误')
+sendSMS('18150155123', '网络连接错误')
         
 class ServerThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
@@ -174,18 +216,23 @@ class ServerThread(threading.Thread):
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except Exception as msg:
                     print("Exception:%s" % msg)
+                    print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except:
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 #print(html)
                 soup = BeautifulSoup(html, "lxml")
@@ -259,18 +306,23 @@ class ClientThread(threading.Thread):
                 print('Error code: ' + str(e.code))
                 #print('Error reason: ' + e.reason)
                 print("错误 ==> 网络连接错误！")
+                sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                 continue
             except urllib.error.URLError as e:
                 print('We failed to reach a Betting.')
                 #print('Reason: ' + e.reason)
                 print("错误 ==> 网络连接错误！")
+                sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                 continue
             except Exception as msg:
                 print("Exception:%s" % msg)
+                print("错误 ==> 网络连接错误！")
+                sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                 continue
             except:
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
+                sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                 continue          
             try:
                 #print(html)
@@ -382,18 +434,23 @@ class ClientThread(threading.Thread):
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except Exception as msg:
                     print("Exception:%s" % msg)
+                    print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 except:
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
+                    sendSMS(self.target.conf_phone.get(), "网络连接错误！")
                     continue
                 #print(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
@@ -407,7 +464,7 @@ class ClientThread(threading.Thread):
                     print("****跟单失败****")
                 g_order_dict[item[0]] = 1            
             ###############################
- 
+    
 
  
 class Application(tk.Tk):
@@ -427,6 +484,14 @@ class Application(tk.Tk):
             self.conf_pl.set("")
             self.conf.add_section("pl")
             self.conf.set("pl", "value", "")
+            
+        self.conf_phone = tk.StringVar()    
+        if self.conf.has_section("phone") == True:
+            self.conf_phone.set(self.conf.get("phone", "value"))
+        else:
+            self.conf_phone.set("")
+            self.conf.add_section("phone")
+            self.conf.set("phone", "value", "")
             
         # 复选框
         self.conf_ck = tk.IntVar()   # 用来获取复选框是否被勾选，通过chVarDis.get()来获取其的状态,其状态值为int类型 勾选为1  未勾选为0 
@@ -525,6 +590,14 @@ class Application(tk.Tk):
         # Adding a Textbox Entry widget  
         self.conf_plEntered = ttk.Entry(self.conf_MyFrame, width=60, textvariable=self.conf_pl)  
         self.conf_plEntered.grid(column=1, row=line, sticky='W')   
+        
+        #行
+        line = line + 1
+        # Changing our Label  
+        ttk.Label(self.conf_MyFrame, text="通知手机号:").grid(column=0, row=line, sticky='W')  
+        # Adding a Textbox Entry widget  
+        self.conf_phoneEntered = ttk.Entry(self.conf_MyFrame, width=60, textvariable=self.conf_phone)  
+        self.conf_phoneEntered.grid(column=1, row=line, sticky='W')           
     
         line = line + 1
         self.conf_check = tk.Checkbutton(self.conf_MyFrame, text="自动获取账号", variable=self.conf_ck)        # text为该复选框后面显示的名称, variable将该复选框的状态赋值给一个变量，当state='disabled'时，该复选框为灰色，不能点的状态
@@ -547,7 +620,9 @@ class Application(tk.Tk):
         #增加新的section
         self.conf.set("searchText", "value", self.searchText) 
         self.conf.set("pl", "value", self.conf_pl.get())   
-        self.conf.set("ck", "value", str(self.conf_ck.get()))     
+        self.conf.set("ck", "value", str(self.conf_ck.get()))   
+        self.conf.set("phone", "value", self.conf_phone.get())  
+        
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
         self.parseUser()

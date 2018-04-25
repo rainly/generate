@@ -68,3 +68,6 @@ value = cb9999
 [ck]
 value = 0
 
+[phone]
+value = 18150155123
+
