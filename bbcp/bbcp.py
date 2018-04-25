@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#北京赛车
+#BB彩票-双面玩法
 
 from tkinter import *
 from tkinter import *
@@ -14,7 +14,6 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 from selenium import webdriver
 from selenium.common.exceptions import *
-#import sqlite3
 import threading  
 import time
 
@@ -24,17 +23,19 @@ import urllib.response
 import urllib.error
 import http.cookiejar
 import configparser
-import re
 import ssl
 import random
 import copy
 import re  #python的正则表达式模块
-import os, sys
-import time
-import wmi,zlib
+import os
+import sys
+import wmi
+import zlib
 import hashlib
 import json
 import datetime
+
+
 ssl._create_default_https_context = ssl._create_unverified_context
 
 #本方案累积赢[1000]元跳转到方案[1]
@@ -45,8 +46,12 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #(a, b) = re.search('^本方案累积赢\\[(\d+)\\]元跳转到方案\\[(\d+)\\]$',input).groups()
 #print(a)
 #print(b)
-
 #print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+
+test_flag = False
+softname  = "bbcp"
+version   = "1.0.0.0"
 
 #headflag => 1:No. 20180424-033, 2:No. 20180424001 3:#No. 1766125
 #buyflag  => 1:单面，2：双面
@@ -58,16 +63,6 @@ config_cptype["重庆时时彩"]  = {"BallNum":5, "headflag":1, "buyflag":1, "bu
 config_cptype["新疆时时彩"]  = {"BallNum":5, "headflag":2, "buyflag":1, "bubit":0} #No. 2018042435
 config_cptype["新疆时时彩"]  = {"BallNum":5, "headflag":2, "buyflag":1, "bubit":0} #No. 2018042435
 config_cptype["天津时时彩"]  = {"BallNum":5,  "headflag":1,  "buyflag":1, "bubit":0} #No. 20180424-042
-
-
-import os
-import time
-import webbrowser
-m=hashlib.md5()
-
-test_flag = False
-softname  = "bbcp"
-version   = "1.0.0.0"
 
 #声明一个CookieJar对象实例来保存cookie
 cookiejar = cookiejar = http.cookiejar.CookieJar()
@@ -82,16 +77,19 @@ user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like
 headers = { 'User-Agent' : user_agent }  
 
 if test_flag == False:
-    driver = webdriver.Chrome()
-    driver.get("http://0190022.com")
+    # 加启动配置
+    option = webdriver.ChromeOptions()
+    option.add_argument('disable-infobars')
+    #option.add_argument('headless')
+    # 打开chrome浏览器
+    driver = webdriver.Chrome(chrome_options=option)
+    #driver = webdriver.Chrome()
+    #driver.get("http://0190022.com")
     #driver.get("http://baidu.com")
 else:
     pass;
     
-
-
-
-def httpreg(softname, version, phydriverserial, regkey):
+def http_reg(softname, version, phydriverserial, regkey):
     signkey = '&key=0z#z#b#094kls#040jkas892#z#z#b#0' 
     data= {}
     data["softname"]            = softname
@@ -108,12 +106,14 @@ def httpreg(softname, version, phydriverserial, regkey):
         src = src + data[key]
     str = src + signkey
     str = str.encode("utf8")
-    #phydriverserial=123&regkey=456&softname=bbcp&version=1.0.0.0&key=0z#z#b#094kls#040jkas892#z#z#b#0
-    #phydriverserial=123&regkey=456&softname=bbcp&version=1.0.0.0&key=0z#z#b#094kls#040jkas892#z#z#b#0
+    
+    tips = "网络连接错误！"
+    m=hashlib.md5()
     m.update( str )
     result = m.hexdigest()
     data   = src.encode("utf8")
     url    = "http://duboren.com/share/share_registdeviceid?sign=%s"%(result)
+    #print(data)
     request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
     try:
         #response = urllib.request.urlopen(request)
@@ -124,34 +124,45 @@ def httpreg(softname, version, phydriverserial, regkey):
         #print('Error code: ' + str(e.code))
         #print('Error reason: ' + e.reason)
         print("错误","网络连接错误！")
-        return False
+        return False, tips
     except urllib.error.URLError as e:
         #print('We failed to reach a server.')
         #print('Reason: ' + e.reason)
         print("错误","网络连接错误！")
-        return False
+        return False, tips
     except Exception as msg:
         print("Exception:%s" % msg)
-        return False
+        return False, tips
     except:
         #print("error lineno:" + str(sys._getframe().f_lineno))
         print("错误","网络连接错误！")
-        return False
+        return False, tips
     html = html.strip()
     #print(html)
     json_data = json.loads(html)
-    #{"msg":"登录成功.","success":true,"datas":{"ckregkey":false,"topics":[],"userid":175}}
+    #{"msg":"登录成功.","success":true,"datas":{"ckregkey":false,"userid":195,"topics":[],"expired":""}}
     if json_data["success"] != True:
         print("错误","账号未注册！")
         if "datas" in json_data:  
             print("错误", json_data["datas"]["notice"])
-        return False
+        return False, tips
     else:
-        if "datas" in json_data:
-            datas = json_data["datas"]
-            if "ckregkey" in datas:
-                if datas["ckregkey"] == True:
-                    return True
+        if "datas" not in json_data:
+            return False, tips
+        
+        datas = json_data["datas"]
+        if "ckregkey" not in datas:
+            return False, tips
+            
+        if datas["ckregkey"] == True:
+            tips = "注册成功(%s)"%(datas["expired"])
+            return True, tips
+        elif datas["expired"] == "":
+            tips = "注册码不存在"
+            return False, tips                
+        else:
+            tips = "注册码已过期(%s)"%(datas["expired"])
+            return False, tips                
         return False
 
 def get_phydriverserial_info(softname):
@@ -633,7 +644,6 @@ class BettingThread(threading.Thread):
             except TimeoutException as msg:
                 self.logprint("TimeoutException:%s" % msg)
                 pass
-            '''
             except Exception as msg:
                 self.logprint("Exception:%s" % msg)
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
@@ -641,7 +651,7 @@ class BettingThread(threading.Thread):
             except:
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                 pass
-            '''
+            
             
         print("**********target_func end***********")       
 class Application(tk.Tk):
@@ -709,20 +719,36 @@ class Application(tk.Tk):
             self.conf.set("cutin", "value", "1000")  
 
         ##############
-        self.phydriverserial = tk.StringVar()    
-        self.phydriverserial.set(get_phydriverserial_info(softname))
-
+        phydriverserial = get_phydriverserial_info(softname)
+        
         self.regcode = tk.StringVar()  
         if self.conf.has_section("regcode") == True:
             self.regcode.set(self.conf.get("regcode", "value"))
         else:
-            self.regcode.set(self.phydriverserial.get())
+            self.regcode.set(phydriverserial)
             self.conf.add_section("regcode")
-            self.conf.set("regcode", "value", self.phydriverserial.get())  
+            self.conf.set("regcode", "value", phydriverserial)  
+            
+        self.phydriverserial = tk.StringVar()   
+        if self.conf.has_section("phydriverserial") == True:
+            self.phydriverserial.set(self.conf.get("phydriverserial", "value"))
+        else:
+            self.phydriverserial.set(phydriverserial)
+            self.conf.add_section("phydriverserial")
+            self.conf.set("phydriverserial", "value", phydriverserial)  
+
+        #不相等，则重置
+        if self.phydriverserial.get() != phydriverserial:
+            self.phydriverserial.set(phydriverserial)
+            self.regcode.set(phydriverserial)
+            
+            
+            
         self.tips = tk.StringVar()  
         ##############
         self.createWidgets()
         self.regMe();
+        self.enterMe();
 
 
     def createWidgets(self):
@@ -742,13 +768,14 @@ class Application(tk.Tk):
         self.createTab2()
 
     def regMe(self):
+        self.conf.set("phydriverserial","value",self.phydriverserial.get())
+        self.conf.set("regcode","value",self.regcode.get())        
+        #写回配置文件
+        self.conf.write(open("bbcp.txt","w"))
         self.reg = False;
-        if httpreg(softname, version, self.phydriverserial.get(), self.regcode.get()):
-            self.reg = True
-            self.tips.set("登录成功")
-        else:
-            self.tips.set("注册码已经过期")
-
+        self.reg, tips = http_reg(softname, version, self.phydriverserial.get(), self.regcode.get())
+        self.tips.set(tips)
+    
     def createTab2(self):   
         #---------------Tab2控件介绍------------------#
         # Modified Button Click Function
@@ -903,7 +930,8 @@ class Application(tk.Tk):
 
     def enterMe(self):
         self.url = self.urlEntered.get()
-        driver.get(self.url)
+        if self.url != "":
+            driver.get(self.url)
             
     def clickMe(self):
         if  self.thread != None:

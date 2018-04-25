@@ -30,7 +30,6 @@ value = ==============================
 	本方案累积输[100]元跳转到方案[1]
 	
 	==============================
-	
 
 [pump]
 value = 1
@@ -45,5 +44,8 @@ value = 1000
 value = 1000
 
 [regcode]
-value = a843c7887b708466a0ea805ef5e360c8
+value = b23b2fce61d2630d605906b10079dea9
+
+[phydriverserial]
+value = b23b2fce61d2630d605906b10079dea9
 
