@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#跟投 自动打码神器
     
 import re
 import urllib
@@ -18,11 +18,10 @@ import ssl
 #import sqlite3
 import configparser
 import random
-
+import hashlib
 from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
 from selenium import webdriver
-from selenium.common.exceptions import *
 from selenium.common.exceptions import *
 from tkinter import *
 from tkinter import *
@@ -36,6 +35,16 @@ import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
 import time
+from copy import deepcopy
+
+try:
+    # Python2
+    import Tkinter as tk
+    from urllib2 import urlopen
+except ImportError:
+    # Python3
+    import tkinter as tk
+    from urllib.request import urlopen
 
 import io
 # allows for image formats other than gif
