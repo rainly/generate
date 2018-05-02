@@ -102,21 +102,30 @@ headers = { 'User-Agent' : user_agent }
 #print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
 
 numSMS  = 0   
-lastSMS = 0
+timeSMS = []
 def sendSMS(phone):
-    global lastSMS
+    global timeSMS
     global numSMS
     now = time.time()
     now = int(round(now))
-    if now - lastSMS < 60 * 5:
-        print("发送太频繁，不发送")
+    timeSMS.append(now)
+        
+    expnum = 0
+    for item in timeSMS:
+        if item > now - (60 * 5):
+            expnum = expnum + 1
+    
+    if expnum < 10:
+        print("发送太频繁，不发送:" + str(expnum))
         return
+
     if numSMS > 2:
         print("大于发次次数，不发送")
-        return        
+        return
+    
 
-    lastSMS = now;
     numSMS  = numSMS + 1
+    timeSMS = []
     
     signkey = '&key=0z#z#b#094kls#040jkas892#z#z#b#0' 
     data= {}
