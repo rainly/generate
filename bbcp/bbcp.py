@@ -84,7 +84,7 @@ if test_flag == False:
     # 打开chrome浏览器
     driver = webdriver.Chrome(chrome_options=option)
     #driver = webdriver.Chrome()
-    #driver.get("http://0190022.com")
+    driver.get("http://www.duboren.com/")
     #driver.get("http://baidu.com")
 else:
     pass;
@@ -130,6 +130,7 @@ def http_reg(softname, version, phydriverserial, regkey):
         #print('Reason: ' + e.reason)
         print("错误","网络连接错误！")
         return False, tips
+    '''
     except Exception as msg:
         print("Exception:%s" % msg)
         return False, tips
@@ -137,6 +138,7 @@ def http_reg(softname, version, phydriverserial, regkey):
         #print("error lineno:" + str(sys._getframe().f_lineno))
         print("错误","网络连接错误！")
         return False, tips
+    '''
     html = html.strip()
     #print(html)
     json_data = json.loads(html)
@@ -382,7 +384,7 @@ class BettingThread(threading.Thread):
                         driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[4]").click()
                     else:
                         self.logprint("***不支持类型***") 
-                elif config_cptype[self.cptype][""] == 2:
+                elif config_cptype[self.cptype]["buyflag"] == 2:
                     if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
                         driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[1]").click()
                     elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
@@ -395,8 +397,10 @@ class BettingThread(threading.Thread):
                         self.logprint("***不支持类型***")
                 else:
                     self.logprint("***类型不支持***")
-                    
+                    pass
+                        
             else:
+                self.logprint("***模拟买入***")
                 pass;
 
             self.logprint("位置" + str(buyno) + "***购买:" + BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] + "金额：" + str(BALL_NO_DATA["Temp_Monery"][1]))
@@ -411,6 +415,7 @@ class BettingThread(threading.Thread):
                 time.sleep(1)
                 driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[2]/button[3]").click()
             else:
+                self.logprint("***模拟买入***")
                 pass
 
     def target_func(self):
@@ -480,12 +485,14 @@ class BettingThread(threading.Thread):
                 except TimeoutException as msg:
                     self.logprint("TimeoutException:%s" % msg)
                     pass
+                '''
                 except Exception as msg:
                     self.logprint("Exception:%s" % msg)
                     pass
                 except:
                     self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                     pass
+                '''
         else:
             pass
         
@@ -504,7 +511,10 @@ class BettingThread(threading.Thread):
             BALL_NO_DATA["Temp_Rule_Idx"]        =  0
 
             BALL_NO_DATA["Temp_Cut"]             =  0
-            BALL_NO_DATA["Temp_Cut_Flag"]        =  0
+            if self.cutin == 0:
+                BALL_NO_DATA["Temp_Cut_Flag"]    =  1
+            else:
+                BALL_NO_DATA["Temp_Cut_Flag"]    =  0
             BALL_NO_DATA["Temp_CutIn"]           =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
 
@@ -644,6 +654,7 @@ class BettingThread(threading.Thread):
             except TimeoutException as msg:
                 self.logprint("TimeoutException:%s" % msg)
                 pass
+            '''
             except Exception as msg:
                 self.logprint("Exception:%s" % msg)
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
@@ -651,6 +662,7 @@ class BettingThread(threading.Thread):
             except:
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                 pass
+            '''
             
             
         print("**********target_func end***********")       
