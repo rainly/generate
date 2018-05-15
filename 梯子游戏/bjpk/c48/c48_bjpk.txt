@@ -1,5 +1,5 @@
 [url]
-value = http://a8033.com/
+value = http://c48.com/
 
 [jump]
 value = 1+2+1+2
@@ -10,5 +10,5 @@ value = 2+3+4+5+6
 	
 
 [buyno]
-value = 3
+value = 2
 
