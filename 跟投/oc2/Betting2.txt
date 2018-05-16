@@ -56,8 +56,6 @@ value = wu9999*0.1
 	zhw999*2.0
 	dngs999*2.0
 	dangs888*2.0
-	
-	
 
 [pl]
 value = 2.0

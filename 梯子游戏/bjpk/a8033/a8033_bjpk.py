@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#北京赛车
 
 from tkinter import *
 from tkinter import *
@@ -164,7 +164,7 @@ class BettingThread(threading.Thread):
                     continue;
                 
                 SleepTime = 0  
-                #self.logprint("***打开梯子游戏正常***")   
+                #self.logprint("***打开北京赛车正常***")   
                 Cur_Award_Issue1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[2]/div[2]").text
                 Cur_Award_Issue2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[1]").text
                 if Cur_Award_Issue1 == "" or Cur_Award_Issue2 == "":
@@ -512,7 +512,7 @@ class Application(tk.Tk):
     
 def main():
     app = Application()
-    app.title("梯子游戏 自动打码神器(开发者QQ：87954657)")
+    app.title("北京赛车 自动打码神器(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()

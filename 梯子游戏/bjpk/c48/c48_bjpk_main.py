@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#北京赛车
 
 from tkinter import *
 from tkinter import *
@@ -45,7 +45,7 @@ headers = { 'User-Agent' : user_agent }
 
 
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=1981c8aeb5b973ef3a578156d5527eb9"
+    url_agent = "http://duboren.com/ccskey/query?regkey=2395c3fb38a98d0ca432532770272b05"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

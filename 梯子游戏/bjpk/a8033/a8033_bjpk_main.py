@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#北京赛车
 
 from tkinter import *
 from tkinter import *

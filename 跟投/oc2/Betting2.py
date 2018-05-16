@@ -37,6 +37,20 @@ import threading
 import time
 from copy import deepcopy
 
+
+from aip import AipOcr
+from PIL import *
+""" 你的 APPID AK SK """
+APP_ID = '11249600'
+API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
+SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
+client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
+
+""" 读取图片 """
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
+
 try:
     # Python2
     import Tkinter as tk
@@ -178,6 +192,7 @@ def sendSMS(phone):
         return False
     html = html.strip()
     #print(html)
+    return True
 
 #sendSMS('18150155123')
 #sendSMS('18150155123')
@@ -190,8 +205,12 @@ class ServerThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')                   
-        self.target_func()
+        print('Thread start\n')   
+        while self.stopped == False:        
+            self.target_func()
+            if self.stopped == False: 
+                self.target.ser_interMe()
+                self.target.ser_loginMe(False)
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -242,25 +261,37 @@ class ServerThread(threading.Thread):
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except Exception as msg:
                     print("Exception:%s" % msg)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except:
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
-                #print(html)
+                html = html.strip()
+                print(html)
+                print(len(html))
+                print(len("<script type=\"text/javascript\">top.location.href='/'</script>"))
+                if html == "<script type=\"text/javascript\">top.location.href='/'</script>":
+                    print("账号掉线，需要重新登录")
+                    #账号掉线，需要重新登录
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                 soup = BeautifulSoup(html, "lxml")
                 for tbody in soup.find_all('tbody'):
                     for tr in tbody.find_all('tr'):
@@ -292,8 +323,12 @@ class ClientThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')                   
-        self.target_func()
+        print('Thread start\n')  
+        while self.stopped == False:        
+            self.target_func()
+            if self.stopped == False: 
+                self.target.cli_interMe()
+                self.target.cli_loginMe(False)
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -332,26 +367,30 @@ class ClientThread(threading.Thread):
                 print('Error code: ' + str(e.code))
                 #print('Error reason: ' + e.reason)
                 print("错误 ==> 网络连接错误！")
-                sendSMS(self.target.conf_phone.get())
+                if sendSMS(self.target.conf_phone.get()) == True:
+                    return
                 continue
             except urllib.error.URLError as e:
                 print('We failed to reach a Betting.')
                 #print('Reason: ' + e.reason)
                 print("错误 ==> 网络连接错误！")
-                sendSMS(self.target.conf_phone.get())
+                if sendSMS(self.target.conf_phone.get()) == True:
+                    return
                 continue
             except Exception as msg:
                 print("Exception:%s" % msg)
                 print("错误 ==> 网络连接错误！")
-                sendSMS(self.target.conf_phone.get())
+                if sendSMS(self.target.conf_phone.get()) == True:
+                    return
                 continue
             except:
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
-                sendSMS(self.target.conf_phone.get())
+                if sendSMS(self.target.conf_phone.get()) == True:
+                    return
                 continue          
             try:
-                #print(html)
+                print(html)
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
@@ -460,25 +499,29 @@ class ClientThread(threading.Thread):
                     print('Error code: ' + str(e.code))
                     #print('Error reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except urllib.error.URLError as e:
                     print('We failed to reach a Betting.')
                     #print('Reason: ' + e.reason)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except Exception as msg:
                     print("Exception:%s" % msg)
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
                 except:
                     #print("error lineno:" + str(sys._getframe().f_lineno))
                     print("错误 ==> 网络连接错误！")
-                    sendSMS(self.target.conf_phone.get())
+                    if sendSMS(self.target.conf_phone.get()) == True:
+                        return
                     continue
-                #print(html)
+                print(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
                     result = json.loads(html)  
@@ -665,7 +708,6 @@ class Application(tk.Tk):
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
         self.parseUser()
-        #messagebox.showinfo("提示","配置成功！")    
         
     def conf_account(self):
         self.syncUser()
@@ -907,6 +949,19 @@ class Application(tk.Tk):
             self.ser_pil_image = Image.open(self.ser_data_stream)
             self.ser_tk_image = ImageTk.PhotoImage(self.ser_pil_image)
             self.ser_label["image"] = self.ser_tk_image
+            
+            #验证码识别
+            self.ser_pil_image.save("code.jpg") 
+            code_image = get_file_content('code.jpg')
+            """ 调用通用文字识别, 图片参数为本地图片 """
+            #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
+            result = client.basicGeneral(code_image);
+            print(result)
+            #result = json.loads(byarray.decode('utf-8'))
+            if len(result["words_result"]):
+                print(result["words_result"][0]["words"])
+                self.ser_check.set(result["words_result"][0]["words"])            
+            
         except urllib.error.HTTPError as e:
             print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
@@ -930,24 +985,37 @@ class Application(tk.Tk):
             self.ser_thread = None
             self.ser_btaction.configure(text='开始')
             return
-        
+            
+        #if self.ser_loginMe(True) != True:
+        #    return
+            
+        self.ser_btaction.configure(text='关闭')
+        self.ser_thread = ServerThread(self)
+        self.ser_thread.start()
+            
+    def ser_loginMe(self, tips):    
         self.searchText = self.searchScrolledText.get(1.0, END)
         if self.ser_name.get() == "":
-            messagebox.showinfo("提示","账号不能为空！")
+            if tips:
+                messagebox.showinfo("提示","账号不能为空！")
             return
         if self.ser_nick.get() == "":
-            messagebox.showinfo("提示","昵称不能为空！")
+            if tips:
+                messagebox.showinfo("提示","昵称不能为空！")
             return
         if self.ser_pwd.get() == "":
-            messagebox.showinfo("提示","密码不能为空！")
+            if tips:
+                messagebox.showinfo("提示","密码不能为空！")
             return
 
         if self.ser_check.get() == "":
-            messagebox.showinfo("提示","验证码不能为空！")
+            if tips:
+                messagebox.showinfo("提示","验证码不能为空！")
             return
             
         if self.searchText == "":
-            messagebox.showinfo("提示","账号查询不能为空！")
+            if tips:
+                messagebox.showinfo("提示","账号查询不能为空！")
             return
             
         self.parseUser()
@@ -988,7 +1056,8 @@ class Application(tk.Tk):
                
         if html.find("新世纪") == -1:
             print(html)
-            messagebox.showinfo("提示","登陆失败！")
+            if tips:
+                messagebox.showinfo("提示","登陆失败！")
             return;
                
         #login = False
@@ -999,12 +1068,9 @@ class Application(tk.Tk):
         #if login == False:
         #    print("错误 ==> 登陆错误！")
         #    return
-            
-        messagebox.showinfo("提示","登陆成功！")     
-        
-        self.ser_btaction.configure(text='关闭')
-        self.ser_thread = ServerThread(self)
-        self.ser_thread.start()
+        if tips:  
+            messagebox.showinfo("提示","登陆成功！") 
+        return True
                 
     def ser_save(self):
         #增加新的section   
@@ -1015,7 +1081,6 @@ class Application(tk.Tk):
         self.conf.set("ser_pwd", "value", self.ser_pwd.get())
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
-        #messagebox.showinfo("提示","配置成功！")
     
     ############################
     def cli_initdata(self):   
@@ -1176,6 +1241,19 @@ class Application(tk.Tk):
             self.cli_pil_image = Image.open(self.cli_data_stream)
             self.cli_tk_image = ImageTk.PhotoImage(self.cli_pil_image)
             self.cli_label["image"] = self.cli_tk_image
+
+            #验证码识别
+            self.cli_pil_image.save("code.jpg") 
+            code_image = get_file_content('code.jpg')
+            """ 调用通用文字识别, 图片参数为本地图片 """
+            #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
+            result = client.basicGeneral(code_image);
+            print(result)
+            #result = json.loads(byarray.decode('utf-8'))
+            if len(result["words_result"]):
+                print(result["words_result"][0]["words"])
+                self.cli_check.set(result["words_result"][0]["words"])                
+                
         except urllib.error.HTTPError as e:
             print('The Betting couldn\'t fulfill the request.')
             print('Error code: ' + str(e.code))
@@ -1200,23 +1278,35 @@ class Application(tk.Tk):
             self.cli_btaction.configure(text='开始')
             return
             
+        #if self.cli_loginMe(True) != True:
+        #    return
+
+        self.cli_btaction.configure(text='关闭')
+        self.cli_thread = ClientThread(self)
+        self.cli_thread.start()
+        
+            
+    def cli_loginMe(self, tips):    
         if self.cli_name.get() == "":
-            messagebox.showinfo("提示","账号不能为空！")
+            if tips:
+                messagebox.showinfo("提示","账号不能为空！")
             return
 
         if self.cli_pwd.get() == "":
-            messagebox.showinfo("提示","密码不能为空！")
+            if tips:
+                messagebox.showinfo("提示","密码不能为空！")
             return
 
         if self.cli_check.get() == "":
-            messagebox.showinfo("提示","验证码不能为空！")
+            if tips:
+                messagebox.showinfo("提示","验证码不能为空！")
             return
         self.cli_save()  
         print("############################账号登陆##############################")
         logindict = {}
-        logindict["type"]         = 2
+        logindict["type"]       = 2
         logindict["account"]    = self.cli_name.get()
-        logindict["password"]     = self.cli_pwd.get() 
+        logindict["password"]   = self.cli_pwd.get() 
         logindict["code"]       = self.cli_check.get()
         
         data = urllib.parse.urlencode(logindict).encode('utf-8')
@@ -1287,13 +1377,10 @@ class Application(tk.Tk):
             print("错误 ==> 网络连接错误！")
             return
         #print(html)
+        if tips:
+            messagebox.showinfo("提示","登陆成功！")
+        return True
         
-        messagebox.showinfo("提示","登陆成功！")
-        
-        self.cli_btaction.configure(text='关闭')
-        self.cli_thread = ClientThread(self)
-        self.cli_thread.start()
-            
     def cli_save(self):
         #增加新的section
         self.conf.set("cli_url", "value", self.cli_url.get())
@@ -1302,7 +1389,6 @@ class Application(tk.Tk):
         self.conf.set("cli_pwd", "value", self.cli_pwd.get())
         #写回配置文件
         self.conf.write(open("Betting2.txt", "w"))
-        #messagebox.showinfo("提示","配置成功！")
             
     def Close(self):
         if self.ser_thread != None and self.ser_thread.is_alive():

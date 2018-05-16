@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 ##Author：哈士奇说喵
 #pyinstaller
-#梯子游戏
+#北京赛车
 
 from tkinter import *
 from tkinter import *
@@ -241,7 +241,7 @@ class BettingThread(threading.Thread):
 
                 #处理中奖结果
                 if Last_Award_Issue_Have:        
-                    if int(Ball01) == buyno or int(Ball04) == buyno or int(Ball07) == buyno:
+                    if int(Ball02) == buyno or int(Ball03) == buyno or int(Ball04) == buyno:
                         Stop_num    = 1
                         print("***未中奖***")
                     else:
@@ -539,15 +539,18 @@ class Application(tk.Tk):
         messagebox.showinfo("提示", self.bookChosen.get())
         
     def Close(self):
-        if self.thread != None:
-            messagebox.showinfo("提示","请先关闭自动打码！")
-            return
+        if  self.thread != None:
+            self.btaction.configure(text='开始')
+            if self.thread.is_alive():
+                self.thread.stop()
+            self.thread.join()
+            self.thread = None
         self.destroy()    
-    
+        
     
 def main():
     app = Application()
-    app.title("梯子游戏 自动打码神器(开发者QQ：87954657)")
+    app.title("北京赛车 自动打码神器(开发者QQ：87954657)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
