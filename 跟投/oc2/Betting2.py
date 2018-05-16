@@ -13,7 +13,7 @@ import time
 import datetime
 import http.cookiejar
 import json
-import pymysql.cursors
+#import pymysql.cursors
 import ssl
 #import sqlite3
 import configparser
@@ -177,19 +177,19 @@ def sendSMS(phone):
         #print('Error code: ' + str(e.code))
         #print('Error reason: ' + e.reason)
         print("错误","网络连接错误！")
-        return False
+        return True
     except urllib.error.URLError as e:
         #print('We failed to reach a server.')
         #print('Reason: ' + e.reason)
         print("错误","网络连接错误！")
-        return False
+        return True
     except Exception as msg:
         print("Exception:%s" % msg)
-        return False
+        return True
     except:
         #print("error lineno:" + str(sys._getframe().f_lineno))
         print("错误","网络连接错误！")
-        return False
+        return True
     html = html.strip()
     #print(html)
     return True
@@ -208,9 +208,15 @@ class ServerThread(threading.Thread):
         print('Thread start\n')   
         while self.stopped == False:        
             self.target_func()
-            if self.stopped == False: 
-                self.target.ser_interMe()
-                self.target.ser_loginMe(False)
+            sleepnum = 0
+            while self.stopped == False:
+                print('尝试登录中'+ "\n")
+                time.sleep(1)
+                sleepnum = sleepnum + 1
+                if sleepnum > 10:
+                    self.target.ser_interMe()
+                    self.target.ser_loginMe(False)
+                    break;
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -285,13 +291,12 @@ class ServerThread(threading.Thread):
                     continue
                 html = html.strip()
                 print(html)
-                print(len(html))
-                print(len("<script type=\"text/javascript\">top.location.href='/'</script>"))
-                if html == "<script type=\"text/javascript\">top.location.href='/'</script>":
+                if html == "<script type=\"text/javascript\">top.location.href='/'</script>" or html.find("内部错误") > 0:
                     print("账号掉线，需要重新登录")
                     #账号掉线，需要重新登录
                     if sendSMS(self.target.conf_phone.get()) == True:
                         return
+                            
                 soup = BeautifulSoup(html, "lxml")
                 for tbody in soup.find_all('tbody'):
                     for tr in tbody.find_all('tr'):
@@ -326,9 +331,15 @@ class ClientThread(threading.Thread):
         print('Thread start\n')  
         while self.stopped == False:        
             self.target_func()
-            if self.stopped == False: 
-                self.target.cli_interMe()
-                self.target.cli_loginMe(False)
+            sleepnum = 0
+            while self.stopped == False: 
+                print('尝试登录中'+ "\n")
+                time.sleep(1)
+                sleepnum = sleepnum + 1
+                if sleepnum > 10:
+                    self.target.cli_interMe()
+                    self.target.cli_loginMe(False)
+                    break;
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -742,7 +753,7 @@ class Application(tk.Tk):
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
                 return
-            #print(html)
+            print(html)
             soup = BeautifulSoup(html, "lxml")
             for tbody in soup.find_all('tbody'):
                 for tr in tbody.find_all('tr'):
@@ -986,8 +997,8 @@ class Application(tk.Tk):
             self.ser_btaction.configure(text='开始')
             return
             
-        #if self.ser_loginMe(True) != True:
-        #    return
+        if self.ser_loginMe(True) != True:
+            return
             
         self.ser_btaction.configure(text='关闭')
         self.ser_thread = ServerThread(self)
@@ -1278,8 +1289,8 @@ class Application(tk.Tk):
             self.cli_btaction.configure(text='开始')
             return
             
-        #if self.cli_loginMe(True) != True:
-        #    return
+        if self.cli_loginMe(True) != True:
+            return
 
         self.cli_btaction.configure(text='关闭')
         self.cli_thread = ClientThread(self)
@@ -1336,7 +1347,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        #print(html)
+        print(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
@@ -1376,7 +1387,7 @@ class Application(tk.Tk):
             #print("error lineno:" + str(sys._getframe().f_lineno))
             print("错误 ==> 网络连接错误！")
             return
-        #print(html)
+        print(html)
         if tips:
             messagebox.showinfo("提示","登陆成功！")
         return True

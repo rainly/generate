@@ -1,5 +1,5 @@
 [ser_name]
-value = xy99996
+value = nmk8799
 
 [ser_pwd]
 value = abab5139
@@ -11,10 +11,10 @@ value = https://00271596-xsj.cp168.ws/
 value = 64801
 
 [cli_name]
-value = cs0990
+value = bcbc1109
 
 [cli_pwd]
-value = 5134abab
+value = abab5139
 
 [cli_url]
 value = https://3309279593-xsj.cp168.ws/
@@ -26,36 +26,9 @@ value = 95712
 value = 
 
 [searchText]
-value = wu9999*0.1
-	zhou987*4.0
-	li7899*1.0
-	sun77*1.0
-	qian8899*1.0
-	zhao789*2.0
-	gou1122*2.0
-	qqww223*2.0
-	qqww220*2.0
-	qqww119*2.0
-	qqww118*2.0
-	qqww117*2.0
-	qqww116*2.0
-	qqww114*2.0
-	qqww113*2.0
-	qqww112*2.0
-	qqww110*2.0
-	aa9991*2.0
-	aa9992*2.0
-	ss9993*2.0
-	aa9994*2.0
-	aa9995*2.0
-	aa9996*2.0
-	mm9966*2.0
-	sq9996*2.0
-	zh9996*2.0
-	syj8899*2.0
-	zhw999*2.0
-	dngs999*2.0
-	dangs888*2.0
+value = wu9999*0.2
+	
+	
 
 [pl]
 value = 2.0
@@ -64,7 +37,7 @@ value = 2.0
 value = cb9999
 
 [ck]
-value = 0
+value = 1
 
 [phone]
 value = 18150155123

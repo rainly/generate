@@ -13,7 +13,7 @@ import time
 import datetime
 import http.cookiejar
 import json
-import pymysql.cursors
+#import pymysql.cursors
 import ssl
 #import sqlite3
 import configparser
@@ -36,6 +36,20 @@ import tkinter as tk
 import threading
 import time
 from copy import deepcopy
+
+
+from aip import AipOcr
+from PIL import *
+""" 你的 APPID AK SK """
+APP_ID = '11249600'
+API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
+SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
+client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
+
+""" 读取图片 """
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
 
 try:
     # Python2
