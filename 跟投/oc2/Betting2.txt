@@ -1,5 +1,5 @@
 [ser_name]
-value = nmk8799
+value = bcbc888
 
 [ser_pwd]
 value = abab5139
@@ -11,7 +11,7 @@ value = https://00271596-xsj.cp168.ws/
 value = 64801
 
 [cli_name]
-value = bcbc1109
+value = bcbc110
 
 [cli_pwd]
 value = abab5139
@@ -26,12 +26,75 @@ value = 95712
 value = 
 
 [searchText]
-value = wu9999*0.2
-	
-	
+value = qqww110*0.1
+	qqww112*0.1
+	qqww113*0.1
+	qqww114*0.1
+	qqww116*0.1
+	qqww117*0.1
+	qqww118*0.1
+	qqww119*0.1
+	qqww220*0.1
+	qqww223*0.1
+	syj8899*0.1
+	zh9996*0.1
+	zhw999*0.1
+	aa9991*0.1
+	aa9992*0.1
+	aa9994*0.1
+	aa9995*0.1
+	aa9996*0.1
+	dangs888*0.1
+	dngs999*0.1
+	gou1122*0.1
+	mm9966*0.1
+	ss9993*0.1
+	wu9999*0.1
+	zhou987*0.1
+	li7899*0.1
+	sun77*0.1
+	qian8899*0.1
+	zhao789*0.1
+	sq9996*0.1
+	ikm1122*0.1
+	lkj112*0.1
+	jkl221*0.1
+	iop1122*0.1
+	yui1122*0.1
+	uio1122*0.1
+	dlw777*0.1
+	zdl8899*0.1
+	wums99*0.1
+	kn2525*0.1
+	pkq456*0.1
+	yhm886*0.1
+	sdsd880*0.1
+	qeqe889*0.1
+	fred88*0.1
+	fghj252*0.1
+	fgh626*0.1
+	gyt008*0.1
+	ji456456*0.1
+	ying5678*0.1
+	sun2525*0.1
+	wei9506*0.1
+	hong521*0.1
+	zhang0088*0.1
+	mei456*0.1
+	nv6688*0.1
+	feng0088*0.1
+	qin456*0.1
+	sss0011*0.1
+	ccc6699*0.1
+	qeqe321*0.1
+	adad123*0.1
+	wsws456*0.1
+	xcxc23*0.1
+	wewe89*0.1
+	sdsd2525*0.1
 
 [pl]
-value = 2.0
+value = 0.1
 
 [ser_nick]
 value = cb9999
@@ -40,5 +103,5 @@ value = cb9999
 value = 1
 
 [phone]
-value = 18150155123
+value = 18850676007
 

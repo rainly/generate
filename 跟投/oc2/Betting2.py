@@ -83,6 +83,9 @@ def gettype(gname, glv):
     for key in all_the_oc["game_type"]:
         if all_the_oc["game_type"][key] == gname and all_the_oc["game_lv"][key] == glv:
             return key
+    for key in all_the_oc["game_type"]:
+        if all_the_oc["game_type"][key] == gname:
+            return key
     return ""
 
 #print(gettype("庄家", 2))
@@ -206,17 +209,20 @@ class ServerThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         print('Thread start\n')   
-        while self.stopped == False:        
-            self.target_func()
-            sleepnum = 0
-            while self.stopped == False:
-                print('尝试登录中'+ "\n")
-                time.sleep(1)
-                sleepnum = sleepnum + 1
-                if sleepnum > 10:
-                    self.target.ser_interMe()
-                    self.target.ser_loginMe(False)
-                    break;
+        while self.stopped == False:    
+            try:        
+                self.target_func()
+                sleepnum = 0
+                while self.stopped == False:
+                    print('尝试登录中'+ "\n")
+                    time.sleep(1)
+                    sleepnum = sleepnum + 1
+                    if sleepnum > 10:
+                        self.target.ser_interMe()
+                        self.target.ser_loginMe(False)
+                        break;
+            except:
+                print("error lineno:" + str(sys._getframe().f_lineno))
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -290,7 +296,7 @@ class ServerThread(threading.Thread):
                         return
                     continue
                 html = html.strip()
-                print(html)
+                #print(html)
                 if html == "<script type=\"text/javascript\">top.location.href='/'</script>" or html.find("内部错误") > 0:
                     print("账号掉线，需要重新登录")
                     #账号掉线，需要重新登录
@@ -329,17 +335,20 @@ class ClientThread(threading.Thread):
         self.timeout = timeout
     def run(self):
         print('Thread start\n')  
-        while self.stopped == False:        
-            self.target_func()
-            sleepnum = 0
-            while self.stopped == False: 
-                print('尝试登录中'+ "\n")
-                time.sleep(1)
-                sleepnum = sleepnum + 1
-                if sleepnum > 10:
-                    self.target.cli_interMe()
-                    self.target.cli_loginMe(False)
-                    break;
+        while self.stopped == False:   
+            try:        
+                self.target_func()
+                sleepnum = 0
+                while self.stopped == False: 
+                    print('尝试登录中'+ "\n")
+                    time.sleep(1)
+                    sleepnum = sleepnum + 1
+                    if sleepnum > 10:
+                        self.target.cli_interMe()
+                        self.target.cli_loginMe(False)
+                        break;
+            except:
+                print("error lineno:" + str(sys._getframe().f_lineno))
         print('Thread stopped'+ "\n")
 
     def stop(self):
@@ -476,16 +485,20 @@ class ClientThread(threading.Thread):
 
                 #小 @ 2.5\n
                 _split  = item[4].split("@")
-                #print(_split)
+                print(_split)
+                if len(_split) < 2:
+                    continue
                 _odds           = _split[1]
                 _odds           = _odds.replace("\n", "")
                 _odds           = _odds.strip()
                 _odds            = float(_odds)
                 #小
                 _type = gettype(_split[0].strip(), _odds)
-                #print(_type)
+                print(_type)
                 #DX_D
                 _split2 = _type.split("_")
+                if len(_split2) < 2:
+                    continue
                 
                 bet = {}
                 bet["game"]     = _split2[0]
@@ -753,7 +766,7 @@ class Application(tk.Tk):
                 #print("error lineno:" + str(sys._getframe().f_lineno))
                 print("错误 ==> 网络连接错误！")
                 return
-            print(html)
+            #print(html)
             soup = BeautifulSoup(html, "lxml")
             for tbody in soup.find_all('tbody'):
                 for tr in tbody.find_all('tr'):
