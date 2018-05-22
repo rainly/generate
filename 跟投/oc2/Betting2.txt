@@ -92,6 +92,8 @@ value = qqww110*0.1
 	xcxc23*0.1
 	wewe89*0.1
 	sdsd2525*0.1
+	
+	
 
 [pl]
 value = 0.1

@@ -62,13 +62,13 @@ class Logger(object):
         'crit':logging.CRITICAL
     }
 
-    def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
+    def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(levelname)s: %(message)s'):
         self.logger = logging.getLogger(filename)
         format_str = logging.Formatter(fmt)#设置日志格式
         self.logger.setLevel(self.level_relations.get(level))#设置日志级别
         sh = logging.StreamHandler()#往屏幕上输出
         sh.setFormatter(format_str) #设置屏幕上显示的格式
-        sh.setLevel(logging.DEBUG)
+        sh.setLevel(logging.INFO)
         th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#往文件里写入#指定间隔时间自动生成文件的处理器
         #实例化TimedRotatingFileHandler
         #interval是时间间隔，backupCount是备份文件的个数，如果超过这个个数，就会自动删除，when是间隔的时间单位，单位有以下几种：
@@ -96,11 +96,11 @@ def logwarning(msg, *args, **kwargs):
     log.logger.warning(msg, *args, **kwargs)
     
 def logerror(msg, *args, **kwargs):
-    #kwargs["exc_info"] = 1
+    kwargs["exc_info"] = 1
     log.logger.error(msg, *args, **kwargs)
 
 def logcrit(msg, *args, **kwargs):
-    #kwargs["exc_info"] = 1
+    kwargs["exc_info"] = 1
     log.logger.crit(msg, *args, **kwargs)
 
 
@@ -168,46 +168,39 @@ def GetHttp(url, data = None, headers = {}, method = 'GET'):
         html = response.read().decode()
     except urllib.error.HTTPError as e:
         logerror("HTTPError :", e.reason)
-        return False
+        return None
     except urllib.error.URLError as e:
         logerror("URLError :", e.reason)
-        return False
+        return None
     except Exception as e:
         logerror("Exception:%s" % (e))
-        return False
+        return None
     except:
         logerror("网络连接错误！")
-        return False
+        return None
     html = html.strip()
     logdebug(html)
-    return True, html
-	
+    return html
+    
 
 
-numSMS  = 0   
+
 timeSMS = []
 def sendSMS(phone):
     global timeSMS
-    global numSMS
     now = time.time()
     now = int(round(now))
     timeSMS.append(now)
         
     expnum = 0
     for item in timeSMS:
-        if item > now - (60 * 5):
+        if item > now - 600:
             expnum = expnum + 1
     
     if expnum < 10:
         loginfo("发送太频繁，不发送:" + str(expnum))
-        return
-
-    if numSMS > 2:
-        loginfo("大于发次次数，不发送")
-        return
-    
-
-    numSMS  = numSMS + 1
+        return False
+        
     timeSMS = []
     
     signkey = '&key=0z#z#b#094kls#040jkas892#z#z#b#0' 
@@ -236,11 +229,13 @@ def sendSMS(phone):
     ##url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
     url = "httpfff://duboren.com/api_sms/sms.php?%s"%(str(data))
     logdebug(url)
-    state, html = GetHttp(url, headers = headers)
+    html = GetHttp(url, headers = headers)
+    if html == None:
+        return False
     logdebug(html)
-    return state
+    return True
 
-    
+            
 class ServerThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
         super(ServerThread, self).__init__()
@@ -253,14 +248,18 @@ class ServerThread(threading.Thread):
         while self.stopped == False:    
             try:        
                 self.target_func()
-                sleepnum = 0
+                sleeptime = 0
                 while self.stopped == False:
                     loginfo('尝试登录中'+ "\n")
                     time.sleep(1)
-                    sleepnum = sleepnum + 1
-                    if sleepnum > 10:
-                        self.target.ser_interMe()
-                        self.target.ser_loginMe(False)
+                    sleeptime = sleeptime + 1
+                    if sleeptime < 30:
+                        continue
+                    self.target.ser_interMe()
+                    if self.target.ser_loginMe(False) != True:
+                        #登录失败发送短信通知
+                        sendSMS(self.target.conf_phone.get())
+                    else:
                         break;
             except:
                 logerror("error lineno:" + str(sys._getframe().f_lineno))
@@ -276,15 +275,15 @@ class ServerThread(threading.Thread):
         
     def target_func(self):
         logdebug("target_func begin")
-        sleepnum = 5
+        sleeptime = 5
         syncUserNum   = 3600
         while self.stopped == False:
-            sleepnum = sleepnum + 1
+            sleeptime = sleeptime + 1
             syncUserNum = syncUserNum + 1
-            if sleepnum < 5:
+            if sleeptime < 5:
                 time.sleep(1)
                 continue
-            sleepnum = 0
+            sleeptime = 0
             logdebug(syncUserNum)
             if self.target.conf_ck.get() == 1 and syncUserNum >= 3600:
                 syncUserNum = 0;
@@ -304,20 +303,16 @@ class ServerThread(threading.Thread):
                 url = self.target.ser_url.get() + "agent/report/bets?username=" + user + "&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
                 #url = self.target.ser_url.get() + "agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=true"
                 logdebug(url)
-                state, html = GetHttp(url = url, headers = headers, method = 'GET')
+                html = GetHttp(url = url, headers = headers, method = 'GET')
 
-                if state == False:
+                if html == None:
                     loginfo("网络异常，需要重新登录")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
+                    return
                 logdebug(html)
                 
                 if html == "<script type=\"text/javascript\">top.location.href='/'</script>" or html.find("内部错误") > 0:
-                    loginfo("账号掉线，需要重新登录")
-                    #账号掉线，需要重新登录
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
+                    loginfo("服务器内部错误")
+                    return
                             
                 soup = BeautifulSoup(html, "lxml")
                 for tbody in soup.find_all('tbody'):
@@ -355,14 +350,18 @@ class ClientThread(threading.Thread):
         while self.stopped == False:   
             try:        
                 self.target_func()
-                sleepnum = 0
+                sleeptime = 0
                 while self.stopped == False: 
                     loginfo('尝试登录中'+ "\n")
                     time.sleep(1)
-                    sleepnum = sleepnum + 1
-                    if sleepnum > 10:
-                        self.target.cli_interMe()
-                        self.target.cli_loginMe(False)
+                    sleeptime = sleeptime + 1
+                    if sleeptime < 30:
+                        continue;
+                    self.target.cli_interMe()
+                    if self.target.cli_loginMe(False) != True:
+                        #登录失败发送短信通知
+                        sendSMS(self.target.conf_phone.get())
+                    else:
                         break;
             except:
                 logdebug("error lineno:" + str(sys._getframe().f_lineno))
@@ -379,13 +378,13 @@ class ClientThread(threading.Thread):
 
     def target_func(self):
         g_order_dict = {}
-        sleepnum = 5
+        sleeptime = 5
         while self.stopped == False:
-            sleepnum = sleepnum + 1
-            if sleepnum < 5:
+            sleeptime = sleeptime + 1
+            if sleeptime < 5:
                 time.sleep(1)
                 continue
-            sleepnum = 0     
+            sleeptime = 0     
 
             loginfo("############################查询倍率##############################")
             t = time.time()
@@ -394,12 +393,10 @@ class ClientThread(threading.Thread):
            
             url = self.target.cli_url.get() + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
             logdebug(url)    
-            state, html = GetHttp(url = url, headers = headers, method = 'GET')
-            if state == False:
+            html = GetHttp(url = url, headers = headers, method = 'GET')
+            if html == None:
                 loginfo("错误 ==> 网络连接错误！")
-                if sendSMS(self.target.conf_phone.get()) == True:
-                    return
-                continue
+                return
             
             logdebug(html)    
             
@@ -433,7 +430,7 @@ class ClientThread(threading.Thread):
                 本级结果    
                 占成明细
                 '''
-                #logdebug(item)
+
                 #['4399421039# ', '2018-03-26 21:28:06 星期一', '彩票百家乐673156-1期', 'qqww110A盘', '小 @ 2.5\n', '2200', '0.5%', '-2189.0', '0%', '11.0', '明细']
                 loginfo("############################下注订单##############################")
                 logdebug(item)
@@ -459,14 +456,15 @@ class ClientThread(threading.Thread):
                 if item[0] in g_order_dict:
                     loginfo("****订单已经处理*****" + item[0])
                     continue
-
+                
+                logerror(item)
     
                 amount = round(float(item[5]) * float(t_users[username]))
                 #amount =10
                 
                 drawNumber = item[2]
                 if drawNumber.find("彩票百家乐") == -1:
-                    loginfo("****不是彩票百家乐订单*****")
+                    logerror("****不是彩票百家乐订单*****")
                     continue
                 drawNumber = drawNumber.replace("彩票百家乐", "")
                 drawNumber = drawNumber.replace("期", "")
@@ -480,7 +478,7 @@ class ClientThread(threading.Thread):
                 _split  = item[4].split("@")
                 logdebug(_split)
                 if len(_split) < 2:
-                    loginfo("****数据有出错*****", item[4])
+                    logerror("****数据有出错*****", item[4])
                     continue
                 _odds           = _split[1]
                 _odds           = _odds.replace("\n", "")
@@ -492,7 +490,7 @@ class ClientThread(threading.Thread):
                 #DX_D
                 _split2 = _type.split("_")
                 if len(_split2) < 2:
-                    loginfo("****数据有出错*****", _type)
+                    logerror("****数据有出错*****", _type)
                     continue
                 
                 bet = {}
@@ -509,22 +507,22 @@ class ClientThread(threading.Thread):
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
                 logdebug(url)
-                state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
-                if state == False:
-                    loginfo("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
+                html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+                if html == None:
+                    logerror("错误 ==> 网络连接错误！")
+                    return
                 logdebug(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
                     result = json.loads(html)  
                     if result["status"] == 0:
-                        loginfo("****跟单成功****")
+                        logerror("****跟单成功****")
                     else:
-                        loginfo("****跟单失败****")
+                        logerror("****跟单失败****")
+                        logerror(html)
                 except:
-                    loginfo("****跟单失败****")
+                    logerror("****跟单失败****")
+                    logerror(html)
                 g_order_dict[item[0]] = 1            
             ###############################
     
@@ -687,9 +685,6 @@ class Application(tk.Tk):
         
     def conf_sms(self):
         sendSMS(self.conf_phone.get())
-        global numSMS
-        numSMS = 0
-        #logdebug(numSMS)
         
     def conf_save(self):
         self.searchText = self.searchScrolledText.get(1.0, END)
@@ -714,10 +709,11 @@ class Application(tk.Tk):
             #https://00271596-xsj.cp168.ws/agent/user/list?parent=cb9999&type=1&lv=&page=2
             url = self.ser_url.get() + "agent/user/list?parent=" + self.ser_nick.get() + "&type=1&lv=&page=" + str(current + 1)
             logdebug(url)
-            state, html = GetHttp(url = url, headers = headers, method = 'GET')
+            html = GetHttp(url = url, headers = headers, method = 'GET')
             
-            if state == False:
-                logerror("错误 ==> 网络连接错误！")
+            if html == None:
+                g_mutex.release()
+                loginfo("错误 ==> 网络连接错误！")
                 return
             logdebug(html)
             soup = BeautifulSoup(html, "lxml")
@@ -885,9 +881,9 @@ class Application(tk.Tk):
         loginfo("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
         logdebug(url)
-        state, html = GetHttp(url, headers = headers)
-        if state == False:
-            logerror("错误 ==> 网络连接错误！")
+        html = GetHttp(url, headers = headers)
+        if html == None:
+            loginfo("错误 ==> 网络连接错误！")
             return
         logdebug(html)
         loginfo("################进入代理网站成功#######################")
@@ -915,7 +911,7 @@ class Application(tk.Tk):
             #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
             result = client.basicGeneral(code_image);
             logdebug(result)
-			
+            
             if "words_result" in result and len(result["words_result"]):
                 logdebug(result["words_result"][0]["words"])
                 self.ser_check.set(result["words_result"][0]["words"])            
@@ -950,25 +946,25 @@ class Application(tk.Tk):
         if self.ser_name.get() == "":
             if tips:
                 messagebox.showinfo("提示","账号不能为空！")
-            return
+            return False
         if self.ser_nick.get() == "":
             if tips:
                 messagebox.showinfo("提示","昵称不能为空！")
-            return
+            return False
         if self.ser_pwd.get() == "":
             if tips:
                 messagebox.showinfo("提示","密码不能为空！")
-            return
+            return False
 
         if self.ser_check.get() == "":
             if tips:
                 messagebox.showinfo("提示","验证码不能为空！")
-            return
+            return False
             
         if self.searchText == "":
             if tips:
                 messagebox.showinfo("提示","账号查询不能为空！")
-            return
+            return False
             
         self.parseUser()
         self.ser_save()  
@@ -983,17 +979,17 @@ class Application(tk.Tk):
 
         url = self.ser_url.get() + "login"
         logdebug(url)       
-        state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
-        if state == False:
-            logerror("错误 ==> 网络连接错误！")
-            return
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == None:
+            loginfo("错误 ==> 网络连接错误！")
+            return False
         logdebug(html)      
         
         if html.find("新世纪") == -1:
             logdebug(html)
             if tips:
                 messagebox.showinfo("提示","登陆失败！")
-            return;
+            return False
                
         #login = False
         #soup = BeautifulSoup(html, "lxml")
@@ -1135,9 +1131,9 @@ class Application(tk.Tk):
         url = self.cli_url.get()
         loginfo("################进入会员登陆页面#######################")
         logdebug(url)
-        state, html = GetHttp(url, headers = headers)
-        if state == False:
-            logerror("错误 ==> 网络连接错误！")
+        html = GetHttp(url, headers = headers)
+        if html == None:
+            loginfo("错误 ==> 网络连接错误！")
             return
         logdebug(html)
         
@@ -1225,9 +1221,9 @@ class Application(tk.Tk):
 
         url = self.cli_url.get() + "login"
         logdebug(url)        
-        state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
-        if state == False:
-            logerror("错误 ==> 网络连接错误！")
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == None:
+            loginfo("错误 ==> 网络连接错误！")
             return
         logdebug(html)
 
@@ -1245,9 +1241,9 @@ class Application(tk.Tk):
         #https://3661032706-xsj.cp168.ws/member/index
         url = self.cli_url.get() + "member/index"
         logdebug(url)   
-        state, html = GetHttp(url = url, headers = headers, method = 'GET')
-        if state == False:
-            logerror("错误 ==> 网络连接错误！")
+        html = GetHttp(url = url, headers = headers, method = 'GET')
+        if html == None:
+            loginfo("错误 ==> 网络连接错误！")
             return
         logdebug(html)
         if tips:
