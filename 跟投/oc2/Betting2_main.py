@@ -12,17 +12,12 @@ import json
 import time
 import datetime
 import http.cookiejar
-import json
-#import pymysql.cursors
 import ssl
-#import sqlite3
 import configparser
 import random
 import hashlib
 from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
-from selenium import webdriver
-from selenium.common.exceptions import *
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
@@ -30,39 +25,17 @@ from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import Spinbox
 from tkinter import messagebox as mBox
-
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
-import time
 from copy import deepcopy
-
-
 from aip import AipOcr
 from PIL import *
-""" 你的 APPID AK SK """
-APP_ID = '11249600'
-API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
-SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
-client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
-
-""" 读取图片 """
-def get_file_content(filePath):
-    with open(filePath, 'rb') as fp:
-        return fp.read()
-
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
-
-import io
 # allows for image formats other than gif
 from PIL import Image, ImageTk
+import logging
+from logging import handlers
+
 
 ssl._create_default_https_context = ssl._create_unverified_context
 from Betting2 import *

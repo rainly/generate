@@ -12,17 +12,12 @@ import json
 import time
 import datetime
 import http.cookiejar
-import json
-#import pymysql.cursors
 import ssl
-#import sqlite3
 import configparser
 import random
 import hashlib
 from bs4 import BeautifulSoup  # 引入beautifulsoup 解析html事半功倍
 from collections import deque
-from selenium import webdriver
-from selenium.common.exceptions import *
 from tkinter import *
 from tkinter import *
 from tkinter import ttk
@@ -30,41 +25,93 @@ from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import Spinbox
 from tkinter import messagebox as mBox
-
 import tkinter.messagebox as messagebox
 import tkinter as tk
 import threading
-import time
 from copy import deepcopy
-
-
 from aip import AipOcr
 from PIL import *
+# allows for image formats other than gif
+from PIL import Image, ImageTk
+import logging
+from logging import handlers
+
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+
 """ 你的 APPID AK SK """
 APP_ID = '11249600'
 API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
 SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
 client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
+
+
+
+
+class Logger(object):
+    #日志级别关系映射
+    level_relations = {
+        'debug':logging.DEBUG,
+        'info':logging.INFO,
+        'warning':logging.WARNING,
+        'error':logging.ERROR,
+        'crit':logging.CRITICAL
+    }
+
+    def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
+        self.logger = logging.getLogger(filename)
+        format_str = logging.Formatter(fmt)#设置日志格式
+        self.logger.setLevel(self.level_relations.get(level))#设置日志级别
+        sh = logging.StreamHandler()#往屏幕上输出
+        sh.setFormatter(format_str) #设置屏幕上显示的格式
+        sh.setLevel(logging.DEBUG)
+        th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#往文件里写入#指定间隔时间自动生成文件的处理器
+        #实例化TimedRotatingFileHandler
+        #interval是时间间隔，backupCount是备份文件的个数，如果超过这个个数，就会自动删除，when是间隔的时间单位，单位有以下几种：
+        # S 秒
+        # M 分
+        # H 小时、
+        # D 天、
+        # W 每星期（interval==0时代表星期一）
+        # midnight 每天凌晨
+        th.setFormatter(format_str)#设置文件里写入的格式
+        th.setLevel(logging.INFO)
+        self.logger.addHandler(sh) #把对象加到logger里
+        self.logger.addHandler(th)
+    
+log = Logger('all.log',level='debug')
+
+
+def logdebug(msg, *args, **kwargs):
+    log.logger.debug(msg, *args, **kwargs)
+    
+def loginfo(msg, *args, **kwargs):
+    log.logger.info(msg, *args, **kwargs)
+    
+def logwarning(msg, *args, **kwargs):
+    log.logger.warning(msg, *args, **kwargs)
+    
+def logerror(msg, *args, **kwargs):
+    #kwargs["exc_info"] = 1
+    log.logger.error(msg, *args, **kwargs)
+
+def logcrit(msg, *args, **kwargs):
+    #kwargs["exc_info"] = 1
+    log.logger.crit(msg, *args, **kwargs)
+
+
+
+
 """ 读取图片 """
 def get_file_content(filePath):
     with open(filePath, 'rb') as fp:
         return fp.read()
 
-try:
-    # Python2
-    import Tkinter as tk
-    from urllib2 import urlopen
-except ImportError:
-    # Python3
-    import tkinter as tk
-    from urllib.request import urlopen
 
-import io
-# allows for image formats other than gif
-from PIL import Image, ImageTk
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
@@ -87,8 +134,7 @@ def gettype(gname, glv):
         if all_the_oc["game_type"][key] == gname:
             return key
     return ""
-
-#print(gettype("庄家", 2))
+    
 
 #def application(environ, start_response):
 #    start_response('200 OK', [('Content-Type', 'text/html')])
@@ -115,8 +161,28 @@ opener = urllib.request.build_opener(handler)
 user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
 headers = { 'User-Agent' : user_agent }  
 
-#64801
-#print (datetime.datetime.now().strftime('%Y-%m-%d'))   #日期格式化
+def GetHttp(url, data = None, headers = {}, method = 'GET'):    
+    request = urllib.request.Request(url, headers = headers, data = data, method = method)
+    try:
+        response = opener.open(request, timeout = 5)
+        html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        logerror("HTTPError :", e.reason)
+        return False
+    except urllib.error.URLError as e:
+        logerror("URLError :", e.reason)
+        return False
+    except Exception as e:
+        logerror("Exception:%s" % (e))
+        return False
+    except:
+        logerror("网络连接错误！")
+        return False
+    html = html.strip()
+    logdebug(html)
+    return True, html
+	
+
 
 numSMS  = 0   
 timeSMS = []
@@ -133,11 +199,11 @@ def sendSMS(phone):
             expnum = expnum + 1
     
     if expnum < 10:
-        print("发送太频繁，不发送:" + str(expnum))
+        loginfo("发送太频繁，不发送:" + str(expnum))
         return
 
     if numSMS > 2:
-        print("大于发次次数，不发送")
+        loginfo("大于发次次数，不发送")
         return
     
 
@@ -162,44 +228,19 @@ def sendSMS(phone):
     tips = "网络连接错误！"
     m=hashlib.md5()
     m.update( tstr )
-    #print(tstr)
     result = m.hexdigest()
     data   = src.encode("utf8")
     data   = bytes.decode(data)
     data   = data + "&sign=" + result
     
-    url_agent = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
-    #print(url_agent)
-    request = urllib.request.Request(url_agent, headers = headers)
-    try:
-        #response = urllib.request.urlopen(request)
-        response = opener.open(request, timeout = 5)
-        html = response.read().decode()
-    except urllib.error.HTTPError as e:
-        #print('The server couldn\'t fulfill the request.')
-        #print('Error code: ' + str(e.code))
-        #print('Error reason: ' + e.reason)
-        print("错误","网络连接错误！")
-        return True
-    except urllib.error.URLError as e:
-        #print('We failed to reach a server.')
-        #print('Reason: ' + e.reason)
-        print("错误","网络连接错误！")
-        return True
-    except Exception as msg:
-        print("Exception:%s" % msg)
-        return True
-    except:
-        #print("error lineno:" + str(sys._getframe().f_lineno))
-        print("错误","网络连接错误！")
-        return True
-    html = html.strip()
-    #print(html)
-    return True
+    ##url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
+    url = "httpfff://duboren.com/api_sms/sms.php?%s"%(str(data))
+    logdebug(url)
+    state, html = GetHttp(url, headers = headers)
+    logdebug(html)
+    return state
 
-#sendSMS('18150155123')
-#sendSMS('18150155123')
-        
+    
 class ServerThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
         super(ServerThread, self).__init__()
@@ -208,13 +249,13 @@ class ServerThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')   
+        logdebug('Thread start\n')   
         while self.stopped == False:    
             try:        
                 self.target_func()
                 sleepnum = 0
                 while self.stopped == False:
-                    print('尝试登录中'+ "\n")
+                    loginfo('尝试登录中'+ "\n")
                     time.sleep(1)
                     sleepnum = sleepnum + 1
                     if sleepnum > 10:
@@ -222,8 +263,8 @@ class ServerThread(threading.Thread):
                         self.target.ser_loginMe(False)
                         break;
             except:
-                print("error lineno:" + str(sys._getframe().f_lineno))
-        print('Thread stopped'+ "\n")
+                logerror("error lineno:" + str(sys._getframe().f_lineno))
+        logdebug('Thread stopped'+ "\n")
 
     def stop(self):
         self.stopped = True
@@ -231,11 +272,10 @@ class ServerThread(threading.Thread):
     def isStopped(self):
         return self.stopped
 
-    def logprint(self, log):
-        print(log)
+
         
     def target_func(self):
-        print("target_func begin")
+        logdebug("target_func begin")
         sleepnum = 5
         syncUserNum   = 3600
         while self.stopped == False:
@@ -245,7 +285,7 @@ class ServerThread(threading.Thread):
                 time.sleep(1)
                 continue
             sleepnum = 0
-            print(syncUserNum)
+            logdebug(syncUserNum)
             if self.target.conf_ck.get() == 1 and syncUserNum >= 3600:
                 syncUserNum = 0;
                 self.target.syncUser();
@@ -258,47 +298,23 @@ class ServerThread(threading.Thread):
             for user in t_users:
                 if self.stopped:
                     break
-                print("############################查询详细##############################" + user) 
+                loginfo("############################查询详细##############################" + user) 
                 #https://00271596-xsj.cp168.ws/agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=false
                 t = time.time()
                 url = self.target.ser_url.get() + "agent/report/bets?username=" + user + "&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&end=" + datetime.datetime.now().strftime('%Y-%m-%d') + "&settle=false"
                 #url = self.target.ser_url.get() + "agent/report/bets?username=zhw999&lottery=BJPK10%2CCQSSC%2CPK10JSC%2CLUCKYSB%2CSSCJSC%2CGDKLSF%2CGXK3%2CXYNC%2CKL8%2CXJSSC%2CTJSSC%2CBJPK10BJL%2CGXKLSF%2CGD11X5%2CPCEGG%2CAULUCKY20%2CAULUCKY10%2CAULUCKY5%2CAULUCKY8%2CHK6&begin=2018-03-25&end=2018-03-25&settle=true"
-                print(url)
-                request = urllib.request.Request(url = url, headers = headers, method = 'GET')
-                try:
-                    response = opener.open(request, timeout = 5)
-                    html = response.read().decode()
-                except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                logdebug(url)
+                state, html = GetHttp(url = url, headers = headers, method = 'GET')
+
+                if state == False:
+                    loginfo("网络异常，需要重新登录")
                     if sendSMS(self.target.conf_phone.get()) == True:
                         return
                     continue
-                except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                except Exception as msg:
-                    print("Exception:%s" % msg)
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                html = html.strip()
-                #print(html)
+                logdebug(html)
+                
                 if html == "<script type=\"text/javascript\">top.location.href='/'</script>" or html.find("内部错误") > 0:
-                    print("账号掉线，需要重新登录")
+                    loginfo("账号掉线，需要重新登录")
                     #账号掉线，需要重新登录
                     if sendSMS(self.target.conf_phone.get()) == True:
                         return
@@ -309,6 +325,7 @@ class ServerThread(threading.Thread):
                         data = []
                         for td in tr.find_all('td'):
                             data.append(td.get_text())
+                        loginfo(data)
                         t_datas.append(data)
                 
                 
@@ -318,11 +335,11 @@ class ServerThread(threading.Thread):
             g_datas = t_datas            
             g_mutex.release()
                 
-            print("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
+            loginfo("注单号    投注时间    投注种类    账号    投注内容    下注金额    退水(%)    下注结果    本级占成    本级结果    占成明细")
             for item in g_datas:
-                print(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
+                loginfo(item[0].strip() + " " + item[1].strip() + " " + item[2].strip() + " " + item[3].strip() + " " + item[4].strip() + " " +  item[5].strip() + " " + item[6].strip() + " " + item[7].strip() + " " + item[8].strip() + " " + item[9].strip() + " " + item[10].strip())
             
-        print("target_func end")
+        logdebug("target_func end")
                 
                 
        
@@ -334,13 +351,13 @@ class ClientThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        print('Thread start\n')  
+        logdebug('Thread start\n')  
         while self.stopped == False:   
             try:        
                 self.target_func()
                 sleepnum = 0
                 while self.stopped == False: 
-                    print('尝试登录中'+ "\n")
+                    loginfo('尝试登录中'+ "\n")
                     time.sleep(1)
                     sleepnum = sleepnum + 1
                     if sleepnum > 10:
@@ -348,8 +365,8 @@ class ClientThread(threading.Thread):
                         self.target.cli_loginMe(False)
                         break;
             except:
-                print("error lineno:" + str(sys._getframe().f_lineno))
-        print('Thread stopped'+ "\n")
+                logdebug("error lineno:" + str(sys._getframe().f_lineno))
+        logdebug('Thread stopped'+ "\n")
 
     def stop(self):
         self.stopped = True
@@ -357,8 +374,7 @@ class ClientThread(threading.Thread):
     def isStopped(self):
         return self.stopped
 
-    def logprint(self, log):
-        print(log)
+
 
 
     def target_func(self):
@@ -371,52 +387,29 @@ class ClientThread(threading.Thread):
                 continue
             sleepnum = 0     
 
-            print("############################查询倍率##############################")
+            loginfo("############################查询倍率##############################")
             t = time.time()
             #https://3661032706-xsj.cp168.ws/member/odds?lottery=BJPK10BJL&_=1522070776784
             #{"DX_D":1.5,"DX_X":2.5,"LB_X_4":7,"LB_X_6":31,"LB_X":2,"LB_Z_3":5,"LB_X_3":5,"LB_Z_2":3,"LB_Z_4":7,"LB_Z_5":11,"LB_Z_6":31,"LB_Z_1":2,"LB_X_1":2,"LB_Z":2,"LB_X_5":11,"LB_X_2":3,"T_T":8,"XD_XD":12,"ZD_ZD":12,"ZX_Z":1.95,"ZX_X":2,"ZX1_Z":2,"ZX1_X":2}
            
             url = self.target.cli_url.get() + "member/odds?lottery=BJPK10BJL&_=" + str(int(round(t * 1000)))
-            print(url)    
-            request = urllib.request.Request(url = url, headers = headers, method = 'GET')
+            logdebug(url)    
+            state, html = GetHttp(url = url, headers = headers, method = 'GET')
+            if state == False:
+                loginfo("错误 ==> 网络连接错误！")
+                if sendSMS(self.target.conf_phone.get()) == True:
+                    return
+                continue
+            
+            logdebug(html)    
+            
             try:
-                response = opener.open(request, timeout = 5)
-                html = response.read().decode()
-            except urllib.error.HTTPError as e:
-                print('The Betting couldn\'t fulfill the request.')
-                print('Error code: ' + str(e.code))
-                #print('Error reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
-                if sendSMS(self.target.conf_phone.get()) == True:
-                    return
-                continue
-            except urllib.error.URLError as e:
-                print('We failed to reach a Betting.')
-                #print('Reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
-                if sendSMS(self.target.conf_phone.get()) == True:
-                    return
-                continue
-            except Exception as msg:
-                print("Exception:%s" % msg)
-                print("错误 ==> 网络连接错误！")
-                if sendSMS(self.target.conf_phone.get()) == True:
-                    return
-                continue
-            except:
-                #print("error lineno:" + str(sys._getframe().f_lineno))
-                print("错误 ==> 网络连接错误！")
-                if sendSMS(self.target.conf_phone.get()) == True:
-                    return
-                continue          
-            try:
-                print(html)
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
                 pass
                 
-            print("############################查询倍率成功##############################")
+            loginfo("############################查询倍率成功##############################")
             g_mutex.acquire()
                 
             global g_datas                 
@@ -440,10 +433,10 @@ class ClientThread(threading.Thread):
                 本级结果    
                 占成明细
                 '''
-                #print(item)
+                #logdebug(item)
                 #['4399421039# ', '2018-03-26 21:28:06 星期一', '彩票百家乐673156-1期', 'qqww110A盘', '小 @ 2.5\n', '2200', '0.5%', '-2189.0', '0%', '11.0', '明细']
-                print("############################下注订单##############################")
-                print(item)
+                loginfo("############################下注订单##############################")
+                logdebug(item)
                 
                 username = item[3]
                 username = username.replace("A盘", "")
@@ -460,11 +453,11 @@ class ClientThread(threading.Thread):
                         bUser = True
                     
                 if bUser == False:
-                    print("****账号没有找到****" + username)
+                    loginfo("****账号没有找到****" + username)
                     continue
     
                 if item[0] in g_order_dict:
-                    print("****订单已经处理*****" + item[0])
+                    loginfo("****订单已经处理*****" + item[0])
                     continue
 
     
@@ -473,7 +466,7 @@ class ClientThread(threading.Thread):
                 
                 drawNumber = item[2]
                 if drawNumber.find("彩票百家乐") == -1:
-                    print("****不是彩票百家乐订单*****")
+                    loginfo("****不是彩票百家乐订单*****")
                     continue
                 drawNumber = drawNumber.replace("彩票百家乐", "")
                 drawNumber = drawNumber.replace("期", "")
@@ -485,8 +478,9 @@ class ClientThread(threading.Thread):
 
                 #小 @ 2.5\n
                 _split  = item[4].split("@")
-                print(_split)
+                logdebug(_split)
                 if len(_split) < 2:
+                    loginfo("****数据有出错*****", item[4])
                     continue
                 _odds           = _split[1]
                 _odds           = _odds.replace("\n", "")
@@ -494,10 +488,11 @@ class ClientThread(threading.Thread):
                 _odds            = float(_odds)
                 #小
                 _type = gettype(_split[0].strip(), _odds)
-                print(_type)
+                logdebug(_type)
                 #DX_D
                 _split2 = _type.split("_")
                 if len(_split2) < 2:
+                    loginfo("****数据有出错*****", _type)
                     continue
                 
                 bet = {}
@@ -506,55 +501,30 @@ class ClientThread(threading.Thread):
                 bet["amount"]   = amount
                 bet["odds"]     = _odds
                 order_dict["bets"].append(bet)
-                print(order_dict)
+                logdebug(order_dict)
                 
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
                 url = self.target.cli_url.get() + "member/bet"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-                print(url)
-                request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-                try:
-                    response = opener.open(request, timeout = 5)
-                    html = response.read().decode()
-                except urllib.error.HTTPError as e:
-                    print('The Betting couldn\'t fulfill the request.')
-                    print('Error code: ' + str(e.code))
-                    #print('Error reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
+                logdebug(url)
+                state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+                if state == False:
+                    loginfo("错误 ==> 网络连接错误！")
                     if sendSMS(self.target.conf_phone.get()) == True:
                         return
                     continue
-                except urllib.error.URLError as e:
-                    print('We failed to reach a Betting.')
-                    #print('Reason: ' + e.reason)
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                except Exception as msg:
-                    print("Exception:%s" % msg)
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                except:
-                    #print("error lineno:" + str(sys._getframe().f_lineno))
-                    print("错误 ==> 网络连接错误！")
-                    if sendSMS(self.target.conf_phone.get()) == True:
-                        return
-                    continue
-                print(html)
+                logdebug(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
                     result = json.loads(html)  
                     if result["status"] == 0:
-                        print("****跟单成功****")
+                        loginfo("****跟单成功****")
                     else:
-                        print("****跟单失败****")
+                        loginfo("****跟单失败****")
                 except:
-                    print("****跟单失败****")
+                    loginfo("****跟单失败****")
                 g_order_dict[item[0]] = 1            
             ###############################
     
@@ -577,7 +547,7 @@ class Application(tk.Tk):
             self.conf_pl.set("")
             self.conf.add_section("pl")
             self.conf.set("pl", "value", "")
-            
+                
         self.conf_phone = tk.StringVar()    
         if self.conf.has_section("phone") == True:
             self.conf_phone.set(self.conf.get("phone", "value"))
@@ -622,7 +592,7 @@ class Application(tk.Tk):
             if len(user) < 2:
                 continue                
             self.users[user[0]] = user[1]
-        print(self.users)
+        logdebug(self.users)
         g_mutex.release()
         
     def packUser(self):
@@ -634,7 +604,7 @@ class Application(tk.Tk):
             searchText = searchText + self.users[user];
             searchText = searchText + "\n";
         g_mutex.release()
-        print(searchText)
+        logdebug(searchText)
         self.searchText = searchText
         self.searchScrolledText.delete(1.0, END)
         self.searchScrolledText.insert(tk.INSERT, self.searchText)
@@ -719,7 +689,7 @@ class Application(tk.Tk):
         sendSMS(self.conf_phone.get())
         global numSMS
         numSMS = 0
-        #print(numSMS)
+        #logdebug(numSMS)
         
     def conf_save(self):
         self.searchText = self.searchScrolledText.get(1.0, END)
@@ -743,41 +713,24 @@ class Application(tk.Tk):
         while current < page_count:
             #https://00271596-xsj.cp168.ws/agent/user/list?parent=cb9999&type=1&lv=&page=2
             url = self.ser_url.get() + "agent/user/list?parent=" + self.ser_nick.get() + "&type=1&lv=&page=" + str(current + 1)
-            print(url)
-            request = urllib.request.Request(url = url, headers = headers, method = 'GET')
-            try:
-                response = opener.open(request, timeout = 5)
-                html = response.read().decode()
-            except urllib.error.HTTPError as e:
-                print('The Betting couldn\'t fulfill the request.')
-                print('Error code: ' + str(e.code))
-                #print('Error reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
+            logdebug(url)
+            state, html = GetHttp(url = url, headers = headers, method = 'GET')
+            
+            if state == False:
+                logerror("错误 ==> 网络连接错误！")
                 return
-            except urllib.error.URLError as e:
-                print('We failed to reach a Betting.')
-                #print('Reason: ' + e.reason)
-                print("错误 ==> 网络连接错误！")
-                return
-            except Exception as msg:
-                print("Exception:%s" % msg)
-                return
-            except:
-                #print("error lineno:" + str(sys._getframe().f_lineno))
-                print("错误 ==> 网络连接错误！")
-                return
-            #print(html)
+            logdebug(html)
             soup = BeautifulSoup(html, "lxml")
             for tbody in soup.find_all('tbody'):
                 for tr in tbody.find_all('tr'):
                     username = tr.find_all('td')[3].get_text()
-                    #print(username)
+                    #logdebug(username)
                     _split      = username.split(" ")
                     _split[0]   = _split[0].replace("\n", "")
                     _split[0]   = _split[0].strip()
                     if _split[0] == "":
                         continue
-                    #print(_split)
+                    #logdebug(_split)
                     if _split[0] in self.users:
                         continue
                     self.users[_split[0]] = self.conf_pl.get()
@@ -785,7 +738,7 @@ class Application(tk.Tk):
             html_page_count = soup.find_all("span", class_="page_count") #共 2 页
             if len(html_page_count) > 0:
                 html_page_count = html_page_count[0].get_text()
-                print(html_page_count)
+                logdebug(html_page_count)
                 html_page_count = html_page_count.replace("共 ", "")
                 html_page_count = html_page_count.replace(" 页", "")
                 page_count = int(html_page_count)
@@ -796,7 +749,7 @@ class Application(tk.Tk):
             html_current = soup.find_all("span", class_="current") #1
             if len(html_current) > 0:
                 html_current = html_current[0].get_text()
-                print(html_page_count)
+                logdebug(html_page_count)
                 current = int(html_current)
             else:
                 break
@@ -927,42 +880,23 @@ class Application(tk.Tk):
         #---------------ser_tab控件介绍------------------#
    
     def ser_interMe(self):
-        global numSMS
-        numSMS = 0
-        print("################进入代理网站#######################")
+        loginfo("################进入代理网站#######################")
         url = self.ser_url.get()
-        print("################进入登陆页面#######################")
+        loginfo("################进入登陆页面#######################")
         #http://54jndgw.ttx158.com/cp5-5-ag/?pagegroup=CP5_5_AG&idcode=64801&rnd=38744&key=E6C257CF128CFFF9ED4A93F61F1312&ts=636574765790000000
-        #print(url)
-        request = urllib.request.Request(url, headers = headers)
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+        logdebug(url)
+        state, html = GetHttp(url, headers = headers)
+        if state == False:
+            logerror("错误 ==> 网络连接错误！")
             return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        print("################进入代理网站成功#######################")
+        logdebug(html)
+        loginfo("################进入代理网站成功#######################")
 
         self.ser_flushMe()
         
     def ser_flushMe(self):
         url = self.ser_url.get() + "code"
-        #print(url)
+        logdebug(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -980,27 +914,21 @@ class Application(tk.Tk):
             """ 调用通用文字识别, 图片参数为本地图片 """
             #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
             result = client.basicGeneral(code_image);
-            print(result)
-            #result = json.loads(byarray.decode('utf-8'))
-            if len(result["words_result"]):
-                print(result["words_result"][0]["words"])
+            logdebug(result)
+			
+            if "words_result" in result and len(result["words_result"]):
+                logdebug(result["words_result"][0]["words"])
                 self.ser_check.set(result["words_result"][0]["words"])            
             
         except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+            logerror("HTTPError :", e.reason)
         except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except Exception as msg:
-            print("Exception:%s" % msg)
+            logerror("URLError :", e.reason)
+        except Exception as e:
+            loginfo("Exception:%s" % (e))
         except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-
+            loginfo("错误 ==> 网络连接错误！")
+            
     def ser_clickMe(self):
         if  self.ser_thread != None:
             if self.ser_thread.is_alive():
@@ -1044,7 +972,7 @@ class Application(tk.Tk):
             
         self.parseUser()
         self.ser_save()  
-        print("############################账号登陆##############################")
+        loginfo("############################账号登陆##############################")
         logindict = {}
         logindict["type"]     = 2
         logindict["account"]  = self.ser_name.get()
@@ -1054,32 +982,15 @@ class Application(tk.Tk):
         data = urllib.parse.urlencode(logindict).encode('utf-8')
 
         url = self.ser_url.get() + "login"
-        print(url)       
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+        logdebug(url)       
+        state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if state == False:
+            logerror("错误 ==> 网络连接错误！")
             return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-               
+        logdebug(html)      
+        
         if html.find("新世纪") == -1:
-            print(html)
+            logdebug(html)
             if tips:
                 messagebox.showinfo("提示","登陆失败！")
             return;
@@ -1090,7 +1001,7 @@ class Application(tk.Tk):
         #    if row.get_text().find("") >= 0:
         #        login = True
         #if login == False:
-        #    print("错误 ==> 登陆错误！")
+        #    logerror("错误 ==> 登陆错误！")
         #    return
         if tips:  
             messagebox.showinfo("提示","登陆成功！") 
@@ -1220,41 +1131,23 @@ class Application(tk.Tk):
         #---------------Tab1控件介绍------------------#
             
     def cli_interMe(self):
-        global numSMS
-        numSMS = 0
-        print("################进入会员网站#######################")
+        loginfo("################进入会员网站#######################")
         url = self.cli_url.get()
-        print("################进入会员登陆页面#######################")
-        #print(url)
-        request = urllib.request.Request(url, headers = headers)
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+        loginfo("################进入会员登陆页面#######################")
+        logdebug(url)
+        state, html = GetHttp(url, headers = headers)
+        if state == False:
+            logerror("错误 ==> 网络连接错误！")
             return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        print("################进入会员网站成功#######################")
+        logdebug(html)
+        
+        loginfo("################进入会员网站成功#######################")
 
         self.cli_flushMe()
         
     def cli_flushMe(self):
         url = self.cli_url.get() + "code"
-        #print(url)
+        logdebug(url)
         request = urllib.request.Request(url, headers = headers)
         try:
             response = opener.open(request, timeout = 5)
@@ -1272,26 +1165,20 @@ class Application(tk.Tk):
             """ 调用通用文字识别, 图片参数为本地图片 """
             #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
             result = client.basicGeneral(code_image);
-            print(result)
+            logdebug(result)
             #result = json.loads(byarray.decode('utf-8'))
-            if len(result["words_result"]):
-                print(result["words_result"][0]["words"])
+            if "words_result" in result and len(result["words_result"]):
+                logdebug(result["words_result"][0]["words"])
                 self.cli_check.set(result["words_result"][0]["words"])                
                 
         except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+            logerror("HTTPError:" , e.reason)
         except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-        except Exception as msg:
-            print("Exception:%s" % msg)
+            logerror("URLError:" , e.reason)
+        except Exception as e:
+            logerror("Exception:%s" % (e))
         except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
+            logerror("错误 ==> 网络连接错误！")
    
     def cli_clickMe(self):
         if  self.cli_thread != None:
@@ -1326,7 +1213,7 @@ class Application(tk.Tk):
                 messagebox.showinfo("提示","验证码不能为空！")
             return
         self.cli_save()  
-        print("############################账号登陆##############################")
+        loginfo("############################账号登陆##############################")
         logindict = {}
         logindict["type"]       = 2
         logindict["account"]    = self.cli_name.get()
@@ -1334,33 +1221,15 @@ class Application(tk.Tk):
         logindict["code"]       = self.cli_check.get()
         
         data = urllib.parse.urlencode(logindict).encode('utf-8')
-        print(data)
+        logdebug(data)
 
         url = self.cli_url.get() + "login"
-        #print(url)        
-        request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+        logdebug(url)        
+        state, html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if state == False:
+            logerror("错误 ==> 网络连接错误！")
             return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        print(html)
+        logdebug(html)
 
         login = False
         soup = BeautifulSoup(html, "lxml")
@@ -1368,39 +1237,19 @@ class Application(tk.Tk):
             if row.get_text().find("用户协议") >= 0:
                 login = True
         if login == False:
-            print("错误 ==> 登陆错误！")
+            logerror("错误 ==> 登陆错误！")
             return
-        print("登录 ==> 登陆成功！")
+        loginfo("登录 ==> 登陆成功！")
         
-
-        
-        print("############################同意登录##############################")
+        loginfo("############################同意登录##############################")
         #https://3661032706-xsj.cp168.ws/member/index
         url = self.cli_url.get() + "member/index"
-        #print(url)   
-        request = urllib.request.Request(url = url, headers = headers, method = 'GET')
-        try:
-            response = opener.open(request, timeout = 5)
-            html = response.read().decode()
-        except urllib.error.HTTPError as e:
-            print('The Betting couldn\'t fulfill the request.')
-            print('Error code: ' + str(e.code))
-            #print('Error reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
+        logdebug(url)   
+        state, html = GetHttp(url = url, headers = headers, method = 'GET')
+        if state == False:
+            logerror("错误 ==> 网络连接错误！")
             return
-        except urllib.error.URLError as e:
-            print('We failed to reach a Betting.')
-            #print('Reason: ' + e.reason)
-            print("错误 ==> 网络连接错误！")
-            return
-        except Exception as msg:
-            print("Exception:%s" % msg)
-            return
-        except:
-            #print("error lineno:" + str(sys._getframe().f_lineno))
-            print("错误 ==> 网络连接错误！")
-            return
-        print(html)
+        logdebug(html)
         if tips:
             messagebox.showinfo("提示","登陆成功！")
         return True
