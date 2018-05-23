@@ -43,9 +43,14 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 """ 你的 APPID AK SK """
-APP_ID = '11249600'
-API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
-SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
+#APP_ID = '11249600'
+#API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
+#SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
+
+APP_ID = '11283483'
+API_KEY = 'K5PIp9qko5UFOZxOyvbV5EwK'
+SECRET_KEY = 'LA5wxlyBW7rfuQxzHKAGICz2oFdjsQRC  '
+
 client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
 
@@ -150,7 +155,7 @@ g_datas = []
     
 
 #声明一个CookieJar对象实例来保存cookie
-cookiejar = cookiejar = http.cookiejar.CookieJar()
+cookiejar = http.cookiejar.CookieJar()
 #利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
 handler = urllib.request.HTTPCookieProcessor(cookiejar)
 #通过handler来构建opener
@@ -227,7 +232,7 @@ def sendSMS(phone):
     data   = data + "&sign=" + result
     
     ##url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
-    url = "httpfff://duboren.com/api_sms/sms.php?%s"%(str(data))
+    url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
     logdebug(url)
     html = GetHttp(url, headers = headers)
     if html == None:
@@ -248,17 +253,25 @@ class ServerThread(threading.Thread):
         while self.stopped == False:    
             try:        
                 self.target_func()
-                sleeptime = 0
+                sleeptime   = 0
+                sleepdelay  = 30
+                trynum      = 0
                 while self.stopped == False:
-                    loginfo('尝试登录中'+ "\n")
+                    loginfo('代理尝试登录中(%d/%d)\n'%(sleeptime, sleepdelay))
                     time.sleep(1)
                     sleeptime = sleeptime + 1
-                    if sleeptime < 30:
+                    if sleeptime < sleepdelay:
                         continue
+                    sleepdelay = sleepdelay + 30
+                    if sleepdelay > 300:
+                        sleepdelay = 300
+                    trynum = trynum + 1
                     self.target.ser_interMe()
                     if self.target.ser_loginMe(False) != True:
+                        sleeptime = 0;
                         #登录失败发送短信通知
-                        sendSMS(self.target.conf_phone.get())
+                        if trynum % 10 == 0:
+                            sendSMS(self.target.conf_phone.get())
                     else:
                         break;
             except:
@@ -270,7 +283,7 @@ class ServerThread(threading.Thread):
 
     def isStopped(self):
         return self.stopped
-
+    
 
         
     def target_func(self):
@@ -350,17 +363,26 @@ class ClientThread(threading.Thread):
         while self.stopped == False:   
             try:        
                 self.target_func()
-                sleeptime = 0
+                sleeptime   = 0
+                sleepdelay  = 30
+                trynum      = 0
                 while self.stopped == False: 
-                    loginfo('尝试登录中'+ "\n")
+                    loginfo('会员尝试登录中(%d/%d)\n'%(sleeptime, sleepdelay))
                     time.sleep(1)
                     sleeptime = sleeptime + 1
-                    if sleeptime < 30:
+                    if sleeptime < sleepdelay:
                         continue;
+                    sleepdelay = sleepdelay + 30
+                    if sleepdelay > 300:
+                        sleepdelay = 300
+                    
+                    trynum = trynum + 1
                     self.target.cli_interMe()
                     if self.target.cli_loginMe(False) != True:
+                        sleeptime = 0
                         #登录失败发送短信通知
-                        sendSMS(self.target.conf_phone.get())
+                        if trynum % 10 == 0:
+                            sendSMS(self.target.conf_phone.get())
                     else:
                         break;
             except:
@@ -457,14 +479,14 @@ class ClientThread(threading.Thread):
                     loginfo("****订单已经处理*****" + item[0])
                     continue
                 
-                logerror(item)
+                loginfo(item)
     
                 amount = round(float(item[5]) * float(t_users[username]))
                 #amount =10
                 
                 drawNumber = item[2]
                 if drawNumber.find("彩票百家乐") == -1:
-                    logerror("****不是彩票百家乐订单*****")
+                    loginfo("****不是彩票百家乐订单*****")
                     continue
                 drawNumber = drawNumber.replace("彩票百家乐", "")
                 drawNumber = drawNumber.replace("期", "")
@@ -478,7 +500,7 @@ class ClientThread(threading.Thread):
                 _split  = item[4].split("@")
                 logdebug(_split)
                 if len(_split) < 2:
-                    logerror("****数据有出错*****", item[4])
+                    loginfo("****数据有出错*****", item[4])
                     continue
                 _odds           = _split[1]
                 _odds           = _odds.replace("\n", "")
@@ -490,42 +512,45 @@ class ClientThread(threading.Thread):
                 #DX_D
                 _split2 = _type.split("_")
                 if len(_split2) < 2:
-                    logerror("****数据有出错*****", _type)
+                    loginfo("****数据有出错*****", _type)
                     continue
                 
                 bet = {}
                 bet["game"]     = _split2[0]
                 bet["contents"] = _split2[1]
                 bet["amount"]   = amount
-                bet["odds"]     = _odds
+                #bet["odds"]    = _odds
+                bet["odds"]     = all_the_oc["game_lv"][_type]
                 order_dict["bets"].append(bet)
-                logdebug(order_dict)
+                
                 
                 data = json.dumps(order_dict).encode(encoding='UTF8')  
                 url = self.target.cli_url.get() + "member/bet"
                 
                 headers["Accept"] = "application/json, text/javascript, */*; q=0.01"
                 headers["Content-Type"] = "application/json; charset=UTF-8"
-                logdebug(url)
+                loginfo(url)
+                loginfo(data)
                 html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
                 if html == None:
-                    logerror("错误 ==> 网络连接错误！")
+                    loginfo("错误 ==> 网络连接错误！")
                     return
-                logdebug(html)
+                loginfo(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
                     result = json.loads(html)  
                     if result["status"] == 0:
-                        logerror("****跟单成功****")
+                        loginfo("****跟单成功****")
+                    elif result["status"] == 1:
+                        loginfo("****跟单失败 赔率变更，重新显示投注确认框****")
+                    elif result["status"] == 2:
+                        loginfo("****跟单失败 后台未开盘，请等待开盘再试****")                        
                     else:
-                        logerror("****跟单失败****")
-                        logerror(html)
+                        loginfo("****跟单失败****")
                 except:
                     logerror("****跟单失败****")
-                    logerror(html)
                 g_order_dict[item[0]] = 1            
             ###############################
-    
 
  
 class Application(tk.Tk):
