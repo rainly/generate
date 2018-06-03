@@ -138,7 +138,7 @@ class CPAnalyze:
                 self.log(config_cptype["type"], config_cptype["last_expect_issue"], ballno, "***切出***" + str(BALL_NO_DATA["Temp_Cut"]))
                 BALL_NO_DATA["Temp_Cut"] = 0
                 BALL_NO_DATA["Temp_Cut_Flag"] = 0
-            elif  BALL_NO_DATA["Temp_Cut"] < 0 and BALL_NO_DATA["Temp_Cut"] < -self.cutout:
+            elif  BALL_NO_DATA["Temp_Cut"] < 0 and BALL_NO_DATA["Temp_Cut"] < -self.cutin:
                 self.log(config_cptype["type"], config_cptype["last_expect_issue"], ballno, "***切入***" + str(BALL_NO_DATA["Temp_Cut"]))
                 BALL_NO_DATA["Temp_Cut"] = 0
                 BALL_NO_DATA["Temp_Cut_Flag"] = 1
@@ -293,10 +293,10 @@ class CPAnalyze:
         if not fp:
             raise "config file maybe not exist."
         else:
-            conf.readfp(fp)  		
+            conf.readfp(fp)          
         #用config对象读取配置文件
         #conf.read("cpanalyze.txt")
-		
+        
         if conf.has_section("Strategy") == True:
             Strategy = conf.get("Strategy", "value")
         else:

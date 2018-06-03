@@ -291,11 +291,11 @@ class BettingThread(threading.Thread):
                 self.logprint("位置" + str(buyno) + "***本方案累积输跳转***" + str(BALL_NO_DATA["Temp_Strategy"]["Jump_idx"]))
 
             #切入切出
-            if BALL_NO_DATA["Temp_Cut"] > 0 and BALL_NO_DATA["Temp_Cut"] > self.cutout:
+            if self.cutout != 0 and BALL_NO_DATA["Temp_Cut"] > 0 and BALL_NO_DATA["Temp_Cut"] > self.cutout:
                 self.logprint("位置" + str(buyno) + "***切出***" + str(BALL_NO_DATA["Temp_Cut"]))
                 BALL_NO_DATA["Temp_Cut"] = 0
                 BALL_NO_DATA["Temp_Cut_Flag"] = 0
-            elif  BALL_NO_DATA["Temp_Cut"] < 0 and BALL_NO_DATA["Temp_Cut"] < -self.cutout:
+            elif  self.cutin != 0 and BALL_NO_DATA["Temp_Cut"] < 0 and BALL_NO_DATA["Temp_Cut"] < -self.cutin:
                 self.logprint("位置" + str(buyno) + "***切入***" + str(BALL_NO_DATA["Temp_Cut"]))
                 BALL_NO_DATA["Temp_Cut"] = 0
                 BALL_NO_DATA["Temp_Cut_Flag"] = 1
@@ -371,51 +371,57 @@ class BettingThread(threading.Thread):
         #双面玩法
 
         if BALL_NO_DATA["Temp_Rule"] != None:
-            if test_flag == False and BALL_NO_DATA["Temp_Cut_Flag"] == 1:
-            
-                if config_cptype[self.cptype]["buyflag"] == 1:
-                    if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[1]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[2]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[3]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[4]").click()
+            if test_flag == False :
+                if BALL_NO_DATA["Temp_Cut_Flag"] == 1:
+                    if config_cptype[self.cptype]["buyflag"] == 1:
+                        if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[1]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[2]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[3]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div/div[2]/button[4]").click()
+                        else:
+                            self.logprint("***不支持类型***") 
+                    elif config_cptype[self.cptype]["buyflag"] == 2:
+                        if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[1]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[2]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[3]").click()
+                        elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
+                            driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[4]").click()
+                        else:
+                            self.logprint("***不支持类型***")
                     else:
-                        self.logprint("***不支持类型***") 
-                elif config_cptype[self.cptype]["buyflag"] == 2:
-                    if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[1]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[2]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[3]").click()
-                    elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
-                        driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[3]/div[" + str(buyno) + "]/div[1]/div[2]/button[4]").click()
-                    else:
-                        self.logprint("***不支持类型***")
+                        self.logprint("***类型不支持***")
+                        pass
                 else:
-                    self.logprint("***类型不支持***")
-                    pass
-                        
+                    self.logprint("***模拟买入***")
+                    pass;
             else:
-                self.logprint("***模拟买入***")
+                self.logprint("***测试数据买入***")
                 pass;
 
             self.logprint("位置" + str(buyno) + "***购买:" + BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] + "金额：" + str(BALL_NO_DATA["Temp_Monery"][1]))
 
-            if test_flag == False and BALL_NO_DATA["Temp_Cut_Flag"] == 1:
-                time.sleep(1)
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
-                time.sleep(1)
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(BALL_NO_DATA["Temp_Monery"][1])
-                time.sleep(1)
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/button").click()
-                time.sleep(1)
-                driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[2]/button[3]").click()
+            if test_flag == False:
+                if BALL_NO_DATA["Temp_Cut_Flag"] == 1:
+                    time.sleep(1)
+                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").clear()
+                    time.sleep(1)
+                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/input").send_keys(BALL_NO_DATA["Temp_Monery"][1])
+                    time.sleep(1)
+                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[1]/div[1]/button").click()
+                    time.sleep(1)
+                    driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[4]/div[2]/button[3]").click()
+                else:
+                    self.logprint("***模拟买入***")
+                    pass
             else:
-                self.logprint("***模拟买入***")
+                self.logprint("***测试数据数据***")
                 pass
 
     def target_func(self):
@@ -532,6 +538,7 @@ class BettingThread(threading.Thread):
                     continue
                 SleepTime = 0  
                 self.logprint("**********************************************")
+                #              No. 20180603-114
                 #headflag => 1:No. 20180424-033, 
                 #headflag => 2:No. 20180422001  
                 #headflag => 3:No. 1766125
@@ -545,6 +552,7 @@ class BettingThread(threading.Thread):
                     self.logprint("***类型未处理***")   
                     continue
                 
+                
                 if test_flag == False:
                     Cur_Award_Issue1 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[2]/div[2]").text
                     Cur_Award_Issue2 = driver.find_element_by_xpath("//*[@id=\"app\"]/div[1]/div/main/div[2]/div[2]/div[1]/div[3]/div[1]").text
@@ -556,7 +564,10 @@ class BettingThread(threading.Thread):
                 if Cur_Award_Issue1 == "" or Cur_Award_Issue2 == "":
                     self.logprint("***等待开奖***")   
                     continue
-
+                    
+                #print("headflag:" + headflag)
+                #print("Cur_Award_Issue1:" + Cur_Award_Issue1)
+                #print("Cur_Award_Issue2:" + Cur_Award_Issue2)
 
                 Cur_Award_Issue1 = Cur_Award_Issue1.replace(headflag, "")
                 Cur_Award_Issue2 = Cur_Award_Issue2.replace(headflag, "")
@@ -786,6 +797,7 @@ class Application(tk.Tk):
         self.conf.write(open("bbcp.txt","w"))
         self.reg = False;
         self.reg, tips = http_reg(softname, version, self.phydriverserial.get(), self.regcode.get())
+        self.reg = True
         self.tips.set(tips)
     
     def createTab2(self):   
@@ -943,7 +955,8 @@ class Application(tk.Tk):
     def enterMe(self):
         self.url = self.urlEntered.get()
         if self.url != "":
-            driver.get(self.url)
+            if test_flag == False:
+                driver.get(self.url)
             
     def clickMe(self):
         if  self.thread != None:
