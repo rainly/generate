@@ -66,15 +66,17 @@ class Logger(object):
         'error':logging.ERROR,
         'crit':logging.CRITICAL
     }
-
+    
     def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(levelname)s: %(message)s'):
         self.logger = logging.getLogger(filename)
         format_str = logging.Formatter(fmt)#设置日志格式
         self.logger.setLevel(self.level_relations.get(level))#设置日志级别
-        sh = logging.StreamHandler()#往屏幕上输出
-        sh.setFormatter(format_str) #设置屏幕上显示的格式
-        sh.setLevel(logging.INFO)
-        th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#往文件里写入#指定间隔时间自动生成文件的处理器
+        self.sh = logging.StreamHandler()#往屏幕上输出
+        self.sh.setFormatter(format_str) #设置屏幕上显示的格式
+        self.sh.setLevel(logging.INFO)
+        self.shLevel = logging.INFO
+        
+        self.th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#往文件里写入#指定间隔时间自动生成文件的处理器
         #实例化TimedRotatingFileHandler
         #interval是时间间隔，backupCount是备份文件的个数，如果超过这个个数，就会自动删除，when是间隔的时间单位，单位有以下几种：
         # S 秒
@@ -83,10 +85,17 @@ class Logger(object):
         # D 天、
         # W 每星期（interval==0时代表星期一）
         # midnight 每天凌晨
-        th.setFormatter(format_str)#设置文件里写入的格式
-        th.setLevel(logging.INFO)
-        self.logger.addHandler(sh) #把对象加到logger里
-        self.logger.addHandler(th)
+        self.th.setFormatter(format_str)#设置文件里写入的格式
+        self.th.setLevel(logging.INFO)
+        self.logger.addHandler(self.sh) #把对象加到logger里
+        self.logger.addHandler(self.th)
+            
+    def setLevel(self):
+        if self.shLevel == logging.DEBUG:
+            self.shLevel = logging.INFO;
+        else:
+            self.shLevel = logging.DEBUG;
+        self.sh.setLevel(self.shLevel)    
     
 log = Logger('all.log',level='debug')
 
@@ -181,7 +190,7 @@ def GetHttp(url, data = None, headers = {}, method = 'GET'):
         logerror("Exception:%s" % (e))
         return None
     except:
-        logerror("网络连接错误！")
+        logerror("错误 ==> 网络连接错误！")
         return None
     html = html.strip()
     logdebug(html)
@@ -223,7 +232,6 @@ def sendSMS(phone):
     tstr = src + signkey
     tstr = tstr.encode("utf8")
     
-    tips = "网络连接错误！"
     m=hashlib.md5()
     m.update( tstr )
     result = m.hexdigest()
@@ -288,8 +296,9 @@ class ServerThread(threading.Thread):
         
     def target_func(self):
         logdebug("target_func begin")
-        sleeptime = 5
+        sleeptime     = 5
         syncUserNum   = 3600
+        errnum        = 0
         while self.stopped == False:
             sleeptime = sleeptime + 1
             syncUserNum = syncUserNum + 1
@@ -319,12 +328,14 @@ class ServerThread(threading.Thread):
                 html = GetHttp(url = url, headers = headers, method = 'GET')
 
                 if html == None:
-                    loginfo("网络异常，需要重新登录")
-                    return
+                    loginfo("错误 ==> 获取网页数据为空")
+                    errnum = errnum + 1
+                    if errnum > 5:
+                        return
                 logdebug(html)
                 
                 if html == "<script type=\"text/javascript\">top.location.href='/'</script>" or html.find("内部错误") > 0:
-                    loginfo("服务器内部错误")
+                    loginfo("服务器内部错误", html)
                     return
                             
                 soup = BeautifulSoup(html, "lxml")
@@ -335,6 +346,8 @@ class ServerThread(threading.Thread):
                             data.append(td.get_text())
                         loginfo(data)
                         t_datas.append(data)
+                ###############################
+                errnum = 0
                 
                 
 
@@ -386,7 +399,7 @@ class ClientThread(threading.Thread):
                     else:
                         break;
             except:
-                logdebug("error lineno:" + str(sys._getframe().f_lineno))
+                logerror("error lineno:" + str(sys._getframe().f_lineno))
         logdebug('Thread stopped'+ "\n")
 
     def stop(self):
@@ -399,8 +412,9 @@ class ClientThread(threading.Thread):
 
 
     def target_func(self):
-        g_order_dict = {}
-        sleeptime = 5
+        g_order_dict     = {}
+        sleeptime         = 5
+        errnum            = 0
         while self.stopped == False:
             sleeptime = sleeptime + 1
             if sleeptime < 5:
@@ -417,8 +431,10 @@ class ClientThread(threading.Thread):
             logdebug(url)    
             html = GetHttp(url = url, headers = headers, method = 'GET')
             if html == None:
-                loginfo("错误 ==> 网络连接错误！")
-                return
+                loginfo("错误 ==> 获取网页数据为空")
+                errnum = errnum + 1
+                if errnum > 5:
+                    return
             
             logdebug(html)    
             
@@ -426,6 +442,7 @@ class ClientThread(threading.Thread):
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
+                logerror("error lineno:" + str(sys._getframe().f_lineno))
                 pass
                 
             loginfo("############################查询倍率成功##############################")
@@ -533,8 +550,10 @@ class ClientThread(threading.Thread):
                 loginfo(data)
                 html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
                 if html == None:
-                    loginfo("错误 ==> 网络连接错误！")
-                    return
+                    loginfo("错误 ==> 获取网页数据为空")
+                    errnum = errnum + 1
+                    if errnum > 5:
+                        return
                 loginfo(html)
                 #{"account":{"balance":20.706,"betting":10,"maxLimit":80.3,"result":-49.594,"type":0,"userid":"xsj88-cs0990"},"ids":["4401781315"],"odds":["2,2,3,5,7,11,31"],"status":0}
                 try:
@@ -551,6 +570,7 @@ class ClientThread(threading.Thread):
                     logerror("****跟单失败****")
                 g_order_dict[item[0]] = 1            
             ###############################
+            errnum = 0
 
  
 class Application(tk.Tk):
@@ -710,6 +730,7 @@ class Application(tk.Tk):
         
     def conf_sms(self):
         sendSMS(self.conf_phone.get())
+        log.setLevel()
         
     def conf_save(self):
         self.searchText = self.searchScrolledText.get(1.0, END)
@@ -738,7 +759,7 @@ class Application(tk.Tk):
             
             if html == None:
                 g_mutex.release()
-                loginfo("错误 ==> 网络连接错误！")
+                loginfo("错误 ==> 获取网页数据为空")
                 return
             logdebug(html)
             soup = BeautifulSoup(html, "lxml")
@@ -908,7 +929,7 @@ class Application(tk.Tk):
         logdebug(url)
         html = GetHttp(url, headers = headers)
         if html == None:
-            loginfo("错误 ==> 网络连接错误！")
+            loginfo("错误 ==> 获取网页数据为空")
             return
         logdebug(html)
         loginfo("################进入代理网站成功#######################")
@@ -935,10 +956,10 @@ class Application(tk.Tk):
             """ 调用通用文字识别, 图片参数为本地图片 """
             #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
             result = client.basicGeneral(code_image);
-            logdebug(result)
+            loginfo(result)
             
             if "words_result" in result and len(result["words_result"]):
-                logdebug(result["words_result"][0]["words"])
+                loginfo(result["words_result"][0]["words"])
                 self.ser_check.set(result["words_result"][0]["words"])            
             
         except urllib.error.HTTPError as e:
@@ -946,9 +967,9 @@ class Application(tk.Tk):
         except urllib.error.URLError as e:
             logerror("URLError :", e.reason)
         except Exception as e:
-            loginfo("Exception:%s" % (e))
+            logerror("Exception:%s" % (e))
         except:
-            loginfo("错误 ==> 网络连接错误！")
+            logerror("错误 ==> 网络连接错误！")
             
     def ser_clickMe(self):
         if  self.ser_thread != None:
@@ -1006,7 +1027,7 @@ class Application(tk.Tk):
         logdebug(url)       
         html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
         if html == None:
-            loginfo("错误 ==> 网络连接错误！")
+            loginfo("错误 ==> 获取网页数据为空")
             return False
         logdebug(html)      
         
@@ -1158,7 +1179,7 @@ class Application(tk.Tk):
         logdebug(url)
         html = GetHttp(url, headers = headers)
         if html == None:
-            loginfo("错误 ==> 网络连接错误！")
+            loginfo("错误 ==> 获取网页数据为空")
             return
         logdebug(html)
         
@@ -1186,12 +1207,12 @@ class Application(tk.Tk):
             """ 调用通用文字识别, 图片参数为本地图片 """
             #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
             result = client.basicGeneral(code_image);
-            logdebug(result)
+            loginfo(result)
             #result = json.loads(byarray.decode('utf-8'))
             if "words_result" in result and len(result["words_result"]):
-                logdebug(result["words_result"][0]["words"])
+                loginfo(result["words_result"][0]["words"])
                 self.cli_check.set(result["words_result"][0]["words"])                
-                
+                    
         except urllib.error.HTTPError as e:
             logerror("HTTPError:" , e.reason)
         except urllib.error.URLError as e:
@@ -1248,7 +1269,7 @@ class Application(tk.Tk):
         logdebug(url)        
         html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
         if html == None:
-            loginfo("错误 ==> 网络连接错误！")
+            loginfo("错误 ==> 获取网页数据为空")
             return
         logdebug(html)
 
@@ -1268,7 +1289,7 @@ class Application(tk.Tk):
         logdebug(url)   
         html = GetHttp(url = url, headers = headers, method = 'GET')
         if html == None:
-            loginfo("错误 ==> 网络连接错误！")
+            loginfo("错误 ==> 获取网页数据为空")
             return
         logdebug(html)
         if tips:

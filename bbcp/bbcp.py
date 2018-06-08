@@ -241,7 +241,7 @@ class BettingThread(threading.Thread):
                 BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] + int(BALL_NO_DATA["Temp_Monery"][1])
                 BALL_NO_DATA["Temp_Cut"]              = BALL_NO_DATA["Temp_Cut"] + int(BALL_NO_DATA["Temp_Monery"][1])
 
-                if BALL_NO_DATA["Temp_Cut"] == 1:
+                if BALL_NO_DATA["Temp_Cut_Flag"] == 1:
                     BALL_NO_DATA["Temp_CutIn"]              = BALL_NO_DATA["Temp_CutIn"] + int(BALL_NO_DATA["Temp_Monery"][1])
 
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + BALL_NO_DATA["Temp_Monery"][1])
@@ -251,7 +251,7 @@ class BettingThread(threading.Thread):
                 BALL_NO_DATA["Temp_Strategy_Win"]     = BALL_NO_DATA["Temp_Strategy_Win"] - int(BALL_NO_DATA["Temp_Monery"][1])
                 BALL_NO_DATA["Temp_Cut"]              = BALL_NO_DATA["Temp_Cut"] - int(BALL_NO_DATA["Temp_Monery"][1])
                 
-                if BALL_NO_DATA["Temp_Cut"] == 1:
+                if BALL_NO_DATA["Temp_Cut_Flag"] == 1:
                     BALL_NO_DATA["Temp_CutIn"]              = BALL_NO_DATA["Temp_CutIn"] - int(BALL_NO_DATA["Temp_Monery"][1])
 
                 self.logprint("位置" + str(buyno) + "***未中奖***")
