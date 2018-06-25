@@ -109,7 +109,7 @@ class BettingThread(threading.Thread):
             BALL_NO_DATA["Temp_Rule_Idx"]        =  0
             BALL_NO_DATA["Temp_First_Flag"]      =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
-        
+        '''
         if test_flag == False:
             driver.implicitly_wait(5)           
             while self.stopped == False:
@@ -148,7 +148,7 @@ class BettingThread(threading.Thread):
                 except:
                     self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                     pass
-            
+        '''    
         Test_no = 1     
         SleepTime  = 5    
         Last_Award_Issue = ""        
