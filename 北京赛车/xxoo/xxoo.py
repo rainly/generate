@@ -109,7 +109,7 @@ class BettingThread(threading.Thread):
             BALL_NO_DATA["Temp_Rule_Idx"]        =  0
             BALL_NO_DATA["Temp_First_Flag"]      =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
-        
+        '''
         if test_flag == False:
             driver.implicitly_wait(5)           
             while self.stopped == False:
@@ -148,7 +148,7 @@ class BettingThread(threading.Thread):
                 except:
                     self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                     pass
-            
+        '''  
         Test_no = 1     
         SleepTime  = 5    
         Last_Award_Issue = ""        
@@ -269,26 +269,27 @@ class BettingThread(threading.Thread):
             self.logprint("位置" + str(buyno) + "***处理开奖金额序号***:" + str(BALL_NO_DATA["Temp_Monery_Idx"]) + 
             "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
             
-            Win = 0
 
             if str(road[buyno - 1]) in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                Win = 1;
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
                 BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][2]) - 1
+                #中奖一直打
+                #pass
+                #中奖回第一位/
+                #BALL_NO_DATA["Temp_Rule_Idx"] = 0
+                #中不中都打下一位
+                BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
             else:
-                Win = 0;
                 self.logprint("位置" + str(buyno) + "***未中奖***")
                 BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][3]) - 1
-                
-            BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
-            
+                BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
             if BALL_NO_DATA["Temp_Rule_Idx"] >= len(self.target["rules"]):
                 BALL_NO_DATA["Temp_Rule_Idx"] = 0
         else:
             BALL_NO_DATA["Temp_First_Flag"] = 1
             BALL_NO_DATA["Temp_Rule_Idx"]   = 0
             BALL_NO_DATA["Temp_Monery_Idx"] = 0
-
+    
         self.logprint("位置" + str(buyno) + "***购买规则序号***:" + str(BALL_NO_DATA["Temp_Rule_Idx"]) + "***规则***:" + str(self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]))
         self.logprint("位置" + str(buyno) + "***购买金额序号***:" + str(BALL_NO_DATA["Temp_Monery_Idx"]) + "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
 
