@@ -44,7 +44,7 @@
             <property name="minimum_size"></property>
             <property name="name">BaseMainWind</property>
             <property name="pos"></property>
-            <property name="size">500,430</property>
+            <property name="size">500,480</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title">北京赛车(数字盘)</property>
