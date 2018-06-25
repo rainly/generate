@@ -2,8 +2,8 @@
 import wx  
 import basewin  
 import sys   
-reload(sys)   
-sys.setdefaultencoding('utf-8')  
+
+
   
   
 class MianWindow(basewin.BaseMainWind):  

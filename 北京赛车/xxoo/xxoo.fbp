@@ -44,10 +44,12 @@
             <property name="minimum_size"></property>
             <property name="name">BaseMainWind</property>
             <property name="pos"></property>
+
             <property name="size">500,480</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title">北京赛车(数字盘)</property>
+
             <property name="tooltip"></property>
             <property name="window_extra_style"></property>
             <property name="window_name"></property>
@@ -95,6 +97,7 @@
                 <property name="permission">none</property>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
+
                     <property name="flag">wxEXPAND</property>
                     <property name="proportion">1</property>
                     <object class="wxBoxSizer" expanded="1">
@@ -368,6 +371,7 @@
                 </object>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
+
                     <property name="flag">wxALL</property>
                     <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="1">
@@ -746,7 +750,9 @@
                         <property name="gripper">0</property>
                         <property name="hidden">0</property>
                         <property name="id">wxID_ANY</property>
+
                         <property name="label">购买道（道序号,道序号，...）</property>
+
                         <property name="max_size"></property>
                         <property name="maximize_button">0</property>
                         <property name="maximum_size"></property>

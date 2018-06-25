@@ -316,13 +316,14 @@ class MianWindow(basewin.BaseMainWind):
         #用config对象读取配置文件
         self.conf.read("xxoo.ini")
 
+
         if self.conf.has_section("url") == True:
             self.m_url.SetValue(self.conf.get("url", "value"))     
         else:
             self.conf.add_section("url")
             self.conf.set("url", "value", "http://99081.ajjkk6779.com")
             self.m_url.SetValue("http://99081.ajjkk6779.com")     
-            
+
         if self.conf.has_section("rules") == True:
             self.m_rules.SetValue(self.conf.get("rules", "value"))     
         else:
@@ -340,6 +341,7 @@ class MianWindow(basewin.BaseMainWind):
         else:
             self.conf.add_section("buynos")
             self.conf.set("buynos", "value", "")
+
         
         if test_flag == False :
             driver.get(self.m_url.GetValue())
@@ -349,7 +351,7 @@ class MianWindow(basewin.BaseMainWind):
         self.conf.set("url", "value", self.m_url.GetValue())
         #写回配置文件
         self.conf.write(open("xxoo.ini","w"))                
-            
+                
     def onsave(self, event):  
         self.conf.set("rules", "value", self.m_rules.GetValue())
         self.conf.set("monerys", "value", self.m_monerys.GetValue())
