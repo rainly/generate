@@ -270,17 +270,30 @@ class BettingThread(threading.Thread):
             "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
             
             Win = 0
-
             if str(road[buyno - 1]) in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
                 Win = 1;
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
                 BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][2]) - 1
+                if self.target["type"] == 0:
+                    #中不中都打下一个
+                    BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
+                    self.logprint("位置" + str(buyno) + "***中奖***中不中都打下一个")
+                elif self.target["type"] == 1:
+                    #中了一直打同一个
+                    self.logprint("位置" + str(buyno) + "***中奖***中了一直打同一个")
+                    pass
+                elif self.target["type"] == 2:
+                    #中了回第一个
+                    BALL_NO_DATA["Temp_Rule_Idx"] = 0
+                    self.logprint("位置" + str(buyno) + "***中奖***中了回第一个")
+                else:
+                    BALL_NO_DATA["Temp_Rule_Idx"] = 0
+                    self.logprint("位置" + str(buyno) + "***中奖***中了回第一个")
             else:
                 Win = 0;
                 self.logprint("位置" + str(buyno) + "***未中奖***")
                 BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][3]) - 1
-                
-            BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
+                BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
             
             if BALL_NO_DATA["Temp_Rule_Idx"] >= len(self.target["rules"]):
                 BALL_NO_DATA["Temp_Rule_Idx"] = 0
@@ -341,10 +354,23 @@ class MianWindow(basewin.BaseMainWind):
         else:
             self.conf.add_section("buynos")
             self.conf.set("buynos", "value", "")
-
         
+        self.type = 0
+        self.m_radioBtn1.SetValue(True)
         if test_flag == False :
             driver.get(self.m_url.GetValue())
+    
+    def OnRadio1( self, event ):
+        #event.Skip()
+        self.type = 0
+    
+    def OnRadio2( self, event ):
+        #event.Skip()
+        self.type = 1
+        
+    def OnRadio3( self, event ):
+        #event.Skip()            
+        self.type = 2
     
     def onEnter( self, event ):
         driver.get(self.m_url.GetValue())        
@@ -377,6 +403,7 @@ class MianWindow(basewin.BaseMainWind):
         target["buynos"]  = self.m_buynos.GetValue();
         target["rules"]   = self.rules
         target["monerys"] = self.monerys
+        target["type"]    = self.type
         self.m_button2.SetLabel('关闭')
         self.thread = BettingThread(target)
         self.thread.start()
