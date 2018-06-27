@@ -184,7 +184,12 @@ class BettingThread(threading.Thread):
                     Cur_Award_Issue1 = driver.find_element_by_xpath("//*[@id=\"UP_LID\"]").text
                     Cur_Award_Issue2 = driver.find_element_by_xpath("//*[@id=\"k_qs\"]").text
                     ##用于保证数据可以下注
-                    driver.find_element_by_xpath("//*[@id=\"jeuM_0_40000\"]")
+                    if self.target["lottery"] == 0:
+                        driver.find_element_by_xpath("//*[@id=\"jeuM_0_40000\"]")
+                    elif self.target["lottery"] == 1:
+                        driver.find_element_by_xpath("//*[@id=\"jeuM_0_80000\"]")
+                    else:
+                        pass
                 else:
                     Cur_Award_Issue1  = str(Test_no) 
                     Cur_Award_Issue2  = str(Test_no + 1)
@@ -193,15 +198,15 @@ class BettingThread(threading.Thread):
                 self.logprint("开奖期号：" + Cur_Award_Issue1)
                 self.logprint("购买期号：" + Cur_Award_Issue2)
                 if Cur_Award_Issue1 == "" or Cur_Award_Issue2 == "":
-                    self.logprint("***等待开奖1***")
+                    self.logprint("***等待开奖1***关盘中")
                     continue
                 #指定数据不差1，跳过
                 if int(Cur_Award_Issue2) != int(Cur_Award_Issue1) + 1:
-                    self.logprint("***等待开奖2***")   
+                    self.logprint("***等待开奖2***期号未相关1")   
                     continue  
 
                 if Last_Award_Issue != "" and int(Last_Award_Issue) == int(Cur_Award_Issue2):
-                    self.logprint("***等待开奖3***")   
+                    self.logprint("***等待开奖3***已下注")   
                     continue                    
                 
                 Award_Issue_Road = []                    
@@ -307,15 +312,26 @@ class BettingThread(threading.Thread):
 
         if test_flag == False :
             for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                #jeuM_0_40000
-                if buyno <= 6:
-                    idx = 40000 + (buyno - 1) * 16 + (int(no) - 1)
+                
+                if self.target["lottery"] == 0:
+                    #jeuM_0_40000
+                    if buyno <= 6:
+                        idx = 40000 + (buyno - 1) * 16 + (int(no) - 1)
+                    else:
+                        idx = 40094 + (buyno - 6 - 1) * 14 + (int(no) - 1)  
+                    driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").clear()
+                    driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))   
+                elif self.target["lottery"] == 1:
+                    #jeuM_0_80000
+                    if buyno <= 6:
+                        idx = 80000 + (buyno - 1) * 16 + (int(no) - 1)
+                    else:
+                        idx = 80094 + (buyno - 6 - 1) * 14 + (int(no) - 1)  
+                    driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").clear()
+                    driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))                  
                 else:
-                    idx = 40094 + (buyno - 6 - 1) * 14 + (int(no) - 1)  
-                driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").clear()
-                driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))       
-            
- 
+                    pass
+    
 ##################################################################
 ##################################################################
 ##################################################################                
@@ -357,6 +373,10 @@ class MianWindow(basewin.BaseMainWind):
         
         self.type = 0
         self.m_radioBtn1.SetValue(True)
+        
+        self.lottery = 0
+        self.m_radioBtn4.SetValue(True)
+        
         if test_flag == False :
             driver.get(self.m_url.GetValue())
     
@@ -371,6 +391,14 @@ class MianWindow(basewin.BaseMainWind):
     def OnRadio3( self, event ):
         #event.Skip()            
         self.type = 2
+        
+    def OnRadio4( self, event ):
+        #event.Skip()
+        self.lottery = 0
+    
+    def OnRadio5( self, event ):
+        #event.Skip()
+        self.lottery = 1
     
     def onEnter( self, event ):
         driver.get(self.m_url.GetValue())        
@@ -404,6 +432,8 @@ class MianWindow(basewin.BaseMainWind):
         target["rules"]   = self.rules
         target["monerys"] = self.monerys
         target["type"]    = self.type
+        target["lottery"] = self.lottery
+        
         self.m_button2.SetLabel('关闭')
         self.thread = BettingThread(target)
         self.thread.start()

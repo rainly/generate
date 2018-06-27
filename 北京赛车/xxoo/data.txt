@@ -2,6 +2,8 @@
 
 //*[@id="UP_LID"]
 
+//*[@id="UP_LID"]
+
 //*[@id="d_GameLottery"]/table/tbody/tr/td[2]
 //*[@id="d_GameLottery"]/table/tbody/tr/td[3]
 //*[@id="d_GameLottery"]/table/tbody/tr/td[11]
@@ -9,7 +11,9 @@
 
 //*[@id="k_qs"]
 
-		      
+<input id="jeuM_0_80000" name="jeuM_0_80000" type="text" size="4" maxlength="9" class="inp1" onfocus="this.className='inp1m';Shortcut_ImportM(this);" onblur="this.className='inp1';ADD_Jeu_S(this);" onkeydown="digitOnly(event, this)" disabled="">
+
+              
 1-1=>//*[@id="jeuM_0_40000"]
 1-10=>//*[@id="jeuM_0_40009"]
 
