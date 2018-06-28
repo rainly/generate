@@ -22,7 +22,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=1cd18c02631b55eb90e544104eaefaf8"
+    url_agent = "http://caiptong.com/ccskey/query?regkey=1cd18c02631b55eb90e544104eaefaf8"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

@@ -239,8 +239,8 @@ def sendSMS(phone):
     data   = bytes.decode(data)
     data   = data + "&sign=" + result
     
-    ##url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
-    url = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
+    ##url = "http://caiptong.com/api_sms/sms.php?%s"%(str(data))
+    url = "http://caiptong.com/api_sms/sms.php?%s"%(str(data))
     logdebug(url)
     html = GetHttp(url, headers = headers)
     if html == None:

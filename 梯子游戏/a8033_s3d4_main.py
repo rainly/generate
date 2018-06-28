@@ -53,7 +53,7 @@ headers = { 'User-Agent' : user_agent }
 
 
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=092900e95ba9ae923b26238c24621df7"
+    url_agent = "http://caiptong.com/ccskey/query?regkey=092900e95ba9ae923b26238c24621df7"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

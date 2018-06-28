@@ -65,14 +65,39 @@ def logcrit(msg, *args, **kwargs):
     log.logger.crit(msg, *args, **kwargs)
 
 test_flag = False
+driver    = None
+
+'''
 if test_flag == False:
     # 加启动配置
     option = webdriver.ChromeOptions()
     option.add_argument('disable-infobars')
     # 打开chrome浏览器
     driver = webdriver.Chrome(chrome_options=option)
+'''
 
+class WebdriverThread(threading.Thread):
+    def __init__(self, target, thread_num=0, timeout=5.0):
+        super(WebdriverThread, self).__init__()
+        self.target = target
+        self.thread_num = thread_num
+        self.stopped = False
+        self.timeout = timeout
+    def run(self):
+        # 加启动配置
+        option = webdriver.ChromeOptions()
+        option.add_argument('disable-infobars')
+        # 打开chrome浏览器
+        global driver
+        driver = webdriver.Chrome(chrome_options=option)
+        driver.get(self.target)
+        
+    def stop(self):
+        self.stopped = True
 
+    def isStopped(self):
+        return self.stopped
+        
     
 class BettingThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
@@ -96,6 +121,7 @@ class BettingThread(threading.Thread):
         logdebug(log)
         
     def target_func(self):
+        global driver
         #print("**********target_func begin***********")
         self.logprint("位置:" + self.target["buynos"])
         self.logprint("规则:" + str(self.target["rules"]))
@@ -267,6 +293,7 @@ class BettingThread(threading.Thread):
                 pass
     
     def delBallNo(self, road, buyno, BALL_NO_DATA):
+        global driver
         self.logprint("**********************************************")   
         if BALL_NO_DATA["Temp_First_Flag"] == 1:
             self.logprint("位置" + str(buyno) + "***处理开奖规则序号***:" + str(BALL_NO_DATA["Temp_Rule_Idx"]) + 
@@ -378,8 +405,9 @@ class MianWindow(basewin.BaseMainWind):
         self.m_radioBtn4.SetValue(True)
         
         if test_flag == False :
-            driver.get(self.m_url.GetValue())
-    
+            self.webthread = WebdriverThread(self.m_url.GetValue())
+            self.webthread.start()
+        
     def OnRadio1( self, event ):
         #event.Skip()
         self.type = 0
@@ -401,6 +429,7 @@ class MianWindow(basewin.BaseMainWind):
         self.lottery = 1
     
     def onEnter( self, event ):
+        global driver
         driver.get(self.m_url.GetValue())        
         self.conf.set("url", "value", self.m_url.GetValue())
         #写回配置文件

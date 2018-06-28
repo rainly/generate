@@ -44,7 +44,7 @@ from Betting2 import *
 
 
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=21a19ae806cee91e0b43b60798f7a9a6"
+    url_agent = "http://caiptong.com/ccskey/query?regkey=21a19ae806cee91e0b43b60798f7a9a6"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)

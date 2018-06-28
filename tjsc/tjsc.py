@@ -108,7 +108,7 @@ def httpreg(softname, version, phydriverserial, regkey):
     m.update( str )
     result = m.hexdigest()
     data   = src.encode("utf8")
-    url    = "http://duboren.com/share/share_registdeviceid?sign=%s"%(result)
+    url    = "http://caiptong.com/share/share_registdeviceid?sign=%s"%(result)
     request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
     try:
         #response = urllib.request.urlopen(request)

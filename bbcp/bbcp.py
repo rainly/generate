@@ -84,7 +84,7 @@ if test_flag == False:
     # 打开chrome浏览器
     driver = webdriver.Chrome(chrome_options=option)
     #driver = webdriver.Chrome()
-    driver.get("http://www.duboren.com/")
+    driver.get("http://www.caiptong.com/")
     #driver.get("http://baidu.com")
 else:
     pass;
@@ -112,7 +112,7 @@ def http_reg(softname, version, phydriverserial, regkey):
     m.update( str )
     result = m.hexdigest()
     data   = src.encode("utf8")
-    url    = "http://duboren.com/share/share_registdeviceid?sign=%s"%(result)
+    url    = "http://caiptong.com/share/share_registdeviceid?sign=%s"%(result)
     #print(data)
     request = urllib.request.Request(url = url, data = data, headers = headers, method = 'POST')
     try:

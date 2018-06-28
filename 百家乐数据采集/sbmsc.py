@@ -30,11 +30,11 @@ def main():
 
     # 连接数据库
     connect = pymysql.Connect(
-        host='duboren123.mysql.rds.aliyuncs.com',
+        host='caiptong123.mysql.rds.aliyuncs.com',
         port=3306,
         user='root',
         passwd='DBRaly123',
-        db='duboren',
+        db='caiptong',
         charset='utf8'
     )
     # 获取游标

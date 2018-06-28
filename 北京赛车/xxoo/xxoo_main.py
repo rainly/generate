@@ -34,9 +34,9 @@ opener = urllib.request.build_opener(handler)
 user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
 headers = { 'User-Agent' : user_agent }  
 
-
+    
 def RegKey():
-    url_agent = "http://duboren.com/ccskey/query?regkey=01b34dc194250886b2a8261b67fa900a"
+    url_agent = "http://caiptong.com/ccskey/query?regkey=01b34dc194250886b2a8261b67fa900a"
     request = urllib.request.Request(url_agent, headers = headers)
     try:
         #response = urllib.request.urlopen(request)
@@ -72,6 +72,15 @@ def RegKey():
         return True
 
 if __name__ == "__main__":
-    if RegKey():
-        main()
+    try:
+        if RegKey():
+            main()
+        else:
+            time.sleep(60)
+    except Exception as msg:
+        print("Exception:%s" % msg)
+        return False
+    except:
+        print("错误","其它错误！")
+        return False
     

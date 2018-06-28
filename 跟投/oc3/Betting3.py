@@ -151,7 +151,7 @@ def sendSMS(phone):
     data   = bytes.decode(data)
     data   = data + "&sign=" + result
     
-    url_agent = "http://duboren.com/api_sms/sms.php?%s"%(str(data))
+    url_agent = "http://caiptong.com/api_sms/sms.php?%s"%(str(data))
     #print(url_agent)
     request = urllib.request.Request(url_agent, headers = headers)
     try:
