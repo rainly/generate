@@ -1,4 +1,4 @@
-#python htd188_setup.py build_ext --inplace
+#python sbmsc_setup.py build_ext --inplace
 from distutils.core import setup
 from Cython.Build import cythonize
 

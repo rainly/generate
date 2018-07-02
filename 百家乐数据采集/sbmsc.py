@@ -17,17 +17,140 @@ import json
 import pymysql.cursors
 import ssl
 import configparser
+from PIL import Image, ImageTk
+from aip import AipOcr
+from PIL import *
 ssl._create_default_https_context = ssl._create_unverified_context
+
+#声明一个CookieJar对象实例来保存cookie
+cookiejar = http.cookiejar.CookieJar()
+#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
+handler=urllib.request.HTTPCookieProcessor(cookiejar)
+#通过handler来构建opener
+opener = urllib.request.build_opener(handler)
+
+#此处的open方法同urllib2的urlopen方法，也可以传入request
+#response = opener.open('http://www.baidu.com')
+user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
+headers = { 'User-Agent' : user_agent }  
+
+gurls   = ["https://22gvb.net:502","https://www.77msc.net:502", "https://www.66msc.net:502", "https://www.22gvb.net:502"]
+
+
+""" 你的 APPID AK SK """
+#APP_ID = '11249600'
+#API_KEY = 'oCy0me9K6h9D19PxDA5ESLj5'
+#SECRET_KEY = '2aPGdXMfq63ypzrR0lPiKmG6dKD8UaKh '
+
+APP_ID = '11283483'
+API_KEY = 'K5PIp9qko5UFOZxOyvbV5EwK'
+SECRET_KEY = 'LA5wxlyBW7rfuQxzHKAGICz2oFdjsQRC  '
+
+client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
+
+""" 读取图片 """
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
+
+def secureImg(base_url):
+    url = base_url + "/Keypad/secureImg.aspx"
+    print(url)
+    request = urllib.request.Request(url, headers = headers)
+    try:
+        response = opener.open(request, timeout = 5)
+        _image_bytes = response.read()
+        # internal data file
+        _data_stream = io.BytesIO(_image_bytes)
+        # open as a PIL image object
+        _pil_image = Image.open(_data_stream)
+        
+        #验证码识别
+        _pil_image.save("code.jpg") 
+        code_image = get_file_content('code.jpg')
+        """ 调用通用文字识别, 图片参数为本地图片 """
+        #{'log_id': 7581455648920966971, 'words_result_num': 1, 'words_result': [{'words': '5002'}]}
+        result = client.basicGeneral(code_image);
+        print(result)
+        
+        if "words_result" in result and len(result["words_result"]):
+            print(result["words_result"][0]["words"])
+            return result["words_result"][0]["words"]       
+        else:
+            return ""
+    except urllib.error.HTTPError as e:
+        print("HTTPError :", e.reason)
+    except urllib.error.URLError as e:
+        print("URLError :", e.reason)
+    except Exception as e:
+        print("Exception:%s" % (e))
+    except:
+        print("错误 ==> 网络连接错误！")
+    return ""
+    
+def GetHttp(url, data = None, headers = {}, method = 'GET'):    
+    request = urllib.request.Request(url, headers = headers, data = data, method = method)
+    try:
+        response = opener.open(request, timeout = 5)
+        html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        print("HTTPError :", e.reason)
+        return None
+    except urllib.error.URLError as e:
+        print("URLError :", e.reason)
+        return None
+    except Exception as e:
+        print("Exception:%s" % (e))
+        return None
+    except:
+        print("错误 ==> 网络连接错误！")
+        return None
+    html = html.strip()
+    print(html)
+    return html    
+
+def get_days_before_today(n=0):
+    '''
+    date format = "YYYY-MM-DD HH:MM:SS"
+    '''
+    now = datetime.datetime.now()  
+    if(n<0):  
+        return datetime.datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)  
+    else:  
+        n_days_before = now - datetime.timedelta(days=n)  
+    return datetime.datetime(n_days_before.year, n_days_before.month, n_days_before.day, n_days_before.hour, n_days_before.minute, n_days_before.second)
+
     
 def main():
-
+    
     #生成config对象
     conf = configparser.ConfigParser()
     #用config对象读取配置文件
     conf.read("77msc.cfg")
-
-
-
+    
+    if conf.has_section("agent") == False:
+        #增加新的section
+        conf.add_section("agent")
+        conf.set("agent", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    agent = conf.get("agent", "Value")
+    
+    if conf.has_section("pwd") == False:
+        #增加新的section
+        conf.add_section("pwd")
+        conf.set("pwd", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    pwd = conf.get("pwd", "Value")    
+    
+    '''
     # 连接数据库
     connect = pymysql.Connect(
         host='caiptong123.mysql.rds.aliyuncs.com',
@@ -39,173 +162,89 @@ def main():
     )
     # 获取游标
     cursor = connect.cursor()
-
-
-    def get_days_before_today(n=0):
-        '''
-        date format = "YYYY-MM-DD HH:MM:SS"
-        '''
-        now = datetime.datetime.now()  
-        if(n<0):  
-            return datetime.datetime(now.year, now.month, now.day, now.hour, now.minute, now.second)  
-        else:  
-            n_days_before = now - datetime.timedelta(days=n)  
-        return datetime.datetime(n_days_before.year, n_days_before.month, n_days_before.day, n_days_before.hour, n_days_before.minute, n_days_before.second)
-    #print(time.strftime('%Y-%m-%d',time.localtime(time.time())))
-    #print(get_days_before_today(2).strftime('%Y-%m-%d'))
-
-        
-    #声明一个CookieJar对象实例来保存cookie
-    cookiejar = http.cookiejar.CookieJar()
-    #利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
-    handler=urllib.request.HTTPCookieProcessor(cookiejar)
-    #通过handler来构建opener
-    opener = urllib.request.build_opener(handler)
-
-    #此处的open方法同urllib2的urlopen方法，也可以传入request
-    #response = opener.open('http://www.baidu.com')
-    user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
-    headers = { 'User-Agent' : user_agent }  
-        
+    '''
     gurlidx = 0
-    gurls = ["https://www.77msc.net:502", "https://www.66msc.net:502", "https://www.22gvb.net:502"]
     ##########################################################
     ##########################################################
     while True:#无限循环
         if gurlidx >= len(gurls):
             gurlidx = 0
+        
         print(gurls[gurlidx])
-
-        if conf.has_section("agent") == False:
-            #增加新的section
-            conf.add_section("agent")
-            conf.set("agent", "Value", "xmiao89")
-            #写回配置文件
-            conf.write(open("77msc.cfg", "w"))
-            print('配置出错，请正确配置代码名称1')
-            time.sleep(1)
-            continue
-        agent = conf.get("agent", "Value")
-        
-        url = "http://121.40.206.168/SOFT_net/SBDL_data.php?name=" + agent
-        #print(agent + ':正在获取代理数据 <---  ' + url)
-        print(agent + ":正在登录 1")
-        request = urllib.request.Request(url, headers = headers)
-        try:
-            #response = urllib.request.urlopen(request)
-            response = opener.open(request, timeout = 15)
-        except:
-            print('配置出错，请正确配置代码名称3')
-            time.sleep(1)
-            gurlidx = gurlidx + 1
-            continue  
-
-        html = None
-        try:
-            html = response.read().decode()
-        except:
-            
-            print('配置出错，请正确配置代码名称3')
-            time.sleep(1)
-            gurlidx = gurlidx + 1
-            continue  
-            
-        if html == None:
-            
-            print('配置出错，请正确配置代码名称3')
-            time.sleep(1)
-            gurlidx = gurlidx + 1
-            continue  
-        
-        #print(agent + ':获取代理数据 <---  ' + html)
-        html = html.replace("\r\n", "")
-        #print(agent + ':获取代理数据 <---  ' + html)
-        urls = html.split("wocaonima")
-        if len(urls) != 3:
-            print('配置出错，请正确配置代码名称3')
-            time.sleep(1)
-            gurlidx = gurlidx + 1
-            continue    
-
-        #print(agent + ":分割数据1-->" + urls[0])
-        #print(agent + ":分割数据2-->" + urls[1])
-        #print(agent + ":分割数据3-->" + urls[2])
         #######################################################
+		
+        print("################进入登陆页面#######################")
+        html = GetHttp(gurls[gurlidx], headers = headers)
+        if html == None:
+            print("错误 ==> 获取网页数据为空")
+            continue
+        print("################进入登陆页面成功#######################")
+		
+        #######################################################
+		
+        print("################获取验证码#######################")
+        while 1:
+            code = secureImg(gurls[gurlidx])        
+            if code == None or len(code) != 6:
+                print("错误 ==> 获取网页数据为空")
+                continue
+            break
+        print("################获取验证码成功#######################")
+		#######################################################
+		
+        soup = BeautifulSoup(html, "lxml")
+		
+        #######################################################
+		
+        print("################开始登录认证 1#######################")
         url = gurls[gurlidx] + "/Login.aspx"
-        #print(agent + ':正在抓取首页 <---  ' + url)
-        print(agent + ":正在登录 2")
-        request = urllib.request.Request(url, headers = headers)
-        try:
-            #response = urllib.request.urlopen(request)
-            response = opener.open(request, timeout = 15)
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
+        logindict = {}
+        logindict["__EVENTTARGET"]           = soup.find("input", {'id':"__EVENTTARGET"})["value"]
+        logindict["__EVENTARGUMENT"]         = soup.find("input", {'id':"__EVENTARGUMENT"})["value"]  
+        logindict["__LASTFOCUS"]             = soup.find("input", {'id':"__LASTFOCUS"})["value"]        
+        logindict["__VIEWSTATE"]             = soup.find("input", {'id':"__VIEWSTATE"})["value"]
+        logindict["wUserId"]                 = agent
+        logindict["wSecureCd"]               = code
+        logindict["btnSubmit"]               = "提 交"
+        logindict["langMenuContainer"]       = 0
+        logindict["wLangCode"]               = "简体中文"
+        logindict["wloginStep"]              = 1
+        logindict["wloginMethod"]            = ""
+        logindict["wScore"]                  = 0
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == None:
+            print("错误 ==> 获取网页数据为空")
+            continue		
+        print("################登录成功 1#######################")  
+	#######################################################
 
-        try:
-            html = response.read().decode()
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
+        soup = BeautifulSoup(html, "lxml")
 
-
-
-        
+        #######################################################
+        print("################开始登录认证 2#######################")
         url = gurls[gurlidx] + "/Login.aspx"
-        data = bytes(urls[0], encoding = "utf8")
-        print(agent + ":正在登录 3")
-        request = urllib.request.Request(url, data, headers)
-        try:
-            #response = urllib.request.urlopen(request)
-            response = opener.open(request, timeout = 15)
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-        try:
-            html = response.read().decode()
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-
-        url = gurls[gurlidx] + "/Login.aspx"
-        print(agent + ":正在登录 4")
-        data = bytes(urls[1], encoding = "utf8")
-        request = urllib.request.Request(url, data, headers)
-        try:
-            #response = urllib.request.urlopen(request)
-            response = opener.open(request, timeout = 15)
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-        try:
-            html = response.read().decode()
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-        
-        url = gurls[gurlidx] + "/Login.aspx"
-        print(agent + '正在登录 5')
-        data = bytes(urls[2], encoding = "utf8")
-        request = urllib.request.Request(url, data, headers)
-        try:
-            #response = urllib.request.urlopen(request)
-            response = opener.open(request, timeout = 15)
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-        try:
-            html = response.read().decode()
-        except:
-            print(agent + ":error lineno:"+str(sys._getframe().f_lineno))
-            pass
-        
-        print(agent + ':登录成功')
-
+        logindict = {}
+        logindict["__EVENTTARGET"]           = soup.find("input", {'id':"__EVENTTARGET"})["value"]
+        logindict["__EVENTARGUMENT"]         = soup.find("input", {'id':"__EVENTARGUMENT"})["value"]  
+        logindict["__LASTFOCUS"]             = soup.find("input", {'id':"__LASTFOCUS"})["value"]        
+        logindict["__VIEWSTATE"]             = soup.find("input", {'id':"__VIEWSTATE"})["value"]
+        logindict["wPwd"]                    = pwd
+        logindict["btnSubmit"]               = "提 交"
+        logindict["langMenuContainer"]       = 0
+        logindict["wLangCode"]               = "简体中文"
+        logindict["wloginStep"]              = 1
+        logindict["wloginMethod"]            = 1
+        logindict["wScore"]                  = 0
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == None:
+            print("错误 ==> 获取网页数据为空")
+            continue		
+        print("################登录成功 2#######################")   
+		
+		#######################################################
+		
         ready = True
         #################################################
         while ready:#无限循环

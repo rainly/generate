@@ -64,17 +64,8 @@ def logcrit(msg, *args, **kwargs):
     kwargs["exc_info"] = 1
     log.logger.crit(msg, *args, **kwargs)
 
-test_flag = False
+test_flag = True
 driver    = None
-
-'''
-if test_flag == False:
-    # 加启动配置
-    option = webdriver.ChromeOptions()
-    option.add_argument('disable-infobars')
-    # 打开chrome浏览器
-    driver = webdriver.Chrome(chrome_options=option)
-'''
 
 class WebdriverThread(threading.Thread):
     def __init__(self, target, thread_num=0, timeout=5.0):
@@ -84,13 +75,14 @@ class WebdriverThread(threading.Thread):
         self.stopped = False
         self.timeout = timeout
     def run(self):
-        # 加启动配置
-        option = webdriver.ChromeOptions()
-        option.add_argument('disable-infobars')
-        # 打开chrome浏览器
-        global driver
-        driver = webdriver.Chrome(chrome_options=option)
-        driver.get(self.target)
+        if test_flag == False:
+            # 加启动配置
+            option = webdriver.ChromeOptions()
+            option.add_argument('disable-infobars')
+            # 打开chrome浏览器
+            global driver
+            driver = webdriver.Chrome(chrome_options=option)
+            driver.get(self.target)
         
     def stop(self):
         self.stopped = True
@@ -122,7 +114,9 @@ class BettingThread(threading.Thread):
         
     def target_func(self):
         global driver
-        #print("**********target_func begin***********")
+        self.logprint("********************start**************************")  
+        self.logprint("********************start**************************")  
+        self.logprint("********************start**************************")  
         self.logprint("位置:" + self.target["buynos"])
         self.logprint("规则:" + str(self.target["rules"]))
         self.logprint("金额:" + str(self.target["monerys"]))
@@ -249,11 +243,12 @@ class BettingThread(threading.Thread):
                 
                 Last_Award_Issue = Cur_Award_Issue2
                 
+                Bet = False
                 for buyno in buynos:
-                    self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
+                    Bet = Bet | self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
-                
-                if test_flag == False:
+                    
+                if test_flag == False and Bet == True:
                     driver.find_element_by_xpath("//*[@id=\"confirm\"]").click()
                     time.sleep(1)    
                     driver.find_element_by_xpath("//*[@id=\"_ButtonOK_div_order\"]").click()
@@ -291,7 +286,9 @@ class BettingThread(threading.Thread):
             except:
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                 pass
-    
+        self.logprint("********************end**************************")  
+        self.logprint("********************end**************************")  
+        self.logprint("********************end**************************")      
     def delBallNo(self, road, buyno, BALL_NO_DATA):
         global driver
         self.logprint("**********************************************")   
@@ -336,11 +333,12 @@ class BettingThread(threading.Thread):
 
         self.logprint("位置" + str(buyno) + "***购买规则序号***:" + str(BALL_NO_DATA["Temp_Rule_Idx"]) + "***规则***:" + str(self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]))
         self.logprint("位置" + str(buyno) + "***购买金额序号***:" + str(BALL_NO_DATA["Temp_Monery_Idx"]) + "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
-
+        
+        Bet = False        
         if test_flag == False :
             for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                
                 if self.target["lottery"] == 0:
+                    Bet = True
                     #jeuM_0_40000
                     if buyno <= 6:
                         idx = 40000 + (buyno - 1) * 16 + (int(no) - 1)
@@ -349,6 +347,7 @@ class BettingThread(threading.Thread):
                     driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").clear()
                     driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))   
                 elif self.target["lottery"] == 1:
+                    Bet = True
                     #jeuM_0_80000
                     if buyno <= 6:
                         idx = 80000 + (buyno - 1) * 16 + (int(no) - 1)
@@ -358,6 +357,7 @@ class BettingThread(threading.Thread):
                     driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))                  
                 else:
                     pass
+        return Bet
     
 ##################################################################
 ##################################################################
@@ -370,7 +370,7 @@ class MianWindow(basewin.BaseMainWind):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("xxoo.ini")
+        self.conf.read("alipay.ini")
 
 
         if self.conf.has_section("url") == True:
@@ -433,14 +433,14 @@ class MianWindow(basewin.BaseMainWind):
         driver.get(self.m_url.GetValue())        
         self.conf.set("url", "value", self.m_url.GetValue())
         #写回配置文件
-        self.conf.write(open("xxoo.ini","w"))                
+        self.conf.write(open("alipay.ini","w"))                
                 
     def onsave(self, event):  
         self.conf.set("rules", "value", self.m_rules.GetValue())
         self.conf.set("monerys", "value", self.m_monerys.GetValue())
         self.conf.set("buynos", "value", self.m_buynos.GetValue())
         #写回配置文件
-        self.conf.write(open("xxoo.ini","w"))
+        self.conf.write(open("alipay.ini","w"))
         
     def onstart(self, event):  
         self.onsave(event)

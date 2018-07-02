@@ -109,7 +109,7 @@ def loginfo(msg, *args, **kwargs):
 def logwarning(msg, *args, **kwargs):
     log.logger.warning(msg, *args, **kwargs)
     
-def logerror(msg, *args, **kwargs):
+def print(msg, *args, **kwargs):
     kwargs["exc_info"] = 1
     log.logger.error(msg, *args, **kwargs)
 
@@ -181,16 +181,16 @@ def GetHttp(url, data = None, headers = {}, method = 'GET'):
         response = opener.open(request, timeout = 5)
         html = response.read().decode()
     except urllib.error.HTTPError as e:
-        logerror("HTTPError :", e.reason)
+        print("HTTPError :", e.reason)
         return None
     except urllib.error.URLError as e:
-        logerror("URLError :", e.reason)
+        print("URLError :", e.reason)
         return None
     except Exception as e:
-        logerror("Exception:%s" % (e))
+        print("Exception:%s" % (e))
         return None
     except:
-        logerror("错误 ==> 网络连接错误！")
+        print("错误 ==> 网络连接错误！")
         return None
     html = html.strip()
     logdebug(html)
@@ -283,7 +283,7 @@ class ServerThread(threading.Thread):
                     else:
                         break;
             except:
-                logerror("error lineno:" + str(sys._getframe().f_lineno))
+                print("error lineno:" + str(sys._getframe().f_lineno))
         logdebug('Thread stopped'+ "\n")
 
     def stop(self):
@@ -399,7 +399,7 @@ class ClientThread(threading.Thread):
                     else:
                         break;
             except:
-                logerror("error lineno:" + str(sys._getframe().f_lineno))
+                print("error lineno:" + str(sys._getframe().f_lineno))
         logdebug('Thread stopped'+ "\n")
 
     def stop(self):
@@ -442,7 +442,7 @@ class ClientThread(threading.Thread):
                 game_lv = json.loads(html)  
                 all_the_oc["game_lv"] = game_lv                
             except:
-                logerror("error lineno:" + str(sys._getframe().f_lineno))
+                print("error lineno:" + str(sys._getframe().f_lineno))
                 pass
                 
             loginfo("############################查询倍率成功##############################")
@@ -567,7 +567,7 @@ class ClientThread(threading.Thread):
                     else:
                         loginfo("****跟单失败****")
                 except:
-                    logerror("****跟单失败****")
+                    print("****跟单失败****")
                 g_order_dict[item[0]] = 1            
             ###############################
             errnum = 0
@@ -963,13 +963,13 @@ class Application(tk.Tk):
                 self.ser_check.set(result["words_result"][0]["words"])            
             
         except urllib.error.HTTPError as e:
-            logerror("HTTPError :", e.reason)
+            print("HTTPError :", e.reason)
         except urllib.error.URLError as e:
-            logerror("URLError :", e.reason)
+            print("URLError :", e.reason)
         except Exception as e:
-            logerror("Exception:%s" % (e))
+            print("Exception:%s" % (e))
         except:
-            logerror("错误 ==> 网络连接错误！")
+            print("错误 ==> 网络连接错误！")
             
     def ser_clickMe(self):
         if  self.ser_thread != None:
@@ -1043,7 +1043,7 @@ class Application(tk.Tk):
         #    if row.get_text().find("") >= 0:
         #        login = True
         #if login == False:
-        #    logerror("错误 ==> 登陆错误！")
+        #    print("错误 ==> 登陆错误！")
         #    return
         if tips:  
             messagebox.showinfo("提示","登陆成功！") 
@@ -1214,13 +1214,13 @@ class Application(tk.Tk):
                 self.cli_check.set(result["words_result"][0]["words"])                
                     
         except urllib.error.HTTPError as e:
-            logerror("HTTPError:" , e.reason)
+            print("HTTPError:" , e.reason)
         except urllib.error.URLError as e:
-            logerror("URLError:" , e.reason)
+            print("URLError:" , e.reason)
         except Exception as e:
-            logerror("Exception:%s" % (e))
+            print("Exception:%s" % (e))
         except:
-            logerror("错误 ==> 网络连接错误！")
+            print("错误 ==> 网络连接错误！")
    
     def cli_clickMe(self):
         if  self.cli_thread != None:
@@ -1279,7 +1279,7 @@ class Application(tk.Tk):
             if row.get_text().find("用户协议") >= 0:
                 login = True
         if login == False:
-            logerror("错误 ==> 登陆错误！")
+            print("错误 ==> 登陆错误！")
             return
         loginfo("登录 ==> 登陆成功！")
         
