@@ -17,8 +17,11 @@ import json
 import pymysql.cursors
 import ssl
 import configparser
-from sbmsc import *
+from PIL import Image
+from aip import AipOcr
+from PIL import *
 ssl._create_default_https_context = ssl._create_unverified_context
+from sbmsc import *
 
 
 def RegKey():

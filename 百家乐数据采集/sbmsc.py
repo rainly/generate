@@ -17,7 +17,7 @@ import json
 import pymysql.cursors
 import ssl
 import configparser
-from PIL import Image, ImageTk
+from PIL import Image
 from aip import AipOcr
 from PIL import *
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -138,6 +138,8 @@ def main():
         time.sleep(10)
         return
     agent = conf.get("agent", "Value")
+
+    print(agent)
     
     if conf.has_section("pwd") == False:
         #增加新的section
@@ -148,21 +150,67 @@ def main():
         print('配置出错，请正确配置代码名称1')
         time.sleep(10)
         return
-    pwd = conf.get("pwd", "Value")    
+    pwd = conf.get("pwd", "Value")
+    print(pwd)
     
-    '''
+    if conf.has_section("DoubleVerifyTextInput1") == False:
+        #增加新的section
+        conf.add_section("DoubleVerifyTextInput1")
+        conf.set("DoubleVerifyTextInput1", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    DoubleVerifyTextInput1 = conf.get("DoubleVerifyTextInput1", "Value")       
+    
+    if conf.has_section("DoubleVerifyTextInput2") == False:
+        #增加新的section
+        conf.add_section("DoubleVerifyTextInput2")
+        conf.set("DoubleVerifyTextInput2", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    DoubleVerifyTextInput2 = conf.get("DoubleVerifyTextInput2", "Value")     
+
+    if conf.has_section("DoubleVerifyTextInput3") == False:
+        #增加新的section
+        conf.add_section("DoubleVerifyTextInput3")
+        conf.set("DoubleVerifyTextInput3", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    DoubleVerifyTextInput3 = conf.get("DoubleVerifyTextInput3", "Value")      
+    
+    if conf.has_section("DoubleVerifyTextInput4") == False:
+        #增加新的section
+        conf.add_section("DoubleVerifyTextInput4")
+        conf.set("DoubleVerifyTextInput4", "Value", "xmiao89")
+        #写回配置文件
+        conf.write(open("77msc.cfg", "w"))
+        print('配置出错，请正确配置代码名称1')
+        time.sleep(10)
+        return
+    DoubleVerifyTextInput4 = conf.get("DoubleVerifyTextInput4", "Value") 
+    
+    
+    
     # 连接数据库
     connect = pymysql.Connect(
-        host='caiptong123.mysql.rds.aliyuncs.com',
+        host='duboren123.mysql.rds.aliyuncs.com',
         port=3306,
         user='root',
         passwd='DBRaly123',
-        db='caiptong',
+        db='duboren',
         charset='utf8'
     )
     # 获取游标
     cursor = connect.cursor()
-    '''
+    
     gurlidx = 0
     ##########################################################
     ##########################################################
@@ -172,16 +220,16 @@ def main():
         
         print(gurls[gurlidx])
         #######################################################
-		
+        
         print("################进入登陆页面#######################")
         html = GetHttp(gurls[gurlidx], headers = headers)
         if html == None:
             print("错误 ==> 获取网页数据为空")
             continue
         print("################进入登陆页面成功#######################")
-		
+        
         #######################################################
-		
+        
         print("################获取验证码#######################")
         while 1:
             code = secureImg(gurls[gurlidx])        
@@ -190,12 +238,12 @@ def main():
                 continue
             break
         print("################获取验证码成功#######################")
-		#######################################################
-		
-        soup = BeautifulSoup(html, "lxml")
-		
         #######################################################
-		
+        
+        soup = BeautifulSoup(html, "lxml")
+        
+        #######################################################
+        
         print("################开始登录认证 1#######################")
         url = gurls[gurlidx] + "/Login.aspx"
         logindict = {}
@@ -211,13 +259,14 @@ def main():
         logindict["wloginStep"]              = 1
         logindict["wloginMethod"]            = ""
         logindict["wScore"]                  = 0
+        #print(logindict)
         data = urllib.parse.urlencode(logindict).encode('utf-8')
         html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
         if html == None:
             print("错误 ==> 获取网页数据为空")
-            continue		
+            continue        
         print("################登录成功 1#######################")  
-	#######################################################
+        #######################################################
 
         soup = BeautifulSoup(html, "lxml")
 
@@ -233,18 +282,50 @@ def main():
         logindict["btnSubmit"]               = "提 交"
         logindict["langMenuContainer"]       = 0
         logindict["wLangCode"]               = "简体中文"
-        logindict["wloginStep"]              = 1
+        logindict["wloginStep"]              = 2
         logindict["wloginMethod"]            = 1
         logindict["wScore"]                  = 0
+        #print(logindict)
         data = urllib.parse.urlencode(logindict).encode('utf-8')
         html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
         if html == None:
             print("错误 ==> 获取网页数据为空")
-            continue		
+            continue        
         print("################登录成功 2#######################")   
-		
-		#######################################################
-		
+        
+        #######################################################
+        
+        soup = BeautifulSoup(html, "lxml")
+        
+        #######################################################
+        print("################开始登录认证 3#######################")
+        url = gurls[gurlidx] + "/Login.aspx"
+        logindict = {}
+        logindict["__EVENTTARGET"]           = soup.find("input", {'id':"__EVENTTARGET"})["value"]
+        logindict["__EVENTARGUMENT"]         = soup.find("input", {'id':"__EVENTARGUMENT"})["value"]  
+        logindict["__LASTFOCUS"]             = soup.find("input", {'id':"__LASTFOCUS"})["value"]        
+        logindict["__VIEWSTATE"]             = soup.find("input", {'id':"__VIEWSTATE"})["value"]
+        logindict["wDoubleVerifyTextInput1"]                    = DoubleVerifyTextInput1
+        logindict["wDoubleVerifyTextInput2"]                    = DoubleVerifyTextInput2
+        logindict["wDoubleVerifyTextInput3"]                    = DoubleVerifyTextInput3
+        logindict["wDoubleVerifyTextInput4"]                    = DoubleVerifyTextInput4
+        logindict["btnSubmit"]               = "提 交"
+        logindict["langMenuContainer"]       = 0
+        logindict["wLangCode"]               = "简体中文"
+        logindict["wloginStep"]              = 4
+        logindict["wloginMethod"]            = 1
+        logindict["wScore"]                  = 0
+        #print(logindict)
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == None:
+            print("错误 ==> 获取网页数据为空")
+            continue        
+        print("################登录成功 3#######################")   
+            
+        #######################################################
+
+        
         ready = True
         #################################################
         while ready:#无限循环
