@@ -18,7 +18,7 @@ import urllib.request
 import urllib.response
 import urllib.error
 import http.cookiejar
-from xxoo import *
+from alipay import *
 
 
 
@@ -79,8 +79,8 @@ if __name__ == "__main__":
             time.sleep(60)
     except Exception as msg:
         print("Exception:%s" % msg)
-        time.sleep(60)
+        return False
     except:
         print("错误","其它错误！")
-        time.sleep(60)
+        return False
     

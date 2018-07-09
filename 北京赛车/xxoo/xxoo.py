@@ -64,7 +64,7 @@ def logcrit(msg, *args, **kwargs):
     kwargs["exc_info"] = 1
     log.logger.crit(msg, *args, **kwargs)
 
-test_flag = True
+test_flag = False
 driver    = None
 
 class WebdriverThread(threading.Thread):
@@ -248,11 +248,12 @@ class BettingThread(threading.Thread):
                     Bet = Bet | self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
                     
-                if test_flag == False and Bet == True:
-                    driver.find_element_by_xpath("//*[@id=\"confirm\"]").click()
-                    time.sleep(1)    
-                    driver.find_element_by_xpath("//*[@id=\"_ButtonOK_div_order\"]").click()
-                    time.sleep(1)
+                if test_flag == False:
+                    if Bet == True:
+                        driver.find_element_by_xpath("//*[@id=\"confirm\"]").click()
+                        time.sleep(1)    
+                        driver.find_element_by_xpath("//*[@id=\"_ButtonOK_div_order\"]").click()
+                        time.sleep(1)
                     driver.switch_to.parent_frame()   
                         
             except NoSuchElementException as msg:
@@ -370,7 +371,7 @@ class MianWindow(basewin.BaseMainWind):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("alipay.ini")
+        self.conf.read("xxoo.ini")
 
 
         if self.conf.has_section("url") == True:
@@ -433,14 +434,14 @@ class MianWindow(basewin.BaseMainWind):
         driver.get(self.m_url.GetValue())        
         self.conf.set("url", "value", self.m_url.GetValue())
         #写回配置文件
-        self.conf.write(open("alipay.ini","w"))                
+        self.conf.write(open("xxoo.ini","w"))                
                 
     def onsave(self, event):  
         self.conf.set("rules", "value", self.m_rules.GetValue())
         self.conf.set("monerys", "value", self.m_monerys.GetValue())
         self.conf.set("buynos", "value", self.m_buynos.GetValue())
         #写回配置文件
-        self.conf.write(open("alipay.ini","w"))
+        self.conf.write(open("xxoo.ini","w"))
         
     def onstart(self, event):  
         self.onsave(event)
@@ -474,15 +475,26 @@ class MianWindow(basewin.BaseMainWind):
             return False
         for line in lines:
             rule = line.split(',')
-            self.rules.append(rule) 
-        
+            for no in rule:
+                if no.isdigit() == False:
+                    wx.MessageBox("购买规则配置出错(包含非数字类型)", caption="提示", style=wx.OK)
+                    return False
+                if (int(no) < 1) or (int(no) > 10):
+                    wx.MessageBox("购买规则配置出错(数据异常)", caption="提示", style=wx.OK)
+                    return False                    
+            self.rules.append(rule)
+            
         self.monerys = []
         lines = self.m_monerys.GetValue().split("\n")
         if len(lines)==0:
             return False
         for line in lines:
             monery = line.split('=')
+            if len(monery) != 4:
+                wx.MessageBox("购买金额规则配置出错", caption="提示", style=wx.OK)
+                return False
             self.monerys.append(monery)
+            
         
         return True
         

@@ -1,0 +1,11 @@
+//*[@id="ipt-search-key"]
+
+//*[@id="receiveNameAlert"]
+
+//*[@id="receiveNameInput"]
+
+//*[@id="amount"]
+
+//*[@id="reason"]
+
+//*[@id="paymentForm"]/div/div/div[5]/div/input
