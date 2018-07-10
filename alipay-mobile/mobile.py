@@ -98,7 +98,7 @@ class AlipayThread(threading.Thread):
             mobile = ""
             g_mutex.acquire()
             g_idx = g_idx + 1
-            if g_idx > len(g_mobiles):
+            if g_idx >= len(g_mobiles):
                 g_mutex.release()
                 break;
             mobile = g_mobiles[g_idx];            
@@ -120,10 +120,10 @@ class AlipayThread(threading.Thread):
         model = AlipayFundTransToaccountTransferModel()
         model.out_biz_no         = getstr(32)
         model.payee_type         = "ALIPAY_LOGONID"
-        model.payee_account        = mobile
+        model.payee_account      = mobile
         model.amount             = self.target["amount"]
-        model.payer_show_name     = self.target["show_name"]
-        #model.payee_real_name     = self.target["real_name"]
+        model.payer_show_name    = self.target["show_name"]
+        #model.payee_real_name   = self.target["real_name"]
         model.remark             = self.target["remark"]
             
         
@@ -190,12 +190,25 @@ class MianWindow(basewin.BaseMainWind):
         if self.conf.has_section("prefix") == True:
             self.m_prefix.SetValue(self.conf.get("prefix", "value"))
             
-
+    def OnClose( self, event ):
+        event.Skip()
+        if  len(self.threads) != 0:
+            for t in self.threads:
+                if t.is_alive():
+                    t.stop()
+                t.join()
+            self.threads = []
+            g_file.close()
+            self.m_button2.SetLabel('开始')
+            return
             
     def onsave(self, event):
-        pass;
+        self.conf.set("prefix", "value", self.m_prefix.GetValue())
+        #写回配置文件
+        self.conf.write(open("mobile.ini","w"))
         
-    def onstart(self, event):  
+    def onstart(self, event):
+        self.onsave(event)
         global g_file;
         global g_idx;
         global g_max;
