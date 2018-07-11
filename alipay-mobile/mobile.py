@@ -167,6 +167,57 @@ class AlipayThread(threading.Thread):
 ##################################################################
 ##################################################################                
 ##################################################################
+
+import json
+import urllib
+import urllib.request
+import urllib.response
+import urllib.error
+import http.cookiejar
+from mobile import *
+
+
+
+#声明一个CookieJar对象实例来保存cookie
+cookiejar = cookiejar = http.cookiejar.CookieJar()
+#利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
+handler = urllib.request.HTTPCookieProcessor(cookiejar)
+#通过handler来构建opener
+opener = urllib.request.build_opener(handler)
+
+#此处的open方法同urllib2的urlopen方法，也可以传入request
+#response = opener.open('http://www.baidu.com')
+user_agent = 'Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'  
+headers = { 'User-Agent' : user_agent }  
+
+ 
+def GetHttp(url, data = None, headers = {}, method = 'GET'):    
+    request = urllib.request.Request(url, headers = headers, data = data, method = method)
+    try:
+        response = opener.open(request, timeout = 5)
+        html = response.read().decode()
+    except urllib.error.HTTPError as e:
+        print("HTTPError :", e.reason)
+        return None
+    except urllib.error.URLError as e:
+        print("URLError :", e.reason)
+        return None
+    except Exception as e:
+        print("Exception:%s" % (e))
+        return None
+    except:
+        print("错误 ==> 网络连接错误！")
+        return None
+    html = html.strip()
+    print(html)
+    return html  
+	
+
+
+
+
+
+
 class MianWindow(basewin.BaseMainWind):  
     # 首先，咱们从刚刚源文件中将主窗体继承下来.就是修改过name属性的主窗体咯。  
     def init_main_window(self):  
@@ -202,13 +253,13 @@ class MianWindow(basewin.BaseMainWind):
             self.m_button2.SetLabel('开始')
             return
             
-    def onsave(self, event):
+    def onSave(self, event):
         self.conf.set("prefix", "value", self.m_prefix.GetValue())
         #写回配置文件
         self.conf.write(open("mobile.ini","w"))
         
-    def onstart(self, event):
-        self.onsave(event)
+    def onStart(self, event):
+        self.onSave(event)
         global g_file;
         global g_idx;
         global g_max;
@@ -219,7 +270,7 @@ class MianWindow(basewin.BaseMainWind):
                 t.join()
             self.threads = []
             g_file.close()
-            self.m_button2.SetLabel('开始')
+            self.m_btstart.SetLabel('开始')
             return
 
         prefix_mobiles = self.m_prefix.GetValue().split("/")
@@ -234,7 +285,7 @@ class MianWindow(basewin.BaseMainWind):
                 mobile = prefix_mobile + s.zfill(left_len);
                 g_mobiles.append(mobile)
         
-        self.m_button2.SetLabel('关闭')
+        self.m_btstart.SetLabel('关闭')
         tf = datetime.datetime.now().strftime('%y%m%d%I%M%S%p')       
         g_file = open(tf + '.txt', 'w')
         self.threads = []
@@ -247,6 +298,19 @@ class MianWindow(basewin.BaseMainWind):
             thread.start()
             self.threads.append(thread)
         print("******************************\n")
+	
+	def onLogin( self, event ):
+		event.Skip()		
+        logindict = {}
+        logindict["username"]                 = self.m_username.GetValue()
+        logindict["wSecureCd"]               = self.m_userpwd.GetValue()
+        data = urllib.parse.urlencode(logindict).encode('utf-8')
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')		
+		
+		
+		
+		
+		
    
 def main():
     app = wx.App()  
