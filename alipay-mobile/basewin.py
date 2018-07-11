@@ -17,7 +17,7 @@ import wx.xrc
 class BaseMainWind ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"账号检测神器", pos = wx.DefaultPosition, size = wx.Size( 500,400 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"账号检测神器", pos = wx.DefaultPosition, size = wx.Size( 520,420 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -25,14 +25,14 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer20 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"账号：", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"账号：", wx.DefaultPosition, wx.Size( 60,-1 ), wx.ALIGN_CENTRE )
 		self.m_staticText6.Wrap( -1 )
 		bSizer20.Add( self.m_staticText6, 0, wx.ALL, 5 )
 		
 		self.m_username = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer20.Add( self.m_username, 0, wx.ALL, 5 )
 		
-		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"密码:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"密码:", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE )
 		self.m_staticText7.Wrap( -1 )
 		bSizer20.Add( self.m_staticText7, 0, wx.ALL, 5 )
 		

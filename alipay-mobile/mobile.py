@@ -45,6 +45,7 @@ logger = logging.getLogger('')
 """
 alipay_client_config = AlipayClientConfig()
 alipay_client_config.server_url = 'https://openapi.alipay.com/gateway.do'
+
 '''
 alipay_client_config.app_id = '2018061060383084'
 #alipay_client_config.app_private_key   = 'MIIEowIBAAKCAQEAidAsiclMMRWnGmHZ58aeTBlo8sLr26wR+trX3VovT8FSMnq3G4hLIZaGj7SUr3lLlZwnUAIQ6VMP5SIYqg1Rk7yU8bTxs2QPAxRd38GUhZsRAWD2XLP27TZVjjyo68SSX0Lso/cFshM/s2viHoolS0D7+8BHWX4sNRu6KsdbZUMwKHl4WHSWNea66p5m9U4jw5ZbThZqBG28YVTH0yXImiUK0WQ+SUG93V1qJTTaVmzfCxcSq199Z18nE22FUffM2dWaUL2kzZm2RRcf8SEgUIMPinnU7nw6892jXKa4CI3QeddMqsFb6ONTe2XkaR20fJ3IsX6qK8SdhZeJV5/t0wIDAQABAoIBAGaE72z8y2pEUlAE9OY/0eiIipL1QCHlimaTwDvRaBqrlKsqsOaRaFqvMKDc1DMJR5ofVPtm3g/Ek7F/wNtYFxSRGDgKxDcQOz6uOvtGdWdCqM7ew8bItetXHSQ3qe3iCIVHMuTy0VDckum1WrwfRokJ6aopKqq/esFzQ/Wo4iucSwlZq8nsCDkrsKKDAJB41THbgWJijuNtX3BH5Ac8hREONVsuVcDRbcEG/z6f4mm8QJO1kw8ywewYCeGaN5PTvSAjNnx/TVHMDTM3T40g7iEI6aVG4UkJuF1uWB1JfHsQC4EoFD0IEYj1kxCsZgASYVIPQMTC1Dng7CpP8zJemXkCgYEA1X2ZKLck6r0jCriRawQO23LXCLT+TP0Uy3xbhL/2xLVirhc+DrN6KVAjGf4ISNwOIGUmLh/KM0DiCZDCH5p7qENa2JvbTXPW7QoOPQY4q67YLmmSDpzFeMWb9Y+pe0YBriA06kszgzClVyV6yso1lXIIjPZwwYaBaIiugUOwZAcCgYEApUEEtxjfCTX2UFPjyjv7ZQN3HuXM7cEf/ruGsJE4M+p0f7OlFLW5uam95pRIeL98J1jnQ4KRd2CswInxC4wKxmQ5317qo4E4SsKFxBOQTReLykfWpfqdwFeRP8N6AFhD5iWWyGdwfaA78rxN62pCNGOxpwSovRXLiDrrEk4YrNUCgYADy4jGdYL9fUE7No63NUpCUmdKK1V97t3IxDwoPvVXB9ZqO9WJk10vkNIe6yogiXDi2Il2NnB0usmJ2/3na+qY0iGySgr69H00l4IrSYoGW0RShuPmyJimDfU4x0X+//6VptLp+04+HcZCp1LoefG751wJjXPxrL9uKUfY2mgvTwKBgGdNZa0vlv0jBn7gch0Rse1LZUOjU5+sgluyzlfB7+hEP980ZZW0pA0z1so1F7ijuvC92pORI24EuPkDQfN9755lOOgxZWwgcxgI0aXotOP8PB6PGddX+xUpqFq7z6A3jPpptQBB6UgeylrK68ql+gzV5VAK0ZCh90GJ0zj2KOahAoGBAKJYUXvmFLpySQsP8HotpSgPHBK5OHmpFRKkMBxSnErkxFNzXs2OD5b4FcwO3iXa8jYEEO5vjtqxDajqK8cKs1AE4FgjCHesz+905AEC8bToRv+DYTUwJAh0+4qSCAXXkgCWjWypYP77+Aopgx/QVyH/OdVHHVmAzRZ0HKz1u0mF'
@@ -211,7 +212,7 @@ def GetHttp(url, data = None, headers = {}, method = 'GET'):
     html = html.strip()
     print(html)
     return html  
-	
+    
 
 
 
@@ -241,6 +242,16 @@ class MianWindow(basewin.BaseMainWind):
         if self.conf.has_section("prefix") == True:
             self.m_prefix.SetValue(self.conf.get("prefix", "value"))
             
+        if self.conf.has_section("username") == True:
+            self.m_username.SetValue(self.conf.get("username", "value"))
+
+        if self.conf.has_section("password") == True:
+            self.m_userpwd.SetValue(self.conf.get("password", "value"))
+        self.valid = False
+        self.onLogin(None)
+            
+
+            
     def OnClose( self, event ):
         event.Skip()
         if  len(self.threads) != 0:
@@ -255,11 +266,17 @@ class MianWindow(basewin.BaseMainWind):
             
     def onSave(self, event):
         self.conf.set("prefix", "value", self.m_prefix.GetValue())
+        self.conf.set("username", "value", self.m_username.GetValue())
+        self.conf.set("password", "value", self.m_userpwd.GetValue())
         #写回配置文件
         self.conf.write(open("mobile.ini","w"))
         
     def onStart(self, event):
         self.onSave(event)
+        if self.valid != True:
+            wx.MessageBox("账号未登录,请先登录", caption="提示", style=wx.OK)
+            return
+            
         global g_file;
         global g_idx;
         global g_max;
@@ -298,20 +315,24 @@ class MianWindow(basewin.BaseMainWind):
             thread.start()
             self.threads.append(thread)
         print("******************************\n")
-	
-	def onLogin( self, event ):
-		event.Skip()		
+    
+    def onLogin( self, event ):
+        #event.Skip()        
         logindict = {}
-        logindict["username"]                 = self.m_username.GetValue()
-        logindict["wSecureCd"]               = self.m_userpwd.GetValue()
+        logindict["username"]               = self.m_username.GetValue()
+        logindict["password"]               = self.m_userpwd.GetValue()
         data = urllib.parse.urlencode(logindict).encode('utf-8')
-        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')		
-		
-		
-		
-		
-		
-   
+        url  = "http://www.duboren.com/agent/alipay.php"
+        #print(url)
+        html = GetHttp(url = url, data = data, headers = headers, method = 'POST')
+        if html == "ok":
+            self.valid = True
+            self.m_logintip.SetLabel("登录成功")
+        else:
+            self.valid = False
+            self.m_logintip.SetLabel("登录失败")            
+
+        
 def main():
     app = wx.App()  
     main_win = MianWindow(None)  
