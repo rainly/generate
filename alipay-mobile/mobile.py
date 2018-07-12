@@ -90,6 +90,10 @@ class AlipayThread(threading.Thread):
         logger参数用于打印日志，不传则不打印，建议传递。
         """
         self.client = DefaultAlipayClient(alipay_client_config=alipay_client_config, logger=logger)
+        self.show_name_idx = 0;
+        self.remark_idx = 0;
+        self.show_names = self.target["show_name"].split("/")
+        self.remarks = self.target["remark"].split("/")
         
     def run(self):
         logger.info("*************begin*****************\n")
@@ -123,11 +127,22 @@ class AlipayThread(threading.Thread):
         model.payee_type         = "ALIPAY_LOGONID"
         model.payee_account      = mobile
         model.amount             = self.target["amount"]
-        model.payer_show_name    = self.target["show_name"]
-        #model.payee_real_name   = self.target["real_name"]
-        model.remark             = self.target["remark"]
-            
+
+
+        self.show_name_idx = self.show_name_idx + 1
+        if self.show_name_idx >= len(self.show_names):
+            self.show_name_idx = 0;
+        show_name = self.show_names[show_name_idx];
         
+        self.remark_idx = self.remark_idx + 1
+        if self.remark_idx >= len(self.remarks):
+            self.remark_idx = 0;
+        remark = self.remarks[remark_idx];
+        
+        model.payer_show_name    = show_name
+        #model.payee_real_name   = self.target["real_name"]
+        model.remark             = remark
+            
         request = AlipayFundTransToaccountTransferRequest(biz_model=model)
         # 如果有auth_token、app_auth_token等其他公共参数，放在udf_params中
         # udf_params = dict()
