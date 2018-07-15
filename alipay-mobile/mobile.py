@@ -92,7 +92,7 @@ class AlipayThread(threading.Thread):
         self.client = DefaultAlipayClient(alipay_client_config=alipay_client_config, logger=logger)
         self.show_name_idx 	= 0;
         self.remark_idx 	= 0;
-		self.amount_idx 	= 0;
+        self.amount_idx 	= 0;
         self.show_names 	= self.target["show_name"].split("/")
         self.remarks 		= self.target["remark"].split("/")
         self.amounts 		= self.target["amount"].split("/")		
@@ -130,7 +130,7 @@ class AlipayThread(threading.Thread):
         model.payee_type         = "ALIPAY_LOGONID"
         model.payee_account      = mobile
         #model.amount            = self.target["amount"]
-		'''
+        '''
         self.show_name_idx = self.show_name_idx + 1
         if self.show_name_idx >= len(self.show_names):
             self.show_name_idx = 0;
@@ -148,12 +148,12 @@ class AlipayThread(threading.Thread):
         model.payer_show_name    = show_name
         #model.payee_real_name   = self.target["real_name"]
         model.remark             = remark
-		model.amount             = amount
-		'''
+        model.amount             = amount
+        '''
 		
         model.payer_show_name    = self.show_names[random.randint(0,len(self.show_names))]
         model.remark             = self.remarks[random.randint(0,len(self.remarks))]
-		model.amount             = self.amounts[random.randint(0,len(self.amounts))]
+        model.amount             = self.amounts[random.randint(0,len(self.amounts))]
 		
         request = AlipayFundTransToaccountTransferRequest(biz_model=model)
         # 如果有auth_token、app_auth_token等其他公共参数，放在udf_params中

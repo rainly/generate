@@ -84,8 +84,8 @@ if test_flag == False:
     # 打开chrome浏览器
     driver = webdriver.Chrome(chrome_options=option)
     #driver = webdriver.Chrome()
-    driver.get("http://www.caiptong.com/")
-    #driver.get("http://baidu.com")
+    #driver.get("http://www.caiptong.com/")
+    driver.get("http://baidu.com")
 else:
     pass;
     
@@ -1082,7 +1082,7 @@ class Application(tk.Tk):
     
 def main():
     app = Application()
-    app.title("BB彩票-双面玩法(开发者QQ：87954657)")
+    app.title("BB彩票-双面玩法(开发者QQ：542581595)")
     app.resizable(0,0) #阻止Python GUI的大小调整
     # 主消息循环:
     app.mainloop()
