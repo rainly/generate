@@ -193,7 +193,7 @@ class BettingThread(threading.Thread):
                     ####################################
                     print(Award_Issue_Road_t)
                     ####################################
-                    if Award_Issue_Road == None:
+                    if Award_Issue_Road == None and len(Award_Issue_Road_t) == 5:
                         Award_Issue_Road = Award_Issue_Road_t;
                     elif operator.eq(Award_Issue_Road, Award_Issue_Road_t):
                         break;
@@ -206,7 +206,12 @@ class BettingThread(threading.Thread):
                 for buyno in buynos:
                     self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
-
+                #关闭温馨提示
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except:
+                    pass
+                    
                 if test_flag == False:
                     driver.switch_to.parent_frame()
             
@@ -294,19 +299,19 @@ class BettingThread(threading.Thread):
             Bet = True       
             try_time = 3                        
             while try_time > 0:   #无限循环
-                try:    
+                #try:    
                     if self.target["lottery"] == 0:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
                             if buyno == 1:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 2:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 3:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 4:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 5:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
                                 pass
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
@@ -319,15 +324,15 @@ class BettingThread(threading.Thread):
                     elif self.target["lottery"] == 1:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
                             if buyno == 1:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 2:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 3:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 4:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 5:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(no + 1) + "]").click()
+                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
                                 pass
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
@@ -337,12 +342,15 @@ class BettingThread(threading.Thread):
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                         time.sleep(1)
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()                        
-                except:
-                    try_time = try_time - 1
-                    self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
-                    time.sleep(1)
-                    continue
-                break
+                #except:
+                #    try_time = try_time - 1
+                #    self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
+                #    time.sleep(1)
+                #    continue
+                #if try_time == 0:
+                #    self.logprint("位置" + str(buyno) + "***报错***下注失败")
+					break
+				
         return Bet
     
 ##################################################################
