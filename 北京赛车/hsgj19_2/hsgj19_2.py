@@ -159,6 +159,12 @@ class BettingThread(threading.Thread):
                     lt_gethistorycode  = str(Test_no) 
                     current_issue  = str(Test_no + 1)
                     Test_no = Test_no + 1
+
+                #try:
+                driver.execute_script("document.getElementById('demo').style.display='none'")
+                #except:
+                #self.logprint("execute_script")
+                #pass
                     
                 self.logprint("开奖期号：" + lt_gethistorycode)
                 self.logprint("购买期号：" + current_issue)
@@ -175,7 +181,9 @@ class BettingThread(threading.Thread):
                     continue                    
                 
                 Award_Issue_Road = None
-                while True:   #无限循环
+                try_time = 30
+                while try_time > 0:   #无限循环
+                    try_time = try_time - 1
                     self.logprint("****获取开奖数据***")   
                     Award_Issue_Road_t = []
                     if test_flag == False:
@@ -199,6 +207,7 @@ class BettingThread(threading.Thread):
                         break;
                     else:
                         time.sleep(1)
+                
                 self.logprint("路单数据" + str(Award_Issue_Road))
                 
                 Last_Award_Issue = current_issue
@@ -211,7 +220,10 @@ class BettingThread(threading.Thread):
                     driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except:
                     pass
-                    
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass                    
                 if test_flag == False:
                     driver.switch_to.parent_frame()
             
@@ -297,11 +309,22 @@ class BettingThread(threading.Thread):
         Bet = False        
         if test_flag == False :
             Bet = True       
-            try_time = 3                        
+            try_time = 10                        
             while try_time > 0:   #无限循环
-                #try:    
+                #关闭温馨提示
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except:
+                    pass
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass
+                try:
+                    try_time = try_time - 1
                     if self.target["lottery"] == 0:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
+                            print(no)
                             if buyno == 1:
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 2:
@@ -314,6 +337,7 @@ class BettingThread(threading.Thread):
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
                                 pass
+                        print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
                         driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
@@ -323,6 +347,7 @@ class BettingThread(threading.Thread):
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                     elif self.target["lottery"] == 1:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
+                            #print(no)
                             if buyno == 1:
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 2:
@@ -335,22 +360,27 @@ class BettingThread(threading.Thread):
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
                                 pass
+                        #print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
                         driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
                         time.sleep(1)        
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                         time.sleep(1)
-                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()                        
-                #except:
-                #    try_time = try_time - 1
-                #    self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
-                #    time.sleep(1)
-                #    continue
-                #if try_time == 0:
-                #    self.logprint("位置" + str(buyno) + "***报错***下注失败")
-					break
-				
+                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except Exception as msg:
+                    self.logprint("Exception:%s" % msg)
+                    time.sleep(1)
+                    continue
+                    pass
+                except:
+                    self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
+                    time.sleep(1)
+                    continue
+                if try_time == 0:
+                    self.logprint("位置" + str(buyno) + "***报错***下注失败")
+                break
+                
         return Bet
     
 ##################################################################

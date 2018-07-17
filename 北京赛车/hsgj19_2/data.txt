@@ -1,5 +1,7 @@
 
 
+/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button
+
 xzs1977
 721923xzs
 
@@ -18,6 +20,8 @@ xzs1977
 
 
 /html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]
+
+/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button
 
               
 1-1=>//*[@id="jeuM_0_40000"]
