@@ -142,7 +142,20 @@ class BettingThread(threading.Thread):
                     continue
                 SleepTime = 0  
                 self.logprint("**********************************************")        
-
+                #关闭温馨提示
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except:
+                    pass
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass   
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
+                except:
+                    pass
+				
                 if test_flag == False:
                     driver.switch_to.default_content()
                     #print("default current_url:" + driver.current_url)
@@ -206,6 +219,7 @@ class BettingThread(threading.Thread):
                     elif operator.eq(Award_Issue_Road, Award_Issue_Road_t):
                         break;
                     else:
+                        Award_Issue_Road = Award_Issue_Road_t;
                         time.sleep(1)
                 
                 self.logprint("路单数据" + str(Award_Issue_Road))
@@ -223,7 +237,11 @@ class BettingThread(threading.Thread):
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
                 except:
-                    pass                    
+                    pass   
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
+                except:
+                    pass	
                 if test_flag == False:
                     driver.switch_to.parent_frame()
             
@@ -324,7 +342,7 @@ class BettingThread(threading.Thread):
                     try_time = try_time - 1
                     if self.target["lottery"] == 0:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                            print(no)
+                            #print(no)
                             if buyno == 1:
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             elif buyno == 2:
@@ -337,7 +355,7 @@ class BettingThread(threading.Thread):
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
                                 pass
-                        print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
+                        #print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
                         driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()

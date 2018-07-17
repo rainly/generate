@@ -17,7 +17,7 @@ import wx.xrc
 class BaseMainWind ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"分分彩(五星定位胆)", pos = wx.DefaultPosition, size = wx.Size( 500,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"腾讯分分彩(定位胆)", pos = wx.DefaultPosition, size = wx.Size( 500,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -76,7 +76,7 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer4 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_radioBtn4 = wx.RadioButton( self, wx.ID_ANY, u"分分彩", wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
+		self.m_radioBtn4 = wx.RadioButton( self, wx.ID_ANY, u"腾讯分分彩(定位胆)", wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
 		bSizer4.Add( self.m_radioBtn4, 0, wx.ALL, 5 )
 		
 		self.m_radioBtn5 = wx.RadioButton( self, wx.ID_ANY, u"等定", wx.DefaultPosition, wx.DefaultSize, 0 )
