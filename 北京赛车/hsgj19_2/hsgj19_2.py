@@ -142,20 +142,31 @@ class BettingThread(threading.Thread):
                     continue
                 SleepTime = 0  
                 self.logprint("**********************************************")        
-                #关闭温馨提示
+                #关闭温馨提示1
                 try:
                     driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except:
                     pass
+                #关闭温馨提示2
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
                 except:
                     pass   
+                #关闭温馨提示3
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass    
+                #关闭下注提示1
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                 except:
                     pass
-				
+                #关闭下注提示2
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except:
+                    pass
                 if test_flag == False:
                     driver.switch_to.default_content()
                     #print("default current_url:" + driver.current_url)
@@ -172,12 +183,22 @@ class BettingThread(threading.Thread):
                     lt_gethistorycode  = str(Test_no) 
                     current_issue  = str(Test_no + 1)
                     Test_no = Test_no + 1
-
-                #try:
-                driver.execute_script("document.getElementById('demo').style.display='none'")
-                #except:
-                #self.logprint("execute_script")
-                #pass
+    
+                try:
+                    driver.execute_script("document.getElementById('demo').style.display='none'")
+                    self.logprint("execute_script success")
+                except:
+                    self.logprint("execute_script error")
+                    pass
+                try:    
+                    driver.execute_script(" var elements = document.getElementsByClassName('notice');\
+                                            while(elements.length > 0){\
+                                                elements[0].parentNode.removeChild(elements[0]);\
+                                            }")
+                    self.logprint("execute_script success")
+                except:
+                    self.logprint("execute_script error")
+                    pass                    
                     
                 self.logprint("开奖期号：" + lt_gethistorycode)
                 self.logprint("购买期号：" + current_issue)
@@ -229,19 +250,31 @@ class BettingThread(threading.Thread):
                 for buyno in buynos:
                     self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
-                #关闭温馨提示
+                #关闭温馨提示1
                 try:
                     driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except:
                     pass
+                #关闭温馨提示2
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
                 except:
-                    pass   
+                    pass 
+                #关闭温馨提示3
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass                        
+                #关闭下注提示1
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                 except:
-                    pass	
+                    pass    
+                #关闭下注提示2
+                try:
+                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                except:
+                    pass
                 if test_flag == False:
                     driver.switch_to.parent_frame()
             
@@ -329,15 +362,22 @@ class BettingThread(threading.Thread):
             Bet = True       
             try_time = 10                        
             while try_time > 0:   #无限循环
-                #关闭温馨提示
+                #关闭温馨提示1
                 try:
                     driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except:
                     pass
+                #关闭温馨提示2
                 try:
                     driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
                 except:
                     pass
+                #关闭温馨提示3
+                try:
+                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                except:
+                    pass
+                    
                 try:
                     try_time = try_time - 1
                     if self.target["lottery"] == 0:
@@ -359,9 +399,12 @@ class BettingThread(threading.Thread):
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
                         driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
-                        time.sleep(1)        
+                        time.sleep(1)  
+                        #关闭下注提示1
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                        time.sleep(1)
+                        time.sleep(2)
+                        try_time = 0
+                        #关闭下注提示2
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                     elif self.target["lottery"] == 1:
                         for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
@@ -377,23 +420,27 @@ class BettingThread(threading.Thread):
                             elif buyno == 5:
                                 driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
                             else:
-                                pass
+                                pass    
                         #print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
                         driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
                         driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
-                        time.sleep(1)        
+                        time.sleep(1) 
+                        #关闭下注提示1
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                        time.sleep(1)
+                        time.sleep(2)
+                        try_time = 0
+                        #关闭下注提示2
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except Exception as msg:
                     self.logprint("Exception:%s" % msg)
-                    time.sleep(1)
+                    self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
+                    #time.sleep(1)
                     continue
                     pass
                 except:
                     self.logprint("位置" + str(buyno) + "***报错***重试：" + str(try_time))
-                    time.sleep(1)
+                    #time.sleep(1)
                     continue
                 if try_time == 0:
                     self.logprint("位置" + str(buyno) + "***报错***下注失败")
@@ -520,7 +567,7 @@ class MianWindow(basewin.BaseMainWind):
                 if no.isdigit() == False:
                     wx.MessageBox("购买规则配置出错(包含非数字类型)", caption="提示", style=wx.OK)
                     return False
-                if (int(no) < 1) or (int(no) > 10):
+                if (int(no) < 0) or (int(no) > 9):
                     wx.MessageBox("购买规则配置出错(数据异常)", caption="提示", style=wx.OK)
                     return False                    
             self.rules.append(rule)
