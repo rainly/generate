@@ -130,7 +130,7 @@ class BettingThread(threading.Thread):
             BALL_NO_DATA["Temp_Rule_Idx"]        =  0
             BALL_NO_DATA["Temp_First_Flag"]      =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
-            
+                
         Test_no = 1     
         SleepTime  = 5    
         Last_Award_Issue = ""        
@@ -144,27 +144,37 @@ class BettingThread(threading.Thread):
                 self.logprint("**********************************************")        
                 #关闭温馨提示1
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 #关闭温馨提示2
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass   
                 #关闭温馨提示3
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass    
                 #关闭下注提示1
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 #关闭下注提示2
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 if test_flag == False:
@@ -252,27 +262,37 @@ class BettingThread(threading.Thread):
                     time.sleep(1)
                 #关闭温馨提示1
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 #关闭温馨提示2
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass 
                 #关闭温馨提示3
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass                        
                 #关闭下注提示1
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass    
                 #关闭下注提示2
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 if test_flag == False:
@@ -364,17 +384,23 @@ class BettingThread(threading.Thread):
             while try_time > 0:   #无限循环
                 #关闭温馨提示1
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 #关闭温馨提示2
                 try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                 #关闭温馨提示3
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
+                    bt = driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button")
+                    if bt.text == "确定":
+                        bt.click()
                 except:
                     pass
                     
@@ -403,7 +429,7 @@ class BettingThread(threading.Thread):
                         #关闭下注提示1
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                         time.sleep(2)
-                        try_time = 0
+                        try_time = -1
                         #关闭下注提示2
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                     elif self.target["lottery"] == 1:
@@ -429,7 +455,7 @@ class BettingThread(threading.Thread):
                         #关闭下注提示1
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
                         time.sleep(2)
-                        try_time = 0
+                        try_time = -1
                         #关闭下注提示2
                         driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
                 except Exception as msg:
