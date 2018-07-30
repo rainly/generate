@@ -1,56 +1,77 @@
+/html/body/iframe
+
+/html/body/iframe
 
 
-/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button
+//*[@id="t_LID"]
 
-xzs1977
-721923xzs
+//*[@id="span_roundno"]
 
-//*[@id="UP_LID"]
+//*[@id="span_roundno"]
 
-//*[@id="UP_LID"]
+//*[@id="round_content"]/table[2]/tbody/tr/td[1]
 
-//*[@id="d_GameLottery"]/table/tbody/tr/td[2]
-//*[@id="d_GameLottery"]/table/tbody/tr/td[3]
-//*[@id="d_GameLottery"]/table/tbody/tr/td[11]
+//*[@id="round_content"]/table[2]/tbody/tr/td[1]
+
+//*[@id="span_roundno"]
+//*[@id="div_betno"]/div/span[2]/div
+
+//*[@id="div_betno"]/div/span[2]/div
+<div class="BJNo_05" style=" height:27px; width:27px; margin-top:1px;"></div>
+
+//*[@id="div_betno"]/div/span[3]/div
+1
+//*[@id="tblNowBet01"]/tbody/tr[2]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[3]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[4]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[5]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[6]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[7]/td[3]/input
+2
+//*[@id="tblNowBet01"]/tbody/tr[2]/td[6]/input  
+//*[@id="tblNowBet01"]/tbody/tr[3]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[4]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[5]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[6]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[7]/td[6]/input
+3
+//*[@id="tblNowBet01"]/tbody/tr[2]/td[9]/input  
+//*[@id="tblNowBet01"]/tbody/tr[3]/td[9]/input
+//*[@id="tblNowBet01"]/tbody/tr[4]/td[9]/input
+//*[@id="tblNowBet01"]/tbody/tr[5]/td[9]/input
+//*[@id="tblNowBet01"]/tbody/tr[6]/td[9]/input
+//*[@id="tblNowBet01"]/tbody/tr[7]/td[9]/input
+4
+//*[@id="tblNowBet01"]/tbody/tr[2]/td[12]/input  
+//*[@id="tblNowBet01"]/tbody/tr[3]/td[12]/input
+//*[@id="tblNowBet01"]/tbody/tr[4]/td[12]/input
+//*[@id="tblNowBet01"]/tbody/tr[5]/td[12]/input
+//*[@id="tblNowBet01"]/tbody/tr[6]/td[12]/input
+//*[@id="tblNowBet01"]/tbody/tr[7]/td[12]/input
+
+5
+//*[@id="tblNowBet01"]/tbody/tr[9]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[10]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[11]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[12]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[13]/td[3]/input
+//*[@id="tblNowBet01"]/tbody/tr[14]/td[3]/input
 
 
-//*[@id="k_qs"]
+6
+//*[@id="tblNowBet01"]/tbody/tr[9]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[10]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[11]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[12]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[13]/td[6]/input
+//*[@id="tblNowBet01"]/tbody/tr[14]/td[6]/input
+7
+8
 
-<input id="jeuM_0_80000" name="jeuM_0_80000" type="text" size="4" maxlength="9" class="inp1" onfocus="this.className='inp1m';Shortcut_ImportM(this);" onblur="this.className='inp1';ADD_Jeu_S(this);" onkeydown="digitOnly(event, this)" disabled="">
+
+9
+//*[@id="tblNowBet01"]/tbody/tr[14]/td[6]/input
 
 
-/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]
 
-/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button
-
-              
-1-1=>//*[@id="jeuM_0_40000"]
-1-10=>//*[@id="jeuM_0_40009"]
-
-2-1=>//*[@id="jeuM_0_40016"]
-2->10=>//*[@id="jeuM_0_40025
-
-3-1=>//*[@id="jeuM_0_40032"]
-3->10=>//*[@id="jeuM_0_40041"]
-
-4-1=>//*[@id="jeuM_0_40048"]
-4->10=>//*[@id="jeuM_0_40057"]
-
-5-1=>//*[@id="jeuM_0_40064"]
-5->10=>//*[@id="jeuM_0_40073"]
-
-6-1=>//*[@id="jeuM_0_40080"]
-6->10=>//*[@id="jeuM_0_40089"]
-
-7-1=>//*[@id="jeuM_0_40094"]
-7->10=>//*[@id="jeuM_0_40103"]
-
-8-1=>//*[@id="jeuM_0_40108"]
-8->10=>//*[@id="jeuM_0_40117"]
-
-122
-131
-
-136
-145
-
+        

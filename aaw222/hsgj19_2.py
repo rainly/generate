@@ -78,7 +78,7 @@ def logcrit(msg, *args, **kwargs):
     kwargs["exc_info"] = 1
     log.logger.crit(msg, *args, **kwargs)
 
-test_flag = True
+test_flag = False
 driver    = None
 
 class WebdriverThread(threading.Thread):
@@ -134,19 +134,22 @@ class BettingThread(threading.Thread):
 
         
         buynos = []
-		for i in range(12):
-			if self.target["46" + str(i)] == True
-				buynos.append(i + 1);
+        for i in range(12):
+            if self.target["46" + str(i)] == True:
+                buynos.append(i + 1);
 
-		
+        
         BALL_NO_DATAS = {}
         for buyno in buynos:
             BALL_NO_DATA = {}
-            BALL_NO_DATA["Temp_Monery_Idx"]      =  0
-            BALL_NO_DATA["Temp_Rule_Idx"]        =  0
+            BALL_NO_DATA["Temp_Monery"]           =  0
             BALL_NO_DATA["Temp_First_Flag"]      =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
-            
+           
+           
+        print(BALL_NO_DATAS)
+
+        
         Test_no = 1     
         SleepTime  = 5    
         Last_Award_Issue = ""        
@@ -158,51 +161,42 @@ class BettingThread(threading.Thread):
                     continue
                 SleepTime = 0  
                 self.logprint("**********************************************")        
-                #关闭温馨提示
-                try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
-                except:
-                    pass
-                try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
-                except:
-                    pass   
-                try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                except:
-                    pass
-                
                 if test_flag == False:
                     driver.switch_to.default_content()
                     #print("default current_url:" + driver.current_url)
                     #print("default title:" + driver.title)
-
-
-                    main_frame = driver.find_element_by_xpath("//*[@id=\"main_frame\"]")
+                    #print("default page_source:" + driver.page_source)                    
+                    
+                    
+                    main_frame = driver.find_element_by_xpath("/html/body/iframe")
                     driver.switch_to.frame(main_frame)
-                    print("//*[@id=\"main_frame\"] current_url:" +driver.current_url)
-                    print("//*[@id=\"main_frame\"] title:" +driver.title)             
-                    lt_gethistorycode = driver.find_element_by_xpath("//*[@id=\"lt_gethistorycode\"]").text
-                    current_issue = driver.find_element_by_xpath("//*[@id=\"current_issue\"]").text
+                    #print("//*[@id=\"main_frame\"] current_url:" +driver.current_url)
+                    #print("//*[@id=\"main_frame\"] title:" +driver.title)
+                    #print("//*[@id=\"main_frame\"] page_source:" + driver.page_source)   
+
+                    mainbody = driver.find_element_by_xpath("//*[@id=\"mainbody\"]")
+                    driver.switch_to.frame(mainbody)
+                    #print("//*[@id=\"mainbody\"] current_url:" +driver.current_url)
+                    #print("//*[@id=\"mainbody\"] title:" +driver.title)
+                    #print("//*[@id=\"mainbody\"] page_source:" + driver.page_source) 
+                    
+                    
+
+                    lt_gethistorycode = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]")
+                    print(lt_gethistorycode)
+
+                    lt_gethistorycode = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]").text
+                    print(lt_gethistorycode)
+                    
+                    current_issue = driver.find_element_by_xpath("//*[@id=\"t_LID\"]").text
+                    print(current_issue)
+                    
+ 
+
                 else:
                     lt_gethistorycode  = str(Test_no) 
                     current_issue  = str(Test_no + 1)
                     Test_no = Test_no + 1
-
-                #try:
-                #driver.execute_script("document.getElementById('demo').style.display='none'")
-                #except:
-                #self.logprint("execute_script")
-                #pass
-                try:
-                    driver.execute_script("var i;var box = document.getElementsByClassName('notice');for (i = 0; i < box.length; i++) {box[i].parentNode.removeChild(box[i]);}")
-                except:
-                    pass
-                
-                try:
-                    driver.execute_script("function showTiShi(title,content,width,icon, callback){}")
-                except:
-                    pass
                 
                 self.logprint("开奖期号：" + lt_gethistorycode)
                 self.logprint("购买期号：" + current_issue)
@@ -225,26 +219,25 @@ class BettingThread(threading.Thread):
                     self.logprint("****获取开奖数据***")   
                     Award_Issue_Road_t = []
                     if test_flag == False:
-                        for idx  in range(1,6):
+                        for idx  in range(2,12):
                             try:
-                                BallText = driver.find_element_by_xpath("//*[@id=\"showcodebox\"]/span[" + str(idx) + "]").text
+                                BallText = driver.find_element_by_xpath("//*[@id=\"div_betno\"]/div/span[" + str(idx) + "]/div").get_attribute("class").replace("BJNo_", "")
                                 Award_Issue_Road_t.append(int(BallText))
                             except:
                                 pass
                     else:
-                        for idx  in range(1,6):
+                        for idx  in range(1,11):
                             BallText = random.randint(1,10)
                             Award_Issue_Road_t.append(int(BallText))
                         Award_Issue_Road = Award_Issue_Road_t;
                     ####################################
                     print(Award_Issue_Road_t)
                     ####################################
-                    if Award_Issue_Road == None and len(Award_Issue_Road_t) == 5:
+                    if Award_Issue_Road == None and len(Award_Issue_Road_t) == 10:
                         Award_Issue_Road = Award_Issue_Road_t;
                     elif operator.eq(Award_Issue_Road, Award_Issue_Road_t):
                         break;
                     else:
-                        Award_Issue_Road = Award_Issue_Road_t;
                         time.sleep(1)
                 
                 self.logprint("路单数据" + str(Award_Issue_Road))
@@ -255,21 +248,10 @@ class BettingThread(threading.Thread):
                     self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
                 #关闭温馨提示
-                try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
-                except:
-                    pass
-                try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
-                except:
-                    pass   
-                try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                except:
-                    pass    
-                if test_flag == False:
-                    driver.switch_to.parent_frame()
-            
+                driver.find_element_by_xpath("//*[@id=\"btn_order2\"]").click()
+                time.sleep(1)
+                driver.switch_to.parent_frame()
+                driver.find_element_by_xpath("/html/body/div[16]/div[3]/div/button[1]").click()
             except NoSuchElementException as msg:
                 self.logprint("NoSuchElementException:%s" % msg)
                 pass
@@ -294,6 +276,7 @@ class BettingThread(threading.Thread):
             except TimeoutException as msg:
                 self.logprint("TimeoutException:%s" % msg)
                 pass
+            '''
             except Exception as msg:
                 self.logprint("Exception:%s" % msg)
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
@@ -301,6 +284,7 @@ class BettingThread(threading.Thread):
             except:
                 self.logprint("error lineno:" + str(sys._getframe().f_lineno))
                 pass
+            '''
         self.logprint("********************end**************************")  
         self.logprint("********************end**************************")  
         self.logprint("********************end**************************")      
@@ -308,46 +292,42 @@ class BettingThread(threading.Thread):
         global driver
         self.logprint("**********************************************")   
         if BALL_NO_DATA["Temp_First_Flag"] == 1:
-            self.logprint("位置" + str(buyno) + "***处理开奖规则序号***:" + str(BALL_NO_DATA["Temp_Rule_Idx"]) + 
-            "***规则***:" +  str(self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]))
-            self.logprint("位置" + str(buyno) + "***处理开奖金额序号***:" + str(BALL_NO_DATA["Temp_Monery_Idx"]) + 
-            "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
+            self.logprint("位置" + str(buyno) + "***处理开奖规则***:" + self.target["42" + str(buyno - 1)])
+            self.logprint("位置" + str(buyno) + "***处理开奖金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
             
-            Win = 0
-            if str(road[buyno - 1]) in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                Win = 1;
-                self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
-                BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][2]) - 1
-                if self.target["type"] == 0:
-                    #中不中都打下一个
-                    BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
-                    self.logprint("位置" + str(buyno) + "***中奖***中不中都打下一个")
-                elif self.target["type"] == 1:
-                    #中了一直打同一个
-                    self.logprint("位置" + str(buyno) + "***中奖***中了一直打同一个")
-                    pass
-                elif self.target["type"] == 2:
-                    #中了回第一个
-                    BALL_NO_DATA["Temp_Rule_Idx"] = 0
-                    self.logprint("位置" + str(buyno) + "***中奖***中了回第一个")
+            Win = False
+            if self.target["42" + str(buyno - 1)] == "大":
+                if road[buyno - 1] >= 5:
+                    Win = True;
                 else:
-                    BALL_NO_DATA["Temp_Rule_Idx"] = 0
-                    self.logprint("位置" + str(buyno) + "***中奖***中了回第一个")
+                    Win = False
+            elif self.target["42" + str(buyno - 1)] == "小":
+                if road[buyno - 1]  < 5:
+                    Win = True;
+                else:
+                    Win = False        
+            elif self.target["42" + str(buyno - 1)] == "单":
+                if road[buyno - 1] % 2  ==  1:
+                    Win = True;
+                else:
+                    Win = False        
+            elif self.target["42" + str(buyno - 1)] == "双":
+                if road[buyno - 1] % 2  ==  0:
+                    Win = True;
+                else:
+                    Win = False                        
+            if Win:
+                self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
+                BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] - int(self.target["44" + str(buyno - 1)])
             else:
-                Win = 0;
                 self.logprint("位置" + str(buyno) + "***未中奖***")
-                BALL_NO_DATA["Temp_Monery_Idx"] = int(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][3]) - 1
-                BALL_NO_DATA["Temp_Rule_Idx"] = BALL_NO_DATA["Temp_Rule_Idx"] + 1
-            
-            if BALL_NO_DATA["Temp_Rule_Idx"] >= len(self.target["rules"]):
-                BALL_NO_DATA["Temp_Rule_Idx"] = 0
+                BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] + int(self.target["45" + str(buyno - 1)])
         else:
             BALL_NO_DATA["Temp_First_Flag"] = 1
-            BALL_NO_DATA["Temp_Rule_Idx"]   = 0
-            BALL_NO_DATA["Temp_Monery_Idx"] = 0
+            BALL_NO_DATA["Temp_Monery"]     = int(self.target["43" + str(buyno - 1)])
 
-        self.logprint("位置" + str(buyno) + "***购买规则序号***:" + str(BALL_NO_DATA["Temp_Rule_Idx"]) + "***规则***:" + str(self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]))
-        self.logprint("位置" + str(buyno) + "***购买金额序号***:" + str(BALL_NO_DATA["Temp_Monery_Idx"]) + "***金额***:" + str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))
+        self.logprint("位置" + str(buyno) + "***购买规则***:" + self.target["42" + str(buyno - 1)])
+        self.logprint("位置" + str(buyno) + "***购买金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
         
         Bet = False        
         if test_flag == False :
@@ -356,61 +336,48 @@ class BettingThread(threading.Thread):
             while try_time > 0:   #无限循环
                 #关闭温馨提示
                 try:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
-                except:
-                    pass
-                try:
-                    driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button").click()
-                except:
-                    pass
-                try:
                     try_time = try_time - 1
-                    if self.target["lottery"] == 0:
-                        for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                            #print(no)
-                            if buyno == 1:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 2:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 3:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 4:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 5:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            else:
-                                pass
-                        #print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
-                        driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
-                        driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
-                        driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
-                        time.sleep(1)        
-                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                        time.sleep(1)
-                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
-                    elif self.target["lottery"] == 1:
-                        for no in self.target["rules"][BALL_NO_DATA["Temp_Rule_Idx"]]:
-                            #print(no)
-                            if buyno == 1:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ww\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 2:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_qw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 3:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_bw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 4:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_sw\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            elif buyno == 5:
-                                driver.find_element_by_xpath("//*[@id=\"num_group_ge\"]/div[2]/div[" + str(int(no) + 1) + "]").click()
-                            else:
-                                pass
-                        #print("ZZZZZZZZZZZZZZZZZZZZZZZZZZ")
-                        driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").clear()
-                        driver.find_element_by_xpath("//*[@id=\"lt_sel_times\"]").send_keys(str(self.target["monerys"][BALL_NO_DATA["Temp_Monery_Idx"]][1]))  
-                        driver.find_element_by_xpath("//*[@id=\"lt_buy_now\"]").click()
-                        time.sleep(1)        
-                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[1]").click()
-                        time.sleep(1)
-                        driver.find_element_by_xpath("/html/body/div[1]/div/table/tbody/tr[2]/td[2]/div/table/tbody/tr[3]/td/div/button[2]").click()
+                    if buyno == 1 or buyno == 2 or buyno == 3 or buyno == 4:
+                        if self.target["42" + str(buyno - 1)] == "大":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[2]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "小":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[3]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "单":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[4]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "双":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[5]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "龙":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[6]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "虎":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[7]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                        
+                    elif  buyno == 5 or buyno == 6 or buyno == 7 or buyno == 8:
+                        if self.target["42" + str(buyno - 1)] == "大":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[9]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "小":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[10]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "单":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[11]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "双":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[12]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "龙":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[13]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "虎":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                        
+                    elif  buyno == 9 or buyno == 10 or buyno == 11:
+                        if self.target["42" + str(buyno - 1)] == "大":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "小":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[15]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "单":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[16]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "双":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "龙":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[18]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "虎":
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[19]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))  
+                    else:
+                        pass
                 except Exception as msg:
                     self.logprint("Exception:%s" % msg)
                     time.sleep(1)
@@ -444,8 +411,8 @@ class MianWindow(basewin.BaseMainWind):
             self.m_url.SetValue(self.conf.get("url", "value"))     
         else:
             self.conf.add_section("url")
-            self.conf.set("url", "value", "https://www.hsgj19.com/")
-            self.m_url.SetValue("https://www.hsgj19.com/")     
+            self.conf.set("url", "value", "http://87w.aaw222.com/")
+            self.m_url.SetValue("http://87w.aaw222.com/")     
           
         ##################################################
         if self.conf.has_section("420") == True:
@@ -458,19 +425,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl430.SetValue(self.conf.get("430", "value"))
         else:
             self.conf.add_section("430")
-            self.conf.set("430", "value", "10") 
+            self.conf.set("430", "value", "1") 
         #
         if self.conf.has_section("440") == True:
             self.m_textCtrl440.SetValue(self.conf.get("440", "value"))
         else:
             self.conf.add_section("440")
-            self.conf.set("440", "value", "10") 
+            self.conf.set("440", "value", "1") 
         #
         if self.conf.has_section("450") == True:
             self.m_textCtrl450.SetValue(self.conf.get("450", "value"))
         else:
             self.conf.add_section("450")
-            self.conf.set("450", "value", "10")
+            self.conf.set("450", "value", "1")
         #
         if self.conf.has_section("460") == True:
             self.m_checkBox460.SetValue(isTrue(self.conf.get("460", "value")))
@@ -489,19 +456,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl431.SetValue(self.conf.get("431", "value"))
         else:
             self.conf.add_section("431")
-            self.conf.set("431", "value", "10") 
+            self.conf.set("431", "value", "1") 
         #
         if self.conf.has_section("441") == True:
             self.m_textCtrl441.SetValue(self.conf.get("441", "value"))
         else:
             self.conf.add_section("441")
-            self.conf.set("441", "value", "11") 
+            self.conf.set("441", "value", "1") 
         #
         if self.conf.has_section("451") == True:
             self.m_textCtrl451.SetValue(self.conf.get("451", "value"))
         else:
             self.conf.add_section("451")
-            self.conf.set("451", "value", "10")
+            self.conf.set("451", "value", "1") 
         #
         if self.conf.has_section("461") == True:
             self.m_checkBox461.SetValue(isTrue(self.conf.get("461", "value")))
@@ -520,19 +487,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl432.SetValue(self.conf.get("432", "value"))
         else:
             self.conf.add_section("432")
-            self.conf.set("432", "value", "10") 
+            self.conf.set("432", "value", "1") 
         #
         if self.conf.has_section("442") == True:
             self.m_textCtrl442.SetValue(self.conf.get("442", "value"))
         else:
             self.conf.add_section("442")
-            self.conf.set("442", "value", "12") 
+            self.conf.set("442", "value", "1") 
         #
         if self.conf.has_section("452") == True:
             self.m_textCtrl452.SetValue(self.conf.get("452", "value"))
         else:
             self.conf.add_section("452")
-            self.conf.set("452", "value", "10")
+            self.conf.set("452", "value", "1") 
         #
         if self.conf.has_section("462") == True:
             self.m_checkBox462.SetValue(isTrue(self.conf.get("462", "value")))
@@ -551,19 +518,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl433.SetValue(self.conf.get("433", "value"))
         else:
             self.conf.add_section("433")
-            self.conf.set("433", "value", "10") 
+            self.conf.set("433", "value", "1") 
         #
         if self.conf.has_section("443") == True:
             self.m_textCtrl443.SetValue(self.conf.get("443", "value"))
         else:
             self.conf.add_section("443")
-            self.conf.set("443", "value", "13") 
+            self.conf.set("443", "value", "1") 
         #
         if self.conf.has_section("453") == True:
             self.m_textCtrl453.SetValue(self.conf.get("453", "value"))
         else:
             self.conf.add_section("453")
-            self.conf.set("453", "value", "10")
+            self.conf.set("453", "value", "1") 
         #
         if self.conf.has_section("463") == True:
             self.m_checkBox463.SetValue(isTrue(self.conf.get("463", "value")))
@@ -582,19 +549,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl434.SetValue(self.conf.get("434", "value"))
         else:
             self.conf.add_section("434")
-            self.conf.set("434", "value", "10") 
+            self.conf.set("434", "value", "1") 
         #
         if self.conf.has_section("444") == True:
             self.m_textCtrl444.SetValue(self.conf.get("444", "value"))
         else:
             self.conf.add_section("444")
-            self.conf.set("444", "value", "14") 
+            self.conf.set("444", "value", "1") 
         #
         if self.conf.has_section("454") == True:
             self.m_textCtrl454.SetValue(self.conf.get("454", "value"))
         else:
             self.conf.add_section("454")
-            self.conf.set("454", "value", "10")
+            self.conf.set("454", "value", "1") 
         #
         if self.conf.has_section("464") == True:
             self.m_checkBox464.SetValue(isTrue(self.conf.get("464", "value")))
@@ -613,7 +580,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl435.SetValue(self.conf.get("435", "value"))
         else:
             self.conf.add_section("435")
-            self.conf.set("435", "value", "10") 
+            self.conf.set("435", "value", "1") 
         #
         if self.conf.has_section("445") == True:
             self.m_textCtrl445.SetValue(self.conf.get("445", "value"))
@@ -625,7 +592,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl455.SetValue(self.conf.get("455", "value"))
         else:
             self.conf.add_section("455")
-            self.conf.set("455", "value", "10")
+            self.conf.set("455", "value", "1") 
         #
         if self.conf.has_section("465") == True:
             self.m_checkBox465.SetValue(isTrue(self.conf.get("465", "value")))
@@ -644,19 +611,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl436.SetValue(self.conf.get("436", "value"))
         else:
             self.conf.add_section("436")
-            self.conf.set("436", "value", "10") 
+            self.conf.set("436", "value", "1") 
         #
         if self.conf.has_section("446") == True:
             self.m_textCtrl446.SetValue(self.conf.get("446", "value"))
         else:
             self.conf.add_section("446")
-            self.conf.set("446", "value", "16") 
+            self.conf.set("446", "value", "1") 
         #
         if self.conf.has_section("456") == True:
             self.m_textCtrl456.SetValue(self.conf.get("456", "value"))
         else:
             self.conf.add_section("456")
-            self.conf.set("456", "value", "10")
+            self.conf.set("456", "value", "1") 
         #
         if self.conf.has_section("466") == True:
             self.m_checkBox466.SetValue(isTrue(self.conf.get("466", "value")))
@@ -675,7 +642,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl437.SetValue(self.conf.get("437", "value"))
         else:
             self.conf.add_section("437")
-            self.conf.set("437", "value", "10") 
+            self.conf.set("437", "value", "1") 
         #
         if self.conf.has_section("447") == True:
             self.m_textCtrl447.SetValue(self.conf.get("447", "value"))
@@ -687,7 +654,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl457.SetValue(self.conf.get("457", "value"))
         else:
             self.conf.add_section("457")
-            self.conf.set("457", "value", "10")
+            self.conf.set("457", "value", "1") 
         #
         if self.conf.has_section("467") == True:
             self.m_checkBox467.SetValue(isTrue(self.conf.get("467", "value")))
@@ -706,7 +673,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl438.SetValue(self.conf.get("438", "value"))
         else:
             self.conf.add_section("438")
-            self.conf.set("438", "value", "10") 
+            self.conf.set("438", "value", "1") 
         #
         if self.conf.has_section("448") == True:
             self.m_textCtrl448.SetValue(self.conf.get("448", "value"))
@@ -718,7 +685,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl458.SetValue(self.conf.get("458", "value"))
         else:
             self.conf.add_section("458")
-            self.conf.set("458", "value", "10")
+            self.conf.set("458", "value", "1") 
         #
         if self.conf.has_section("468") == True:
             self.m_checkBox468.SetValue(isTrue(self.conf.get("468", "value")))
@@ -737,19 +704,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl439.SetValue(self.conf.get("439", "value"))
         else:
             self.conf.add_section("439")
-            self.conf.set("439", "value", "10") 
+            self.conf.set("439", "value", "1") 
         #
         if self.conf.has_section("449") == True:
             self.m_textCtrl449.SetValue(self.conf.get("449", "value"))
         else:
             self.conf.add_section("449")
-            self.conf.set("449", "value", "19") 
+            self.conf.set("449", "value", "1") 
         #
         if self.conf.has_section("459") == True:
             self.m_textCtrl459.SetValue(self.conf.get("459", "value"))
         else:
             self.conf.add_section("459")
-            self.conf.set("459", "value", "10")
+            self.conf.set("459", "value", "1") 
         #
         if self.conf.has_section("469") == True:
             self.m_checkBox469.SetValue(isTrue(self.conf.get("469", "value")))
@@ -768,19 +735,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl4310.SetValue(self.conf.get("4310", "value"))
         else:
             self.conf.add_section("4310")
-            self.conf.set("4310", "value", "10") 
+            self.conf.set("4310", "value", "1") 
         #
         if self.conf.has_section("4410") == True:
             self.m_textCtrl4410.SetValue(self.conf.get("4410", "value"))
         else:
             self.conf.add_section("4410")
-            self.conf.set("4410", "value", "110") 
+            self.conf.set("4410", "value", "1") 
         #
         if self.conf.has_section("4510") == True:
             self.m_textCtrl4510.SetValue(self.conf.get("4510", "value"))
         else:
             self.conf.add_section("4510")
-            self.conf.set("4510", "value", "10")
+            self.conf.set("4510", "value", "1") 
         #
         if self.conf.has_section("4610") == True:
             self.m_checkBox4610.SetValue(isTrue(self.conf.get("4610", "value")))
@@ -799,19 +766,19 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl4311.SetValue(self.conf.get("4311", "value"))
         else:
             self.conf.add_section("4311")
-            self.conf.set("4311", "value", "10") 
+            self.conf.set("4311", "value", "1") 
         #
         if self.conf.has_section("4411") == True:
             self.m_textCtrl4411.SetValue(self.conf.get("4411", "value"))
         else:
             self.conf.add_section("4411")
-            self.conf.set("4411", "value", "111") 
+            self.conf.set("4411", "value", "1") 
         #
         if self.conf.has_section("4511") == True:
             self.m_textCtrl4511.SetValue(self.conf.get("4511", "value"))
         else:
             self.conf.add_section("4511")
-            self.conf.set("4511", "value", "10")
+            self.conf.set("4511", "value", "1") 
         #
         if self.conf.has_section("4611") == True:
             self.m_checkBox4611.SetValue(isTrue(self.conf.get("4611", "value")))
