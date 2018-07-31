@@ -134,7 +134,7 @@ class BettingThread(threading.Thread):
 
         
         buynos = []
-        for i in range(12):
+        for i in range(11):
             if self.target["46" + str(i)] == True:
                 buynos.append(i + 1);
 
@@ -152,7 +152,7 @@ class BettingThread(threading.Thread):
         
         Test_no = 1     
         SleepTime  = 5    
-        Last_Award_Issue = ""        
+        Last_t_LID = ""        
         while self.stopped == False:
             try:
                 SleepTime = SleepTime + 1
@@ -180,40 +180,35 @@ class BettingThread(threading.Thread):
                     #print("//*[@id=\"mainbody\"] title:" +driver.title)
                     #print("//*[@id=\"mainbody\"] page_source:" + driver.page_source) 
                     
+                    span_roundno = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]").text
+                    print(span_roundno)
                     
-
-                    lt_gethistorycode = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]")
-                    print(lt_gethistorycode)
-
-                    lt_gethistorycode = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]").text
-                    print(lt_gethistorycode)
-                    
-                    current_issue = driver.find_element_by_xpath("//*[@id=\"t_LID\"]").text
-                    print(current_issue)
+                    t_LID = driver.find_element_by_xpath("//*[@id=\"t_LID\"]").text
+                    print(t_LID)
                     
  
 
                 else:
-                    lt_gethistorycode  = str(Test_no) 
-                    current_issue  = str(Test_no + 1)
+                    span_roundno  = str(Test_no) 
+                    t_LID  = str(Test_no + 1)
                     Test_no = Test_no + 1
                 
-                self.logprint("开奖期号：" + lt_gethistorycode)
-                self.logprint("购买期号：" + current_issue)
-                if lt_gethistorycode == "" or current_issue == "":
+                self.logprint("开奖期号：" + span_roundno)
+                self.logprint("购买期号：" + t_LID)
+                if span_roundno == "" or t_LID == "":
                     self.logprint("***等待开奖1***关盘中")
                     continue
                 #指定数据不差1，跳过
-                if int(current_issue) != int(lt_gethistorycode) + 1:
+                if int(t_LID) != int(span_roundno) + 1:
                     self.logprint("***等待开奖2***期号未相关1")   
                     continue  
 
-                if Last_Award_Issue != "" and int(Last_Award_Issue) == int(current_issue):
+                if Last_t_LID != "" and int(Last_t_LID) == int(t_LID):
                     self.logprint("***等待开奖3***已下注")   
                     continue                    
                 
                 Award_Issue_Road = None
-                try_time = 30
+                try_time = 300
                 while try_time > 0:   #无限循环
                     try_time = try_time - 1
                     self.logprint("****获取开奖数据***")   
@@ -226,7 +221,7 @@ class BettingThread(threading.Thread):
                             except:
                                 pass
                     else:
-                        for idx  in range(1,11):
+                        for idx  in range(2,12):
                             BallText = random.randint(1,10)
                             Award_Issue_Road_t.append(int(BallText))
                         Award_Issue_Road = Award_Issue_Road_t;
@@ -242,7 +237,7 @@ class BettingThread(threading.Thread):
                 
                 self.logprint("路单数据" + str(Award_Issue_Road))
                 
-                Last_Award_Issue = current_issue
+                Last_t_LID = t_LID
                 
                 for buyno in buynos:
                     self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
@@ -292,42 +287,84 @@ class BettingThread(threading.Thread):
         global driver
         self.logprint("**********************************************")   
         if BALL_NO_DATA["Temp_First_Flag"] == 1:
-            self.logprint("位置" + str(buyno) + "***处理开奖规则***:" + self.target["42" + str(buyno - 1)])
-            self.logprint("位置" + str(buyno) + "***处理开奖金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
-            
-            Win = False
+            self.logprint("位置" + str(buyno) + "***处理开奖结果 上轮购买规则***:" + self.target["42" + str(buyno - 1)])
+            self.logprint("位置" + str(buyno) + "***处理开奖结果 上轮购买金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
+                
+            Win = 0
             if self.target["42" + str(buyno - 1)] == "大":
-                if road[buyno - 1] >= 5:
-                    Win = True;
+                if road[buyno - 1] > 5:
+                    Win = 1;
                 else:
-                    Win = False
+                    Win = -1
             elif self.target["42" + str(buyno - 1)] == "小":
-                if road[buyno - 1]  < 5:
-                    Win = True;
+                if road[buyno - 1]  <= 5:
+                    Win = 1;
                 else:
-                    Win = False        
+                    Win = -1        
             elif self.target["42" + str(buyno - 1)] == "单":
                 if road[buyno - 1] % 2  ==  1:
-                    Win = True;
+                    Win = 1;
                 else:
-                    Win = False        
+                    Win = -1        
             elif self.target["42" + str(buyno - 1)] == "双":
                 if road[buyno - 1] % 2  ==  0:
-                    Win = True;
+                    Win = 1;
                 else:
-                    Win = False                        
-            if Win:
+                    Win = -1      
+            elif self.target["42" + str(buyno - 1)] == "龙":
+                if road[buyno - 1] > road[9 - (buyno - 1)]:
+                    Win = 1;
+                elif road[buyno - 1] == road[9 - (buyno - 1)]:
+                    Win = 0 
+                else:
+                    Win = -1 
+            elif self.target["42" + str(buyno - 1)] == "虎":
+                if road[buyno - 1] < road[9 - (buyno - 1)]:
+                    Win = 1;
+                elif road[buyno - 1] == road[9 - (buyno - 1)]:
+                    Win = 0 
+                else:
+                    Win = -1  
+            elif self.target["42" + str(buyno - 1)] == "合数大":
+                if road[0] + road[9]  >  10:
+                    Win = 1;
+                else:
+                    Win = -1 
+            elif self.target["42" + str(buyno - 1)] == "合数小":
+                if road[0] + road[9]  <=  10:
+                    Win = 1;
+                else:
+                    Win = -1 
+            elif self.target["42" + str(buyno - 1)] == "合数单":
+                if (road[0] + road[9]) % 2  ==  1:
+                    Win = 1;
+                else:
+                    Win = -1 
+            elif self.target["42" + str(buyno - 1)] == "合数双":            
+                if (road[0] + road[9]) % 2  ==  10:
+                    Win = 1;
+                else:
+                    Win = -1                     
+            ###############
+            if Win == 1:
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
                 BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] - int(self.target["44" + str(buyno - 1)])
+                if BALL_NO_DATA["Temp_Monery"] < 5:
+                    BALL_NO_DATA["Temp_Monery"] = 5;
+            elif Win == 0:
+                self.logprint("位置" + str(buyno) + "***和局***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
+                pass;
             else:
-                self.logprint("位置" + str(buyno) + "***未中奖***")
+                self.logprint("位置" + str(buyno) + "***未中奖***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
                 BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] + int(self.target["45" + str(buyno - 1)])
+                if BALL_NO_DATA["Temp_Monery"] < 5:
+                    BALL_NO_DATA["Temp_Monery"] = 5;
         else:
             BALL_NO_DATA["Temp_First_Flag"] = 1
             BALL_NO_DATA["Temp_Monery"]     = int(self.target["43" + str(buyno - 1)])
 
-        self.logprint("位置" + str(buyno) + "***购买规则***:" + self.target["42" + str(buyno - 1)])
-        self.logprint("位置" + str(buyno) + "***购买金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
+        self.logprint("位置" + str(buyno) + "***本轮购买规则***:" + self.target["42" + str(buyno - 1)])
+        self.logprint("位置" + str(buyno) + "***本轮购买金额***:" + str(BALL_NO_DATA["Temp_Monery"]))
         
         Bet = False        
         if test_flag == False :
@@ -362,7 +399,7 @@ class BettingThread(threading.Thread):
                         elif self.target["42" + str(buyno - 1)] == "龙":
                             driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[13]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "虎":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                        
+                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                       
                     elif  buyno == 9 or buyno == 10 or buyno == 11:
                         if self.target["42" + str(buyno - 1)] == "大":
                             driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
@@ -404,7 +441,7 @@ class MianWindow(basewin.BaseMainWind):
         #生成config对象
         self.conf = configparser.ConfigParser()
         #用config对象读取配置文件
-        self.conf.read("hsgj19_2.ini")
+        self.conf.read("aaw222.ini")
 
 
         if self.conf.has_section("url") == True:
@@ -586,7 +623,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl445.SetValue(self.conf.get("445", "value"))
         else:
             self.conf.add_section("445")
-            self.conf.set("445", "value", "15") 
+            self.conf.set("445", "value", "1") 
         #
         if self.conf.has_section("455") == True:
             self.m_textCtrl455.SetValue(self.conf.get("455", "value"))
@@ -648,7 +685,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl447.SetValue(self.conf.get("447", "value"))
         else:
             self.conf.add_section("447")
-            self.conf.set("447", "value", "17") 
+            self.conf.set("447", "value", "1") 
         #
         if self.conf.has_section("457") == True:
             self.m_textCtrl457.SetValue(self.conf.get("457", "value"))
@@ -679,7 +716,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_textCtrl448.SetValue(self.conf.get("448", "value"))
         else:
             self.conf.add_section("448")
-            self.conf.set("448", "value", "18") 
+            self.conf.set("448", "value", "1") 
         #
         if self.conf.has_section("458") == True:
             self.m_textCtrl458.SetValue(self.conf.get("458", "value"))
@@ -729,7 +766,7 @@ class MianWindow(basewin.BaseMainWind):
             self.m_comboBox4210.SetValue(self.conf.get("4210", "value"))
         else:
             self.conf.add_section("4210")
-            self.conf.set("4210", "value", "大")
+            self.conf.set("4210", "value", "合数大")
         #
         if self.conf.has_section("4310") == True:
             self.m_textCtrl4310.SetValue(self.conf.get("4310", "value"))
@@ -755,40 +792,9 @@ class MianWindow(basewin.BaseMainWind):
             self.conf.add_section("4610")
             self.conf.set("4610", "value", "True")
         ##################################################
-        ##################################################
-        if self.conf.has_section("4211") == True:
-            self.m_comboBox4211.SetValue(self.conf.get("4211", "value"))
-        else:
-            self.conf.add_section("4211")
-            self.conf.set("4211", "value", "大")
-        #
-        if self.conf.has_section("4311") == True:
-            self.m_textCtrl4311.SetValue(self.conf.get("4311", "value"))
-        else:
-            self.conf.add_section("4311")
-            self.conf.set("4311", "value", "1") 
-        #
-        if self.conf.has_section("4411") == True:
-            self.m_textCtrl4411.SetValue(self.conf.get("4411", "value"))
-        else:
-            self.conf.add_section("4411")
-            self.conf.set("4411", "value", "1") 
-        #
-        if self.conf.has_section("4511") == True:
-            self.m_textCtrl4511.SetValue(self.conf.get("4511", "value"))
-        else:
-            self.conf.add_section("4511")
-            self.conf.set("4511", "value", "1") 
-        #
-        if self.conf.has_section("4611") == True:
-            self.m_checkBox4611.SetValue(isTrue(self.conf.get("4611", "value")))
-        else:
-            self.conf.add_section("4611")
-            self.conf.set("4611", "value", "True")
-        ##################################################
             
         #写回配置文件
-        self.conf.write(open("hsgj19_2.ini","w"))                   
+        self.conf.write(open("aaw222.ini","w"))                   
         if test_flag == False :
             self.webthread = WebdriverThread(self.m_url.GetValue())
             self.webthread.start()
@@ -798,7 +804,7 @@ class MianWindow(basewin.BaseMainWind):
         driver.get(self.m_url.GetValue())        
         self.conf.set("url", "value", self.m_url.GetValue())
         #写回配置文件
-        self.conf.write(open("hsgj19_2.ini","w"))                
+        self.conf.write(open("aaw222.ini","w"))                
                 
     def onsave(self, event):  
         ##################################################
@@ -867,14 +873,8 @@ class MianWindow(basewin.BaseMainWind):
         self.conf.set("4410", "value", self.m_textCtrl4410.GetValue())
         self.conf.set("4510", "value", self.m_textCtrl4510.GetValue())
         self.conf.set("4610", "value", bool2str(self.m_checkBox4610.GetValue()))
-        ##################################################
-        self.conf.set("4211", "value", self.m_comboBox4211.GetValue())
-        self.conf.set("4311", "value", self.m_textCtrl4311.GetValue())
-        self.conf.set("4411", "value", self.m_textCtrl4411.GetValue())
-        self.conf.set("4511", "value", self.m_textCtrl4511.GetValue())
-        self.conf.set("4611", "value", bool2str(self.m_checkBox4611.GetValue()))
         #写回配置文件
-        self.conf.write(open("hsgj19_2.ini","w"))
+        self.conf.write(open("aaw222.ini","w"))
         
     def onstart(self, event):  
         self.onsave(event)
@@ -954,12 +954,6 @@ class MianWindow(basewin.BaseMainWind):
         target["4410"] = self.m_textCtrl4410.GetValue()
         target["4510"] = self.m_textCtrl4510.GetValue()
         target["4610"] = self.m_checkBox4610.GetValue()
-        ##################################################
-        target["4211"] = self.m_comboBox4211.GetValue()
-        target["4311"] = self.m_textCtrl4311.GetValue()
-        target["4411"] = self.m_textCtrl4411.GetValue()
-        target["4511"] = self.m_textCtrl4511.GetValue()
-        target["4611"] = self.m_checkBox4611.GetValue()
         
         self.m_button2.SetLabel('关闭')
         self.thread = BettingThread(target)

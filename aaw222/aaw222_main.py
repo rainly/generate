@@ -18,7 +18,7 @@ import urllib.request
 import urllib.response
 import urllib.error
 import http.cookiejar
-from hsgj19_2 import *
+from aaw222 import *
 
 
 
