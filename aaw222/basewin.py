@@ -17,7 +17,7 @@ import wx.xrc
 class BaseMainWind ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"北京赛车", pos = wx.DefaultPosition, size = wx.Size( 500,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -69,7 +69,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText410.Wrap( -1 )
 		bSizer40.Add( self.m_staticText410, 0, wx.ALL, 5 )
 		
-		m_comboBox420Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox420Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎" ]
 		self.m_comboBox420 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox420Choices, 0 )
 		bSizer40.Add( self.m_comboBox420, 0, wx.ALL, 5 )
 		
@@ -94,7 +94,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText411.Wrap( -1 )
 		bSizer41.Add( self.m_staticText411, 0, wx.ALL, 5 )
 		
-		m_comboBox421Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox421Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎" ]
 		self.m_comboBox421 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox421Choices, 0 )
 		bSizer41.Add( self.m_comboBox421, 0, wx.ALL, 5 )
 		
@@ -119,7 +119,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText412.Wrap( -1 )
 		bSizer42.Add( self.m_staticText412, 0, wx.ALL, 5 )
 		
-		m_comboBox422Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox422Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎" ]
 		self.m_comboBox422 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox422Choices, 0 )
 		bSizer42.Add( self.m_comboBox422, 0, wx.ALL, 5 )
 		
@@ -144,7 +144,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText413.Wrap( -1 )
 		bSizer43.Add( self.m_staticText413, 0, wx.ALL, 5 )
 		
-		m_comboBox423Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox423Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎" ]
 		self.m_comboBox423 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox423Choices, 0 )
 		bSizer43.Add( self.m_comboBox423, 0, wx.ALL, 5 )
 		
@@ -169,7 +169,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText414.Wrap( -1 )
 		bSizer44.Add( self.m_staticText414, 0, wx.ALL, 5 )
 		
-		m_comboBox424Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox424Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎" ]
 		self.m_comboBox424 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox424Choices, 0 )
 		bSizer44.Add( self.m_comboBox424, 0, wx.ALL, 5 )
 		
@@ -194,7 +194,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText415.Wrap( -1 )
 		bSizer45.Add( self.m_staticText415, 0, wx.ALL, 5 )
 		
-		m_comboBox425Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox425Choices = [ u"大", u"小", u"单", u"双" ]
 		self.m_comboBox425 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox425Choices, 0 )
 		bSizer45.Add( self.m_comboBox425, 0, wx.ALL, 5 )
 		
@@ -219,7 +219,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText416.Wrap( -1 )
 		bSizer46.Add( self.m_staticText416, 0, wx.ALL, 5 )
 		
-		m_comboBox426Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox426Choices = [ u"大", u"小", u"单", u"双" ]
 		self.m_comboBox426 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox426Choices, 0 )
 		bSizer46.Add( self.m_comboBox426, 0, wx.ALL, 5 )
 		
@@ -244,7 +244,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText417.Wrap( -1 )
 		bSizer47.Add( self.m_staticText417, 0, wx.ALL, 5 )
 		
-		m_comboBox427Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox427Choices = [ u"大", u"小", u"单", u"双" ]
 		self.m_comboBox427 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox427Choices, 0 )
 		bSizer47.Add( self.m_comboBox427, 0, wx.ALL, 5 )
 		
@@ -269,7 +269,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText418.Wrap( -1 )
 		bSizer48.Add( self.m_staticText418, 0, wx.ALL, 5 )
 		
-		m_comboBox428Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox428Choices = [ u"大", u"小", u"单", u"双" ]
 		self.m_comboBox428 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox428Choices, 0 )
 		bSizer48.Add( self.m_comboBox428, 0, wx.ALL, 5 )
 		
@@ -294,7 +294,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText419.Wrap( -1 )
 		bSizer49.Add( self.m_staticText419, 0, wx.ALL, 5 )
 		
-		m_comboBox429Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
+		m_comboBox429Choices = [ u"大", u"小", u"单", u"双" ]
 		self.m_comboBox429 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox429Choices, 0 )
 		bSizer49.Add( self.m_comboBox429, 0, wx.ALL, 5 )
 		
@@ -319,8 +319,8 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText4110.Wrap( -1 )
 		bSizer410.Add( self.m_staticText4110, 0, wx.ALL, 5 )
 		
-		m_comboBox4210Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
-		self.m_comboBox4210 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox4210Choices, 0 )
+		m_comboBox4210Choices = [ u"合数大", u"合数小", u"合数大", u"合数双", u"合数单", wx.EmptyString ]
+		self.m_comboBox4210 = wx.ComboBox( self, wx.ID_ANY, u"合数大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox4210Choices, 0 )
 		bSizer410.Add( self.m_comboBox4210, 0, wx.ALL, 5 )
 		
 		self.m_textCtrl4310 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
@@ -337,31 +337,6 @@ class BaseMainWind ( wx.Frame ):
 		
 		
 		bSizer2.Add( bSizer410, 1, wx.EXPAND, 5 )
-		
-		bSizer411 = wx.BoxSizer( wx.HORIZONTAL )
-		
-		self.m_staticText4111 = wx.StaticText( self, wx.ID_ANY, u"12", wx.DefaultPosition, wx.Size( 50,-1 ), 0 )
-		self.m_staticText4111.Wrap( -1 )
-		bSizer411.Add( self.m_staticText4111, 0, wx.ALL, 5 )
-		
-		m_comboBox4211Choices = [ u"大", u"小", u"单", u"双", u"龙", u"虎", u"大" ]
-		self.m_comboBox4211 = wx.ComboBox( self, wx.ID_ANY, u"大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox4211Choices, 0 )
-		bSizer411.Add( self.m_comboBox4211, 0, wx.ALL, 5 )
-		
-		self.m_textCtrl4311 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
-		bSizer411.Add( self.m_textCtrl4311, 0, wx.ALL, 5 )
-		
-		self.m_textCtrl4411 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
-		bSizer411.Add( self.m_textCtrl4411, 0, wx.ALL, 5 )
-		
-		self.m_textCtrl4511 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
-		bSizer411.Add( self.m_textCtrl4511, 0, wx.ALL, 5 )
-		
-		self.m_checkBox4611 = wx.CheckBox( self, wx.ID_ANY, u"启用", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer411.Add( self.m_checkBox4611, 0, wx.ALL, 5 )
-		
-		
-		bSizer2.Add( bSizer411, 1, wx.EXPAND, 5 )
 		
 		gSizer2 = wx.GridSizer( 1, 2, 200, 0 )
 		
