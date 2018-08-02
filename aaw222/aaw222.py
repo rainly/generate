@@ -131,10 +131,12 @@ class BettingThread(threading.Thread):
         self.logprint("********************start**************************")  
         self.logprint("********************start**************************")  
         self.logprint("********************start**************************")  
+        
+        print(self.target)
 
         
         buynos = []
-        for i in range(11):
+        for i in range(12):
             if self.target["46" + str(i)] == True:
                 buynos.append(i + 1);
 
@@ -142,7 +144,7 @@ class BettingThread(threading.Thread):
         BALL_NO_DATAS = {}
         for buyno in buynos:
             BALL_NO_DATA = {}
-            BALL_NO_DATA["Temp_Monery"]           =  0
+            BALL_NO_DATA["Temp_Monery"]          =  0
             BALL_NO_DATA["Temp_First_Flag"]      =  0
             BALL_NO_DATAS[buyno]                 =  BALL_NO_DATA
            
@@ -181,10 +183,10 @@ class BettingThread(threading.Thread):
                     #print("//*[@id=\"mainbody\"] page_source:" + driver.page_source) 
                     
                     span_roundno = driver.find_element_by_xpath("//*[@id=\"span_roundno\"]").text
-                    print(span_roundno)
+                    #print(span_roundno)
                     
                     t_LID = driver.find_element_by_xpath("//*[@id=\"t_LID\"]").text
-                    print(t_LID)
+                    #print(t_LID)
                     
  
 
@@ -226,7 +228,7 @@ class BettingThread(threading.Thread):
                             Award_Issue_Road_t.append(int(BallText))
                         Award_Issue_Road = Award_Issue_Road_t;
                     ####################################
-                    print(Award_Issue_Road_t)
+                    #print(Award_Issue_Road_t)
                     ####################################
                     if Award_Issue_Road == None and len(Award_Issue_Road_t) == 10:
                         Award_Issue_Road = Award_Issue_Road_t;
@@ -345,7 +347,7 @@ class BettingThread(threading.Thread):
                     Win = 1;
                 else:
                     Win = -1                     
-            ###############
+            ###################################################################
             if Win == 1:
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
                 BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] - int(self.target["44" + str(buyno - 1)])
@@ -376,44 +378,135 @@ class BettingThread(threading.Thread):
                     try_time = try_time - 1
                     if buyno == 1 or buyno == 2 or buyno == 3 or buyno == 4:
                         if self.target["42" + str(buyno - 1)] == "大":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[2]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[2]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "小":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[3]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[3]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "单":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[4]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[4]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "双":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[5]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[5]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "龙":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[6]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[6]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "虎":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[7]/td[" + str(buyno * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                        
-                    elif  buyno == 5 or buyno == 6 or buyno == 7 or buyno == 8:
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[7]/td[" + str(buyno * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))                        
+                    elif  buyno == 5:
                         if self.target["42" + str(buyno - 1)] == "大":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[9]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[9]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "小":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[10]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[10]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "单":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[11]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[11]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "双":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[12]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[12]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "龙":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[13]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[13]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "虎":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 4) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))                       
-                    elif  buyno == 9 or buyno == 10 or buyno == 11:
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))  
+                    elif buyno == 6 or buyno == 7 or buyno == 8:
                         if self.target["42" + str(buyno - 1)] == "大":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[9]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "小":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[15]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[10]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "单":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[16]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[11]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
                         elif self.target["42" + str(buyno - 1)] == "双":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
-                        elif self.target["42" + str(buyno - 1)] == "龙":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[18]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))
-                        elif self.target["42" + str(buyno - 1)] == "虎":
-                            driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[19]/td[" + str((buyno - 8 + 1) * 3) + "]/input").send_keys(str(BALL_NO_DATA["Temp_Monery"]))  
-                    else:
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[12]/td[" + str((buyno - 4) * 3) + "]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))                     
+                    elif  buyno == 9: 
+                        #//*[@id="tblNowBet01"]/tbody/tr[14]/td[6]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[15]/td[4]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[16]/td[3]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[17]/td[3]/input
+                        if self.target["42" + str(buyno - 1)] == "大":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[6]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "小":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[15]/td[4]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "单":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[16]/td[3]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "双":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[3]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))                    
+                    elif buyno == 10:
+                        #//*[@id="tblNowBet01"]/tbody/tr[14]/td[9]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[15]/td[7]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[16]/td[6]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[17]/td[6]/input
+                        if self.target["42" + str(buyno - 1)] == "大":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[9]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "小":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[15]/td[7]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "单":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[16]/td[6]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "双":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[6]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                    elif  buyno == 11 or buyno == 12:
+                        #//*[@id="tblNowBet01"]/tbody/tr[14]/td[12]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[15]/td[10]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[16]/td[9]/input
+                        #//*[@id="tblNowBet01"]/tbody/tr[17]/td[9]/input
+                        buyno_t = 11
+                        if self.target["42" + str(buyno - 1)] == "合数大":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[14]/td[12]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "合数小":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[15]/td[10]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "合数单":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[16]/td[9]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
+                        elif self.target["42" + str(buyno - 1)] == "合数双":
+                            tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[9]/input")
+                            tt.clear()
+                            tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))         
                         pass
                 except Exception as msg:
                     self.logprint("Exception:%s" % msg)
@@ -792,7 +885,38 @@ class MianWindow(basewin.BaseMainWind):
             self.conf.add_section("4610")
             self.conf.set("4610", "value", "True")
         ##################################################
-            
+         ##################################################
+        ##################################################
+        if self.conf.has_section("4211") == True:
+            self.m_comboBox4211.SetValue(self.conf.get("4211", "value"))
+        else:
+            self.conf.add_section("4211")
+            self.conf.set("4211", "value", "合数大")
+        #
+        if self.conf.has_section("4311") == True:
+            self.m_textCtrl4311.SetValue(self.conf.get("4311", "value"))
+        else:
+            self.conf.add_section("4311")
+            self.conf.set("4311", "value", "1") 
+        #
+        if self.conf.has_section("4411") == True:
+            self.m_textCtrl4411.SetValue(self.conf.get("4411", "value"))
+        else:
+            self.conf.add_section("4411")
+            self.conf.set("4411", "value", "1") 
+        #
+        if self.conf.has_section("4511") == True:
+            self.m_textCtrl4511.SetValue(self.conf.get("4511", "value"))
+        else:
+            self.conf.add_section("4511")
+            self.conf.set("4511", "value", "1") 
+        #
+        if self.conf.has_section("4611") == True:
+            self.m_checkBox4611.SetValue(isTrue(self.conf.get("4611", "value")))
+        else:
+            self.conf.add_section("4611")
+            self.conf.set("4611", "value", "True")
+        ##################################################           
         #写回配置文件
         self.conf.write(open("aaw222.ini","w"))                   
         if test_flag == False :
@@ -873,9 +997,15 @@ class MianWindow(basewin.BaseMainWind):
         self.conf.set("4410", "value", self.m_textCtrl4410.GetValue())
         self.conf.set("4510", "value", self.m_textCtrl4510.GetValue())
         self.conf.set("4610", "value", bool2str(self.m_checkBox4610.GetValue()))
+        ##################################################
+        self.conf.set("4211", "value", self.m_comboBox4211.GetValue())
+        self.conf.set("4311", "value", self.m_textCtrl4311.GetValue())
+        self.conf.set("4411", "value", self.m_textCtrl4411.GetValue())
+        self.conf.set("4511", "value", self.m_textCtrl4511.GetValue())
+        self.conf.set("4611", "value", bool2str(self.m_checkBox4611.GetValue()))
         #写回配置文件
         self.conf.write(open("aaw222.ini","w"))
-        
+            
     def onstart(self, event):  
         self.onsave(event)
         
@@ -954,7 +1084,12 @@ class MianWindow(basewin.BaseMainWind):
         target["4410"] = self.m_textCtrl4410.GetValue()
         target["4510"] = self.m_textCtrl4510.GetValue()
         target["4610"] = self.m_checkBox4610.GetValue()
-        
+        ##################################################
+        target["4211"] = self.m_comboBox4211.GetValue()
+        target["4311"] = self.m_textCtrl4311.GetValue()
+        target["4411"] = self.m_textCtrl4411.GetValue()
+        target["4511"] = self.m_textCtrl4511.GetValue()
+        target["4611"] = self.m_checkBox4611.GetValue()        
         self.m_button2.SetLabel('关闭')
         self.thread = BettingThread(target)
         self.thread.start()

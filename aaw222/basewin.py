@@ -17,7 +17,7 @@ import wx.xrc
 class BaseMainWind ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"北京赛车", pos = wx.DefaultPosition, size = wx.Size( 500,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"北京赛车", pos = wx.DefaultPosition, size = wx.Size( 500,560 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -319,7 +319,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_staticText4110.Wrap( -1 )
 		bSizer410.Add( self.m_staticText4110, 0, wx.ALL, 5 )
 		
-		m_comboBox4210Choices = [ u"合数大", u"合数小", u"合数大", u"合数双", u"合数单", wx.EmptyString ]
+		m_comboBox4210Choices = [ u"合数大", u"合数小", u"合数单", u"合数双", wx.EmptyString ]
 		self.m_comboBox4210 = wx.ComboBox( self, wx.ID_ANY, u"合数大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox4210Choices, 0 )
 		bSizer410.Add( self.m_comboBox4210, 0, wx.ALL, 5 )
 		
@@ -337,6 +337,31 @@ class BaseMainWind ( wx.Frame ):
 		
 		
 		bSizer2.Add( bSizer410, 1, wx.EXPAND, 5 )
+		
+		bSizer411 = wx.BoxSizer( wx.HORIZONTAL )
+		
+		self.m_staticText4111 = wx.StaticText( self, wx.ID_ANY, u"12", wx.DefaultPosition, wx.Size( 50,-1 ), 0 )
+		self.m_staticText4111.Wrap( -1 )
+		bSizer411.Add( self.m_staticText4111, 0, wx.ALL, 5 )
+		
+		m_comboBox4211Choices = [ u"合数大", u"合数小", u"合数单", u"合数双", wx.EmptyString ]
+		self.m_comboBox4211 = wx.ComboBox( self, wx.ID_ANY, u"合数大", wx.DefaultPosition, wx.Size( 80,-1 ), m_comboBox4211Choices, 0 )
+		bSizer411.Add( self.m_comboBox4211, 0, wx.ALL, 5 )
+		
+		self.m_textCtrl4311 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
+		bSizer411.Add( self.m_textCtrl4311, 0, wx.ALL, 5 )
+		
+		self.m_textCtrl4411 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
+		bSizer411.Add( self.m_textCtrl4411, 0, wx.ALL, 5 )
+		
+		self.m_textCtrl4511 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 80,-1 ), 0 )
+		bSizer411.Add( self.m_textCtrl4511, 0, wx.ALL, 5 )
+		
+		self.m_checkBox4611 = wx.CheckBox( self, wx.ID_ANY, u"启用", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer411.Add( self.m_checkBox4611, 0, wx.ALL, 5 )
+		
+		
+		bSizer2.Add( bSizer411, 1, wx.EXPAND, 5 )
 		
 		gSizer2 = wx.GridSizer( 1, 2, 200, 0 )
 		
