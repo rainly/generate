@@ -136,9 +136,10 @@ class BettingThread(threading.Thread):
 
         
         buynos = []
-        for i in range(12):
+        for i in range(13):
             if self.target["46" + str(i)] == True:
                 buynos.append(i + 1);
+        print(buynos)
 
         
         BALL_NO_DATAS = {}
@@ -244,11 +245,11 @@ class BettingThread(threading.Thread):
                 for buyno in buynos:
                     self.delBallNo(Award_Issue_Road, int(buyno), BALL_NO_DATAS[buyno])
                     time.sleep(1)
-                #关闭温馨提示
-                driver.find_element_by_xpath("//*[@id=\"btn_order2\"]").click()
-                time.sleep(1)
-                driver.switch_to.parent_frame()
-                driver.find_element_by_xpath("/html/body/div[16]/div[3]/div/button[1]").click()
+                if test_flag == False:
+                     driver.find_element_by_xpath("//*[@id=\"btn_order2\"]").click()
+                     time.sleep(1)
+                     driver.switch_to.parent_frame()
+                     driver.find_element_by_xpath("/html/body/div[16]/div[3]/div/button[1]").click()
             except NoSuchElementException as msg:
                 self.logprint("NoSuchElementException:%s" % msg)
                 pass
@@ -328,12 +329,12 @@ class BettingThread(threading.Thread):
                 else:
                     Win = -1  
             elif self.target["42" + str(buyno - 1)] == "合数大":
-                if road[0] + road[9]  >  10:
+                if road[0] + road[9]  >  11:
                     Win = 1;
                 else:
                     Win = -1 
             elif self.target["42" + str(buyno - 1)] == "合数小":
-                if road[0] + road[9]  <=  10:
+                if road[0] + road[9]  <=  11:
                     Win = 1;
                 else:
                     Win = -1 
@@ -343,14 +344,14 @@ class BettingThread(threading.Thread):
                 else:
                     Win = -1 
             elif self.target["42" + str(buyno - 1)] == "合数双":            
-                if (road[0] + road[9]) % 2  ==  10:
+                if (road[0] + road[9]) % 2  ==  0:
                     Win = 1;
                 else:
                     Win = -1                     
             ###################################################################
             if Win == 1:
                 self.logprint("位置" + str(buyno) + "***中奖***金额:" + str(BALL_NO_DATA["Temp_Monery"]))
-                BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] - int(self.target["44" + str(buyno - 1)])
+                BALL_NO_DATA["Temp_Monery"] = BALL_NO_DATA["Temp_Monery"] + int(self.target["44" + str(buyno - 1)])
                 if BALL_NO_DATA["Temp_Monery"] < 5:
                     BALL_NO_DATA["Temp_Monery"] = 5;
             elif Win == 0:
@@ -485,7 +486,7 @@ class BettingThread(threading.Thread):
                             tt = driver.find_element_by_xpath("//*[@id=\"tblNowBet01\"]/tbody/tr[17]/td[6]/input")
                             tt.clear()
                             tt.send_keys(str(BALL_NO_DATA["Temp_Monery"]))
-                    elif  buyno == 11 or buyno == 12:
+                    elif  buyno == 11 or buyno == 12 or buyno == 13:
                         #//*[@id="tblNowBet01"]/tbody/tr[14]/td[12]/input
                         #//*[@id="tblNowBet01"]/tbody/tr[15]/td[10]/input
                         #//*[@id="tblNowBet01"]/tbody/tr[16]/td[9]/input
@@ -885,7 +886,7 @@ class MianWindow(basewin.BaseMainWind):
             self.conf.add_section("4610")
             self.conf.set("4610", "value", "True")
         ##################################################
-         ##################################################
+        ##################################################
         ##################################################
         if self.conf.has_section("4211") == True:
             self.m_comboBox4211.SetValue(self.conf.get("4211", "value"))
@@ -916,7 +917,39 @@ class MianWindow(basewin.BaseMainWind):
         else:
             self.conf.add_section("4611")
             self.conf.set("4611", "value", "True")
-        ##################################################           
+        ##################################################  
+        ##################################################
+        ##################################################
+        if self.conf.has_section("4212") == True:
+            self.m_comboBox4212.SetValue(self.conf.get("4212", "value"))
+        else:
+            self.conf.add_section("4212")
+            self.conf.set("4212", "value", "合数大")
+        #
+        if self.conf.has_section("4312") == True:
+            self.m_textCtrl4312.SetValue(self.conf.get("4312", "value"))
+        else:
+            self.conf.add_section("4312")
+            self.conf.set("4312", "value", "1") 
+        #
+        if self.conf.has_section("4412") == True:
+            self.m_textCtrl4412.SetValue(self.conf.get("4412", "value"))
+        else:
+            self.conf.add_section("4412")
+            self.conf.set("4412", "value", "1") 
+        #
+        if self.conf.has_section("4512") == True:
+            self.m_textCtrl4512.SetValue(self.conf.get("4512", "value"))
+        else:
+            self.conf.add_section("4512")
+            self.conf.set("4512", "value", "1") 
+        #
+        if self.conf.has_section("4612") == True:
+            self.m_checkBox4612.SetValue(isTrue(self.conf.get("4612", "value")))
+        else:
+            self.conf.add_section("4612")
+            self.conf.set("4612", "value", "True")
+        ##################################################          
         #写回配置文件
         self.conf.write(open("aaw222.ini","w"))                   
         if test_flag == False :
@@ -1003,6 +1036,12 @@ class MianWindow(basewin.BaseMainWind):
         self.conf.set("4411", "value", self.m_textCtrl4411.GetValue())
         self.conf.set("4511", "value", self.m_textCtrl4511.GetValue())
         self.conf.set("4611", "value", bool2str(self.m_checkBox4611.GetValue()))
+        ##################################################
+        self.conf.set("4212", "value", self.m_comboBox4212.GetValue())
+        self.conf.set("4312", "value", self.m_textCtrl4312.GetValue())
+        self.conf.set("4412", "value", self.m_textCtrl4412.GetValue())
+        self.conf.set("4512", "value", self.m_textCtrl4512.GetValue())
+        self.conf.set("4612", "value", bool2str(self.m_checkBox4612.GetValue()))
         #写回配置文件
         self.conf.write(open("aaw222.ini","w"))
             
@@ -1089,12 +1128,18 @@ class MianWindow(basewin.BaseMainWind):
         target["4311"] = self.m_textCtrl4311.GetValue()
         target["4411"] = self.m_textCtrl4411.GetValue()
         target["4511"] = self.m_textCtrl4511.GetValue()
-        target["4611"] = self.m_checkBox4611.GetValue()        
+        target["4611"] = self.m_checkBox4611.GetValue()   
+        ##################################################
+        target["4212"] = self.m_comboBox4212.GetValue()
+        target["4312"] = self.m_textCtrl4312.GetValue()
+        target["4412"] = self.m_textCtrl4412.GetValue()
+        target["4512"] = self.m_textCtrl4512.GetValue()
+        target["4612"] = self.m_checkBox4612.GetValue()          
         self.m_button2.SetLabel('关闭')
         self.thread = BettingThread(target)
         self.thread.start()
         
-        
+            
 def main():
     app = wx.App()  
     main_win = MianWindow(None)  
