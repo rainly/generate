@@ -17,7 +17,7 @@ import wx.xrc
 class BaseMainWind ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"账号检测神器", pos = wx.DefaultPosition, size = wx.Size( 520,420 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"账号转账/检测神器", pos = wx.DefaultPosition, size = wx.Size( 520,420 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -51,7 +51,7 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer21 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText41 = wx.StaticText( self, wx.ID_ANY, u"手机前缀：", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText41 = wx.StaticText( self, wx.ID_ANY, u"手机前缀/：", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText41.Wrap( -1 )
 		bSizer21.Add( self.m_staticText41, 0, wx.ALL, 5 )
 		
@@ -63,7 +63,7 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer22 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"转账金额：", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"转账金额/：", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText3.Wrap( -1 )
 		bSizer22.Add( self.m_staticText3, 0, wx.ALL, 5 )
 		
@@ -75,7 +75,7 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer23 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText31 = wx.StaticText( self, wx.ID_ANY, u"显示名字：", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText31 = wx.StaticText( self, wx.ID_ANY, u"显示名字/：", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText31.Wrap( -1 )
 		bSizer23.Add( self.m_staticText31, 0, wx.ALL, 5 )
 		
@@ -87,7 +87,7 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer24 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText311 = wx.StaticText( self, wx.ID_ANY, u"显示备注：", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText311 = wx.StaticText( self, wx.ID_ANY, u"显示备注/：", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText311.Wrap( -1 )
 		bSizer24.Add( self.m_staticText311, 0, wx.ALL, 5 )
 		
@@ -109,13 +109,16 @@ class BaseMainWind ( wx.Frame ):
 		
 		bSizer2.Add( bSizer25, 1, wx.EXPAND, 5 )
 		
-		gSizer25 = wx.GridSizer( 1, 2, 200, 0 )
+		gSizer25 = wx.GridSizer( 1, 3, 200, 0 )
 		
 		self.m_btsave = wx.Button( self, wx.ID_ANY, u"保存", wx.DefaultPosition, wx.DefaultSize, 0 )
 		gSizer25.Add( self.m_btsave, 0, wx.ALL, 5 )
 		
-		self.m_btstart = wx.Button( self, wx.ID_ANY, u"开始", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_btstart = wx.Button( self, wx.ID_ANY, u"账号检测", wx.DefaultPosition, wx.DefaultSize, 0 )
 		gSizer25.Add( self.m_btstart, 0, wx.ALL, 5 )
+		
+		self.m_btstart2 = wx.Button( self, wx.ID_ANY, u"账号转账", wx.DefaultPosition, wx.DefaultSize, 0 )
+		gSizer25.Add( self.m_btstart2, 0, wx.ALL, 5 )
 		
 		
 		bSizer2.Add( gSizer25, 1, wx.EXPAND, 5 )
@@ -131,6 +134,7 @@ class BaseMainWind ( wx.Frame ):
 		self.m_btlogin.Bind( wx.EVT_BUTTON, self.onLogin )
 		self.m_btsave.Bind( wx.EVT_BUTTON, self.onSave )
 		self.m_btstart.Bind( wx.EVT_BUTTON, self.onStart )
+		self.m_btstart2.Bind( wx.EVT_BUTTON, self.onStart2 )
 	
 	def __del__( self ):
 		pass
@@ -147,6 +151,9 @@ class BaseMainWind ( wx.Frame ):
 		event.Skip()
 	
 	def onStart( self, event ):
+		event.Skip()
+	
+	def onStart2( self, event ):
 		event.Skip()
 	
 

@@ -407,13 +407,13 @@ class BettingThread(threading.Thread):
             else:
                 idx = 40104 + (buyno - 7) * 14
             ####
-            if BALL_NO_DATA["Temp_Rule"][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
+            if BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "大":
                 idx = idx + 0;  
-            elif BALL_NO_DATA["Temp_Rule"][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
+            elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "小":
                 idx = idx + 1;  
-            elif BALL_NO_DATA["Temp_Rule"][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
+            elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "单":
                 idx = idx + 2; 
-            elif BALL_NO_DATA["Temp_Rule"][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
+            elif BALL_NO_DATA["Temp_Rule"][1][BALL_NO_DATA["Temp_Rule_Idx"]] == "双":
                 idx = idx + 3; 
             driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").clear()
             driver.find_element_by_xpath("//*[@id=\"jeuM_0_" + str(idx) + "\"]").send_keys(str(BALL_NO_DATA["Temp_Monery"][1]))
